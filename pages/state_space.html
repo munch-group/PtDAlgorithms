@@ -186,19 +186,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/moments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">title: Moments</span></a>
+ <span class="menu-text">Moments</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">title: Distributions</span></a>
+ <span class="menu-text">Distributions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/laplace.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">title: Laplace transform</span></a>
+ <span class="menu-text">Laplace transform</span></a>
   </div>
 </li>
       </ul>
@@ -213,18 +213,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">pages/state_lumping.ipynb</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../pages/state_lumping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State lumping</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/epochs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">title: Epochs</span></a>
+ <span class="menu-text">Epochs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/joint_prob.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">title: Joint probabilities</span></a>
+ <span class="menu-text">Joint probabilities</span></a>
   </div>
 </li>
       </ul>
@@ -267,6 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>The state-space is built as a graph using an simple API and take up very little space compared to a matrix representation. It handles millions of vertices (states) and edges (transitions) and is munch faster than the traditional matrix-based computation relying on (sparse) matrix inversion and exponentiation.</p>
 <p>Consider this model: Rabbits jump between two islands at a rate of one. The two islands are flooded at rates 2 and 4 drowning all rabbits on the flooded island. The end (absorbing) is when no more rabbits are left.</p>
 <div id="rabbit-island-model">
 <p><a href="images/rabbits.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/rabbits.png" class="img-fluid" style="width:50.0%"></a></p>
@@ -287,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>it should return</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>[([<span class="dv">1</span>, <span class="dv">1</span>], <span class="dv">1</span>), ([<span class="dv">0</span>, <span class="dv">0</span>], <span class="dv">2</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Together, the callback and initial state fully specifies the model. Here is what they look like for the rabbit model:</p>
-<div id="cell-7" class="cell" data-execution_count="10">
+<div id="cell-8" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nr_rabbits, flood_left, flood_right <span class="op">=</span> <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rabbit_islands(state):</span>
@@ -312,13 +316,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div></div><p>To then build the state space all you need to do is:</p>
-<div id="cell-10" class="cell" data-execution_count="11">
+<div id="cell-11" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptd.Graph(callback<span class="op">=</span>rabbit_islands, initial<span class="op">=</span>initial_state)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Plot it to make sure it looks as expected. The gray <code>S</code> state is the “starting state” immediately transiting one or more model states where the model is allowed to begin. In the rabbit model, <code>S</code> goes to state <code>2,0</code> with probability 1 because the model can only begin there. The end (absorbing) state <code>0,0</code> is also colored gray.</p>
-<div id="cell-12" class="cell" data-execution_count="13">
+<div id="cell-13" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>graph.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
@@ -331,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="off-to-the-races" class="level2">
 <h2 class="anchored" data-anchor-id="off-to-the-races">Off to the races</h2>
 <p>Now the world is at your command. To scratch the surfance you can compute the expected time to rabbit extinction:</p>
-<div id="cell-14" class="cell" data-execution_count="15">
+<div id="cell-15" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>graph.expectation()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>0.5038265306122448</code></pre>
@@ -356,7 +360,7 @@ This pages is under construction
 <h2 class="anchored" data-anchor-id="learning-more">Learning more</h2>
 <ul>
 <li>See <a href="../pages/full_python_api_example.html">Python API walk through</a> for a full example of the Python API.</li>
-<li>See <a href="../../examples/full_python_api_example.ipynb">R API walk through</a> for a full example of the R API.</li>
+<li>See <a href="../../examples/full_r_api_example.ipynb">R API walk through</a> for a full example of the R API.</li>
 </ul>
 </section>
 <section id="citing-ptdalgorithms" class="level2">
@@ -791,8 +795,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../pages/moments.html" class="pagination-link" aria-label="title: Moments">
-        <span class="nav-page-text">title: Moments</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../pages/moments.html" class="pagination-link" aria-label="Moments">
+        <span class="nav-page-text">Moments</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

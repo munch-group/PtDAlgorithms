@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>epochs – ptdalgorithms</title>
+<title>Epochs – ptdalgorithms</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../pages/joint_prob.html" rel="next">
-<link href="../pages/laplace.html" rel="prev">
+<link href="../pages/state_lumping.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -113,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Advanced</li><li class="breadcrumb-item"><a href="../pages/epochs.html">title: Epochs</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/state_lumping.html">Advanced</a></li><li class="breadcrumb-item"><a href="../pages/epochs.html">Epochs</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -149,19 +149,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/moments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">title: Moments</span></a>
+ <span class="menu-text">Moments</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">title: Distributions</span></a>
+ <span class="menu-text">Distributions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/laplace.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">title: Laplace transform</span></a>
+ <span class="menu-text">Laplace transform</span></a>
   </div>
 </li>
       </ul>
@@ -176,18 +176,21 @@ ul.task-list li input[type="checkbox"] {
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">pages/state_lumping.ipynb</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../pages/state_lumping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State lumping</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/epochs.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">title: Epochs</span></a>
+ <span class="menu-text">Epochs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/joint_prob.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">title: Joint probabilities</span></a>
+ <span class="menu-text">Joint probabilities</span></a>
   </div>
 </li>
       </ul>
@@ -201,21 +204,27 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Advanced</li><li class="breadcrumb-item"><a href="../pages/epochs.html">title: Epochs</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/state_lumping.html">Advanced</a></li><li class="breadcrumb-item"><a href="../pages/epochs.html">Epochs</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Epochs</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<table class="caption-top table">
-<colgroup>
-<col style="width: 4%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>title: Epochs</td>
-</tr>
-</tbody>
-</table>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -652,13 +661,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../pages/laplace.html" class="pagination-link" aria-label="title: Laplace transform">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">title: Laplace transform</span>
+      <a href="../pages/state_lumping.html" class="pagination-link" aria-label="State lumping">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">State lumping</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../pages/joint_prob.html" class="pagination-link" aria-label="title: Joint probabilities">
-        <span class="nav-page-text">title: Joint probabilities</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../pages/joint_prob.html" class="pagination-link" aria-label="Joint probabilities">
+        <span class="nav-page-text">Joint probabilities</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
