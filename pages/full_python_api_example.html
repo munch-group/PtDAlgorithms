@@ -1352,6 +1352,145 @@ INFO: building reward compute graph...</code></pre>
 <pre><code>np.float64(0.0011138317897953385)</code></pre>
 </div>
 </div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co">// cppimport</span></span>
+<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;pybind11/pybind11.h&gt;</span></span>
+<span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;ptdalgorithms.h&gt;</span></span>
+<span id="cb132-4"><a href="#cb132-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-5"><a href="#cb132-5" aria-hidden="true" tabindex="-1"></a>namespace py <span class="op">=</span> pybind11<span class="op">;</span></span>
+<span id="cb132-6"><a href="#cb132-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-7"><a href="#cb132-7" aria-hidden="true" tabindex="-1"></a>using namespace pybind11<span class="op">::</span>literals<span class="op">;</span> <span class="co">// to bring in the `_a` literal</span></span>
+<span id="cb132-8"><a href="#cb132-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-9"><a href="#cb132-9" aria-hidden="true" tabindex="-1"></a><span class="co">/* Basic C libraries */</span></span>
+<span id="cb132-10"><a href="#cb132-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"stdint.h"</span></span>
+<span id="cb132-11"><a href="#cb132-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"stdlib.h"</span></span>
+<span id="cb132-12"><a href="#cb132-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-13"><a href="#cb132-13" aria-hidden="true" tabindex="-1"></a><span class="co">/* ----------------- Don't change the code above! ----------------- */</span></span>
+<span id="cb132-14"><a href="#cb132-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-15"><a href="#cb132-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-16"><a href="#cb132-16" aria-hidden="true" tabindex="-1"></a>ptdalgorithms<span class="op">::</span>Graph build<span class="op">(</span><span class="dt">int</span> starting_rabbits<span class="op">,</span> <span class="dt">float</span> flooding_left<span class="op">,</span> <span class="dt">float</span> flooding_right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb132-17"><a href="#cb132-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-18"><a href="#cb132-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">// using namespace ptdalgorithms;</span></span>
+<span id="cb132-19"><a href="#cb132-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-20"><a href="#cb132-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Same state size (left_rabbits, right_rabbits) */</span></span>
+<span id="cb132-21"><a href="#cb132-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">size_t</span> state_size <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb132-22"><a href="#cb132-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-23"><a href="#cb132-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Create the graph structure */</span></span>
+<span id="cb132-24"><a href="#cb132-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> ptd_graph <span class="op">*</span>graph <span class="op">=</span> ptd_graph_create<span class="op">(</span>state_size<span class="op">);</span></span>
+<span id="cb132-25"><a href="#cb132-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-26"><a href="#cb132-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* We must crease the lookup tree as well! */</span></span>
+<span id="cb132-27"><a href="#cb132-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> ptd_avl_tree <span class="op">*</span>avl_tree <span class="op">=</span> ptd_avl_tree_create<span class="op">(</span>state_size<span class="op">);</span></span>
+<span id="cb132-28"><a href="#cb132-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-29"><a href="#cb132-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Allocate the initial state, which means create an "array" of two values */</span></span>
+<span id="cb132-30"><a href="#cb132-30" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="op">*</span>initial_state <span class="op">=</span> <span class="op">(</span><span class="dt">int</span><span class="op">*)</span>calloc<span class="op">(</span>graph<span class="op">-&gt;</span>state_length<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(*</span>initial_state<span class="op">));</span></span>
+<span id="cb132-31"><a href="#cb132-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-32"><a href="#cb132-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* A "buffer" that allows us to manipulate the new child.</span></span>
+<span id="cb132-33"><a href="#cb132-33" aria-hidden="true" tabindex="-1"></a><span class="co">     * We need to 'free' this manually.</span></span>
+<span id="cb132-34"><a href="#cb132-34" aria-hidden="true" tabindex="-1"></a><span class="co">     */</span></span>
+<span id="cb132-35"><a href="#cb132-35" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="op">*</span>child_state <span class="op">=</span> <span class="op">(</span><span class="dt">int</span><span class="op">*)</span>calloc<span class="op">(</span>graph<span class="op">-&gt;</span>state_length<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(*</span>initial_state<span class="op">));</span></span>
+<span id="cb132-36"><a href="#cb132-36" aria-hidden="true" tabindex="-1"></a>    initial_state<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> starting_rabbits<span class="op">;</span></span>
+<span id="cb132-37"><a href="#cb132-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-38"><a href="#cb132-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Add the starting edge, just like in the R api */</span></span>
+<span id="cb132-39"><a href="#cb132-39" aria-hidden="true" tabindex="-1"></a>    ptd_graph_add_edge<span class="op">(</span></span>
+<span id="cb132-40"><a href="#cb132-40" aria-hidden="true" tabindex="-1"></a>            graph<span class="op">-&gt;</span>starting_vertex<span class="op">,</span></span>
+<span id="cb132-41"><a href="#cb132-41" aria-hidden="true" tabindex="-1"></a>            ptd_find_or_create_vertex<span class="op">(</span>graph<span class="op">,</span> avl_tree<span class="op">,</span> initial_state<span class="op">),</span></span>
+<span id="cb132-42"><a href="#cb132-42" aria-hidden="true" tabindex="-1"></a>            <span class="dv">1</span></span>
+<span id="cb132-43"><a href="#cb132-43" aria-hidden="true" tabindex="-1"></a>    <span class="op">);</span></span>
+<span id="cb132-44"><a href="#cb132-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-45"><a href="#cb132-45" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Visit all vertices once */</span></span>
+<span id="cb132-46"><a href="#cb132-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> k <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> k <span class="op">&lt;</span> graph<span class="op">-&gt;</span>vertices_length<span class="op">;</span> k<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb132-47"><a href="#cb132-47" aria-hidden="true" tabindex="-1"></a>        <span class="kw">struct</span> ptd_vertex <span class="op">*</span>vertex <span class="op">=</span> graph<span class="op">-&gt;</span>vertices<span class="op">[</span>k<span class="op">];</span></span>
+<span id="cb132-48"><a href="#cb132-48" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> <span class="op">*</span>state <span class="op">=</span> vertex<span class="op">-&gt;</span>state<span class="op">;</span></span>
+<span id="cb132-49"><a href="#cb132-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-50"><a href="#cb132-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>state<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb132-51"><a href="#cb132-51" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Rabbit jump left to right</span></span>
+<span id="cb132-52"><a href="#cb132-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-53"><a href="#cb132-53" aria-hidden="true" tabindex="-1"></a>            <span class="co">/* We use memcpy to copy the state into the child buffer!</span></span>
+<span id="cb132-54"><a href="#cb132-54" aria-hidden="true" tabindex="-1"></a><span class="co">             * As C or most other languages will *not* clone by default</span></span>
+<span id="cb132-55"><a href="#cb132-55" aria-hidden="true" tabindex="-1"></a><span class="co">             */</span></span>
+<span id="cb132-56"><a href="#cb132-56" aria-hidden="true" tabindex="-1"></a>            memcpy<span class="op">(</span>child_state<span class="op">,</span> vertex<span class="op">-&gt;</span>state<span class="op">,</span> graph<span class="op">-&gt;</span>state_length <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
+<span id="cb132-57"><a href="#cb132-57" aria-hidden="true" tabindex="-1"></a>            child_state<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">-=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb132-58"><a href="#cb132-58" aria-hidden="true" tabindex="-1"></a>            child_state<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb132-59"><a href="#cb132-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-60"><a href="#cb132-60" aria-hidden="true" tabindex="-1"></a>            <span class="co">/* ptd_find_or_create_vertex will *clone* the child_state</span></span>
+<span id="cb132-61"><a href="#cb132-61" aria-hidden="true" tabindex="-1"></a><span class="co">             * so no worries there!</span></span>
+<span id="cb132-62"><a href="#cb132-62" aria-hidden="true" tabindex="-1"></a><span class="co">             */</span></span>
+<span id="cb132-63"><a href="#cb132-63" aria-hidden="true" tabindex="-1"></a>            ptd_graph_add_edge<span class="op">(</span></span>
+<span id="cb132-64"><a href="#cb132-64" aria-hidden="true" tabindex="-1"></a>                    vertex<span class="op">,</span></span>
+<span id="cb132-65"><a href="#cb132-65" aria-hidden="true" tabindex="-1"></a>                    ptd_find_or_create_vertex<span class="op">(</span>graph<span class="op">,</span> avl_tree<span class="op">,</span> child_state<span class="op">),</span></span>
+<span id="cb132-66"><a href="#cb132-66" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span></span>
+<span id="cb132-67"><a href="#cb132-67" aria-hidden="true" tabindex="-1"></a>            <span class="op">);</span></span>
+<span id="cb132-68"><a href="#cb132-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-69"><a href="#cb132-69" aria-hidden="true" tabindex="-1"></a>            memcpy<span class="op">(</span>child_state<span class="op">,</span> vertex<span class="op">-&gt;</span>state<span class="op">,</span> graph<span class="op">-&gt;</span>state_length <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
+<span id="cb132-70"><a href="#cb132-70" aria-hidden="true" tabindex="-1"></a>            child_state<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb132-71"><a href="#cb132-71" aria-hidden="true" tabindex="-1"></a>            ptd_graph_add_edge<span class="op">(</span></span>
+<span id="cb132-72"><a href="#cb132-72" aria-hidden="true" tabindex="-1"></a>                    vertex<span class="op">,</span></span>
+<span id="cb132-73"><a href="#cb132-73" aria-hidden="true" tabindex="-1"></a>                    ptd_find_or_create_vertex<span class="op">(</span>graph<span class="op">,</span> avl_tree<span class="op">,</span> child_state<span class="op">),</span></span>
+<span id="cb132-74"><a href="#cb132-74" aria-hidden="true" tabindex="-1"></a>                    flooding_left</span>
+<span id="cb132-75"><a href="#cb132-75" aria-hidden="true" tabindex="-1"></a>            <span class="op">);</span></span>
+<span id="cb132-76"><a href="#cb132-76" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb132-77"><a href="#cb132-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-78"><a href="#cb132-78" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>state<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb132-79"><a href="#cb132-79" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Rabbit jump right to left</span></span>
+<span id="cb132-80"><a href="#cb132-80" aria-hidden="true" tabindex="-1"></a>            memcpy<span class="op">(</span>child_state<span class="op">,</span> vertex<span class="op">-&gt;</span>state<span class="op">,</span> graph<span class="op">-&gt;</span>state_length <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
+<span id="cb132-81"><a href="#cb132-81" aria-hidden="true" tabindex="-1"></a>            child_state<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">-=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb132-82"><a href="#cb132-82" aria-hidden="true" tabindex="-1"></a>            child_state<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb132-83"><a href="#cb132-83" aria-hidden="true" tabindex="-1"></a>            ptd_graph_add_edge<span class="op">(</span></span>
+<span id="cb132-84"><a href="#cb132-84" aria-hidden="true" tabindex="-1"></a>                    vertex<span class="op">,</span></span>
+<span id="cb132-85"><a href="#cb132-85" aria-hidden="true" tabindex="-1"></a>                    ptd_find_or_create_vertex<span class="op">(</span>graph<span class="op">,</span> avl_tree<span class="op">,</span> child_state<span class="op">),</span></span>
+<span id="cb132-86"><a href="#cb132-86" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span></span>
+<span id="cb132-87"><a href="#cb132-87" aria-hidden="true" tabindex="-1"></a>            <span class="op">);</span></span>
+<span id="cb132-88"><a href="#cb132-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-89"><a href="#cb132-89" aria-hidden="true" tabindex="-1"></a>            memcpy<span class="op">(</span>child_state<span class="op">,</span> vertex<span class="op">-&gt;</span>state<span class="op">,</span> graph<span class="op">-&gt;</span>state_length <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
+<span id="cb132-90"><a href="#cb132-90" aria-hidden="true" tabindex="-1"></a>            child_state<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb132-91"><a href="#cb132-91" aria-hidden="true" tabindex="-1"></a>            ptd_graph_add_edge<span class="op">(</span></span>
+<span id="cb132-92"><a href="#cb132-92" aria-hidden="true" tabindex="-1"></a>                    vertex<span class="op">,</span></span>
+<span id="cb132-93"><a href="#cb132-93" aria-hidden="true" tabindex="-1"></a>                    ptd_find_or_create_vertex<span class="op">(</span>graph<span class="op">,</span> avl_tree<span class="op">,</span> child_state<span class="op">),</span></span>
+<span id="cb132-94"><a href="#cb132-94" aria-hidden="true" tabindex="-1"></a>                    flooding_right</span>
+<span id="cb132-95"><a href="#cb132-95" aria-hidden="true" tabindex="-1"></a>            <span class="op">);</span></span>
+<span id="cb132-96"><a href="#cb132-96" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb132-97"><a href="#cb132-97" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb132-98"><a href="#cb132-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-99"><a href="#cb132-99" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Manually free the allocated buffer memory */</span></span>
+<span id="cb132-100"><a href="#cb132-100" aria-hidden="true" tabindex="-1"></a>    free<span class="op">(</span>child_state<span class="op">);</span></span>
+<span id="cb132-101"><a href="#cb132-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-102"><a href="#cb132-102" aria-hidden="true" tabindex="-1"></a>    <span class="co">/*</span></span>
+<span id="cb132-103"><a href="#cb132-103" aria-hidden="true" tabindex="-1"></a><span class="co">     * This is the first time we use the C++ api to</span></span>
+<span id="cb132-104"><a href="#cb132-104" aria-hidden="true" tabindex="-1"></a><span class="co">     * bind the allocated graph to a C++ instance.</span></span>
+<span id="cb132-105"><a href="#cb132-105" aria-hidden="true" tabindex="-1"></a><span class="co">     * Only few methods should be used...</span></span>
+<span id="cb132-106"><a href="#cb132-106" aria-hidden="true" tabindex="-1"></a><span class="co">     * It has memory management by destructure, so no need</span></span>
+<span id="cb132-107"><a href="#cb132-107" aria-hidden="true" tabindex="-1"></a><span class="co">     * to manually free when done using.</span></span>
+<span id="cb132-108"><a href="#cb132-108" aria-hidden="true" tabindex="-1"></a><span class="co">     */</span></span>
+<span id="cb132-109"><a href="#cb132-109" aria-hidden="true" tabindex="-1"></a>    ptdalgorithms<span class="op">::</span>Graph <span class="op">*</span>result <span class="op">=</span> new ptdalgorithms<span class="op">::</span>Graph<span class="op">(</span>graph<span class="op">,</span> avl_tree<span class="op">);</span></span>
+<span id="cb132-110"><a href="#cb132-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-111"><a href="#cb132-111" aria-hidden="true" tabindex="-1"></a>    <span class="co">/*</span></span>
+<span id="cb132-112"><a href="#cb132-112" aria-hidden="true" tabindex="-1"></a><span class="co">     * Use Rcpp to make this C++ instance visible to R. This is the</span></span>
+<span id="cb132-113"><a href="#cb132-113" aria-hidden="true" tabindex="-1"></a><span class="co">     * exact same type returned by `create_graph` in the R api,</span></span>
+<span id="cb132-114"><a href="#cb132-114" aria-hidden="true" tabindex="-1"></a><span class="co">     * which is why we need to make sure the cloned code is identical</span></span>
+<span id="cb132-115"><a href="#cb132-115" aria-hidden="true" tabindex="-1"></a><span class="co">     * to the currently installed R library (ptdalgorithms).</span></span>
+<span id="cb132-116"><a href="#cb132-116" aria-hidden="true" tabindex="-1"></a><span class="co">     */</span></span>
+<span id="cb132-117"><a href="#cb132-117" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">*</span>result<span class="op">;</span></span>
+<span id="cb132-118"><a href="#cb132-118" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb132-119"><a href="#cb132-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-120"><a href="#cb132-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-121"><a href="#cb132-121" aria-hidden="true" tabindex="-1"></a><span class="co">/* NB: Change module name below to match the name of this file (without the suffix) */</span></span>
+<span id="cb132-122"><a href="#cb132-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-123"><a href="#cb132-123" aria-hidden="true" tabindex="-1"></a>PYBIND11_MODULE<span class="op">(</span>rabbit_state_space<span class="op">,</span> m<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb132-124"><a href="#cb132-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-125"><a href="#cb132-125" aria-hidden="true" tabindex="-1"></a>        m<span class="op">.</span>def<span class="op">(</span><span class="st">"build"</span><span class="op">,</span> <span class="op">&amp;</span>build<span class="op">);</span></span>
+<span id="cb132-126"><a href="#cb132-126" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb132-127"><a href="#cb132-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-128"><a href="#cb132-128" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
+<span id="cb132-129"><a href="#cb132-129" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;%</span></span>
+<span id="cb132-130"><a href="#cb132-130" aria-hidden="true" tabindex="-1"></a><span class="co">setup_pybind11(cfg)</span></span>
+<span id="cb132-131"><a href="#cb132-131" aria-hidden="true" tabindex="-1"></a><span class="co">%&gt;</span></span>
+<span id="cb132-132"><a href="#cb132-132" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-154" class="cell">
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms</span>
+<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cppimport.import_hook</span>
+<span id="cb133-3"><a href="#cb133-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rabbit_state_space <span class="co">#This will pause for a moment to compile the module</span></span>
+<span id="cb133-4"><a href="#cb133-4" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptdalgorithms.Graph(rabbit_state_space.build(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>))</span>
+<span id="cb133-5"><a href="#cb133-5" aria-hidden="true" tabindex="-1"></a>graph.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
