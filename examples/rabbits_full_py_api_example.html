@@ -286,6 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#parameterized-edges" id="toc-parameterized-edges" class="nav-link" data-scroll-target="#parameterized-edges">Parameterized edges</a></li>
   <li><a href="#time-inhomogeneity" id="toc-time-inhomogeneity" class="nav-link" data-scroll-target="#time-inhomogeneity">Time inhomogeneity</a></li>
+  <li><a href="#building-the-state-space-in-c" id="toc-building-the-state-space-in-c" class="nav-link" data-scroll-target="#building-the-state-space-in-c">Building the state space in C</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -558,41 +559,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style type="text/css">
 </style>
 
-<table id="T_93511" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_eae7f" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_93511_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Rabbits left</th>
-<th id="T_93511_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Rabbits right</th>
+<th id="T_eae7f_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Rabbits left</th>
+<th id="T_eae7f_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Rabbits right</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_93511_row0_col0" class="data row0 col0">0</td>
-<td id="T_93511_row0_col1" class="data row0 col1">0</td>
+<td id="T_eae7f_row0_col0" class="data row0 col0">0</td>
+<td id="T_eae7f_row0_col1" class="data row0 col1">0</td>
 </tr>
 <tr class="even">
-<td id="T_93511_row1_col0" class="data row1 col0">2</td>
-<td id="T_93511_row1_col1" class="data row1 col1">0</td>
+<td id="T_eae7f_row1_col0" class="data row1 col0">2</td>
+<td id="T_eae7f_row1_col1" class="data row1 col1">0</td>
 </tr>
 <tr class="odd">
-<td id="T_93511_row2_col0" class="data row2 col0">1</td>
-<td id="T_93511_row2_col1" class="data row2 col1">1</td>
+<td id="T_eae7f_row2_col0" class="data row2 col0">1</td>
+<td id="T_eae7f_row2_col1" class="data row2 col1">1</td>
 </tr>
 <tr class="even">
-<td id="T_93511_row3_col0" class="data row3 col0">0</td>
-<td id="T_93511_row3_col1" class="data row3 col1">0</td>
+<td id="T_eae7f_row3_col0" class="data row3 col0">0</td>
+<td id="T_eae7f_row3_col1" class="data row3 col1">0</td>
 </tr>
 <tr class="odd">
-<td id="T_93511_row4_col0" class="data row4 col0">0</td>
-<td id="T_93511_row4_col1" class="data row4 col1">2</td>
+<td id="T_eae7f_row4_col0" class="data row4 col0">0</td>
+<td id="T_eae7f_row4_col1" class="data row4 col1">2</td>
 </tr>
 <tr class="even">
-<td id="T_93511_row5_col0" class="data row5 col0">0</td>
-<td id="T_93511_row5_col1" class="data row5 col1">1</td>
+<td id="T_eae7f_row5_col0" class="data row5 col0">0</td>
+<td id="T_eae7f_row5_col1" class="data row5 col1">1</td>
 </tr>
 <tr class="odd">
-<td id="T_93511_row6_col0" class="data row6 col0">1</td>
-<td id="T_93511_row6_col1" class="data row6 col1">0</td>
+<td id="T_eae7f_row6_col0" class="data row6 col0">1</td>
+<td id="T_eae7f_row6_col1" class="data row6 col1">0</td>
 </tr>
 </tbody>
 </table>
@@ -650,24 +651,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>cdf <span class="op">=</span> graph.cdf(time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 369 μs, sys: 70 μs, total: 439 μs
-Wall time: 437 μs</code></pre>
+<pre><code>CPU times: user 307 μs, sys: 32 μs, total: 339 μs
+Wall time: 373 μs</code></pre>
 </div>
 </div>
 <div id="cell-47" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>cdf <span class="op">=</span> graph.cdf(time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 45 μs, sys: 8 μs, total: 53 μs
-Wall time: 51 μs</code></pre>
+<pre><code>CPU times: user 44 μs, sys: 15 μs, total: 59 μs
+Wall time: 55.8 μs</code></pre>
 </div>
 </div>
 <div id="cell-48" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>pdf <span class="op">=</span> graph.pdf(time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 86 μs, sys: 8 μs, total: 94 μs
-Wall time: 94.4 μs</code></pre>
+<pre><code>CPU times: user 43 μs, sys: 2 μs, total: 45 μs
+Wall time: 47.9 μs</code></pre>
 </div>
 </div>
 <p>PDF and CDF of distribution. Observe the long tails!</p>
@@ -811,11 +812,11 @@ Wall time: 94.4 μs</code></pre>
 <div id="cell-79" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>graph.sample(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="39">
-<pre><code>[0.9953678038684506,
- 0.2622082646051939,
- 0.20445777753404323,
- 1.3808508205576713,
- 0.742247777082063]</code></pre>
+<pre><code>[0.16942571554192568,
+ 0.050413995296475146,
+ 0.11035839585273738,
+ 0.0560109248063384,
+ 0.33927458720992903]</code></pre>
 </div>
 </div>
 <div id="cell-80" class="cell" data-execution_count="40">
@@ -842,14 +843,14 @@ Wall time: 94.4 μs</code></pre>
 <div id="cell-82" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>(np.array(graph.sample(<span class="dv">1000000</span>))<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">1000000</span>, graph.moments(<span class="dv">2</span>)[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
-<pre><code>(np.float64(0.48111420214126543), 0.48029792274052463)</code></pre>
+<pre><code>(np.float64(0.4798029981357515), 0.48029792274052463)</code></pre>
 </div>
 </div>
 <div id="cell-83" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> graph.states()[:,<span class="dv">1</span>]</span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>(np.array(graph.sample(<span class="dv">1000000</span>, rewards))<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">1000000</span>, graph.moments(<span class="dv">2</span>, rewards)[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="42">
-<pre><code>(np.float64(0.054988246528484344), 0.05525692419825073)</code></pre>
+<pre><code>(np.float64(0.055031020812912015), 0.05525692419825073)</code></pre>
 </div>
 </div>
 <p>Reward-transforming first and then computing without rewards achieves the same thing:</p>
@@ -860,7 +861,7 @@ Wall time: 94.4 μs</code></pre>
 <pre><code>INFO: building reward compute graph...</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="43">
-<pre><code>(np.float64(0.05512562919458416), 0.05525692419825069)</code></pre>
+<pre><code>(np.float64(0.05471903186096611), 0.05525692419825069)</code></pre>
 </div>
 </div>
 <section id="discrete-phase-type-distributions" class="level2">
@@ -898,7 +899,7 @@ Cell <span class="ansi-green-fg">In[44], line 11</span>
 </div>
 </div>
 </div>
-<div id="cell-89" class="cell">
+<div id="cell-89" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -926,114 +927,149 @@ Cell <span class="ansi-green-fg">In[44], line 11</span>
 <span id="cb71-25"><a href="#cb71-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-26"><a href="#cb71-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"This is the discrete state space as a sub-transition matrix:"</span>)</span>
 <span id="cb71-27"><a href="#cb71-27" aria-hidden="true" tabindex="-1"></a><span class="co">#carrot_graph.as_matrices()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[45], line 9</span>
+<span class="ansi-green-fg ansi-bold">      6</span> rabbits <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)">sum</span>(vertex<span style="color:rgb(98,98,98)">.</span>state())
+<span class="ansi-green-fg ansi-bold">      8</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> rabbits <span style="color:rgb(98,98,98)">&gt;</span> <span style="color:rgb(98,98,98)">0</span>:
+<span class="ansi-green-fg">----&gt; 9</span>     obtained_carrot_vertex <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">carrot_graph</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">create_vertex</span>([<span style="color:rgb(98,98,98)">0</span>])
+<span class="ansi-green-fg ansi-bold">     10</span>     <span style="font-style:italic;color:rgb(95,135,135)"># Go directly back to the state we came from</span>
+<span class="ansi-green-fg ansi-bold">     11</span>     obtained_carrot_vertex<span style="color:rgb(98,98,98)">.</span>add_edge(vertex, <span style="color:rgb(98,98,98)">1</span>)
+
+<span class="ansi-red-fg">AttributeError</span>: 'ptdalgorithms.ptdalgorithmscpp_pybind.Graph' object has no attribute 'create_vertex'</pre>
 </div>
-<div id="cell-90" class="cell">
+</div>
+</div>
+<div id="cell-90" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> vertex <span class="kw">in</span> carrot_graph.vertices():</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(vertex.index(),vertex.state(), vertex.edges())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0 [0, 0] [1-(2,0)]
+1 [2, 0] [1-(1,1), 2-(0,0)]
+2 [1, 1] [1-(0,2), 2-(0,1), 1-(2,0), 4-(1,0)]
+3 [0, 0] []
+4 [0, 2] [1-(1,1), 4-(0,0)]
+5 [0, 1] [1-(1,0), 4-(0,0)]
+6 [1, 0] [1-(0,1), 2-(0,0)]</code></pre>
 </div>
-<div id="cell-91" class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> vertex <span class="kw">in</span> carrot_graph.vertices():</span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(vertex)</span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> edge <span class="kw">in</span> vertex.edges():</span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"  "</span>, edge)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-92" class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>carrot_vertices.astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-91" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> vertex <span class="kw">in</span> carrot_graph.vertices():</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(vertex)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> edge <span class="kw">in</span> vertex.edges():</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"  "</span>, edge)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(0,0)
+   1-(2,0)
+(2,0)
+   1-(1,1)
+   2-(0,0)
+(1,1)
+   1-(0,2)
+   2-(0,1)
+   1-(2,0)
+   4-(1,0)
+(0,0)
+(0,2)
+   1-(1,1)
+   4-(0,0)
+(0,1)
+   1-(1,0)
+   4-(0,0)
+(1,0)
+   1-(0,1)
+   2-(0,0)</code></pre>
+</div>
+</div>
+<div id="cell-92" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>carrot_vertices.astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])</code></pre>
+</div>
 </div>
 <p>We now want to find the expected number of eaten carrots. We set the reward such that the carrot vertex has a reward of ‘1’.</p>
-<div id="cell-94" class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> carrot_vertices.astype(<span class="bu">int</span>)</span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>carrot_graph.expectation_discrete(rewards)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We can verify that the number of carrots correspond to scaling the continuous graph:</p>
-<div id="cell-96" class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>graph.expectation(graph.states().<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)) <span class="op">*</span> <span class="fl">0.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Of course we cannot do this for other moments:</p>
-<div id="cell-98" class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>carrot_graph.variance_discrete(rewards)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO: building reward compute graph...</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="45">
-<pre><code>-0.06589702207413578</code></pre>
-</div>
-</div>
-<p>Verified by sampling:</p>
-<div id="cell-100" class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> carrot_graph.sample_discrete(<span class="dv">1000000</span>, rewards)</span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> np.array(samples)</span>
-<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>(samples<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="dv">1000000</span> <span class="op">-</span> ((np.<span class="bu">sum</span>(samples)) <span class="op">/</span> <span class="dv">1000000</span>)<span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-94" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> carrot_vertices.astype(<span class="bu">int</span>)</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>carrot_graph.expectation_discrete(rewards)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">RuntimeError</span>                              Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[46], line 1</span>
+Cell <span class="ansi-green-fg">In[49], line 2</span>
+<span class="ansi-green-fg ansi-bold">      1</span> rewards <span style="color:rgb(98,98,98)">=</span> carrot_vertices<span style="color:rgb(98,98,98)">.</span>astype(<span style="color:rgb(0,135,0)">int</span>)
+<span class="ansi-green-fg">----&gt; 2</span> <span class="ansi-yellow-bg">carrot_graph</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">expectation_discrete</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">rewards</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-red-fg">RuntimeError</span>: Failed: Rewards must match the number of vertices. Expected 7, got 14</pre>
+</div>
+</div>
+</div>
+<p>We can verify that the number of carrots correspond to scaling the continuous graph:</p>
+<div id="cell-96" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>graph.expectation(graph.states().<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)) <span class="op">*</span> <span class="fl">0.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="50">
+<pre><code>0.09056122448979591</code></pre>
+</div>
+</div>
+<p>Of course we cannot do this for other moments:</p>
+<div id="cell-98" class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>carrot_graph.variance_discrete(rewards)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">RuntimeError</span>                              Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[51], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-yellow-bg">carrot_graph</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">variance_discrete</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">rewards</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-red-fg">RuntimeError</span>: Failed: Rewards must match the number of vertices. Expected 7, got 14</pre>
+</div>
+</div>
+</div>
+<p>Verified by sampling:</p>
+<div id="cell-100" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> carrot_graph.sample_discrete(<span class="dv">1000000</span>, rewards)</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> np.array(samples)</span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>(samples<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="dv">1000000</span> <span class="op">-</span> ((np.<span class="bu">sum</span>(samples)) <span class="op">/</span> <span class="dv">1000000</span>)<span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">RuntimeError</span>                              Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[52], line 1</span>
 <span class="ansi-green-fg">----&gt; 1</span> samples <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">carrot_graph</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">sample_discrete</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">1000000</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">rewards</span><span class="ansi-yellow-bg">)</span>
 <span class="ansi-green-fg ansi-bold">      2</span> samples <span style="color:rgb(98,98,98)">=</span> np<span style="color:rgb(98,98,98)">.</span>array(samples)
 <span class="ansi-green-fg ansi-bold">      3</span> np<span style="color:rgb(98,98,98)">.</span>sum(samples<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>) <span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">1000000</span> <span style="color:rgb(98,98,98)">-</span> ((np<span style="color:rgb(98,98,98)">.</span>sum(samples)) <span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">1000000</span>)<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>
 
-<span class="ansi-red-fg">RuntimeError</span>: Expected vertex with index 1 (state 2 0) to have outgoing rate &lt;= 1. Is '3.000000'. Are you sure this is a discrete phase-type distribution?
-</pre>
+<span class="ansi-red-fg">RuntimeError</span>: Failed: Rewards must match the number of vertices. Expected 7, got 14</pre>
 </div>
 </div>
 </div>
-<div id="cell-101" class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can find the distribution function for the the total number of carrots found</span></span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>carrots <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Notice that with this reward transformation the graph is no longer sparse, as all paths through</span></span>
-<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the graph are represented!!</span></span>
-<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>found_carrots_graph  <span class="op">=</span> carrot_graph.reward_transform_discrete(rewards)</span>
-<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>pmf <span class="op">=</span> found_carrots_graph.pmf_discrete(carrots)</span>
-<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>cdf <span class="op">=</span> found_carrots_graph.cdf_discrete(carrots)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">RuntimeError</span>                              Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[47], line 5</span>
-<span class="ansi-green-fg ansi-bold">      2</span> carrots <span style="color:rgb(98,98,98)">=</span> np<span style="color:rgb(98,98,98)">.</span>arange(<span style="color:rgb(98,98,98)">10</span>)
-<span class="ansi-green-fg ansi-bold">      3</span> <span style="font-style:italic;color:rgb(95,135,135)"># Notice that with this reward transformation the graph is no longer sparse, as all paths through</span>
-<span class="ansi-green-fg ansi-bold">      4</span> <span style="font-style:italic;color:rgb(95,135,135)"># the graph are represented!!</span>
-<span class="ansi-green-fg">----&gt; 5</span> found_carrots_graph  <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">carrot_graph</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">reward_transform_discrete</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">rewards</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">      6</span> pmf <span style="color:rgb(98,98,98)">=</span> found_carrots_graph<span style="color:rgb(98,98,98)">.</span>pmf_discrete(carrots)
-<span class="ansi-green-fg ansi-bold">      7</span> cdf <span style="color:rgb(98,98,98)">=</span> found_carrots_graph<span style="color:rgb(98,98,98)">.</span>cdf_discrete(carrots)
-
-<span class="ansi-red-fg">RuntimeError</span>: Expected vertex with index 2 (state 1 1) to have outgoing rate &lt;= 1. Is '8.000000'. Are you sure this is a discrete phase-type distribution?
-</pre>
+<div id="cell-101" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can find the distribution function for the the total number of carrots found</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>carrots <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Notice that with this reward transformation the graph is no longer sparse, as all paths through</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the graph are represented!!</span></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>found_carrots_graph  <span class="op">=</span> carrot_graph.reward_transform_discrete(rewards)</span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>pmf <span class="op">=</span> found_carrots_graph.pmf_discrete(carrots)</span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>cdf <span class="op">=</span> found_carrots_graph.cdf_discrete(carrots)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<div id="cell-102" class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">3</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1</span>)</span>
-<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>ax1.plot(x, pmf)</span>
-<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">"PDF"</span>)</span>
-<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Total number of carrots found'</span>)</span>
-<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ax1.set_ylim(bottom=0)</span></span>
-<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a>ax2.plot(x, cdf)</span>
-<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">"CDF"</span>)</span>
-<span id="cb82-9"><a href="#cb82-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ax2.set_ylim(bottom=0)</span></span>
-<span id="cb82-10"><a href="#cb82-10" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'Total number of carrots found'</span>)</span>
-<span id="cb82-11"><a href="#cb82-11" aria-hidden="true" tabindex="-1"></a>ax2.axhline(y<span class="op">=</span>right_graph.defect(), linestyle<span class="op">=</span><span class="st">'dotted'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb82-12"><a href="#cb82-12" aria-hidden="true" tabindex="-1"></a>sns.despine()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[48], line 3</span>
-<span class="ansi-green-fg ansi-bold">      1</span> fig, (ax1, ax2) <span style="color:rgb(98,98,98)">=</span> plt<span style="color:rgb(98,98,98)">.</span>subplots(<span style="color:rgb(98,98,98)">1</span>, <span style="color:rgb(98,98,98)">2</span>, figsize<span style="color:rgb(98,98,98)">=</span>(<span style="color:rgb(98,98,98)">8</span>, <span style="color:rgb(98,98,98)">3</span>), sharey<span style="color:rgb(98,98,98)">=</span><span style="font-weight:bold;color:rgb(0,135,0)">True</span>)
-<span class="ansi-green-fg ansi-bold">      2</span> x <span style="color:rgb(98,98,98)">=</span> np<span style="color:rgb(98,98,98)">.</span>arange(<span style="color:rgb(98,98,98)">0</span>, <span style="color:rgb(98,98,98)">10</span>, <span style="color:rgb(98,98,98)">1</span>)
-<span class="ansi-green-fg">----&gt; 3</span> ax1<span style="color:rgb(98,98,98)">.</span>plot(x, <span class="ansi-yellow-bg">pmf</span>)
-<span class="ansi-green-fg ansi-bold">      4</span> ax1<span style="color:rgb(98,98,98)">.</span>set_title(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">PDF</span><span style="color:rgb(175,0,0)">"</span>)
-<span class="ansi-green-fg ansi-bold">      5</span> ax1<span style="color:rgb(98,98,98)">.</span>set_xlabel(<span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">Total number of carrots found</span><span style="color:rgb(175,0,0)">'</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'pmf' is not defined</pre>
-</div>
-</div>
+<div id="cell-102" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">3</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1</span>)</span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>ax1.plot(x, pmf)</span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">"PDF"</span>)</span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Total number of carrots found'</span>)</span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ax1.set_ylim(bottom=0)</span></span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a>ax2.plot(x, cdf)</span>
+<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">"CDF"</span>)</span>
+<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ax2.set_ylim(bottom=0)</span></span>
+<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'Total number of carrots found'</span>)</span>
+<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a>ax2.axhline(y<span class="op">=</span>right_graph.defect(), linestyle<span class="op">=</span><span class="st">'dotted'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a>sns.despine()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="rabbits_full_py_api_example_files/figure-html/cell-55-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="rabbits_full_py_api_example_files/figure-html/cell-55-output-2.png" width="682" height="280" class="figure-img"></a></p>
+<p><a href="rabbits_full_py_api_example_files/figure-html/cell-55-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="rabbits_full_py_api_example_files/figure-html/cell-55-output-1.png" width="671" height="315" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1043,84 +1079,98 @@ Cell <span class="ansi-green-fg">In[48], line 3</span>
 <section id="multivariate-phase-type-distributions" class="level1">
 <h1>Multivariate phase-type distributions</h1>
 <p>Instead of a univariate reward, we can have the distribution earn a <em>vector</em> of rewards for each time unit spent at a vertex. We will continue with the rabbit example. We will now show the relationship between total time spent by any rabbit on either of the two islands.</p>
-<div id="cell-105" class="cell" data-execution_count="49">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> graph.states()</span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>states[:, <span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="49">
+<div id="cell-105" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> graph.states()</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>states[:, <span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="55">
 <pre><code>array([0, 0, 1, 0, 2, 1, 0], dtype=int32)</code></pre>
 </div>
 </div>
-<div id="cell-106" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:58.848664Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:58.848587Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:58.860658Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:58.860421Z&quot;}" data-execution_count="56">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> graph.states()</span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>graph.covariance(states[:,<span class="dv">0</span>], states[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-106" class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> graph.states()</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>graph.covariance(states[:,<span class="dv">0</span>], states[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="56">
 <pre><code>0.030003774468971296</code></pre>
 </div>
 </div>
-<div id="cell-107" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:58.862058Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:58.861950Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:58.895226Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:58.894977Z&quot;}" data-execution_count="57">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>simulations <span class="op">=</span> graph.sample_multivariate(<span class="dv">100000</span>, graph.states())</span>
-<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>simulated_cov <span class="op">=</span> <span class="bu">sum</span>(simulations[<span class="dv">0</span>,:]<span class="op">*</span>simulations[<span class="dv">1</span>,:])<span class="op">/</span><span class="dv">100000</span> <span class="op">-</span> <span class="op">\</span></span>
-<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">sum</span>(simulations[<span class="dv">0</span>,:])<span class="op">/</span><span class="dv">100000</span><span class="op">*</span><span class="bu">sum</span>(simulations[<span class="dv">1</span>,:])<span class="op">/</span><span class="dv">100000</span></span>
-<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a>simulated_cov</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-107" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>simulations <span class="op">=</span> graph.sample_multivariate(<span class="dv">100000</span>, graph.states())</span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>simulated_cov <span class="op">=</span> <span class="bu">sum</span>(simulations[<span class="dv">0</span>,:]<span class="op">*</span>simulations[<span class="dv">1</span>,:])<span class="op">/</span><span class="dv">100000</span> <span class="op">-</span> <span class="op">\</span></span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">sum</span>(simulations[<span class="dv">0</span>,:])<span class="op">/</span><span class="dv">100000</span><span class="op">*</span><span class="bu">sum</span>(simulations[<span class="dv">1</span>,:])<span class="op">/</span><span class="dv">100000</span></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a>simulated_cov</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="57">
-<pre><code>np.float64(0.030695764915293106)</code></pre>
+<pre><code>np.float64(0.029618498210833108)</code></pre>
 </div>
 </div>
 <p>The api also supports multivariate <em>discrete</em> phase-type distributions. We show the covariance between carrots found on either island.</p>
-<div id="cell-109" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:58.896748Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:58.896663Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:58.909112Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:58.908872Z&quot;}" data-execution_count="58">
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>mdph_carrot_graph <span class="op">=</span> graph.clone()</span>
-<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>vlength <span class="op">=</span> mdph_carrot_graph.vertices_length()</span>
-<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a>carrot_vertices_left <span class="op">=</span> np.repeat(<span class="va">False</span>, vlength<span class="op">*</span><span class="dv">2</span>)</span>
-<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>carrot_vertices_right <span class="op">=</span> np.repeat(<span class="va">False</span>, vlength<span class="op">*</span><span class="dv">2</span>)</span>
-<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(vlength):</span>
-<span id="cb89-10"><a href="#cb89-10" aria-hidden="true" tabindex="-1"></a>    vertex <span class="op">=</span> mdph_carrot_graph.vertex_at(i)</span>
-<span id="cb89-11"><a href="#cb89-11" aria-hidden="true" tabindex="-1"></a>    rabbits <span class="op">=</span> vertex.state()</span>
-<span id="cb89-12"><a href="#cb89-12" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb89-13"><a href="#cb89-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rabbits[<span class="dv">0</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb89-14"><a href="#cb89-14" aria-hidden="true" tabindex="-1"></a>        obtained_carrot_vertex <span class="op">=</span> mdph_carrot_graph.create_vertex([<span class="dv">0</span>])</span>
-<span id="cb89-15"><a href="#cb89-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Go directly back to the state we came from</span></span>
-<span id="cb89-16"><a href="#cb89-16" aria-hidden="true" tabindex="-1"></a>        obtained_carrot_vertex.add_edge(vertex, <span class="dv">1</span>)</span>
-<span id="cb89-17"><a href="#cb89-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Rate of finding carrot</span></span>
-<span id="cb89-18"><a href="#cb89-18" aria-hidden="true" tabindex="-1"></a>        vertex.add_edge(obtained_carrot_vertex, rabbits[<span class="dv">0</span>] <span class="op">*</span> <span class="fl">0.1</span>)</span>
-<span id="cb89-19"><a href="#cb89-19" aria-hidden="true" tabindex="-1"></a>        carrot_vertices_left[obtained_carrot_vertex.index()] <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb89-20"><a href="#cb89-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb89-21"><a href="#cb89-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rabbits[<span class="dv">1</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb89-22"><a href="#cb89-22" aria-hidden="true" tabindex="-1"></a>        obtained_carrot_vertex <span class="op">=</span> mdph_carrot_graph.create_vertex([<span class="dv">0</span>])</span>
-<span id="cb89-23"><a href="#cb89-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Go directly back to the state we came from</span></span>
-<span id="cb89-24"><a href="#cb89-24" aria-hidden="true" tabindex="-1"></a>        obtained_carrot_vertex.add_edge(vertex, <span class="dv">1</span>)</span>
-<span id="cb89-25"><a href="#cb89-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Rate of finding carrot</span></span>
-<span id="cb89-26"><a href="#cb89-26" aria-hidden="true" tabindex="-1"></a>        vertex.add_edge(obtained_carrot_vertex, rabbits[<span class="dv">1</span>] <span class="op">*</span> <span class="fl">0.1</span>)</span>
-<span id="cb89-27"><a href="#cb89-27" aria-hidden="true" tabindex="-1"></a>        carrot_vertices_right[obtained_carrot_vertex.index()] <span class="op">=</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-109" class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>mdph_carrot_graph <span class="op">=</span> graph.clone()</span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a>vlength <span class="op">=</span> mdph_carrot_graph.vertices_length()</span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a>carrot_vertices_left <span class="op">=</span> np.repeat(<span class="va">False</span>, vlength<span class="op">*</span><span class="dv">2</span>)</span>
+<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a>carrot_vertices_right <span class="op">=</span> np.repeat(<span class="va">False</span>, vlength<span class="op">*</span><span class="dv">2</span>)</span>
+<span id="cb91-7"><a href="#cb91-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-8"><a href="#cb91-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-9"><a href="#cb91-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(vlength):</span>
+<span id="cb91-10"><a href="#cb91-10" aria-hidden="true" tabindex="-1"></a>    vertex <span class="op">=</span> mdph_carrot_graph.vertex_at(i)</span>
+<span id="cb91-11"><a href="#cb91-11" aria-hidden="true" tabindex="-1"></a>    rabbits <span class="op">=</span> vertex.state()</span>
+<span id="cb91-12"><a href="#cb91-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb91-13"><a href="#cb91-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rabbits[<span class="dv">0</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb91-14"><a href="#cb91-14" aria-hidden="true" tabindex="-1"></a>        obtained_carrot_vertex <span class="op">=</span> mdph_carrot_graph.create_vertex([<span class="dv">0</span>])</span>
+<span id="cb91-15"><a href="#cb91-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Go directly back to the state we came from</span></span>
+<span id="cb91-16"><a href="#cb91-16" aria-hidden="true" tabindex="-1"></a>        obtained_carrot_vertex.add_edge(vertex, <span class="dv">1</span>)</span>
+<span id="cb91-17"><a href="#cb91-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Rate of finding carrot</span></span>
+<span id="cb91-18"><a href="#cb91-18" aria-hidden="true" tabindex="-1"></a>        vertex.add_edge(obtained_carrot_vertex, rabbits[<span class="dv">0</span>] <span class="op">*</span> <span class="fl">0.1</span>)</span>
+<span id="cb91-19"><a href="#cb91-19" aria-hidden="true" tabindex="-1"></a>        carrot_vertices_left[obtained_carrot_vertex.index()] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb91-20"><a href="#cb91-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb91-21"><a href="#cb91-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rabbits[<span class="dv">1</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb91-22"><a href="#cb91-22" aria-hidden="true" tabindex="-1"></a>        obtained_carrot_vertex <span class="op">=</span> mdph_carrot_graph.create_vertex([<span class="dv">0</span>])</span>
+<span id="cb91-23"><a href="#cb91-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Go directly back to the state we came from</span></span>
+<span id="cb91-24"><a href="#cb91-24" aria-hidden="true" tabindex="-1"></a>        obtained_carrot_vertex.add_edge(vertex, <span class="dv">1</span>)</span>
+<span id="cb91-25"><a href="#cb91-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Rate of finding carrot</span></span>
+<span id="cb91-26"><a href="#cb91-26" aria-hidden="true" tabindex="-1"></a>        vertex.add_edge(obtained_carrot_vertex, rabbits[<span class="dv">1</span>] <span class="op">*</span> <span class="fl">0.1</span>)</span>
+<span id="cb91-27"><a href="#cb91-27" aria-hidden="true" tabindex="-1"></a>        carrot_vertices_right[obtained_carrot_vertex.index()] <span class="op">=</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[58], line 13</span>
+<span class="ansi-green-fg ansi-bold">     10</span> rabbits <span style="color:rgb(98,98,98)">=</span> vertex<span style="color:rgb(98,98,98)">.</span>state()
+<span class="ansi-green-fg ansi-bold">     12</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> rabbits[<span style="color:rgb(98,98,98)">0</span>] <span style="color:rgb(98,98,98)">&gt;</span> <span style="color:rgb(98,98,98)">0</span>:
+<span class="ansi-green-fg">---&gt; 13</span>     obtained_carrot_vertex <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">mdph_carrot_graph</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">create_vertex</span>([<span style="color:rgb(98,98,98)">0</span>])
+<span class="ansi-green-fg ansi-bold">     14</span>     <span style="font-style:italic;color:rgb(95,135,135)"># Go directly back to the state we came from</span>
+<span class="ansi-green-fg ansi-bold">     15</span>     obtained_carrot_vertex<span style="color:rgb(98,98,98)">.</span>add_edge(vertex, <span style="color:rgb(98,98,98)">1</span>)
+
+<span class="ansi-red-fg">AttributeError</span>: 'ptdalgorithms.ptdalgorithmscpp_pybind.Graph' object has no attribute 'create_vertex'</pre>
+</div>
+</div>
 </div>
 <p>Covariance:</p>
-<div id="cell-111" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:58.910634Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:58.910558Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:58.922001Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:58.921790Z&quot;}" data-execution_count="59">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>carrot_vertices_left <span class="op">=</span> carrot_vertices_left[<span class="dv">0</span>:mdph_carrot_graph.vertices_length()]</span>
-<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>carrot_vertices_right <span class="op">=</span> carrot_vertices_right[<span class="dv">0</span>:mdph_carrot_graph.vertices_length()]</span>
-<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>mdph_carrot_graph.normalize()</span>
-<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> np.column_stack((carrot_vertices_left, carrot_vertices_right)).astype(<span class="bu">int</span>)</span>
-<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a>mdph_carrot_graph.covariance_discrete(rewards[:,<span class="dv">0</span>], rewards[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-111" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>carrot_vertices_left <span class="op">=</span> carrot_vertices_left[<span class="dv">0</span>:mdph_carrot_graph.vertices_length()]</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>carrot_vertices_right <span class="op">=</span> carrot_vertices_right[<span class="dv">0</span>:mdph_carrot_graph.vertices_length()]</span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>mdph_carrot_graph.normalize()</span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> np.column_stack((carrot_vertices_left, carrot_vertices_right)).astype(<span class="bu">int</span>)</span>
+<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a>mdph_carrot_graph.covariance_discrete(rewards[:,<span class="dv">0</span>], rewards[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO: building reward compute graph...</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="59">
-<pre><code>-0.0005338270512286547</code></pre>
+<pre><code>0.0</code></pre>
 </div>
 </div>
 <p>Sampled covariance:</p>
-<div id="cell-113" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:58.923382Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:58.923301Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:58.991485Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:58.991222Z&quot;}" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>simulations <span class="op">=</span> mdph_carrot_graph.sample_multivariate_discrete(<span class="dv">1000000</span>, rewards)</span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>simulated_cov <span class="op">&lt;-</span> np.<span class="bu">sum</span>(simulations[<span class="dv">0</span>,:]<span class="op">*</span>simulations[<span class="dv">1</span>,:])<span class="op">/</span><span class="dv">1000000</span> <span class="op">-</span> <span class="op">\</span></span>
-<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>                    np.<span class="bu">sum</span>(simulations[<span class="dv">0</span>,:])<span class="op">/</span><span class="dv">1000000</span><span class="op">*</span>np.<span class="bu">sum</span>(simulations[<span class="dv">1</span>,:])<span class="op">/</span><span class="dv">1000000</span></span>
-<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>simulated_cov</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-113" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>simulations <span class="op">=</span> mdph_carrot_graph.sample_multivariate_discrete(<span class="dv">1000000</span>, rewards)</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>simulated_cov <span class="op">&lt;-</span> np.<span class="bu">sum</span>(simulations[<span class="dv">0</span>,:]<span class="op">*</span>simulations[<span class="dv">1</span>,:])<span class="op">/</span><span class="dv">1000000</span> <span class="op">-</span> <span class="op">\</span></span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>                    np.<span class="bu">sum</span>(simulations[<span class="dv">0</span>,:])<span class="op">/</span><span class="dv">1000000</span><span class="op">*</span>np.<span class="bu">sum</span>(simulations[<span class="dv">1</span>,:])<span class="op">/</span><span class="dv">1000000</span></span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>simulated_cov</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="60">
-<pre><code>np.float64(0.030695764915293106)</code></pre>
+<pre><code>np.float64(0.029618498210833108)</code></pre>
 </div>
 </div>
 <section id="parameterized-edges" class="level2">
@@ -1129,78 +1179,78 @@ Cell <span class="ansi-green-fg">In[48], line 3</span>
 <p>We do this by assigning a <em>state</em> to the <em>edge</em>.</p>
 <p>We will now also say that the rate of rabbits jumping is proportional to the number of rabbits on the island.</p>
 <p>Our state is [rabbits able to jump, left flooding, right flooding]</p>
-<div id="cell-116" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:58.993087Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:58.992990Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.008101Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.007854Z&quot;}" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> construct_rabbit_graph_params(nr_rabbits):</span>
-<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># We represent the vector as two integers, the number of rabbits on the left and right island</span></span>
-<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>    state_vector_length <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>    graph <span class="op">=</span> ptd.Graph(state_vector_length)</span>
-<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a>    initial_state <span class="op">=</span> [nr_rabbits, <span class="dv">0</span>]</span>
-<span id="cb95-7"><a href="#cb95-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The initial state is the only starting state, with 100% starting probability</span></span>
-<span id="cb95-8"><a href="#cb95-8" aria-hidden="true" tabindex="-1"></a>    graph.starting_vertex().add_edge(</span>
-<span id="cb95-9"><a href="#cb95-9" aria-hidden="true" tabindex="-1"></a>      graph.find_or_create_vertex(initial_state),</span>
-<span id="cb95-10"><a href="#cb95-10" aria-hidden="true" tabindex="-1"></a>      <span class="dv">1</span></span>
-<span id="cb95-11"><a href="#cb95-11" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb95-12"><a href="#cb95-12" aria-hidden="true" tabindex="-1"></a>    index <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb95-13"><a href="#cb95-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Iterate over all unvisited vertices</span></span>
-<span id="cb95-14"><a href="#cb95-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> index <span class="op">&lt;</span> graph.vertices_length():</span>
-<span id="cb95-15"><a href="#cb95-15" aria-hidden="true" tabindex="-1"></a>      vertex <span class="op">=</span> graph.vertex_at(index)</span>
-<span id="cb95-16"><a href="#cb95-16" aria-hidden="true" tabindex="-1"></a>      state <span class="op">=</span> vertex.state()</span>
-<span id="cb95-17"><a href="#cb95-17" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> state[<span class="dv">0</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb95-18"><a href="#cb95-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Rabbit jump left to right</span></span>
-<span id="cb95-19"><a href="#cb95-19" aria-hidden="true" tabindex="-1"></a>        child_state <span class="op">=</span> [state[<span class="dv">0</span>] <span class="op">-</span> <span class="dv">1</span>, state[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span>]</span>
-<span id="cb95-20"><a href="#cb95-20" aria-hidden="true" tabindex="-1"></a>        vertex.add_edge_parameterized(</span>
-<span id="cb95-21"><a href="#cb95-21" aria-hidden="true" tabindex="-1"></a>          graph.find_or_create_vertex(child_state),</span>
-<span id="cb95-22"><a href="#cb95-22" aria-hidden="true" tabindex="-1"></a>          <span class="dv">0</span>,</span>
-<span id="cb95-23"><a href="#cb95-23" aria-hidden="true" tabindex="-1"></a>          [state[<span class="dv">0</span>],<span class="dv">0</span>,<span class="dv">0</span>]</span>
-<span id="cb95-24"><a href="#cb95-24" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb95-25"><a href="#cb95-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Left island flooding</span></span>
-<span id="cb95-26"><a href="#cb95-26" aria-hidden="true" tabindex="-1"></a>        child_state <span class="op">=</span> c(<span class="dv">0</span>, state[<span class="dv">1</span>])</span>
-<span id="cb95-27"><a href="#cb95-27" aria-hidden="true" tabindex="-1"></a>        vertex.add_edge_parameterized(</span>
-<span id="cb95-28"><a href="#cb95-28" aria-hidden="true" tabindex="-1"></a>          graph.find_or_create_vertex(child_state),</span>
-<span id="cb95-29"><a href="#cb95-29" aria-hidden="true" tabindex="-1"></a>          <span class="dv">0</span>,</span>
-<span id="cb95-30"><a href="#cb95-30" aria-hidden="true" tabindex="-1"></a>          [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span>
-<span id="cb95-31"><a href="#cb95-31" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb95-32"><a href="#cb95-32" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> state[<span class="dv">1</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb95-33"><a href="#cb95-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Rabbit jump right to left</span></span>
-<span id="cb95-34"><a href="#cb95-34" aria-hidden="true" tabindex="-1"></a>        child_state <span class="op">=</span> [state[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">1</span>, state[<span class="dv">1</span>] <span class="op">-</span> <span class="dv">1</span>]</span>
-<span id="cb95-35"><a href="#cb95-35" aria-hidden="true" tabindex="-1"></a>        vertex.add_edge_parameterized(</span>
-<span id="cb95-36"><a href="#cb95-36" aria-hidden="true" tabindex="-1"></a>          graph.find_or_create_vertex(child_state),</span>
-<span id="cb95-37"><a href="#cb95-37" aria-hidden="true" tabindex="-1"></a>          <span class="dv">0</span>, </span>
-<span id="cb95-38"><a href="#cb95-38" aria-hidden="true" tabindex="-1"></a>          [state[<span class="dv">1</span>],<span class="dv">0</span>,<span class="dv">0</span>]</span>
-<span id="cb95-39"><a href="#cb95-39" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb95-40"><a href="#cb95-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Right island flooding with rate of 4</span></span>
-<span id="cb95-41"><a href="#cb95-41" aria-hidden="true" tabindex="-1"></a>        child_state <span class="op">=</span> [state[<span class="dv">0</span>], <span class="dv">0</span>]</span>
-<span id="cb95-42"><a href="#cb95-42" aria-hidden="true" tabindex="-1"></a>        vertex.add_edge_parameterized(</span>
-<span id="cb95-43"><a href="#cb95-43" aria-hidden="true" tabindex="-1"></a>          graph.find_or_create_vertex(child_state),</span>
-<span id="cb95-44"><a href="#cb95-44" aria-hidden="true" tabindex="-1"></a>          <span class="dv">0</span>,</span>
-<span id="cb95-45"><a href="#cb95-45" aria-hidden="true" tabindex="-1"></a>          [<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>]</span>
-<span id="cb95-46"><a href="#cb95-46" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb95-47"><a href="#cb95-47" aria-hidden="true" tabindex="-1"></a>      index <span class="op">=</span> index <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb95-48"><a href="#cb95-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-49"><a href="#cb95-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(graph)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-116" class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> construct_rabbit_graph_params(nr_rabbits):</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># We represent the vector as two integers, the number of rabbits on the left and right island</span></span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>    state_vector_length <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>    graph <span class="op">=</span> ptd.Graph(state_vector_length)</span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>    initial_state <span class="op">=</span> [nr_rabbits, <span class="dv">0</span>]</span>
+<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The initial state is the only starting state, with 100% starting probability</span></span>
+<span id="cb97-8"><a href="#cb97-8" aria-hidden="true" tabindex="-1"></a>    graph.starting_vertex().add_edge(</span>
+<span id="cb97-9"><a href="#cb97-9" aria-hidden="true" tabindex="-1"></a>      graph.find_or_create_vertex(initial_state),</span>
+<span id="cb97-10"><a href="#cb97-10" aria-hidden="true" tabindex="-1"></a>      <span class="dv">1</span></span>
+<span id="cb97-11"><a href="#cb97-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb97-12"><a href="#cb97-12" aria-hidden="true" tabindex="-1"></a>    index <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb97-13"><a href="#cb97-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Iterate over all unvisited vertices</span></span>
+<span id="cb97-14"><a href="#cb97-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> index <span class="op">&lt;</span> graph.vertices_length():</span>
+<span id="cb97-15"><a href="#cb97-15" aria-hidden="true" tabindex="-1"></a>      vertex <span class="op">=</span> graph.vertex_at(index)</span>
+<span id="cb97-16"><a href="#cb97-16" aria-hidden="true" tabindex="-1"></a>      state <span class="op">=</span> vertex.state()</span>
+<span id="cb97-17"><a href="#cb97-17" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> state[<span class="dv">0</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb97-18"><a href="#cb97-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Rabbit jump left to right</span></span>
+<span id="cb97-19"><a href="#cb97-19" aria-hidden="true" tabindex="-1"></a>        child_state <span class="op">=</span> [state[<span class="dv">0</span>] <span class="op">-</span> <span class="dv">1</span>, state[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb97-20"><a href="#cb97-20" aria-hidden="true" tabindex="-1"></a>        vertex.add_edge_parameterized(</span>
+<span id="cb97-21"><a href="#cb97-21" aria-hidden="true" tabindex="-1"></a>          graph.find_or_create_vertex(child_state),</span>
+<span id="cb97-22"><a href="#cb97-22" aria-hidden="true" tabindex="-1"></a>          <span class="dv">0</span>,</span>
+<span id="cb97-23"><a href="#cb97-23" aria-hidden="true" tabindex="-1"></a>          [state[<span class="dv">0</span>],<span class="dv">0</span>,<span class="dv">0</span>]</span>
+<span id="cb97-24"><a href="#cb97-24" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb97-25"><a href="#cb97-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Left island flooding</span></span>
+<span id="cb97-26"><a href="#cb97-26" aria-hidden="true" tabindex="-1"></a>        child_state <span class="op">=</span> c(<span class="dv">0</span>, state[<span class="dv">1</span>])</span>
+<span id="cb97-27"><a href="#cb97-27" aria-hidden="true" tabindex="-1"></a>        vertex.add_edge_parameterized(</span>
+<span id="cb97-28"><a href="#cb97-28" aria-hidden="true" tabindex="-1"></a>          graph.find_or_create_vertex(child_state),</span>
+<span id="cb97-29"><a href="#cb97-29" aria-hidden="true" tabindex="-1"></a>          <span class="dv">0</span>,</span>
+<span id="cb97-30"><a href="#cb97-30" aria-hidden="true" tabindex="-1"></a>          [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]</span>
+<span id="cb97-31"><a href="#cb97-31" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb97-32"><a href="#cb97-32" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> state[<span class="dv">1</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb97-33"><a href="#cb97-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Rabbit jump right to left</span></span>
+<span id="cb97-34"><a href="#cb97-34" aria-hidden="true" tabindex="-1"></a>        child_state <span class="op">=</span> [state[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">1</span>, state[<span class="dv">1</span>] <span class="op">-</span> <span class="dv">1</span>]</span>
+<span id="cb97-35"><a href="#cb97-35" aria-hidden="true" tabindex="-1"></a>        vertex.add_edge_parameterized(</span>
+<span id="cb97-36"><a href="#cb97-36" aria-hidden="true" tabindex="-1"></a>          graph.find_or_create_vertex(child_state),</span>
+<span id="cb97-37"><a href="#cb97-37" aria-hidden="true" tabindex="-1"></a>          <span class="dv">0</span>, </span>
+<span id="cb97-38"><a href="#cb97-38" aria-hidden="true" tabindex="-1"></a>          [state[<span class="dv">1</span>],<span class="dv">0</span>,<span class="dv">0</span>]</span>
+<span id="cb97-39"><a href="#cb97-39" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb97-40"><a href="#cb97-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Right island flooding with rate of 4</span></span>
+<span id="cb97-41"><a href="#cb97-41" aria-hidden="true" tabindex="-1"></a>        child_state <span class="op">=</span> [state[<span class="dv">0</span>], <span class="dv">0</span>]</span>
+<span id="cb97-42"><a href="#cb97-42" aria-hidden="true" tabindex="-1"></a>        vertex.add_edge_parameterized(</span>
+<span id="cb97-43"><a href="#cb97-43" aria-hidden="true" tabindex="-1"></a>          graph.find_or_create_vertex(child_state),</span>
+<span id="cb97-44"><a href="#cb97-44" aria-hidden="true" tabindex="-1"></a>          <span class="dv">0</span>,</span>
+<span id="cb97-45"><a href="#cb97-45" aria-hidden="true" tabindex="-1"></a>          [<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>]</span>
+<span id="cb97-46"><a href="#cb97-46" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb97-47"><a href="#cb97-47" aria-hidden="true" tabindex="-1"></a>      index <span class="op">=</span> index <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb97-48"><a href="#cb97-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-49"><a href="#cb97-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(graph)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The parameterized edges have what ever weight is assigned to them, and the state does not by itself mean anything.</p>
-<div id="cell-118" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.009582Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.009510Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.021192Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.020974Z&quot;}" data-execution_count="62">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>param_graph <span class="op">=</span> construct_rabbit_graph_params(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-118" class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>param_graph <span class="op">=</span> construct_rabbit_graph_params(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If we let the edge have a state, this gives us an easy way of changing the weights based on some model parameters. In this case, it is the rate of jumping left rate of flooding and right rate of flooding.</p>
 <p>The update simply takes the inner product of the state vector and the model parameters, e.g.&nbsp;if the state is x1, x2 and the parameters are p1, p2, then the weight of the edge becomed x1<em>p1+x2</em>p2</p>
-<div id="cell-120" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.022605Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.022531Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.035213Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.034994Z&quot;}" data-execution_count="63">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>])</span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Expectation (1,2,4):"</span>, param_graph.expectation())</span>
-<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>])</span>
-<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Expectation (1,2,4):"</span>, param_graph.expectation())</span>
-<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>])</span>
-<span id="cb97-8"><a href="#cb97-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Expectation (1,2,4):"</span>, param_graph.expectation())</span>
-<span id="cb97-9"><a href="#cb97-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb97-10"><a href="#cb97-10" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">18</span>])</span>
-<span id="cb97-11"><a href="#cb97-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Expectation (1,2,4):"</span>, param_graph.expectation())</span>
-<span id="cb97-12"><a href="#cb97-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb97-13"><a href="#cb97-13" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">18</span>])</span>
-<span id="cb97-14"><a href="#cb97-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Expectation (1,2,4):"</span>, param_graph.expectation())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-120" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>])</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Expectation (1,2,4):"</span>, param_graph.expectation())</span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>])</span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Expectation (1,2,4):"</span>, param_graph.expectation())</span>
+<span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-7"><a href="#cb99-7" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>])</span>
+<span id="cb99-8"><a href="#cb99-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Expectation (1,2,4):"</span>, param_graph.expectation())</span>
+<span id="cb99-9"><a href="#cb99-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-10"><a href="#cb99-10" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">18</span>])</span>
+<span id="cb99-11"><a href="#cb99-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Expectation (1,2,4):"</span>, param_graph.expectation())</span>
+<span id="cb99-12"><a href="#cb99-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-13"><a href="#cb99-13" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">18</span>])</span>
+<span id="cb99-14"><a href="#cb99-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Expectation (1,2,4):"</span>, param_graph.expectation())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Expectation (1,2,4): 0.5083056478405314
 Expectation (1,2,4): 0.49565217391304334
@@ -1217,12 +1267,12 @@ INFO: building reward compute graph...</code></pre>
 </div>
 </div>
 <p>Note that the moment graph <em>has</em> to be recalculated after updating weights</p>
-<div id="cell-122" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.036633Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.036553Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.048574Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.048340Z&quot;}" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>])</span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="co">#param_graph.as_matrices()</span></span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">18</span>])</span>
-<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="co">#param_graph.as_matrices()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-122" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>])</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="co">#param_graph.as_matrices()</span></span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">18</span>])</span>
+<span id="cb102-5"><a href="#cb102-5" aria-hidden="true" tabindex="-1"></a><span class="co">#param_graph.as_matrices()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="time-inhomogeneity" class="level2">
@@ -1232,136 +1282,136 @@ INFO: building reward compute graph...</code></pre>
 <p>Like the pph, dph, etc. functions, it is a (very good) approximation based on very small steps. If the rates change dramatically, set the granularity as an argument to the functions!! E.g. set it to a high enough value.</p>
 <p>If we pick a time far into the future, we can integrate under the pdf to find the expectation!</p>
 <p>Integrating over accumulated visiting time:</p>
-<div id="cell-126" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.050154Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.050076Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.064819Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.064564Z&quot;}" data-execution_count="65">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(graph.accumulated_visiting_time(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-126" class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(graph.accumulated_visiting_time(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="65">
 <pre><code>0.5038265306014538</code></pre>
 </div>
 </div>
 <p>The first moment (expectation):</p>
-<div id="cell-128" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.066280Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.066203Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.078909Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.078667Z&quot;}" data-execution_count="66">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>graph.expectation()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-128" class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>graph.expectation()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="66">
 <pre><code>0.5038265306122448</code></pre>
 </div>
 </div>
 <p>Say at a certain point in time, the flooding starts!</p>
 <p>In the beginning, there is <em>no</em> flooding</p>
-<div id="cell-130" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.080250Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.080175Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.091920Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.091702Z&quot;}" data-execution_count="67">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-130" class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can build a context to step over the distribution. Weights can be freely changed and edges added in such a context</p>
-<div id="cell-132" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.093471Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.093402Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.105167Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.104931Z&quot;}" data-execution_count="68">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import ptdalgorithms as ptd</span></span>
-<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="co"># import numpy as np</span></span>
-<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="co"># def c(*args):</span></span>
-<span id="cb106-5"><a href="#cb106-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     elem = []</span></span>
-<span id="cb106-6"><a href="#cb106-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     for arg in args:</span></span>
-<span id="cb106-7"><a href="#cb106-7" aria-hidden="true" tabindex="-1"></a><span class="co">#         if hasattr(arg, '__len__') and len(arg) &gt; 1:</span></span>
-<span id="cb106-8"><a href="#cb106-8" aria-hidden="true" tabindex="-1"></a><span class="co">#             elem.extend(arg)</span></span>
-<span id="cb106-9"><a href="#cb106-9" aria-hidden="true" tabindex="-1"></a><span class="co">#         else:</span></span>
-<span id="cb106-10"><a href="#cb106-10" aria-hidden="true" tabindex="-1"></a><span class="co">#             elem.append(arg)</span></span>
-<span id="cb106-11"><a href="#cb106-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     return np.array(elem)</span></span>
-<span id="cb106-12"><a href="#cb106-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb106-13"><a href="#cb106-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb106-14"><a href="#cb106-14" aria-hidden="true" tabindex="-1"></a><span class="co"># nr_rabbits, flood_left, flood_right = 2, 2, 4</span></span>
-<span id="cb106-15"><a href="#cb106-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb106-16"><a href="#cb106-16" aria-hidden="true" tabindex="-1"></a><span class="co"># # we represent the vector as two integers, the number of </span></span>
-<span id="cb106-17"><a href="#cb106-17" aria-hidden="true" tabindex="-1"></a><span class="co"># # rabbits on the left and right island</span></span>
-<span id="cb106-18"><a href="#cb106-18" aria-hidden="true" tabindex="-1"></a><span class="co"># state_vector_length = 2</span></span>
-<span id="cb106-19"><a href="#cb106-19" aria-hidden="true" tabindex="-1"></a><span class="co"># graph = ptd.Graph(state_vector_length)</span></span>
-<span id="cb106-20"><a href="#cb106-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb106-21"><a href="#cb106-21" aria-hidden="true" tabindex="-1"></a><span class="co"># # the initial state is the only starting state, with probability 1</span></span>
-<span id="cb106-22"><a href="#cb106-22" aria-hidden="true" tabindex="-1"></a><span class="co"># initial_state = c(nr_rabbits, 0)</span></span>
-<span id="cb106-23"><a href="#cb106-23" aria-hidden="true" tabindex="-1"></a><span class="co"># vertex = graph.find_or_create_vertex(initial_state)</span></span>
-<span id="cb106-24"><a href="#cb106-24" aria-hidden="true" tabindex="-1"></a><span class="co"># graph.starting_vertex().add_edge(vertex, 1)</span></span>
-<span id="cb106-25"><a href="#cb106-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb106-26"><a href="#cb106-26" aria-hidden="true" tabindex="-1"></a><span class="co"># index = 1</span></span>
-<span id="cb106-27"><a href="#cb106-27" aria-hidden="true" tabindex="-1"></a><span class="co"># # iterate over all unvisited vertices</span></span>
-<span id="cb106-28"><a href="#cb106-28" aria-hidden="true" tabindex="-1"></a><span class="co"># while index &lt; graph.vertices_length():</span></span>
-<span id="cb106-29"><a href="#cb106-29" aria-hidden="true" tabindex="-1"></a><span class="co">#     vertex = graph.vertex_at(index)</span></span>
-<span id="cb106-30"><a href="#cb106-30" aria-hidden="true" tabindex="-1"></a><span class="co">#     state = vertex.state()</span></span>
-<span id="cb106-31"><a href="#cb106-31" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb106-32"><a href="#cb106-32" aria-hidden="true" tabindex="-1"></a><span class="co">#     if state[0] &gt; 0:</span></span>
-<span id="cb106-33"><a href="#cb106-33" aria-hidden="true" tabindex="-1"></a><span class="co">#         # rabbit jump left to right</span></span>
-<span id="cb106-34"><a href="#cb106-34" aria-hidden="true" tabindex="-1"></a><span class="co">#         child_state = c(state[0] - 1, state[1] + 1)</span></span>
-<span id="cb106-35"><a href="#cb106-35" aria-hidden="true" tabindex="-1"></a><span class="co">#         vertex.add_edge(</span></span>
-<span id="cb106-36"><a href="#cb106-36" aria-hidden="true" tabindex="-1"></a><span class="co">#             graph.find_or_create_vertex(child_state),</span></span>
-<span id="cb106-37"><a href="#cb106-37" aria-hidden="true" tabindex="-1"></a><span class="co">#             weight=1</span></span>
-<span id="cb106-38"><a href="#cb106-38" aria-hidden="true" tabindex="-1"></a><span class="co">#         )</span></span>
-<span id="cb106-39"><a href="#cb106-39" aria-hidden="true" tabindex="-1"></a><span class="co">#         # left island flooding</span></span>
-<span id="cb106-40"><a href="#cb106-40" aria-hidden="true" tabindex="-1"></a><span class="co">#         child_state = c(0, state[1])</span></span>
-<span id="cb106-41"><a href="#cb106-41" aria-hidden="true" tabindex="-1"></a><span class="co">#         vertex.add_edge(</span></span>
-<span id="cb106-42"><a href="#cb106-42" aria-hidden="true" tabindex="-1"></a><span class="co">#             graph.find_or_create_vertex(child_state), </span></span>
-<span id="cb106-43"><a href="#cb106-43" aria-hidden="true" tabindex="-1"></a><span class="co">#             weight=flood_left</span></span>
-<span id="cb106-44"><a href="#cb106-44" aria-hidden="true" tabindex="-1"></a><span class="co">#         )</span></span>
-<span id="cb106-45"><a href="#cb106-45" aria-hidden="true" tabindex="-1"></a><span class="co">#     if state[1] &gt; 0:   </span></span>
-<span id="cb106-46"><a href="#cb106-46" aria-hidden="true" tabindex="-1"></a><span class="co">#         child_state = c(state[0] + 1, state[1] - 1)</span></span>
-<span id="cb106-47"><a href="#cb106-47" aria-hidden="true" tabindex="-1"></a><span class="co">#         vertex.add_edge(</span></span>
-<span id="cb106-48"><a href="#cb106-48" aria-hidden="true" tabindex="-1"></a><span class="co">#             graph.find_or_create_vertex(child_state),</span></span>
-<span id="cb106-49"><a href="#cb106-49" aria-hidden="true" tabindex="-1"></a><span class="co">#             weight=1</span></span>
-<span id="cb106-50"><a href="#cb106-50" aria-hidden="true" tabindex="-1"></a><span class="co">#         )</span></span>
-<span id="cb106-51"><a href="#cb106-51" aria-hidden="true" tabindex="-1"></a><span class="co">#         # right island flooding</span></span>
-<span id="cb106-52"><a href="#cb106-52" aria-hidden="true" tabindex="-1"></a><span class="co">#         child_state = c(state[0], 0)</span></span>
-<span id="cb106-53"><a href="#cb106-53" aria-hidden="true" tabindex="-1"></a><span class="co">#         vertex.add_edge(</span></span>
-<span id="cb106-54"><a href="#cb106-54" aria-hidden="true" tabindex="-1"></a><span class="co">#             graph.find_or_create_vertex(child_state), </span></span>
-<span id="cb106-55"><a href="#cb106-55" aria-hidden="true" tabindex="-1"></a><span class="co">#             weight=flood_right</span></span>
-<span id="cb106-56"><a href="#cb106-56" aria-hidden="true" tabindex="-1"></a><span class="co">#         )</span></span>
-<span id="cb106-57"><a href="#cb106-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb106-58"><a href="#cb106-58" aria-hidden="true" tabindex="-1"></a><span class="co">#     index += 1</span></span>
-<span id="cb106-59"><a href="#cb106-59" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb106-60"><a href="#cb106-60" aria-hidden="true" tabindex="-1"></a><span class="co"># # graph.plot(nodesep=1, ranksep=0.1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-132" class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import ptdalgorithms as ptd</span></span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="co"># import numpy as np</span></span>
+<span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a><span class="co"># def c(*args):</span></span>
+<span id="cb108-5"><a href="#cb108-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     elem = []</span></span>
+<span id="cb108-6"><a href="#cb108-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     for arg in args:</span></span>
+<span id="cb108-7"><a href="#cb108-7" aria-hidden="true" tabindex="-1"></a><span class="co">#         if hasattr(arg, '__len__') and len(arg) &gt; 1:</span></span>
+<span id="cb108-8"><a href="#cb108-8" aria-hidden="true" tabindex="-1"></a><span class="co">#             elem.extend(arg)</span></span>
+<span id="cb108-9"><a href="#cb108-9" aria-hidden="true" tabindex="-1"></a><span class="co">#         else:</span></span>
+<span id="cb108-10"><a href="#cb108-10" aria-hidden="true" tabindex="-1"></a><span class="co">#             elem.append(arg)</span></span>
+<span id="cb108-11"><a href="#cb108-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     return np.array(elem)</span></span>
+<span id="cb108-12"><a href="#cb108-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-13"><a href="#cb108-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-14"><a href="#cb108-14" aria-hidden="true" tabindex="-1"></a><span class="co"># nr_rabbits, flood_left, flood_right = 2, 2, 4</span></span>
+<span id="cb108-15"><a href="#cb108-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-16"><a href="#cb108-16" aria-hidden="true" tabindex="-1"></a><span class="co"># # we represent the vector as two integers, the number of </span></span>
+<span id="cb108-17"><a href="#cb108-17" aria-hidden="true" tabindex="-1"></a><span class="co"># # rabbits on the left and right island</span></span>
+<span id="cb108-18"><a href="#cb108-18" aria-hidden="true" tabindex="-1"></a><span class="co"># state_vector_length = 2</span></span>
+<span id="cb108-19"><a href="#cb108-19" aria-hidden="true" tabindex="-1"></a><span class="co"># graph = ptd.Graph(state_vector_length)</span></span>
+<span id="cb108-20"><a href="#cb108-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-21"><a href="#cb108-21" aria-hidden="true" tabindex="-1"></a><span class="co"># # the initial state is the only starting state, with probability 1</span></span>
+<span id="cb108-22"><a href="#cb108-22" aria-hidden="true" tabindex="-1"></a><span class="co"># initial_state = c(nr_rabbits, 0)</span></span>
+<span id="cb108-23"><a href="#cb108-23" aria-hidden="true" tabindex="-1"></a><span class="co"># vertex = graph.find_or_create_vertex(initial_state)</span></span>
+<span id="cb108-24"><a href="#cb108-24" aria-hidden="true" tabindex="-1"></a><span class="co"># graph.starting_vertex().add_edge(vertex, 1)</span></span>
+<span id="cb108-25"><a href="#cb108-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-26"><a href="#cb108-26" aria-hidden="true" tabindex="-1"></a><span class="co"># index = 1</span></span>
+<span id="cb108-27"><a href="#cb108-27" aria-hidden="true" tabindex="-1"></a><span class="co"># # iterate over all unvisited vertices</span></span>
+<span id="cb108-28"><a href="#cb108-28" aria-hidden="true" tabindex="-1"></a><span class="co"># while index &lt; graph.vertices_length():</span></span>
+<span id="cb108-29"><a href="#cb108-29" aria-hidden="true" tabindex="-1"></a><span class="co">#     vertex = graph.vertex_at(index)</span></span>
+<span id="cb108-30"><a href="#cb108-30" aria-hidden="true" tabindex="-1"></a><span class="co">#     state = vertex.state()</span></span>
+<span id="cb108-31"><a href="#cb108-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb108-32"><a href="#cb108-32" aria-hidden="true" tabindex="-1"></a><span class="co">#     if state[0] &gt; 0:</span></span>
+<span id="cb108-33"><a href="#cb108-33" aria-hidden="true" tabindex="-1"></a><span class="co">#         # rabbit jump left to right</span></span>
+<span id="cb108-34"><a href="#cb108-34" aria-hidden="true" tabindex="-1"></a><span class="co">#         child_state = c(state[0] - 1, state[1] + 1)</span></span>
+<span id="cb108-35"><a href="#cb108-35" aria-hidden="true" tabindex="-1"></a><span class="co">#         vertex.add_edge(</span></span>
+<span id="cb108-36"><a href="#cb108-36" aria-hidden="true" tabindex="-1"></a><span class="co">#             graph.find_or_create_vertex(child_state),</span></span>
+<span id="cb108-37"><a href="#cb108-37" aria-hidden="true" tabindex="-1"></a><span class="co">#             weight=1</span></span>
+<span id="cb108-38"><a href="#cb108-38" aria-hidden="true" tabindex="-1"></a><span class="co">#         )</span></span>
+<span id="cb108-39"><a href="#cb108-39" aria-hidden="true" tabindex="-1"></a><span class="co">#         # left island flooding</span></span>
+<span id="cb108-40"><a href="#cb108-40" aria-hidden="true" tabindex="-1"></a><span class="co">#         child_state = c(0, state[1])</span></span>
+<span id="cb108-41"><a href="#cb108-41" aria-hidden="true" tabindex="-1"></a><span class="co">#         vertex.add_edge(</span></span>
+<span id="cb108-42"><a href="#cb108-42" aria-hidden="true" tabindex="-1"></a><span class="co">#             graph.find_or_create_vertex(child_state), </span></span>
+<span id="cb108-43"><a href="#cb108-43" aria-hidden="true" tabindex="-1"></a><span class="co">#             weight=flood_left</span></span>
+<span id="cb108-44"><a href="#cb108-44" aria-hidden="true" tabindex="-1"></a><span class="co">#         )</span></span>
+<span id="cb108-45"><a href="#cb108-45" aria-hidden="true" tabindex="-1"></a><span class="co">#     if state[1] &gt; 0:   </span></span>
+<span id="cb108-46"><a href="#cb108-46" aria-hidden="true" tabindex="-1"></a><span class="co">#         child_state = c(state[0] + 1, state[1] - 1)</span></span>
+<span id="cb108-47"><a href="#cb108-47" aria-hidden="true" tabindex="-1"></a><span class="co">#         vertex.add_edge(</span></span>
+<span id="cb108-48"><a href="#cb108-48" aria-hidden="true" tabindex="-1"></a><span class="co">#             graph.find_or_create_vertex(child_state),</span></span>
+<span id="cb108-49"><a href="#cb108-49" aria-hidden="true" tabindex="-1"></a><span class="co">#             weight=1</span></span>
+<span id="cb108-50"><a href="#cb108-50" aria-hidden="true" tabindex="-1"></a><span class="co">#         )</span></span>
+<span id="cb108-51"><a href="#cb108-51" aria-hidden="true" tabindex="-1"></a><span class="co">#         # right island flooding</span></span>
+<span id="cb108-52"><a href="#cb108-52" aria-hidden="true" tabindex="-1"></a><span class="co">#         child_state = c(state[0], 0)</span></span>
+<span id="cb108-53"><a href="#cb108-53" aria-hidden="true" tabindex="-1"></a><span class="co">#         vertex.add_edge(</span></span>
+<span id="cb108-54"><a href="#cb108-54" aria-hidden="true" tabindex="-1"></a><span class="co">#             graph.find_or_create_vertex(child_state), </span></span>
+<span id="cb108-55"><a href="#cb108-55" aria-hidden="true" tabindex="-1"></a><span class="co">#             weight=flood_right</span></span>
+<span id="cb108-56"><a href="#cb108-56" aria-hidden="true" tabindex="-1"></a><span class="co">#         )</span></span>
+<span id="cb108-57"><a href="#cb108-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-58"><a href="#cb108-58" aria-hidden="true" tabindex="-1"></a><span class="co">#     index += 1</span></span>
+<span id="cb108-59"><a href="#cb108-59" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb108-60"><a href="#cb108-60" aria-hidden="true" tabindex="-1"></a><span class="co"># # graph.plot(nodesep=1, ranksep=0.1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-133" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.106587Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.106508Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.117600Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.117374Z&quot;}" data-execution_count="69">
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ctx = graph.distribution_context()</span></span>
-<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cdfs = []</span></span>
-<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a><span class="co"># times = []</span></span>
-<span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-6"><a href="#cb107-6" aria-hidden="true" tabindex="-1"></a><span class="co"># # while ctx.time() &lt; 1.5:</span></span>
-<span id="cb107-7"><a href="#cb107-7" aria-hidden="true" tabindex="-1"></a><span class="co"># while ctx.cdf() &lt; 0.999:</span></span>
-<span id="cb107-8"><a href="#cb107-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-9"><a href="#cb107-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     cdfs.append(ctx.cdf())</span></span>
-<span id="cb107-10"><a href="#cb107-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     times.append(ctx.time())</span></span>
-<span id="cb107-11"><a href="#cb107-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     param_graph.update_parameterized_weights(</span></span>
-<span id="cb107-12"><a href="#cb107-12" aria-hidden="true" tabindex="-1"></a><span class="co">#         [1,</span></span>
-<span id="cb107-13"><a href="#cb107-13" aria-hidden="true" tabindex="-1"></a><span class="co">#         ctx.time() - 1.5, </span></span>
-<span id="cb107-14"><a href="#cb107-14" aria-hidden="true" tabindex="-1"></a><span class="co">#         2 * ctx.time() - 1.5</span></span>
-<span id="cb107-15"><a href="#cb107-15" aria-hidden="true" tabindex="-1"></a><span class="co">#         ]</span></span>
-<span id="cb107-16"><a href="#cb107-16" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
-<span id="cb107-17"><a href="#cb107-17" aria-hidden="true" tabindex="-1"></a><span class="co">#     ctx.step()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-133" class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ctx = graph.distribution_context()</span></span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cdfs = []</span></span>
+<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="co"># times = []</span></span>
+<span id="cb109-5"><a href="#cb109-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-6"><a href="#cb109-6" aria-hidden="true" tabindex="-1"></a><span class="co"># # while ctx.time() &lt; 1.5:</span></span>
+<span id="cb109-7"><a href="#cb109-7" aria-hidden="true" tabindex="-1"></a><span class="co"># while ctx.cdf() &lt; 0.999:</span></span>
+<span id="cb109-8"><a href="#cb109-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-9"><a href="#cb109-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     cdfs.append(ctx.cdf())</span></span>
+<span id="cb109-10"><a href="#cb109-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     times.append(ctx.time())</span></span>
+<span id="cb109-11"><a href="#cb109-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     param_graph.update_parameterized_weights(</span></span>
+<span id="cb109-12"><a href="#cb109-12" aria-hidden="true" tabindex="-1"></a><span class="co">#         [1,</span></span>
+<span id="cb109-13"><a href="#cb109-13" aria-hidden="true" tabindex="-1"></a><span class="co">#         ctx.time() - 1.5, </span></span>
+<span id="cb109-14"><a href="#cb109-14" aria-hidden="true" tabindex="-1"></a><span class="co">#         2 * ctx.time() - 1.5</span></span>
+<span id="cb109-15"><a href="#cb109-15" aria-hidden="true" tabindex="-1"></a><span class="co">#         ]</span></span>
+<span id="cb109-16"><a href="#cb109-16" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb109-17"><a href="#cb109-17" aria-hidden="true" tabindex="-1"></a><span class="co">#     ctx.step()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It increases by every time step. Time until all rabbits are dead. Flooding increases linearly after 1.5 time units:</p>
-<div id="cell-135" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.119023Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.118943Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.181719Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.181473Z&quot;}" data-execution_count="70">
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>])</span>
-<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a>ctx <span class="op">=</span> param_graph.distribution_context()</span>
-<span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a>cdfs <span class="op">=</span> []</span>
-<span id="cb108-5"><a href="#cb108-5" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> []</span>
-<span id="cb108-6"><a href="#cb108-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb108-7"><a href="#cb108-7" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> ctx.time() <span class="op">&lt;</span> <span class="fl">1.5</span>:</span>
-<span id="cb108-8"><a href="#cb108-8" aria-hidden="true" tabindex="-1"></a>    cdfs.append(ctx.cdf())</span>
-<span id="cb108-9"><a href="#cb108-9" aria-hidden="true" tabindex="-1"></a>    times.append(ctx.time())</span>
-<span id="cb108-10"><a href="#cb108-10" aria-hidden="true" tabindex="-1"></a>    ctx.step()</span>
-<span id="cb108-11"><a href="#cb108-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb108-12"><a href="#cb108-12" aria-hidden="true" tabindex="-1"></a><span class="co">#param_graph.update_parameterized_weights([1, 1, 1])</span></span>
-<span id="cb108-13"><a href="#cb108-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb108-14"><a href="#cb108-14" aria-hidden="true" tabindex="-1"></a><span class="co"># at time 1.5, the flooding starts!</span></span>
-<span id="cb108-15"><a href="#cb108-15" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> ctx.cdf() <span class="op">&lt;</span> <span class="fl">0.999</span>:</span>
-<span id="cb108-16"><a href="#cb108-16" aria-hidden="true" tabindex="-1"></a>    cdfs.append(ctx.cdf())</span>
-<span id="cb108-17"><a href="#cb108-17" aria-hidden="true" tabindex="-1"></a>    times.append(ctx.time())</span>
-<span id="cb108-18"><a href="#cb108-18" aria-hidden="true" tabindex="-1"></a>    param_graph.update_parameterized_weights(</span>
-<span id="cb108-19"><a href="#cb108-19" aria-hidden="true" tabindex="-1"></a>        [<span class="dv">1</span>,</span>
-<span id="cb108-20"><a href="#cb108-20" aria-hidden="true" tabindex="-1"></a>        ctx.time() <span class="op">-</span> <span class="fl">1.5</span>, </span>
-<span id="cb108-21"><a href="#cb108-21" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="op">*</span> ctx.time() <span class="op">-</span> <span class="fl">1.5</span></span>
-<span id="cb108-22"><a href="#cb108-22" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb108-23"><a href="#cb108-23" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb108-24"><a href="#cb108-24" aria-hidden="true" tabindex="-1"></a>    ctx.step()</span>
-<span id="cb108-25"><a href="#cb108-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb108-26"><a href="#cb108-26" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">3</span>))</span>
-<span id="cb108-27"><a href="#cb108-27" aria-hidden="true" tabindex="-1"></a>ax.plot(times, cdfs)</span>
-<span id="cb108-28"><a href="#cb108-28" aria-hidden="true" tabindex="-1"></a>sns.despine()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-135" class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a>ctx <span class="op">=</span> param_graph.distribution_context()</span>
+<span id="cb110-4"><a href="#cb110-4" aria-hidden="true" tabindex="-1"></a>cdfs <span class="op">=</span> []</span>
+<span id="cb110-5"><a href="#cb110-5" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> []</span>
+<span id="cb110-6"><a href="#cb110-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-7"><a href="#cb110-7" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> ctx.time() <span class="op">&lt;</span> <span class="fl">1.5</span>:</span>
+<span id="cb110-8"><a href="#cb110-8" aria-hidden="true" tabindex="-1"></a>    cdfs.append(ctx.cdf())</span>
+<span id="cb110-9"><a href="#cb110-9" aria-hidden="true" tabindex="-1"></a>    times.append(ctx.time())</span>
+<span id="cb110-10"><a href="#cb110-10" aria-hidden="true" tabindex="-1"></a>    ctx.step()</span>
+<span id="cb110-11"><a href="#cb110-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-12"><a href="#cb110-12" aria-hidden="true" tabindex="-1"></a><span class="co">#param_graph.update_parameterized_weights([1, 1, 1])</span></span>
+<span id="cb110-13"><a href="#cb110-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-14"><a href="#cb110-14" aria-hidden="true" tabindex="-1"></a><span class="co"># at time 1.5, the flooding starts!</span></span>
+<span id="cb110-15"><a href="#cb110-15" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> ctx.cdf() <span class="op">&lt;</span> <span class="fl">0.999</span>:</span>
+<span id="cb110-16"><a href="#cb110-16" aria-hidden="true" tabindex="-1"></a>    cdfs.append(ctx.cdf())</span>
+<span id="cb110-17"><a href="#cb110-17" aria-hidden="true" tabindex="-1"></a>    times.append(ctx.time())</span>
+<span id="cb110-18"><a href="#cb110-18" aria-hidden="true" tabindex="-1"></a>    param_graph.update_parameterized_weights(</span>
+<span id="cb110-19"><a href="#cb110-19" aria-hidden="true" tabindex="-1"></a>        [<span class="dv">1</span>,</span>
+<span id="cb110-20"><a href="#cb110-20" aria-hidden="true" tabindex="-1"></a>        ctx.time() <span class="op">-</span> <span class="fl">1.5</span>, </span>
+<span id="cb110-21"><a href="#cb110-21" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2</span> <span class="op">*</span> ctx.time() <span class="op">-</span> <span class="fl">1.5</span></span>
+<span id="cb110-22"><a href="#cb110-22" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb110-23"><a href="#cb110-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb110-24"><a href="#cb110-24" aria-hidden="true" tabindex="-1"></a>    ctx.step()</span>
+<span id="cb110-25"><a href="#cb110-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-26"><a href="#cb110-26" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">3</span>))</span>
+<span id="cb110-27"><a href="#cb110-27" aria-hidden="true" tabindex="-1"></a>ax.plot(times, cdfs)</span>
+<span id="cb110-28"><a href="#cb110-28" aria-hidden="true" tabindex="-1"></a>sns.despine()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1372,37 +1422,37 @@ INFO: building reward compute graph...</code></pre>
 </div>
 <p>If we pick a time far into the future, we can integrate under it to find the expectation. This means that we can scale by a reward, and thereby find the marginal expectation.</p>
 <p>Summing over accumulated visiting time (with reward):</p>
-<div id="cell-138" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.183382Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.183278Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.196904Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.196661Z&quot;}" data-execution_count="71">
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>(graph.accumulated_visiting_time(<span class="dv">10</span>)<span class="op">*</span>graph.states()[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-138" class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>(graph.accumulated_visiting_time(<span class="dv">10</span>)<span class="op">*</span>graph.states()[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="71">
 <pre><code>np.float64(0.09438775509887067)</code></pre>
 </div>
 </div>
 <p>The first moment (expectation) (with reward):</p>
-<div id="cell-140" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.198281Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.198197Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.209963Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.209717Z&quot;}" data-execution_count="72">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>graph.expectation(graph.states()[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-140" class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>graph.expectation(graph.states()[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="72">
 <pre><code>0.09438775510204081</code></pre>
 </div>
 </div>
 <p>But if the time is <em>not</em> far into the future, we get the expectation up to a certain point in time.</p>
 <p>Expectation (rewarded) when truncating at 0.05 time:</p>
-<div id="cell-143" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.211362Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.211284Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.223188Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.222976Z&quot;}" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>(graph.accumulated_visiting_time(<span class="fl">0.05</span>)<span class="op">*</span>graph.states()[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-143" class="cell" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>(graph.accumulated_visiting_time(<span class="fl">0.05</span>)<span class="op">*</span>graph.states()[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="73">
 <pre><code>np.float64(0.0011713234985744549)</code></pre>
 </div>
 </div>
 <p>Untruncated expectation:</p>
-<div id="cell-145" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.224572Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.224500Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.236142Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.235930Z&quot;}" data-execution_count="74">
-<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>graph.expectation(graph.states()[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-145" class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>graph.expectation(graph.states()[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="74">
 <pre><code>0.09438775510204081</code></pre>
 </div>
 </div>
 <p>Expectation (rewarded) when <em>starting</em> at 0.05 time:</p>
-<div id="cell-147" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.237590Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.237510Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.248964Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.248716Z&quot;}" data-execution_count="75">
-<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>graph.expected_waiting_time(graph.states()[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-147" class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>graph.expected_waiting_time(graph.states()[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="75">
 <pre><code>[0.09438775510204081,
  0.09438775510204081,
@@ -1413,174 +1463,143 @@ INFO: building reward compute graph...</code></pre>
  0.0714285714285714]</code></pre>
 </div>
 </div>
-<div id="cell-148" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.250315Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.250242Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.262344Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.262134Z&quot;}" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>(graph.stop_probability(<span class="fl">0.05</span>)<span class="op">*</span>np.array(graph.expected_waiting_time(graph.states()[:,<span class="dv">1</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-148" class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>(graph.stop_probability(<span class="fl">0.05</span>)<span class="op">*</span>np.array(graph.expected_waiting_time(graph.states()[:,<span class="dv">1</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="76">
 <pre><code>np.float64(0.09325811466426455)</code></pre>
 </div>
 </div>
 <p>Subtracting these gives the <em>same</em> value:</p>
-<div id="cell-150" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.263673Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.263596Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.275348Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.275106Z&quot;}" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>(graph.expectation(graph.states()[:,<span class="dv">1</span>]) <span class="op">\</span></span>
-<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>     <span class="op">-</span> np.<span class="bu">sum</span>(graph.stop_probability(<span class="fl">0.05</span>) <span class="op">\</span></span>
-<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a>              <span class="op">*</span> np.array(graph.expected_waiting_time(graph.states()[:,<span class="dv">1</span>])))</span>
-<span id="cb121-4"><a href="#cb121-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-150" class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>(graph.expectation(graph.states()[:,<span class="dv">1</span>]) <span class="op">\</span></span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>     <span class="op">-</span> np.<span class="bu">sum</span>(graph.stop_probability(<span class="fl">0.05</span>) <span class="op">\</span></span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a>              <span class="op">*</span> np.array(graph.expected_waiting_time(graph.states()[:,<span class="dv">1</span>])))</span>
+<span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="77">
 <pre><code>np.float64(0.0011296404377762609)</code></pre>
 </div>
 </div>
 <p>We can increase granularity for better performance:</p>
-<div id="cell-152" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:59.276715Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:59.276633Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:59.290855Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:59.290650Z&quot;}" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>(graph.accumulated_visiting_time(<span class="fl">0.05</span>, granularity<span class="op">=</span><span class="dv">1000000</span>)<span class="op">*</span>graph.states()[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-152" class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>(graph.accumulated_visiting_time(<span class="fl">0.05</span>, granularity<span class="op">=</span><span class="dv">1000000</span>)<span class="op">*</span>graph.states()[:,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="78">
 <pre><code>np.float64(0.0011138317897953385)</code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb125"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co">// cppimport</span></span>
-<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;pybind11/pybind11.h&gt;</span></span>
-<span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;ptdalgorithms.h&gt;</span></span>
-<span id="cb125-4"><a href="#cb125-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-5"><a href="#cb125-5" aria-hidden="true" tabindex="-1"></a>namespace py <span class="op">=</span> pybind11<span class="op">;</span></span>
-<span id="cb125-6"><a href="#cb125-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-7"><a href="#cb125-7" aria-hidden="true" tabindex="-1"></a>using namespace pybind11<span class="op">::</span>literals<span class="op">;</span> <span class="co">// to bring in the `_a` literal</span></span>
-<span id="cb125-8"><a href="#cb125-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-9"><a href="#cb125-9" aria-hidden="true" tabindex="-1"></a><span class="co">/* Basic C libraries */</span></span>
-<span id="cb125-10"><a href="#cb125-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"stdint.h"</span></span>
-<span id="cb125-11"><a href="#cb125-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"stdlib.h"</span></span>
-<span id="cb125-12"><a href="#cb125-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-13"><a href="#cb125-13" aria-hidden="true" tabindex="-1"></a><span class="co">/* ----------------- Don't change the code above! ----------------- */</span></span>
-<span id="cb125-14"><a href="#cb125-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-15"><a href="#cb125-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-16"><a href="#cb125-16" aria-hidden="true" tabindex="-1"></a>ptdalgorithms<span class="op">::</span>Graph build<span class="op">(</span><span class="dt">int</span> starting_rabbits<span class="op">,</span> <span class="dt">float</span> flooding_left<span class="op">,</span> <span class="dt">float</span> flooding_right<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb125-17"><a href="#cb125-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-18"><a href="#cb125-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">// using namespace ptdalgorithms;</span></span>
-<span id="cb125-19"><a href="#cb125-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-20"><a href="#cb125-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Same state size (left_rabbits, right_rabbits) */</span></span>
-<span id="cb125-21"><a href="#cb125-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">size_t</span> state_size <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb125-22"><a href="#cb125-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-23"><a href="#cb125-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Create the graph structure */</span></span>
-<span id="cb125-24"><a href="#cb125-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> ptd_graph <span class="op">*</span>graph <span class="op">=</span> ptd_graph_create<span class="op">(</span>state_size<span class="op">);</span></span>
-<span id="cb125-25"><a href="#cb125-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-26"><a href="#cb125-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* We must crease the lookup tree as well! */</span></span>
-<span id="cb125-27"><a href="#cb125-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> ptd_avl_tree <span class="op">*</span>avl_tree <span class="op">=</span> ptd_avl_tree_create<span class="op">(</span>state_size<span class="op">);</span></span>
-<span id="cb125-28"><a href="#cb125-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-29"><a href="#cb125-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Allocate the initial state, which means create an "array" of two values */</span></span>
-<span id="cb125-30"><a href="#cb125-30" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="op">*</span>initial_state <span class="op">=</span> <span class="op">(</span><span class="dt">int</span><span class="op">*)</span>calloc<span class="op">(</span>graph<span class="op">-&gt;</span>state_length<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(*</span>initial_state<span class="op">));</span></span>
-<span id="cb125-31"><a href="#cb125-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-32"><a href="#cb125-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* A "buffer" that allows us to manipulate the new child.</span></span>
-<span id="cb125-33"><a href="#cb125-33" aria-hidden="true" tabindex="-1"></a><span class="co">     * We need to 'free' this manually.</span></span>
-<span id="cb125-34"><a href="#cb125-34" aria-hidden="true" tabindex="-1"></a><span class="co">     */</span></span>
-<span id="cb125-35"><a href="#cb125-35" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="op">*</span>child_state <span class="op">=</span> <span class="op">(</span><span class="dt">int</span><span class="op">*)</span>calloc<span class="op">(</span>graph<span class="op">-&gt;</span>state_length<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(*</span>initial_state<span class="op">));</span></span>
-<span id="cb125-36"><a href="#cb125-36" aria-hidden="true" tabindex="-1"></a>    initial_state<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> starting_rabbits<span class="op">;</span></span>
-<span id="cb125-37"><a href="#cb125-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-38"><a href="#cb125-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Add the starting edge, just like in the R api */</span></span>
-<span id="cb125-39"><a href="#cb125-39" aria-hidden="true" tabindex="-1"></a>    ptd_graph_add_edge<span class="op">(</span></span>
-<span id="cb125-40"><a href="#cb125-40" aria-hidden="true" tabindex="-1"></a>            graph<span class="op">-&gt;</span>starting_vertex<span class="op">,</span></span>
-<span id="cb125-41"><a href="#cb125-41" aria-hidden="true" tabindex="-1"></a>            ptd_find_or_create_vertex<span class="op">(</span>graph<span class="op">,</span> avl_tree<span class="op">,</span> initial_state<span class="op">),</span></span>
-<span id="cb125-42"><a href="#cb125-42" aria-hidden="true" tabindex="-1"></a>            <span class="dv">1</span></span>
-<span id="cb125-43"><a href="#cb125-43" aria-hidden="true" tabindex="-1"></a>    <span class="op">);</span></span>
-<span id="cb125-44"><a href="#cb125-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-45"><a href="#cb125-45" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Visit all vertices once */</span></span>
-<span id="cb125-46"><a href="#cb125-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> k <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> k <span class="op">&lt;</span> graph<span class="op">-&gt;</span>vertices_length<span class="op">;</span> k<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb125-47"><a href="#cb125-47" aria-hidden="true" tabindex="-1"></a>        <span class="kw">struct</span> ptd_vertex <span class="op">*</span>vertex <span class="op">=</span> graph<span class="op">-&gt;</span>vertices<span class="op">[</span>k<span class="op">];</span></span>
-<span id="cb125-48"><a href="#cb125-48" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> <span class="op">*</span>state <span class="op">=</span> vertex<span class="op">-&gt;</span>state<span class="op">;</span></span>
-<span id="cb125-49"><a href="#cb125-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-50"><a href="#cb125-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>state<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb125-51"><a href="#cb125-51" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Rabbit jump left to right</span></span>
-<span id="cb125-52"><a href="#cb125-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-53"><a href="#cb125-53" aria-hidden="true" tabindex="-1"></a>            <span class="co">/* We use memcpy to copy the state into the child buffer!</span></span>
-<span id="cb125-54"><a href="#cb125-54" aria-hidden="true" tabindex="-1"></a><span class="co">             * As C or most other languages will *not* clone by default</span></span>
-<span id="cb125-55"><a href="#cb125-55" aria-hidden="true" tabindex="-1"></a><span class="co">             */</span></span>
-<span id="cb125-56"><a href="#cb125-56" aria-hidden="true" tabindex="-1"></a>            memcpy<span class="op">(</span>child_state<span class="op">,</span> vertex<span class="op">-&gt;</span>state<span class="op">,</span> graph<span class="op">-&gt;</span>state_length <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
-<span id="cb125-57"><a href="#cb125-57" aria-hidden="true" tabindex="-1"></a>            child_state<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">-=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb125-58"><a href="#cb125-58" aria-hidden="true" tabindex="-1"></a>            child_state<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb125-59"><a href="#cb125-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-60"><a href="#cb125-60" aria-hidden="true" tabindex="-1"></a>            <span class="co">/* ptd_find_or_create_vertex will *clone* the child_state</span></span>
-<span id="cb125-61"><a href="#cb125-61" aria-hidden="true" tabindex="-1"></a><span class="co">             * so no worries there!</span></span>
-<span id="cb125-62"><a href="#cb125-62" aria-hidden="true" tabindex="-1"></a><span class="co">             */</span></span>
-<span id="cb125-63"><a href="#cb125-63" aria-hidden="true" tabindex="-1"></a>            ptd_graph_add_edge<span class="op">(</span></span>
-<span id="cb125-64"><a href="#cb125-64" aria-hidden="true" tabindex="-1"></a>                    vertex<span class="op">,</span></span>
-<span id="cb125-65"><a href="#cb125-65" aria-hidden="true" tabindex="-1"></a>                    ptd_find_or_create_vertex<span class="op">(</span>graph<span class="op">,</span> avl_tree<span class="op">,</span> child_state<span class="op">),</span></span>
-<span id="cb125-66"><a href="#cb125-66" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span></span>
-<span id="cb125-67"><a href="#cb125-67" aria-hidden="true" tabindex="-1"></a>            <span class="op">);</span></span>
-<span id="cb125-68"><a href="#cb125-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-69"><a href="#cb125-69" aria-hidden="true" tabindex="-1"></a>            memcpy<span class="op">(</span>child_state<span class="op">,</span> vertex<span class="op">-&gt;</span>state<span class="op">,</span> graph<span class="op">-&gt;</span>state_length <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
-<span id="cb125-70"><a href="#cb125-70" aria-hidden="true" tabindex="-1"></a>            child_state<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb125-71"><a href="#cb125-71" aria-hidden="true" tabindex="-1"></a>            ptd_graph_add_edge<span class="op">(</span></span>
-<span id="cb125-72"><a href="#cb125-72" aria-hidden="true" tabindex="-1"></a>                    vertex<span class="op">,</span></span>
-<span id="cb125-73"><a href="#cb125-73" aria-hidden="true" tabindex="-1"></a>                    ptd_find_or_create_vertex<span class="op">(</span>graph<span class="op">,</span> avl_tree<span class="op">,</span> child_state<span class="op">),</span></span>
-<span id="cb125-74"><a href="#cb125-74" aria-hidden="true" tabindex="-1"></a>                    flooding_left</span>
-<span id="cb125-75"><a href="#cb125-75" aria-hidden="true" tabindex="-1"></a>            <span class="op">);</span></span>
-<span id="cb125-76"><a href="#cb125-76" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb125-77"><a href="#cb125-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-78"><a href="#cb125-78" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>state<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb125-79"><a href="#cb125-79" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Rabbit jump right to left</span></span>
-<span id="cb125-80"><a href="#cb125-80" aria-hidden="true" tabindex="-1"></a>            memcpy<span class="op">(</span>child_state<span class="op">,</span> vertex<span class="op">-&gt;</span>state<span class="op">,</span> graph<span class="op">-&gt;</span>state_length <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
-<span id="cb125-81"><a href="#cb125-81" aria-hidden="true" tabindex="-1"></a>            child_state<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">-=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb125-82"><a href="#cb125-82" aria-hidden="true" tabindex="-1"></a>            child_state<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb125-83"><a href="#cb125-83" aria-hidden="true" tabindex="-1"></a>            ptd_graph_add_edge<span class="op">(</span></span>
-<span id="cb125-84"><a href="#cb125-84" aria-hidden="true" tabindex="-1"></a>                    vertex<span class="op">,</span></span>
-<span id="cb125-85"><a href="#cb125-85" aria-hidden="true" tabindex="-1"></a>                    ptd_find_or_create_vertex<span class="op">(</span>graph<span class="op">,</span> avl_tree<span class="op">,</span> child_state<span class="op">),</span></span>
-<span id="cb125-86"><a href="#cb125-86" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span></span>
-<span id="cb125-87"><a href="#cb125-87" aria-hidden="true" tabindex="-1"></a>            <span class="op">);</span></span>
-<span id="cb125-88"><a href="#cb125-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-89"><a href="#cb125-89" aria-hidden="true" tabindex="-1"></a>            memcpy<span class="op">(</span>child_state<span class="op">,</span> vertex<span class="op">-&gt;</span>state<span class="op">,</span> graph<span class="op">-&gt;</span>state_length <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
-<span id="cb125-90"><a href="#cb125-90" aria-hidden="true" tabindex="-1"></a>            child_state<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb125-91"><a href="#cb125-91" aria-hidden="true" tabindex="-1"></a>            ptd_graph_add_edge<span class="op">(</span></span>
-<span id="cb125-92"><a href="#cb125-92" aria-hidden="true" tabindex="-1"></a>                    vertex<span class="op">,</span></span>
-<span id="cb125-93"><a href="#cb125-93" aria-hidden="true" tabindex="-1"></a>                    ptd_find_or_create_vertex<span class="op">(</span>graph<span class="op">,</span> avl_tree<span class="op">,</span> child_state<span class="op">),</span></span>
-<span id="cb125-94"><a href="#cb125-94" aria-hidden="true" tabindex="-1"></a>                    flooding_right</span>
-<span id="cb125-95"><a href="#cb125-95" aria-hidden="true" tabindex="-1"></a>            <span class="op">);</span></span>
-<span id="cb125-96"><a href="#cb125-96" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb125-97"><a href="#cb125-97" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb125-98"><a href="#cb125-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-99"><a href="#cb125-99" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Manually free the allocated buffer memory */</span></span>
-<span id="cb125-100"><a href="#cb125-100" aria-hidden="true" tabindex="-1"></a>    free<span class="op">(</span>child_state<span class="op">);</span></span>
-<span id="cb125-101"><a href="#cb125-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-102"><a href="#cb125-102" aria-hidden="true" tabindex="-1"></a>    <span class="co">/*</span></span>
-<span id="cb125-103"><a href="#cb125-103" aria-hidden="true" tabindex="-1"></a><span class="co">     * This is the first time we use the C++ api to</span></span>
-<span id="cb125-104"><a href="#cb125-104" aria-hidden="true" tabindex="-1"></a><span class="co">     * bind the allocated graph to a C++ instance.</span></span>
-<span id="cb125-105"><a href="#cb125-105" aria-hidden="true" tabindex="-1"></a><span class="co">     * Only few methods should be used...</span></span>
-<span id="cb125-106"><a href="#cb125-106" aria-hidden="true" tabindex="-1"></a><span class="co">     * It has memory management by destructure, so no need</span></span>
-<span id="cb125-107"><a href="#cb125-107" aria-hidden="true" tabindex="-1"></a><span class="co">     * to manually free when done using.</span></span>
-<span id="cb125-108"><a href="#cb125-108" aria-hidden="true" tabindex="-1"></a><span class="co">     */</span></span>
-<span id="cb125-109"><a href="#cb125-109" aria-hidden="true" tabindex="-1"></a>    ptdalgorithms<span class="op">::</span>Graph <span class="op">*</span>result <span class="op">=</span> new ptdalgorithms<span class="op">::</span>Graph<span class="op">(</span>graph<span class="op">,</span> avl_tree<span class="op">);</span></span>
-<span id="cb125-110"><a href="#cb125-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-111"><a href="#cb125-111" aria-hidden="true" tabindex="-1"></a>    <span class="co">/*</span></span>
-<span id="cb125-112"><a href="#cb125-112" aria-hidden="true" tabindex="-1"></a><span class="co">     * Use Rcpp to make this C++ instance visible to R. This is the</span></span>
-<span id="cb125-113"><a href="#cb125-113" aria-hidden="true" tabindex="-1"></a><span class="co">     * exact same type returned by `create_graph` in the R api,</span></span>
-<span id="cb125-114"><a href="#cb125-114" aria-hidden="true" tabindex="-1"></a><span class="co">     * which is why we need to make sure the cloned code is identical</span></span>
-<span id="cb125-115"><a href="#cb125-115" aria-hidden="true" tabindex="-1"></a><span class="co">     * to the currently installed R library (ptdalgorithms).</span></span>
-<span id="cb125-116"><a href="#cb125-116" aria-hidden="true" tabindex="-1"></a><span class="co">     */</span></span>
-<span id="cb125-117"><a href="#cb125-117" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">*</span>result<span class="op">;</span></span>
-<span id="cb125-118"><a href="#cb125-118" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb125-119"><a href="#cb125-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-120"><a href="#cb125-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-121"><a href="#cb125-121" aria-hidden="true" tabindex="-1"></a><span class="co">/* NB: Change module name below to match the name of this file (without the suffix) */</span></span>
-<span id="cb125-122"><a href="#cb125-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-123"><a href="#cb125-123" aria-hidden="true" tabindex="-1"></a>PYBIND11_MODULE<span class="op">(</span>rabbit_state_space<span class="op">,</span> m<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb125-124"><a href="#cb125-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-125"><a href="#cb125-125" aria-hidden="true" tabindex="-1"></a>        m<span class="op">.</span>def<span class="op">(</span><span class="st">"build"</span><span class="op">,</span> <span class="op">&amp;</span>build<span class="op">);</span></span>
-<span id="cb125-126"><a href="#cb125-126" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb125-127"><a href="#cb125-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-128"><a href="#cb125-128" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
-<span id="cb125-129"><a href="#cb125-129" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;%</span></span>
-<span id="cb125-130"><a href="#cb125-130" aria-hidden="true" tabindex="-1"></a><span class="co">setup_pybind11(cfg)</span></span>
-<span id="cb125-131"><a href="#cb125-131" aria-hidden="true" tabindex="-1"></a><span class="co">%&gt;</span></span>
-<span id="cb125-132"><a href="#cb125-132" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="cell-154" class="cell">
-<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> pip install cppimport</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="building-the-state-space-in-c" class="level2">
+<h2 class="anchored" data-anchor-id="building-the-state-space-in-c">Building the state space in C</h2>
+<p>Very large models can be take a long time to construct. So if you have deloped a model that you need to construct repeatedly, the library allow you to implement the state construction as a stand-alone C/C++ extension available as python module.</p>
+<p>The C code building the state space for the rabit model looks like this:</p>
+<pre class="{c}"><code>ptdalgorithms::Graph build(int starting_rabbits, float flooding_left, float flooding_right) {
+
+    size_t state_size = 2;
+    struct ptd_graph *graph = ptd_graph_create(state_size);
+    struct ptd_avl_tree *avl_tree = ptd_avl_tree_create(state_size);
+    int *initial_state = (int*)calloc(graph-&gt;state_length, sizeof(*initial_state));
+    int *child_state = (int*)calloc(graph-&gt;state_length, sizeof(*initial_state));
+    initial_state[0] = starting_rabbits;
+    ptd_graph_add_edge(
+            graph-&gt;starting_vertex,
+            ptd_find_or_create_vertex(graph, avl_tree, initial_state),
+            1
+    );
+    for (size_t k = 1; k &lt; graph-&gt;vertices_length; k++) {
+        struct ptd_vertex *vertex = graph-&gt;vertices[k];
+        int *state = vertex-&gt;state;
+        if (state[0] &gt; 0) {
+            memcpy(child_state, vertex-&gt;state, graph-&gt;state_length * sizeof(int));
+            child_state[0] -= 1;
+            child_state[1] += 1;
+
+            ptd_graph_add_edge(
+                    vertex,
+                    ptd_find_or_create_vertex(graph, avl_tree, child_state),
+                    1
+            );
+            memcpy(child_state, vertex-&gt;state, graph-&gt;state_length * sizeof(int));
+            child_state[0] = 0;
+            ptd_graph_add_edge(
+                    vertex,
+                    ptd_find_or_create_vertex(graph, avl_tree, child_state),
+                    flooding_left
+            );
+        }
+        if (state[1] &gt; 0) {
+            memcpy(child_state, vertex-&gt;state, graph-&gt;state_length * sizeof(int));
+            child_state[1] -= 1;
+            child_state[0] += 1;
+            ptd_graph_add_edge(
+                    vertex,
+                    ptd_find_or_create_vertex(graph, avl_tree, child_state),
+                    1
+            );
+            memcpy(child_state, vertex-&gt;state, graph-&gt;state_length * sizeof(int));
+            child_state[1] = 0;
+            ptd_graph_add_edge(
+                    vertex,
+                    ptd_find_or_create_vertex(graph, avl_tree, child_state),
+                    flooding_right
+            );
+        }
+    }
+    free(child_state);
+    ptdalgorithms::Graph *result = new ptdalgorithms::Graph(graph, avl_tree);
+    return *result;
+}
+
+To access the function from python, you need to put it a separate file (`rabbit_state_space.cpp`) with the header and footer shown below:
+
+```{c}
+#include &lt;pybind11/pybind11.h&gt;
+#include &lt;ptdalgorithms.h&gt;
+#include "stdint.h"
+#include "stdlib.h"
+
+namespace py = pybind11;
+using namespace pybind11::literals;
+/*******************************************/
+
+
+/* Your build function goes here */
+
+
+/********************************************/
+PYBIND11_MODULE(rabbit_state_space, m) {     /* &lt;- NB: the model name must match the file name */
+     m.def("build", &amp;build);
+}
+
+/*
+&lt;%
+setup_pybind11(cfg)
+%&gt;
+*/</code></pre>
+<p>You can see the complete code in <a href="rabbit_state_space.cpp">rabbit_state_space.cpp</a>.</p>
+<p>Then all you need to do is install cppimport</p>
+<div id="cell-161" class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> pip install cppimport</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Requirement already satisfied: cppimport in /Users/kmt/miniconda3/envs/ptd/lib/python3.11/site-packages (22.8.2)
+Requirement already satisfied: mako in /Users/kmt/miniconda3/envs/ptd/lib/python3.11/site-packages (from cppimport) (1.3.9)
+Requirement already satisfied: pybind11 in /Users/kmt/miniconda3/envs/ptd/lib/python3.11/site-packages (from cppimport) (2.13.6)
+Requirement already satisfied: filelock in /Users/kmt/miniconda3/envs/ptd/lib/python3.11/site-packages (from cppimport) (3.13.1)
+Requirement already satisfied: MarkupSafe&gt;=0.9.2 in /Users/kmt/miniconda3/envs/ptd/lib/python3.11/site-packages (from mako-&gt;cppimport) (2.1.5)</code></pre>
 </div>
-<div id="cell-155" class="cell" data-execution_count="51">
-<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms</span>
-<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cppimport.import_hook</span>
-<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rabbit_state_space<span class="co">#This will pause for a moment to compile the module</span></span>
-<span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptdalgorithms.Graph(rabbit_state_space.build(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>))</span>
-<span id="cb127-5"><a href="#cb127-5" aria-hidden="true" tabindex="-1"></a>graph.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="51">
+</div>
+<p>and then run this code to import your build function.</p>
+<div id="cell-163" class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import ptdalgorithms</span></span>
+<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cppimport.import_hook</span>
+<span id="cb130-3"><a href="#cb130-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rabbit_state_space <span class="co"># this will pause for a moment to compile the module</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then you can use it to construct your graph like this:</p>
+<div id="cell-165" class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptd.Graph(rabbit_state_space.build(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>))</span>
+<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a>graph.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="81">
 <div>
 <figure class="figure">
-<p><a href="rabbits_full_py_api_example_files/figure-html/cell-81-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="rabbits_full_py_api_example_files/figure-html/cell-81-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="rabbits_full_py_api_example_files/figure-html/cell-82-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="rabbits_full_py_api_example_files/figure-html/cell-82-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
