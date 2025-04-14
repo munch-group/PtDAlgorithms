@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-8647a4a42273f773479d27c00df3f9ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -203,111 +203,154 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="405a9cbe-a26b-460b-8ed0-27bb88f943f2" class="cell" data-execution_count="2">
+<div id="405a9cbe-a26b-460b-8ed0-27bb88f943f2" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.style.use('dark_background')</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># import matplotlib</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># matplotlib.rcParams['axes.facecolor'] = '#1F1F1F'</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># matplotlib.rcParams['figure.facecolor'] = '#1F1F1F'</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#%matplotlib widget</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.style.use('dark_background')</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># import matplotlib</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># matplotlib.rcParams['axes.facecolor'] = '#1F1F1F'</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># matplotlib.rcParams['figure.facecolor'] = '#1F1F1F'</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#%matplotlib widget</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>R header:</p>
-<div id="b4f1095d-c8e1-498f-8682-dbfd2b6dc7ae" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Rcpp::sourceCpp(<span class="st">"./cpp/coalescent.cpp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9bc0b14f-38fb-43e9-bf9b-29d96cfde495" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coalescent(n):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> callback(state):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        transitions <span class="op">=</span> []</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nr_samples):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, nr_samples):            </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                same <span class="op">=</span> <span class="bu">int</span>(i <span class="op">==</span> j)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> same <span class="kw">and</span> state[i] <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> same <span class="kw">and</span> (state[i] <span class="op">&lt;</span> <span class="dv">1</span> <span class="kw">or</span> state[j] <span class="op">&lt;</span> <span class="dv">1</span>):</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span> </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                new <span class="op">=</span> state[:]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                new[i] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                new[j] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                new[i<span class="op">+</span>j<span class="op">+</span><span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                transitions.append((new, state[i]<span class="op">*</span>(state[j]<span class="op">-</span>same)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>same)))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> transitions</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    graph <span class="op">=</span> ptd.Graph(callback<span class="op">=</span>callback, initial<span class="op">=</span>[nr_samples]<span class="op">+</span>[<span class="dv">0</span>]<span class="op">*</span>nr_samples)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> graph</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>nr_samples <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>coalescent(nr_samples)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>graph.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<div>
+<figure class="figure">
+<p><a href="coalescent-jointprob_files/figure-html/cell-3-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="coalescent-jointprob_files/figure-html/cell-3-output-1.svg" class="img-fluid figure-img"></a></p>
+</figure>
 </div>
-<div id="03151fcc-643a-4a55-b178-05e349e1c207" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>source(<span class="st">"plot_functions.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f064d3db-0d07-4d07-a4a6-8e5d220c4503" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p &lt;- ggplot(data=iris, aes(x = Sepal.Length, y = Sepal.Width)) +</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#       geom_point(aes(color=Species, shape=Species)) + despine</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplotly(width=600, height=400)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="e13a981d-44c5-4532-89bf-42ac22d4e1b1" class="cell" data-scrolled="true" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>theme_set(theme_bw())</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>despine <span class="op">&lt;-</span> theme(panel.border <span class="op">=</span> element_blank(), panel.grid.major <span class="op">=</span> element_blank(),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    panel.grid.minor <span class="op">=</span> element_blank(), axis.line <span class="op">=</span> element_line(colour <span class="op">=</span> <span class="st">"black"</span>),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                text<span class="op">=</span>element_text(size<span class="op">=</span><span class="dv">17</span>)) </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>options(<span class="bu">repr</span>.plot.width<span class="op">=</span><span class="dv">7</span>, <span class="bu">repr</span>.plot.height<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="make-discrete" class="level2">
 <h2 class="anchored" data-anchor-id="make-discrete">Make discrete</h2>
-<div id="42fb2ba0-79df-4d0d-b49e-048d8883c80b" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>make_discrete <span class="op">&lt;-</span> function(mutation_graph, mutation_rate) {</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Takes a graph for a continuous distribution and turns</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># it into a descrete one (inplace). Returns a matrix of</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rewards for computing marginal moments</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># current nr of states in graph</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    vlength <span class="op">&lt;-</span> vertices_length(mutation_graph)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># number of fields in state vector (assumes all are the same length)</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    state_vector_length <span class="op">&lt;-</span> length(vertex_at(mutation_graph, <span class="dv">1</span>)$state)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># list state vector fields to reward at each auxiliary node</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    rewarded_state_vector_indexes <span class="op">&lt;-</span> vector(mode <span class="op">=</span> <span class="st">"list"</span>, length <span class="op">=</span> state_vector_length)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># loop all but starting node</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="kw">in</span> <span class="dv">2</span>:vlength) {</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        vertex <span class="op">&lt;-</span> vertex_at(mutation_graph,i)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (vertex$rate <span class="op">&gt;</span> <span class="dv">0</span>) { <span class="co"># not absorbing</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> (j <span class="kw">in</span> <span class="dv">1</span>:length(vertex$state)) {</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>                val <span class="op">&lt;-</span> vertex$state[j]</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> (val <span class="op">&gt;</span> <span class="dv">0</span>) { <span class="co"># only ones we may reward</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># add auxilliary node</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>                    mutation_vertex <span class="op">&lt;-</span> create_vertex(mutation_graph, rep(<span class="dv">0</span>, state_vector_length))</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>                    add_edge(mutation_vertex, vertex, <span class="dv">1</span>)</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>                    add_edge(vertex, mutation_vertex, mutation_rate<span class="op">*</span>val)</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>                    rewarded_state_vector_indexes[[mutation_vertex$index]] <span class="op">&lt;-</span> c(rewarded_state_vector_indexes[[j]], j)</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>                }</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>            }</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># normalize graph</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    weights_were_multiplied_with <span class="op">&lt;-</span> normalize_graph(mutation_graph)</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># build reward matrix</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    rewards <span class="op">&lt;-</span> matrix(nrow<span class="op">=</span>vertices_length(mutation_graph),ncol<span class="op">=</span>state_vector_length, <span class="dv">0</span>)</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (state <span class="kw">in</span> seq_along(rewarded_state_vector_indexes)) {</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> (i <span class="kw">in</span> rewarded_state_vector_indexes[[state]]) {</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>            rewards[state, i] <span class="op">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    rewards <span class="op">=</span> t(rewards)</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(rewards)</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="co"># # self-transition rate:</span></span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="co"># mutation_rate &lt;- 1e-8</span></span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="co"># # clone graph to get one to modify:</span></span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="co"># mutation_graph &lt;- clone_graph(graph)</span></span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="co"># # add auxilliary states, normalize and return reward matrix:</span></span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="co"># rewards &lt;- make_discrete(mutation_graph, mutation_rate)</span></span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="co"># # for plotting the new graph</span></span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a><span class="co"># gam &lt;- graph_as_matrix(mutation_graph)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="58c9023d-7c17-43b2-86ca-4308b2acedca" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>np.zeros((<span class="dv">3</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<pre><code>array([[0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0.]])</code></pre>
+</div>
+</div>
+<div id="42fb2ba0-79df-4d0d-b49e-048d8883c80b" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_discrete(mutation_graph, mutation_rate):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Takes a graph for a continuous distribution and turns</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">    it into a descrete one (inplace). Returns a matrix of</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">    rewards for computing marginal moments</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># current nr of states in graph</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    vlength <span class="op">=</span> mutation_graph.vertices_length()</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># number of fields in state vector (assumes all are the same length)</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    state_vector_length <span class="op">=</span> <span class="bu">len</span>(mutation_graph.vertex_at(<span class="dv">1</span>).state())</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># list state vector fields to reward at each auxiliary node</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rewarded_state_vector_indexes = [[] for _ in range(state_vector_length)]</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    rewarded_state_vector_indexes <span class="op">=</span> defaultdict(<span class="bu">list</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># loop all but starting node</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, vlength):</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        vertex <span class="op">=</span> mutation_graph.vertex_at(i)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> vertex.rate() <span class="op">&gt;</span> <span class="dv">0</span>: <span class="co"># not absorbing</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(state_vector_length):</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>                val <span class="op">=</span> vertex.state()[j]</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> val <span class="op">&gt;</span> <span class="dv">0</span>: <span class="co"># only ones we may reward</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># add auxilliary node</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>                    mutation_vertex <span class="op">=</span> mutation_graph.create_vertex(np.repeat(<span class="dv">0</span>, state_vector_length))</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>                    mutation_vertex.add_edge(vertex, <span class="dv">1</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>                    mutation_vertex.add_edge(vertex, mutation_rate<span class="op">*</span>val)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(mutation_vertex.index(), rewarded_state_vector_indexes[j], j)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>                    rewarded_state_vector_indexes[mutation_vertex.index()] <span class="op">=</span> rewarded_state_vector_indexes[j] <span class="op">+</span> [j]</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(rewarded_state_vector_indexes)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># normalize graph</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    weights_were_multiplied_with <span class="op">=</span> mutation_graph.normalize()</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># build reward matrix</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    rewards <span class="op">=</span> np.zeros((mutation_graph.vertices_length(), state_vector_length))</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> state <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(rewarded_state_vector_indexes)):</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> rewarded_state_vector_indexes[state]:</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>            rewards[state, i] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    rewards <span class="op">=</span> np.transpose(rewards)</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(rewards)</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> coalescent(<span class="dv">4</span>)</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="co"># self-transition rate:</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>mutation_rate <span class="op">=</span> <span class="fl">1e-8</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="co"># clone graph to get one to modify:</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>mutation_graph <span class="op">=</span> ptd.Graph(graph.clone())</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="co"># add auxilliary states, normalize and return reward matrix:</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> make_discrete(mutation_graph, mutation_rate)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="co">#print(mutation_graph.expectation())</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rewards)</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>mutation_graph.plot()</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="co"># # for plotting the new graph</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="co"># gam &lt;- graph_as_matrix(mutation_graph)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>6 [] 0
+7 [] 0
+8 [] 1
+9 [] 1
+10 [] 0
+11 [] 2
+defaultdict(&lt;class 'list'&gt;, {0: [], 6: [0], 7: [0], 1: [], 8: [1], 9: [1], 10: [0], 2: [], 11: [2]})
+[[0. 0. 0. 0. 0. 0. 1. 1. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<div>
+<figure class="figure">
+<p><a href="coalescent-jointprob_files/figure-html/cell-5-output-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="coalescent-jointprob_files/figure-html/cell-5-output-2.svg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="trash-state-approach" class="level1">
 <h1>Trash-state approach</h1>
-<div id="13817d7a-05a8-4ecc-b342-6eb80d21e4ab" class="cell" data-execution_count="13">
+<div id="13817d7a-05a8-4ecc-b342-6eb80d21e4ab" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># discrete_joint_prob &lt;- function(graph, reward_limits, mutation_rate, reward_possible, tot_reward_limit=Inf, return_graph=FALSE) {</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -463,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a><span class="co">#     return(joint_probs)   </span></span>
 <span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a><span class="co"># } </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="88c33bf3-95bc-41a8-8489-240f14290059" class="cell" data-execution_count="14">
+<div id="88c33bf3-95bc-41a8-8489-240f14290059" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample_size &lt;- 4</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># graph &lt;- standard_coalescent(sample_size)</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># state_length &lt;- length(vertex_at(graph, 1)$state)</span></span>
@@ -660,7 +703,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="coalescent" class="level2">
 <h2 class="anchored" data-anchor-id="coalescent">Coalescent</h2>
-<div id="54ccda6d-799c-40b8-b391-cfe2ae8bd620" class="cell" data-execution_count="37">
+<div id="54ccda6d-799c-40b8-b391-cfe2ae8bd620" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>standard_coalescent <span class="op">&lt;-</span> function(n) {</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># n &lt;- 4</span></span>
@@ -740,6 +783,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="co"># states &lt;- t(sapply(1:vertices_length(graph), function(index) vertex_at(graph, index)$state ))</span></span>
 <span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="co"># ipv &lt;- graph_as_matrix(graph)$IPV</span></span>
 <span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="co"># sim &lt;- graph_as_matrix(graph)$SIM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[8], line 6</span>
+<span class="ansi-red-fg">    state_vector_length &lt;- n</span>
+    ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax. Perhaps you forgot a comma?
+</pre>
+</div>
+</div>
 </div>
 <div id="d5b68f6f-6a1a-4294-9b9f-95d1c0566ffc" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sample_size <span class="op">&lt;-</span> <span class="dv">4</span></span>
@@ -846,7 +898,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-14-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="coalescent-jointprob_files/figure-html/cell-14-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-12-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="coalescent-jointprob_files/figure-html/cell-12-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1001,7 +1053,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-17-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="coalescent-jointprob_files/figure-html/cell-17-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-15-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="coalescent-jointprob_files/figure-html/cell-15-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1130,7 +1182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-21-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="coalescent-jointprob_files/figure-html/cell-21-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-19-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="coalescent-jointprob_files/figure-html/cell-19-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1222,7 +1274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-24-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="coalescent-jointprob_files/figure-html/cell-24-output-1.png" width="720" height="330" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-22-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="coalescent-jointprob_files/figure-html/cell-22-output-1.png" width="720" height="330" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -2177,7 +2229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-35-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="coalescent-jointprob_files/figure-html/cell-35-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-33-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="coalescent-jointprob_files/figure-html/cell-33-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -2629,7 +2681,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-41-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="coalescent-jointprob_files/figure-html/cell-41-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-39-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="coalescent-jointprob_files/figure-html/cell-39-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -2871,7 +2923,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-44-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="coalescent-jointprob_files/figure-html/cell-44-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-42-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="coalescent-jointprob_files/figure-html/cell-42-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -2897,7 +2949,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-46-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="coalescent-jointprob_files/figure-html/cell-46-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-44-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="coalescent-jointprob_files/figure-html/cell-44-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -2939,7 +2991,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-48-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="coalescent-jointprob_files/figure-html/cell-48-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-46-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="coalescent-jointprob_files/figure-html/cell-46-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3192,7 +3244,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-62-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="coalescent-jointprob_files/figure-html/cell-62-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-60-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="coalescent-jointprob_files/figure-html/cell-60-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3309,7 +3361,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-64-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="coalescent-jointprob_files/figure-html/cell-64-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-62-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="coalescent-jointprob_files/figure-html/cell-62-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3328,7 +3380,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-66-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="coalescent-jointprob_files/figure-html/cell-66-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-64-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="coalescent-jointprob_files/figure-html/cell-64-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3346,7 +3398,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-68-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="coalescent-jointprob_files/figure-html/cell-68-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-66-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="coalescent-jointprob_files/figure-html/cell-66-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3372,7 +3424,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-71-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="coalescent-jointprob_files/figure-html/cell-71-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-69-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="coalescent-jointprob_files/figure-html/cell-69-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3393,7 +3445,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-73-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="coalescent-jointprob_files/figure-html/cell-73-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-71-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="coalescent-jointprob_files/figure-html/cell-71-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3410,7 +3462,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-74-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="coalescent-jointprob_files/figure-html/cell-74-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-72-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="coalescent-jointprob_files/figure-html/cell-72-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4540,7 +4592,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-81-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="coalescent-jointprob_files/figure-html/cell-81-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-79-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="coalescent-jointprob_files/figure-html/cell-79-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4559,7 +4611,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-82-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="coalescent-jointprob_files/figure-html/cell-82-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-80-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="coalescent-jointprob_files/figure-html/cell-80-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4742,7 +4794,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-83-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="coalescent-jointprob_files/figure-html/cell-83-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-81-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="coalescent-jointprob_files/figure-html/cell-81-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
