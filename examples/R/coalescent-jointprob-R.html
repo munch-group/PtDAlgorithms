@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.43">
+<meta name="generator" content="quarto-1.7.29">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,8 +21,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -57,25 +58,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8647a4a42273f773479d27c00df3f9ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-630147fbe0b9ab2b2a517857e522e257.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,18 +110,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
-<link rel="stylesheet" href="../api/_styles-quartodoc.css">
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../api/_styles-quartodoc.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">ptdalgorithms</span>
     </a>
   </div>
@@ -130,15 +132,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../api/"> 
+    <a class="nav-link" href="../../api/"> 
 <span class="menu-text">Python API reference</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../r_api/"> 
+    <a class="nav-link" href="../../r_api/"> 
 <span class="menu-text">R API reference</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../c_api/"> 
+    <a class="nav-link" href="../../c_api/"> 
 <span class="menu-text">C API reference</span></a>
   </li>  
 </ul>
@@ -2411,7 +2413,7 @@ Traceback:
 </section>
 <section id="figure-out-why-you-get-nas-in-multi_rewards-with-max_tons---1" class="level2">
 <h2 class="anchored" data-anchor-id="figure-out-why-you-get-nas-in-multi_rewards-with-max_tons---1">Figure out why you get NAs in multi_rewards with max_tons &lt;- 1</h2>
-<div id="57964fd0-735e-4a8c-9e3c-765483320541" class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-execution_count="43">
+<div id="57964fd0-735e-4a8c-9e3c-765483320541" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;jupyter&quot;,&quot;value&quot;:{&quot;source_hidden&quot;:true}}" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># joint_prob_coalescent &lt;- function(n, mutation_rate, max_tons, total_tons=Inf) {</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     state_vector_length &lt;- n + n + 1</span></span>
@@ -4621,7 +4623,10 @@ Traceback:
 <span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>plot_df[,<span class="sc">-</span><span class="fu">ncol</span>(plot_df)] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(plot_df[,<span class="sc">-</span><span class="fu">ncol</span>(plot_df)], as.factor)</span>
 <span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(plot_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'X2'. You can override using the `.groups` argument.</code></pre>
+<div class="ansi-escaped-output">
+<pre>`summarise()` has grouped output by 'X2'. You can override using the `.groups` argument.
+</pre>
+</div>
 </div>
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
@@ -4674,16 +4679,16 @@ Traceback:
 </div>
 </div>
 <div id="b00fd888-4a56-4a58-bbfc-ef5826c96ba7" class="cell" data-execution_count="87">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x=</span>X2, <span class="at">y=</span>X3)) <span class="sc">+</span></span>
-<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> prob)) <span class="sc">+</span> </span>
-<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(prob, <span class="dv">3</span>))) <span class="sc">+</span></span>
-<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">'PiYG'</span>,<span class="at">direction =</span> <span class="dv">1</span>,</span>
-<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">limit=</span><span class="fu">max</span>(<span class="fu">abs</span>(plot_df<span class="sc">$</span>prob)) <span class="sc">*</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a>                    ) <span class="sc">+</span></span>
-<span id="cb99-7"><a href="#cb99-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb99-8"><a href="#cb99-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb99-9"><a href="#cb99-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb99-10"><a href="#cb99-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">17</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x=</span>X2, <span class="at">y=</span>X3)) <span class="sc">+</span></span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> prob)) <span class="sc">+</span> </span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(prob, <span class="dv">3</span>))) <span class="sc">+</span></span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">'PiYG'</span>,<span class="at">direction =</span> <span class="dv">1</span>,</span>
+<span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">limit=</span><span class="fu">max</span>(<span class="fu">abs</span>(plot_df<span class="sc">$</span>prob)) <span class="sc">*</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb98-6"><a href="#cb98-6" aria-hidden="true" tabindex="-1"></a>                    ) <span class="sc">+</span></span>
+<span id="cb98-7"><a href="#cb98-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb98-8"><a href="#cb98-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb98-9"><a href="#cb98-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb98-10"><a href="#cb98-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">17</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -4693,16 +4698,16 @@ Traceback:
 </div>
 </div>
 <div id="4654714c-5a1f-429c-8fab-52f254888578" class="cell" data-execution_count="88">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x=</span>X2, <span class="at">y=</span>X3)) <span class="sc">+</span></span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">log10</span>(prob))) <span class="sc">+</span> </span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(<span class="fu">log10</span>(prob), <span class="dv">2</span>))) <span class="sc">+</span></span>
-<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">'PiYG'</span>,<span class="at">direction =</span> <span class="dv">1</span>,</span>
-<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">limit=</span><span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">log10</span>(plot_df<span class="sc">$</span>prob))) <span class="sc">*</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a>                    ) <span class="sc">+</span></span>
-<span id="cb100-7"><a href="#cb100-7" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb100-8"><a href="#cb100-8" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb100-9"><a href="#cb100-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb100-10"><a href="#cb100-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">17</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x=</span>X2, <span class="at">y=</span>X3)) <span class="sc">+</span></span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">log10</span>(prob))) <span class="sc">+</span> </span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(<span class="fu">log10</span>(prob), <span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">'PiYG'</span>,<span class="at">direction =</span> <span class="dv">1</span>,</span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">limit=</span><span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">log10</span>(plot_df<span class="sc">$</span>prob))) <span class="sc">*</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a>                    ) <span class="sc">+</span></span>
+<span id="cb99-7"><a href="#cb99-7" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb99-8"><a href="#cb99-8" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb99-9"><a href="#cb99-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb99-10"><a href="#cb99-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">17</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -4712,180 +4717,180 @@ Traceback:
 </div>
 </div>
 <div id="5aff04ee-d895-448a-9e69-c7383aa9e013" class="cell" data-execution_count="89">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot_graph &lt;- function(gam, constrained=TRUE, </span></span>
-<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                        subgraphs=FALSE, ranksep=2, nodesep=1,</span></span>
-<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a><span class="co">#                        subgraphfun=function(state, index) paste(state[-length(state)], collapse=""), </span></span>
-<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="co">#                        size=c(6, 6), fontsize=10, rankdir="LR", align=FALSE, nodecolor='white', rainbow=FALSE, penwidth=1) {</span></span>
-<span id="cb101-6"><a href="#cb101-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-7"><a href="#cb101-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-8"><a href="#cb101-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     format_rate &lt;- function(rate) {</span></span>
-<span id="cb101-9"><a href="#cb101-9" aria-hidden="true" tabindex="-1"></a><span class="co">#         # tol = .Machine$double.eps^0.5</span></span>
-<span id="cb101-10"><a href="#cb101-10" aria-hidden="true" tabindex="-1"></a><span class="co">#         # if (min(abs(c(rate%%1, rate%%1-1))) &lt; tol) {</span></span>
-<span id="cb101-11"><a href="#cb101-11" aria-hidden="true" tabindex="-1"></a><span class="co">#         if (rate == round(rate)) {</span></span>
-<span id="cb101-12"><a href="#cb101-12" aria-hidden="true" tabindex="-1"></a><span class="co">#             return(rate)</span></span>
-<span id="cb101-13"><a href="#cb101-13" aria-hidden="true" tabindex="-1"></a><span class="co">#         } else {</span></span>
-<span id="cb101-14"><a href="#cb101-14" aria-hidden="true" tabindex="-1"></a><span class="co">#             return(formatC(rate, format = "e", digits = 2))</span></span>
-<span id="cb101-15"><a href="#cb101-15" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
-<span id="cb101-16"><a href="#cb101-16" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
-<span id="cb101-17"><a href="#cb101-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-18"><a href="#cb101-18" aria-hidden="true" tabindex="-1"></a><span class="co">#     random_color &lt;- function() {</span></span>
-<span id="cb101-19"><a href="#cb101-19" aria-hidden="true" tabindex="-1"></a><span class="co">#         if (rainbow) {</span></span>
-<span id="cb101-20"><a href="#cb101-20" aria-hidden="true" tabindex="-1"></a><span class="co">#             return(paste("#", paste0(sample(c(0:9, LETTERS[1:6]), 6, T), collapse = ''), sep=''))</span></span>
-<span id="cb101-21"><a href="#cb101-21" aria-hidden="true" tabindex="-1"></a><span class="co">#         } else {</span></span>
-<span id="cb101-22"><a href="#cb101-22" aria-hidden="true" tabindex="-1"></a><span class="co">#             return('#000000')</span></span>
-<span id="cb101-23"><a href="#cb101-23" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
-<span id="cb101-24"><a href="#cb101-24" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
-<span id="cb101-25"><a href="#cb101-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-26"><a href="#cb101-26" aria-hidden="true" tabindex="-1"></a><span class="co">#     sub_graphs = list()</span></span>
-<span id="cb101-27"><a href="#cb101-27" aria-hidden="true" tabindex="-1"></a><span class="co">#     state_classes = list()</span></span>
-<span id="cb101-28"><a href="#cb101-28" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb101-29"><a href="#cb101-29" aria-hidden="true" tabindex="-1"></a><span class="co">#     if (constrained) {</span></span>
-<span id="cb101-30"><a href="#cb101-30" aria-hidden="true" tabindex="-1"></a><span class="co">#         constrained &lt;- 'true'</span></span>
-<span id="cb101-31"><a href="#cb101-31" aria-hidden="true" tabindex="-1"></a><span class="co">#     } else {</span></span>
-<span id="cb101-32"><a href="#cb101-32" aria-hidden="true" tabindex="-1"></a><span class="co">#         constrained &lt;- 'false'</span></span>
-<span id="cb101-33"><a href="#cb101-33" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
-<span id="cb101-34"><a href="#cb101-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-35"><a href="#cb101-35" aria-hidden="true" tabindex="-1"></a><span class="co">#     states &lt;- c()</span></span>
-<span id="cb101-36"><a href="#cb101-36" aria-hidden="true" tabindex="-1"></a><span class="co">#     for (i in 1:(nrow(gam$states))) {</span></span>
-<span id="cb101-37"><a href="#cb101-37" aria-hidden="true" tabindex="-1"></a><span class="co">#         states &lt;- c(states, paste0(i, ' [label="', paste(gam$states[i,], collapse = ","), '"];'))</span></span>
-<span id="cb101-38"><a href="#cb101-38" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
-<span id="cb101-39"><a href="#cb101-39" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb101-40"><a href="#cb101-40" aria-hidden="true" tabindex="-1"></a><span class="co">#     edge_templ &lt;- '"FROM" -&gt; "TO" [constraint=true, label="LABEL",labelfloat=false,color="COLOR",fontcolor="COLOR"];'</span></span>
-<span id="cb101-41"><a href="#cb101-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-42"><a href="#cb101-42" aria-hidden="true" tabindex="-1"></a><span class="co">#     subgraph_template &lt;- '</span></span>
-<span id="cb101-43"><a href="#cb101-43" aria-hidden="true" tabindex="-1"></a><span class="co">#     subgraph cluster_FREQBIN {</span></span>
-<span id="cb101-44"><a href="#cb101-44" aria-hidden="true" tabindex="-1"></a><span class="co">#         rank=same;</span></span>
-<span id="cb101-45"><a href="#cb101-45" aria-hidden="true" tabindex="-1"></a><span class="co">#         style=filled;</span></span>
-<span id="cb101-46"><a href="#cb101-46" aria-hidden="true" tabindex="-1"></a><span class="co">#         color=whitesmoke;</span></span>
-<span id="cb101-47"><a href="#cb101-47" aria-hidden="true" tabindex="-1"></a><span class="co">#         node [style=filled];</span></span>
-<span id="cb101-48"><a href="#cb101-48" aria-hidden="true" tabindex="-1"></a><span class="co">#         NODES;</span></span>
-<span id="cb101-49"><a href="#cb101-49" aria-hidden="true" tabindex="-1"></a><span class="co">#         label = "FREQBIN";</span></span>
-<span id="cb101-50"><a href="#cb101-50" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
-<span id="cb101-51"><a href="#cb101-51" aria-hidden="true" tabindex="-1"></a><span class="co">#     '</span></span>
-<span id="cb101-52"><a href="#cb101-52" aria-hidden="true" tabindex="-1"></a><span class="co">#     start_name &lt;- 'IPV'</span></span>
-<span id="cb101-53"><a href="#cb101-53" aria-hidden="true" tabindex="-1"></a><span class="co">#     absorbing_name &lt;- 'Absorb'</span></span>
-<span id="cb101-54"><a href="#cb101-54" aria-hidden="true" tabindex="-1"></a><span class="co">#     edges &lt;- c()</span></span>
-<span id="cb101-55"><a href="#cb101-55" aria-hidden="true" tabindex="-1"></a><span class="co">#     # IPV edges</span></span>
-<span id="cb101-56"><a href="#cb101-56" aria-hidden="true" tabindex="-1"></a><span class="co">#     for (i in 1:length(gam$IPV)) {</span></span>
-<span id="cb101-57"><a href="#cb101-57" aria-hidden="true" tabindex="-1"></a><span class="co">#         if (gam$IPV[i] &gt; 0) {</span></span>
-<span id="cb101-58"><a href="#cb101-58" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- edge_templ</span></span>
-<span id="cb101-59"><a href="#cb101-59" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- sub('FROM', start_name, edge)</span></span>
-<span id="cb101-60"><a href="#cb101-60" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- sub('TO', i, edge)</span></span>
-<span id="cb101-61"><a href="#cb101-61" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- sub('LABEL', gam$IPV[i], edge)</span></span>
-<span id="cb101-62"><a href="#cb101-62" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- gsub('COLOR', random_color(), edge)                        </span></span>
-<span id="cb101-63"><a href="#cb101-63" aria-hidden="true" tabindex="-1"></a><span class="co">#             edges &lt;- c(edges, edge)</span></span>
-<span id="cb101-64"><a href="#cb101-64" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
-<span id="cb101-65"><a href="#cb101-65" aria-hidden="true" tabindex="-1"></a><span class="co">#     }    </span></span>
-<span id="cb101-66"><a href="#cb101-66" aria-hidden="true" tabindex="-1"></a><span class="co">#     # Matrix edges</span></span>
-<span id="cb101-67"><a href="#cb101-67" aria-hidden="true" tabindex="-1"></a><span class="co">#     for (i in 1:(nrow(gam$states))) {</span></span>
-<span id="cb101-68"><a href="#cb101-68" aria-hidden="true" tabindex="-1"></a><span class="co">#         for (j in 1:nrow(gam$states)) {</span></span>
-<span id="cb101-69"><a href="#cb101-69" aria-hidden="true" tabindex="-1"></a><span class="co">#             if ((i != j) &amp;&amp; (gam$SIM[i, j] &gt; 0)) {</span></span>
-<span id="cb101-70"><a href="#cb101-70" aria-hidden="true" tabindex="-1"></a><span class="co">#                 edge &lt;- edge_templ</span></span>
-<span id="cb101-71"><a href="#cb101-71" aria-hidden="true" tabindex="-1"></a><span class="co">#                 edge &lt;- sub('FROM', i, edge)</span></span>
-<span id="cb101-72"><a href="#cb101-72" aria-hidden="true" tabindex="-1"></a><span class="co">#                 edge &lt;- sub('TO', j, edge)</span></span>
-<span id="cb101-73"><a href="#cb101-73" aria-hidden="true" tabindex="-1"></a><span class="co">#                 edge &lt;- sub('LABEL', format_rate(gam$SIM[i, j]), edge)</span></span>
-<span id="cb101-74"><a href="#cb101-74" aria-hidden="true" tabindex="-1"></a><span class="co">#                 edge &lt;- gsub('COLOR', random_color(), edge)</span></span>
-<span id="cb101-75"><a href="#cb101-75" aria-hidden="true" tabindex="-1"></a><span class="co">#                 edges &lt;- c(edges, edge)</span></span>
-<span id="cb101-76"><a href="#cb101-76" aria-hidden="true" tabindex="-1"></a><span class="co">#             }</span></span>
-<span id="cb101-77"><a href="#cb101-77" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
-<span id="cb101-78"><a href="#cb101-78" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
-<span id="cb101-79"><a href="#cb101-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-80"><a href="#cb101-80" aria-hidden="true" tabindex="-1"></a><span class="co">#     absorb_rates &lt;- -rowSums(gam$SIM)</span></span>
-<span id="cb101-81"><a href="#cb101-81" aria-hidden="true" tabindex="-1"></a><span class="co">#     for (i in 1:nrow(gam$states)) {</span></span>
-<span id="cb101-82"><a href="#cb101-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-83"><a href="#cb101-83" aria-hidden="true" tabindex="-1"></a><span class="co">#         # </span><span class="al">TODO</span><span class="co">: Avoid the hack below by changing the function to use the graph instead of the matrix</span></span>
-<span id="cb101-84"><a href="#cb101-84" aria-hidden="true" tabindex="-1"></a><span class="co">#         if (absorb_rates[i] &gt; abs(1e-14)) {</span></span>
-<span id="cb101-85"><a href="#cb101-85" aria-hidden="true" tabindex="-1"></a><span class="co">#         # if (absorb_rates[i] &gt; 0) {</span></span>
-<span id="cb101-86"><a href="#cb101-86" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- edge_templ</span></span>
-<span id="cb101-87"><a href="#cb101-87" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- sub('FROM', i, edge)</span></span>
-<span id="cb101-88"><a href="#cb101-88" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- sub('TO', absorbing_name, edge)</span></span>
-<span id="cb101-89"><a href="#cb101-89" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- sub('LABEL', absorb_rates[i], edge)</span></span>
-<span id="cb101-90"><a href="#cb101-90" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- gsub('COLOR', random_color(), edge)            </span></span>
-<span id="cb101-91"><a href="#cb101-91" aria-hidden="true" tabindex="-1"></a><span class="co">#             edges &lt;- c(edges, edge)</span></span>
-<span id="cb101-92"><a href="#cb101-92" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
-<span id="cb101-93"><a href="#cb101-93" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
-<span id="cb101-94"><a href="#cb101-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-95"><a href="#cb101-95" aria-hidden="true" tabindex="-1"></a><span class="co">#     graph_spec &lt;- paste(c(states, edges), collapse = '\n')</span></span>
-<span id="cb101-96"><a href="#cb101-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-97"><a href="#cb101-97" aria-hidden="true" tabindex="-1"></a><span class="co">#     rank_same &lt;- ''</span></span>
-<span id="cb101-98"><a href="#cb101-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-99"><a href="#cb101-99" aria-hidden="true" tabindex="-1"></a><span class="co">#     if (subgraphs) {        </span></span>
-<span id="cb101-100"><a href="#cb101-100" aria-hidden="true" tabindex="-1"></a><span class="co">#         for (i in 1:(nrow(gam$states))) {</span></span>
-<span id="cb101-101"><a href="#cb101-101" aria-hidden="true" tabindex="-1"></a><span class="co">#             sg &lt;- subgraphfun(gam$states[i,], index=i)</span></span>
-<span id="cb101-102"><a href="#cb101-102" aria-hidden="true" tabindex="-1"></a><span class="co">#             sub_graphs[[sg]] &lt;- c(sub_graphs[[sg]], i)</span></span>
-<span id="cb101-103"><a href="#cb101-103" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
-<span id="cb101-104"><a href="#cb101-104" aria-hidden="true" tabindex="-1"></a><span class="co">#         for (sg in labels(sub_graphs)) {</span></span>
-<span id="cb101-105"><a href="#cb101-105" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb101-106"><a href="#cb101-106" aria-hidden="true" tabindex="-1"></a><span class="co">#             nodes &lt;- sub_graphs[[sg]]</span></span>
-<span id="cb101-107"><a href="#cb101-107" aria-hidden="true" tabindex="-1"></a><span class="co">#             tmpl &lt;- subgraph_template</span></span>
-<span id="cb101-108"><a href="#cb101-108" aria-hidden="true" tabindex="-1"></a><span class="co">#             node_str &lt;- ''</span></span>
-<span id="cb101-109"><a href="#cb101-109" aria-hidden="true" tabindex="-1"></a><span class="co">#             for (i in 1:length(nodes)) {</span></span>
-<span id="cb101-110"><a href="#cb101-110" aria-hidden="true" tabindex="-1"></a><span class="co">#                 node_str &lt;- paste(node_str, paste('"', nodes[i], '" ', sep=''), sep=' ')</span></span>
-<span id="cb101-111"><a href="#cb101-111" aria-hidden="true" tabindex="-1"></a><span class="co">#             }</span></span>
-<span id="cb101-112"><a href="#cb101-112" aria-hidden="true" tabindex="-1"></a><span class="co">#             tmpl &lt;- sub('NODES', node_str, tmpl)</span></span>
-<span id="cb101-113"><a href="#cb101-113" aria-hidden="true" tabindex="-1"></a><span class="co">#             tmpl &lt;- sub('FREQBIN', sg, tmpl)            </span></span>
-<span id="cb101-114"><a href="#cb101-114" aria-hidden="true" tabindex="-1"></a><span class="co">#             tmpl &lt;- sub('FREQBIN', sg, tmpl)            </span></span>
-<span id="cb101-115"><a href="#cb101-115" aria-hidden="true" tabindex="-1"></a><span class="co">#             graph_spec &lt;- paste(graph_spec, tmpl)</span></span>
-<span id="cb101-116"><a href="#cb101-116" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
-<span id="cb101-117"><a href="#cb101-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-118"><a href="#cb101-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-119"><a href="#cb101-119" aria-hidden="true" tabindex="-1"></a><span class="co">#         if (align) {</span></span>
-<span id="cb101-120"><a href="#cb101-120" aria-hidden="true" tabindex="-1"></a><span class="co">#             for (i in 1:(nrow(gam$states))) {</span></span>
-<span id="cb101-121"><a href="#cb101-121" aria-hidden="true" tabindex="-1"></a><span class="co">#                 sc &lt;- paste(head(gam$states[i,], -1), collapse = ",")</span></span>
-<span id="cb101-122"><a href="#cb101-122" aria-hidden="true" tabindex="-1"></a><span class="co">#                 state_classes[[sc]] &lt;- c(state_classes[[sc]], i)</span></span>
-<span id="cb101-123"><a href="#cb101-123" aria-hidden="true" tabindex="-1"></a><span class="co">#             }</span></span>
-<span id="cb101-124"><a href="#cb101-124" aria-hidden="true" tabindex="-1"></a><span class="co">#             for (sc in labels(state_classes)) {</span></span>
-<span id="cb101-125"><a href="#cb101-125" aria-hidden="true" tabindex="-1"></a><span class="co">#                 rank_same &lt;- paste(rank_same, '{rank=same; ', sep='')</span></span>
-<span id="cb101-126"><a href="#cb101-126" aria-hidden="true" tabindex="-1"></a><span class="co">#                 nodes &lt;- state_classes[[sc]]</span></span>
-<span id="cb101-127"><a href="#cb101-127" aria-hidden="true" tabindex="-1"></a><span class="co">#                 for (i in 1:length(nodes)) {</span></span>
-<span id="cb101-128"><a href="#cb101-128" aria-hidden="true" tabindex="-1"></a><span class="co">#                     rank_same &lt;- paste(rank_same, paste('"', nodes[i], '" ', sep=''), sep=' ')</span></span>
-<span id="cb101-129"><a href="#cb101-129" aria-hidden="true" tabindex="-1"></a><span class="co">#                 }            </span></span>
-<span id="cb101-130"><a href="#cb101-130" aria-hidden="true" tabindex="-1"></a><span class="co">#                 rank_same &lt;- paste(rank_same, ' }', sep='\n')</span></span>
-<span id="cb101-131"><a href="#cb101-131" aria-hidden="true" tabindex="-1"></a><span class="co">#             }</span></span>
-<span id="cb101-132"><a href="#cb101-132" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
-<span id="cb101-133"><a href="#cb101-133" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb101-134"><a href="#cb101-134" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
-<span id="cb101-135"><a href="#cb101-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-136"><a href="#cb101-136" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- '</span></span>
-<span id="cb101-137"><a href="#cb101-137" aria-hidden="true" tabindex="-1"></a><span class="co">#         graph [compound=true newrank=true pad="0.5", ranksep="RANKSEP", nodesep="NODESEP"] </span></span>
-<span id="cb101-138"><a href="#cb101-138" aria-hidden="true" tabindex="-1"></a><span class="co">#         rankdir=RANKDIR;</span></span>
-<span id="cb101-139"><a href="#cb101-139" aria-hidden="true" tabindex="-1"></a><span class="co">#         size="SIZEX,SIZEY";</span></span>
-<span id="cb101-140"><a href="#cb101-140" aria-hidden="true" tabindex="-1"></a><span class="co">#         fontname="Helvetica,Arial,sans-serif"</span></span>
-<span id="cb101-141"><a href="#cb101-141" aria-hidden="true" tabindex="-1"></a><span class="co">#       node [fontname="Helvetica,Arial,sans-serif", fontsize=FONTSIZE, style=filled, fillcolor="NODECOLOR"]</span></span>
-<span id="cb101-142"><a href="#cb101-142" aria-hidden="true" tabindex="-1"></a><span class="co">#       edge [fontname="Helvetica,Arial,sans-serif", fontsize=FONTSIZE, penwidth=PENWIDTH]</span></span>
-<span id="cb101-143"><a href="#cb101-143" aria-hidden="true" tabindex="-1"></a><span class="co">#         Absorb [style=filled,color="lightgrey"]</span></span>
-<span id="cb101-144"><a href="#cb101-144" aria-hidden="true" tabindex="-1"></a><span class="co">#         IPV [style=filled,color="lightgrey"]</span></span>
-<span id="cb101-145"><a href="#cb101-145" aria-hidden="true" tabindex="-1"></a><span class="co">#         RANKSAME</span></span>
-<span id="cb101-146"><a href="#cb101-146" aria-hidden="true" tabindex="-1"></a><span class="co">#     '</span></span>
-<span id="cb101-147"><a href="#cb101-147" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- sub('SIZEX', size[1], style_str)</span></span>
-<span id="cb101-148"><a href="#cb101-148" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- sub('SIZEY', size[2], style_str)</span></span>
-<span id="cb101-149"><a href="#cb101-149" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- gsub('FONTSIZE', fontsize, style_str)    </span></span>
-<span id="cb101-150"><a href="#cb101-150" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- gsub('RANKDIR', rankdir, style_str)    </span></span>
-<span id="cb101-151"><a href="#cb101-151" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- gsub('RANKSAME', rank_same, style_str)</span></span>
-<span id="cb101-152"><a href="#cb101-152" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- gsub('RANKSEP', ranksep, style_str)</span></span>
-<span id="cb101-153"><a href="#cb101-153" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- gsub('NODESEP', nodesep, style_str)</span></span>
-<span id="cb101-154"><a href="#cb101-154" aria-hidden="true" tabindex="-1"></a><span class="co">#     graph_string &lt;- paste('digraph G {', style_str, graph_spec, '}', sep='\n')</span></span>
-<span id="cb101-155"><a href="#cb101-155" aria-hidden="true" tabindex="-1"></a><span class="co">#     graph_string &lt;- gsub('NODECOLOR', nodecolor, graph_string)  </span></span>
-<span id="cb101-156"><a href="#cb101-156" aria-hidden="true" tabindex="-1"></a><span class="co">#     graph_string &lt;- gsub('PENWIDTH', penwidth, graph_string)  </span></span>
-<span id="cb101-157"><a href="#cb101-157" aria-hidden="true" tabindex="-1"></a><span class="co">#     system("dot -Tsvg -o tmp.svg", input=graph_string, intern=TRUE)</span></span>
-<span id="cb101-158"><a href="#cb101-158" aria-hidden="true" tabindex="-1"></a><span class="co">#     return(display_svg(file="tmp.svg"))</span></span>
-<span id="cb101-159"><a href="#cb101-159" aria-hidden="true" tabindex="-1"></a><span class="co"># }</span></span>
-<span id="cb101-160"><a href="#cb101-160" aria-hidden="true" tabindex="-1"></a>                  </span>
-<span id="cb101-161"><a href="#cb101-161" aria-hidden="true" tabindex="-1"></a>sample_size <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb101-162"><a href="#cb101-162" aria-hidden="true" tabindex="-1"></a>mutation_rate <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb101-163"><a href="#cb101-163" aria-hidden="true" tabindex="-1"></a>max_tons <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb101-164"><a href="#cb101-164" aria-hidden="true" tabindex="-1"></a>total_tons <span class="ot">&lt;-</span> <span class="cn">Inf</span></span>
-<span id="cb101-165"><a href="#cb101-165" aria-hidden="true" tabindex="-1"></a>base <span class="ot">&lt;-</span> max_tons <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb101-166"><a href="#cb101-166" aria-hidden="true" tabindex="-1"></a>graph <span class="ot">&lt;-</span> <span class="fu">joint_prob_coalescent</span>(sample_size, mutation_rate, max_tons, <span class="at">total_tons=</span>total_tons)</span>
-<span id="cb101-167"><a href="#cb101-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-168"><a href="#cb101-168" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_graph</span>(<span class="fu">graph_as_matrix</span>(graph), <span class="at">rainbow=</span><span class="cn">TRUE</span>, <span class="at">size=</span><span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">8</span>), <span class="at">align=</span><span class="cn">TRUE</span>,</span>
-<span id="cb101-169"><a href="#cb101-169" aria-hidden="true" tabindex="-1"></a>           <span class="at">fontsize=</span><span class="dv">16</span>, <span class="at">ranksep=</span><span class="dv">1</span>, <span class="at">nodesep=</span><span class="fl">0.25</span>,</span>
-<span id="cb101-170"><a href="#cb101-170" aria-hidden="true" tabindex="-1"></a>           <span class="at">subgraphs=</span><span class="cn">TRUE</span>,</span>
-<span id="cb101-171"><a href="#cb101-171" aria-hidden="true" tabindex="-1"></a>           <span class="co"># rankdir="TB",</span></span>
-<span id="cb101-172"><a href="#cb101-172" aria-hidden="true" tabindex="-1"></a>           <span class="at">subgraphfun=</span><span class="cf">function</span>(state, index) <span class="fu">as.character</span>((index<span class="sc">+</span><span class="dv">1</span>) <span class="sc">%/%</span> <span class="dv">2</span>)</span>
-<span id="cb101-173"><a href="#cb101-173" aria-hidden="true" tabindex="-1"></a>           <span class="co"># subgraphfun=function(state, index) paste(state[-length(state)], collapse="")</span></span>
-<span id="cb101-174"><a href="#cb101-174" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot_graph &lt;- function(gam, constrained=TRUE, </span></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                        subgraphs=FALSE, ranksep=2, nodesep=1,</span></span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="co">#                        subgraphfun=function(state, index) paste(state[-length(state)], collapse=""), </span></span>
+<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="co">#                        size=c(6, 6), fontsize=10, rankdir="LR", align=FALSE, nodecolor='white', rainbow=FALSE, penwidth=1) {</span></span>
+<span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-7"><a href="#cb100-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-8"><a href="#cb100-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     format_rate &lt;- function(rate) {</span></span>
+<span id="cb100-9"><a href="#cb100-9" aria-hidden="true" tabindex="-1"></a><span class="co">#         # tol = .Machine$double.eps^0.5</span></span>
+<span id="cb100-10"><a href="#cb100-10" aria-hidden="true" tabindex="-1"></a><span class="co">#         # if (min(abs(c(rate%%1, rate%%1-1))) &lt; tol) {</span></span>
+<span id="cb100-11"><a href="#cb100-11" aria-hidden="true" tabindex="-1"></a><span class="co">#         if (rate == round(rate)) {</span></span>
+<span id="cb100-12"><a href="#cb100-12" aria-hidden="true" tabindex="-1"></a><span class="co">#             return(rate)</span></span>
+<span id="cb100-13"><a href="#cb100-13" aria-hidden="true" tabindex="-1"></a><span class="co">#         } else {</span></span>
+<span id="cb100-14"><a href="#cb100-14" aria-hidden="true" tabindex="-1"></a><span class="co">#             return(formatC(rate, format = "e", digits = 2))</span></span>
+<span id="cb100-15"><a href="#cb100-15" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
+<span id="cb100-16"><a href="#cb100-16" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
+<span id="cb100-17"><a href="#cb100-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-18"><a href="#cb100-18" aria-hidden="true" tabindex="-1"></a><span class="co">#     random_color &lt;- function() {</span></span>
+<span id="cb100-19"><a href="#cb100-19" aria-hidden="true" tabindex="-1"></a><span class="co">#         if (rainbow) {</span></span>
+<span id="cb100-20"><a href="#cb100-20" aria-hidden="true" tabindex="-1"></a><span class="co">#             return(paste("#", paste0(sample(c(0:9, LETTERS[1:6]), 6, T), collapse = ''), sep=''))</span></span>
+<span id="cb100-21"><a href="#cb100-21" aria-hidden="true" tabindex="-1"></a><span class="co">#         } else {</span></span>
+<span id="cb100-22"><a href="#cb100-22" aria-hidden="true" tabindex="-1"></a><span class="co">#             return('#000000')</span></span>
+<span id="cb100-23"><a href="#cb100-23" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
+<span id="cb100-24"><a href="#cb100-24" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
+<span id="cb100-25"><a href="#cb100-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-26"><a href="#cb100-26" aria-hidden="true" tabindex="-1"></a><span class="co">#     sub_graphs = list()</span></span>
+<span id="cb100-27"><a href="#cb100-27" aria-hidden="true" tabindex="-1"></a><span class="co">#     state_classes = list()</span></span>
+<span id="cb100-28"><a href="#cb100-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb100-29"><a href="#cb100-29" aria-hidden="true" tabindex="-1"></a><span class="co">#     if (constrained) {</span></span>
+<span id="cb100-30"><a href="#cb100-30" aria-hidden="true" tabindex="-1"></a><span class="co">#         constrained &lt;- 'true'</span></span>
+<span id="cb100-31"><a href="#cb100-31" aria-hidden="true" tabindex="-1"></a><span class="co">#     } else {</span></span>
+<span id="cb100-32"><a href="#cb100-32" aria-hidden="true" tabindex="-1"></a><span class="co">#         constrained &lt;- 'false'</span></span>
+<span id="cb100-33"><a href="#cb100-33" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
+<span id="cb100-34"><a href="#cb100-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-35"><a href="#cb100-35" aria-hidden="true" tabindex="-1"></a><span class="co">#     states &lt;- c()</span></span>
+<span id="cb100-36"><a href="#cb100-36" aria-hidden="true" tabindex="-1"></a><span class="co">#     for (i in 1:(nrow(gam$states))) {</span></span>
+<span id="cb100-37"><a href="#cb100-37" aria-hidden="true" tabindex="-1"></a><span class="co">#         states &lt;- c(states, paste0(i, ' [label="', paste(gam$states[i,], collapse = ","), '"];'))</span></span>
+<span id="cb100-38"><a href="#cb100-38" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
+<span id="cb100-39"><a href="#cb100-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb100-40"><a href="#cb100-40" aria-hidden="true" tabindex="-1"></a><span class="co">#     edge_templ &lt;- '"FROM" -&gt; "TO" [constraint=true, label="LABEL",labelfloat=false,color="COLOR",fontcolor="COLOR"];'</span></span>
+<span id="cb100-41"><a href="#cb100-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-42"><a href="#cb100-42" aria-hidden="true" tabindex="-1"></a><span class="co">#     subgraph_template &lt;- '</span></span>
+<span id="cb100-43"><a href="#cb100-43" aria-hidden="true" tabindex="-1"></a><span class="co">#     subgraph cluster_FREQBIN {</span></span>
+<span id="cb100-44"><a href="#cb100-44" aria-hidden="true" tabindex="-1"></a><span class="co">#         rank=same;</span></span>
+<span id="cb100-45"><a href="#cb100-45" aria-hidden="true" tabindex="-1"></a><span class="co">#         style=filled;</span></span>
+<span id="cb100-46"><a href="#cb100-46" aria-hidden="true" tabindex="-1"></a><span class="co">#         color=whitesmoke;</span></span>
+<span id="cb100-47"><a href="#cb100-47" aria-hidden="true" tabindex="-1"></a><span class="co">#         node [style=filled];</span></span>
+<span id="cb100-48"><a href="#cb100-48" aria-hidden="true" tabindex="-1"></a><span class="co">#         NODES;</span></span>
+<span id="cb100-49"><a href="#cb100-49" aria-hidden="true" tabindex="-1"></a><span class="co">#         label = "FREQBIN";</span></span>
+<span id="cb100-50"><a href="#cb100-50" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
+<span id="cb100-51"><a href="#cb100-51" aria-hidden="true" tabindex="-1"></a><span class="co">#     '</span></span>
+<span id="cb100-52"><a href="#cb100-52" aria-hidden="true" tabindex="-1"></a><span class="co">#     start_name &lt;- 'IPV'</span></span>
+<span id="cb100-53"><a href="#cb100-53" aria-hidden="true" tabindex="-1"></a><span class="co">#     absorbing_name &lt;- 'Absorb'</span></span>
+<span id="cb100-54"><a href="#cb100-54" aria-hidden="true" tabindex="-1"></a><span class="co">#     edges &lt;- c()</span></span>
+<span id="cb100-55"><a href="#cb100-55" aria-hidden="true" tabindex="-1"></a><span class="co">#     # IPV edges</span></span>
+<span id="cb100-56"><a href="#cb100-56" aria-hidden="true" tabindex="-1"></a><span class="co">#     for (i in 1:length(gam$IPV)) {</span></span>
+<span id="cb100-57"><a href="#cb100-57" aria-hidden="true" tabindex="-1"></a><span class="co">#         if (gam$IPV[i] &gt; 0) {</span></span>
+<span id="cb100-58"><a href="#cb100-58" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- edge_templ</span></span>
+<span id="cb100-59"><a href="#cb100-59" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- sub('FROM', start_name, edge)</span></span>
+<span id="cb100-60"><a href="#cb100-60" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- sub('TO', i, edge)</span></span>
+<span id="cb100-61"><a href="#cb100-61" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- sub('LABEL', gam$IPV[i], edge)</span></span>
+<span id="cb100-62"><a href="#cb100-62" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- gsub('COLOR', random_color(), edge)                        </span></span>
+<span id="cb100-63"><a href="#cb100-63" aria-hidden="true" tabindex="-1"></a><span class="co">#             edges &lt;- c(edges, edge)</span></span>
+<span id="cb100-64"><a href="#cb100-64" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
+<span id="cb100-65"><a href="#cb100-65" aria-hidden="true" tabindex="-1"></a><span class="co">#     }    </span></span>
+<span id="cb100-66"><a href="#cb100-66" aria-hidden="true" tabindex="-1"></a><span class="co">#     # Matrix edges</span></span>
+<span id="cb100-67"><a href="#cb100-67" aria-hidden="true" tabindex="-1"></a><span class="co">#     for (i in 1:(nrow(gam$states))) {</span></span>
+<span id="cb100-68"><a href="#cb100-68" aria-hidden="true" tabindex="-1"></a><span class="co">#         for (j in 1:nrow(gam$states)) {</span></span>
+<span id="cb100-69"><a href="#cb100-69" aria-hidden="true" tabindex="-1"></a><span class="co">#             if ((i != j) &amp;&amp; (gam$SIM[i, j] &gt; 0)) {</span></span>
+<span id="cb100-70"><a href="#cb100-70" aria-hidden="true" tabindex="-1"></a><span class="co">#                 edge &lt;- edge_templ</span></span>
+<span id="cb100-71"><a href="#cb100-71" aria-hidden="true" tabindex="-1"></a><span class="co">#                 edge &lt;- sub('FROM', i, edge)</span></span>
+<span id="cb100-72"><a href="#cb100-72" aria-hidden="true" tabindex="-1"></a><span class="co">#                 edge &lt;- sub('TO', j, edge)</span></span>
+<span id="cb100-73"><a href="#cb100-73" aria-hidden="true" tabindex="-1"></a><span class="co">#                 edge &lt;- sub('LABEL', format_rate(gam$SIM[i, j]), edge)</span></span>
+<span id="cb100-74"><a href="#cb100-74" aria-hidden="true" tabindex="-1"></a><span class="co">#                 edge &lt;- gsub('COLOR', random_color(), edge)</span></span>
+<span id="cb100-75"><a href="#cb100-75" aria-hidden="true" tabindex="-1"></a><span class="co">#                 edges &lt;- c(edges, edge)</span></span>
+<span id="cb100-76"><a href="#cb100-76" aria-hidden="true" tabindex="-1"></a><span class="co">#             }</span></span>
+<span id="cb100-77"><a href="#cb100-77" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
+<span id="cb100-78"><a href="#cb100-78" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
+<span id="cb100-79"><a href="#cb100-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-80"><a href="#cb100-80" aria-hidden="true" tabindex="-1"></a><span class="co">#     absorb_rates &lt;- -rowSums(gam$SIM)</span></span>
+<span id="cb100-81"><a href="#cb100-81" aria-hidden="true" tabindex="-1"></a><span class="co">#     for (i in 1:nrow(gam$states)) {</span></span>
+<span id="cb100-82"><a href="#cb100-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-83"><a href="#cb100-83" aria-hidden="true" tabindex="-1"></a><span class="co">#         # </span><span class="al">TODO</span><span class="co">: Avoid the hack below by changing the function to use the graph instead of the matrix</span></span>
+<span id="cb100-84"><a href="#cb100-84" aria-hidden="true" tabindex="-1"></a><span class="co">#         if (absorb_rates[i] &gt; abs(1e-14)) {</span></span>
+<span id="cb100-85"><a href="#cb100-85" aria-hidden="true" tabindex="-1"></a><span class="co">#         # if (absorb_rates[i] &gt; 0) {</span></span>
+<span id="cb100-86"><a href="#cb100-86" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- edge_templ</span></span>
+<span id="cb100-87"><a href="#cb100-87" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- sub('FROM', i, edge)</span></span>
+<span id="cb100-88"><a href="#cb100-88" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- sub('TO', absorbing_name, edge)</span></span>
+<span id="cb100-89"><a href="#cb100-89" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- sub('LABEL', absorb_rates[i], edge)</span></span>
+<span id="cb100-90"><a href="#cb100-90" aria-hidden="true" tabindex="-1"></a><span class="co">#             edge &lt;- gsub('COLOR', random_color(), edge)            </span></span>
+<span id="cb100-91"><a href="#cb100-91" aria-hidden="true" tabindex="-1"></a><span class="co">#             edges &lt;- c(edges, edge)</span></span>
+<span id="cb100-92"><a href="#cb100-92" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
+<span id="cb100-93"><a href="#cb100-93" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
+<span id="cb100-94"><a href="#cb100-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-95"><a href="#cb100-95" aria-hidden="true" tabindex="-1"></a><span class="co">#     graph_spec &lt;- paste(c(states, edges), collapse = '\n')</span></span>
+<span id="cb100-96"><a href="#cb100-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-97"><a href="#cb100-97" aria-hidden="true" tabindex="-1"></a><span class="co">#     rank_same &lt;- ''</span></span>
+<span id="cb100-98"><a href="#cb100-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-99"><a href="#cb100-99" aria-hidden="true" tabindex="-1"></a><span class="co">#     if (subgraphs) {        </span></span>
+<span id="cb100-100"><a href="#cb100-100" aria-hidden="true" tabindex="-1"></a><span class="co">#         for (i in 1:(nrow(gam$states))) {</span></span>
+<span id="cb100-101"><a href="#cb100-101" aria-hidden="true" tabindex="-1"></a><span class="co">#             sg &lt;- subgraphfun(gam$states[i,], index=i)</span></span>
+<span id="cb100-102"><a href="#cb100-102" aria-hidden="true" tabindex="-1"></a><span class="co">#             sub_graphs[[sg]] &lt;- c(sub_graphs[[sg]], i)</span></span>
+<span id="cb100-103"><a href="#cb100-103" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
+<span id="cb100-104"><a href="#cb100-104" aria-hidden="true" tabindex="-1"></a><span class="co">#         for (sg in labels(sub_graphs)) {</span></span>
+<span id="cb100-105"><a href="#cb100-105" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb100-106"><a href="#cb100-106" aria-hidden="true" tabindex="-1"></a><span class="co">#             nodes &lt;- sub_graphs[[sg]]</span></span>
+<span id="cb100-107"><a href="#cb100-107" aria-hidden="true" tabindex="-1"></a><span class="co">#             tmpl &lt;- subgraph_template</span></span>
+<span id="cb100-108"><a href="#cb100-108" aria-hidden="true" tabindex="-1"></a><span class="co">#             node_str &lt;- ''</span></span>
+<span id="cb100-109"><a href="#cb100-109" aria-hidden="true" tabindex="-1"></a><span class="co">#             for (i in 1:length(nodes)) {</span></span>
+<span id="cb100-110"><a href="#cb100-110" aria-hidden="true" tabindex="-1"></a><span class="co">#                 node_str &lt;- paste(node_str, paste('"', nodes[i], '" ', sep=''), sep=' ')</span></span>
+<span id="cb100-111"><a href="#cb100-111" aria-hidden="true" tabindex="-1"></a><span class="co">#             }</span></span>
+<span id="cb100-112"><a href="#cb100-112" aria-hidden="true" tabindex="-1"></a><span class="co">#             tmpl &lt;- sub('NODES', node_str, tmpl)</span></span>
+<span id="cb100-113"><a href="#cb100-113" aria-hidden="true" tabindex="-1"></a><span class="co">#             tmpl &lt;- sub('FREQBIN', sg, tmpl)            </span></span>
+<span id="cb100-114"><a href="#cb100-114" aria-hidden="true" tabindex="-1"></a><span class="co">#             tmpl &lt;- sub('FREQBIN', sg, tmpl)            </span></span>
+<span id="cb100-115"><a href="#cb100-115" aria-hidden="true" tabindex="-1"></a><span class="co">#             graph_spec &lt;- paste(graph_spec, tmpl)</span></span>
+<span id="cb100-116"><a href="#cb100-116" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
+<span id="cb100-117"><a href="#cb100-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-118"><a href="#cb100-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-119"><a href="#cb100-119" aria-hidden="true" tabindex="-1"></a><span class="co">#         if (align) {</span></span>
+<span id="cb100-120"><a href="#cb100-120" aria-hidden="true" tabindex="-1"></a><span class="co">#             for (i in 1:(nrow(gam$states))) {</span></span>
+<span id="cb100-121"><a href="#cb100-121" aria-hidden="true" tabindex="-1"></a><span class="co">#                 sc &lt;- paste(head(gam$states[i,], -1), collapse = ",")</span></span>
+<span id="cb100-122"><a href="#cb100-122" aria-hidden="true" tabindex="-1"></a><span class="co">#                 state_classes[[sc]] &lt;- c(state_classes[[sc]], i)</span></span>
+<span id="cb100-123"><a href="#cb100-123" aria-hidden="true" tabindex="-1"></a><span class="co">#             }</span></span>
+<span id="cb100-124"><a href="#cb100-124" aria-hidden="true" tabindex="-1"></a><span class="co">#             for (sc in labels(state_classes)) {</span></span>
+<span id="cb100-125"><a href="#cb100-125" aria-hidden="true" tabindex="-1"></a><span class="co">#                 rank_same &lt;- paste(rank_same, '{rank=same; ', sep='')</span></span>
+<span id="cb100-126"><a href="#cb100-126" aria-hidden="true" tabindex="-1"></a><span class="co">#                 nodes &lt;- state_classes[[sc]]</span></span>
+<span id="cb100-127"><a href="#cb100-127" aria-hidden="true" tabindex="-1"></a><span class="co">#                 for (i in 1:length(nodes)) {</span></span>
+<span id="cb100-128"><a href="#cb100-128" aria-hidden="true" tabindex="-1"></a><span class="co">#                     rank_same &lt;- paste(rank_same, paste('"', nodes[i], '" ', sep=''), sep=' ')</span></span>
+<span id="cb100-129"><a href="#cb100-129" aria-hidden="true" tabindex="-1"></a><span class="co">#                 }            </span></span>
+<span id="cb100-130"><a href="#cb100-130" aria-hidden="true" tabindex="-1"></a><span class="co">#                 rank_same &lt;- paste(rank_same, ' }', sep='\n')</span></span>
+<span id="cb100-131"><a href="#cb100-131" aria-hidden="true" tabindex="-1"></a><span class="co">#             }</span></span>
+<span id="cb100-132"><a href="#cb100-132" aria-hidden="true" tabindex="-1"></a><span class="co">#         }</span></span>
+<span id="cb100-133"><a href="#cb100-133" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb100-134"><a href="#cb100-134" aria-hidden="true" tabindex="-1"></a><span class="co">#     }</span></span>
+<span id="cb100-135"><a href="#cb100-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-136"><a href="#cb100-136" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- '</span></span>
+<span id="cb100-137"><a href="#cb100-137" aria-hidden="true" tabindex="-1"></a><span class="co">#         graph [compound=true newrank=true pad="0.5", ranksep="RANKSEP", nodesep="NODESEP"] </span></span>
+<span id="cb100-138"><a href="#cb100-138" aria-hidden="true" tabindex="-1"></a><span class="co">#         rankdir=RANKDIR;</span></span>
+<span id="cb100-139"><a href="#cb100-139" aria-hidden="true" tabindex="-1"></a><span class="co">#         size="SIZEX,SIZEY";</span></span>
+<span id="cb100-140"><a href="#cb100-140" aria-hidden="true" tabindex="-1"></a><span class="co">#         fontname="Helvetica,Arial,sans-serif"</span></span>
+<span id="cb100-141"><a href="#cb100-141" aria-hidden="true" tabindex="-1"></a><span class="co">#       node [fontname="Helvetica,Arial,sans-serif", fontsize=FONTSIZE, style=filled, fillcolor="NODECOLOR"]</span></span>
+<span id="cb100-142"><a href="#cb100-142" aria-hidden="true" tabindex="-1"></a><span class="co">#       edge [fontname="Helvetica,Arial,sans-serif", fontsize=FONTSIZE, penwidth=PENWIDTH]</span></span>
+<span id="cb100-143"><a href="#cb100-143" aria-hidden="true" tabindex="-1"></a><span class="co">#         Absorb [style=filled,color="lightgrey"]</span></span>
+<span id="cb100-144"><a href="#cb100-144" aria-hidden="true" tabindex="-1"></a><span class="co">#         IPV [style=filled,color="lightgrey"]</span></span>
+<span id="cb100-145"><a href="#cb100-145" aria-hidden="true" tabindex="-1"></a><span class="co">#         RANKSAME</span></span>
+<span id="cb100-146"><a href="#cb100-146" aria-hidden="true" tabindex="-1"></a><span class="co">#     '</span></span>
+<span id="cb100-147"><a href="#cb100-147" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- sub('SIZEX', size[1], style_str)</span></span>
+<span id="cb100-148"><a href="#cb100-148" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- sub('SIZEY', size[2], style_str)</span></span>
+<span id="cb100-149"><a href="#cb100-149" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- gsub('FONTSIZE', fontsize, style_str)    </span></span>
+<span id="cb100-150"><a href="#cb100-150" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- gsub('RANKDIR', rankdir, style_str)    </span></span>
+<span id="cb100-151"><a href="#cb100-151" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- gsub('RANKSAME', rank_same, style_str)</span></span>
+<span id="cb100-152"><a href="#cb100-152" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- gsub('RANKSEP', ranksep, style_str)</span></span>
+<span id="cb100-153"><a href="#cb100-153" aria-hidden="true" tabindex="-1"></a><span class="co">#     style_str &lt;- gsub('NODESEP', nodesep, style_str)</span></span>
+<span id="cb100-154"><a href="#cb100-154" aria-hidden="true" tabindex="-1"></a><span class="co">#     graph_string &lt;- paste('digraph G {', style_str, graph_spec, '}', sep='\n')</span></span>
+<span id="cb100-155"><a href="#cb100-155" aria-hidden="true" tabindex="-1"></a><span class="co">#     graph_string &lt;- gsub('NODECOLOR', nodecolor, graph_string)  </span></span>
+<span id="cb100-156"><a href="#cb100-156" aria-hidden="true" tabindex="-1"></a><span class="co">#     graph_string &lt;- gsub('PENWIDTH', penwidth, graph_string)  </span></span>
+<span id="cb100-157"><a href="#cb100-157" aria-hidden="true" tabindex="-1"></a><span class="co">#     system("dot -Tsvg -o tmp.svg", input=graph_string, intern=TRUE)</span></span>
+<span id="cb100-158"><a href="#cb100-158" aria-hidden="true" tabindex="-1"></a><span class="co">#     return(display_svg(file="tmp.svg"))</span></span>
+<span id="cb100-159"><a href="#cb100-159" aria-hidden="true" tabindex="-1"></a><span class="co"># }</span></span>
+<span id="cb100-160"><a href="#cb100-160" aria-hidden="true" tabindex="-1"></a>                  </span>
+<span id="cb100-161"><a href="#cb100-161" aria-hidden="true" tabindex="-1"></a>sample_size <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb100-162"><a href="#cb100-162" aria-hidden="true" tabindex="-1"></a>mutation_rate <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb100-163"><a href="#cb100-163" aria-hidden="true" tabindex="-1"></a>max_tons <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb100-164"><a href="#cb100-164" aria-hidden="true" tabindex="-1"></a>total_tons <span class="ot">&lt;-</span> <span class="cn">Inf</span></span>
+<span id="cb100-165"><a href="#cb100-165" aria-hidden="true" tabindex="-1"></a>base <span class="ot">&lt;-</span> max_tons <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb100-166"><a href="#cb100-166" aria-hidden="true" tabindex="-1"></a>graph <span class="ot">&lt;-</span> <span class="fu">joint_prob_coalescent</span>(sample_size, mutation_rate, max_tons, <span class="at">total_tons=</span>total_tons)</span>
+<span id="cb100-167"><a href="#cb100-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-168"><a href="#cb100-168" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_graph</span>(<span class="fu">graph_as_matrix</span>(graph), <span class="at">rainbow=</span><span class="cn">TRUE</span>, <span class="at">size=</span><span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">8</span>), <span class="at">align=</span><span class="cn">TRUE</span>,</span>
+<span id="cb100-169"><a href="#cb100-169" aria-hidden="true" tabindex="-1"></a>           <span class="at">fontsize=</span><span class="dv">16</span>, <span class="at">ranksep=</span><span class="dv">1</span>, <span class="at">nodesep=</span><span class="fl">0.25</span>,</span>
+<span id="cb100-170"><a href="#cb100-170" aria-hidden="true" tabindex="-1"></a>           <span class="at">subgraphs=</span><span class="cn">TRUE</span>,</span>
+<span id="cb100-171"><a href="#cb100-171" aria-hidden="true" tabindex="-1"></a>           <span class="co"># rankdir="TB",</span></span>
+<span id="cb100-172"><a href="#cb100-172" aria-hidden="true" tabindex="-1"></a>           <span class="at">subgraphfun=</span><span class="cf">function</span>(state, index) <span class="fu">as.character</span>((index<span class="sc">+</span><span class="dv">1</span>) <span class="sc">%/%</span> <span class="dv">2</span>)</span>
+<span id="cb100-173"><a href="#cb100-173" aria-hidden="true" tabindex="-1"></a>           <span class="co"># subgraphfun=function(state, index) paste(state[-length(state)], collapse="")</span></span>
+<span id="cb100-174"><a href="#cb100-174" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -4901,236 +4906,242 @@ Traceback:
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
         }
-        return container.innerHTML
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -5138,185 +5149,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
