@@ -315,21 +315,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>it should return</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>[([<span class="dv">1</span>, <span class="dv">1</span>], <span class="dv">1</span>), ([<span class="dv">0</span>, <span class="dv">0</span>], <span class="dv">2</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Together, the callback and initial state fully specifies the model. Here is what they look like for the rabbit model:</p>
-<div id="cell-8" class="cell" data-execution_count="10">
+<div id="cell-8" class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nr_rabbits, flood_left, flood_right <span class="op">=</span> <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rabbit_islands(state):</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    nr_left, nr_right <span class="op">=</span> state</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    reachable <span class="op">=</span> []</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> state[<span class="dv">0</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        reachable.append(([nr_left<span class="op">-</span><span class="dv">1</span>, nr_right<span class="op">+</span><span class="dv">1</span>], <span class="dv">1</span>))</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        reachable.append(([<span class="dv">0</span>,         nr_right  ], flood_left))</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> state[<span class="dv">1</span>] <span class="op">&gt;</span> <span class="dv">0</span>:   </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        reachable.append(([nr_left<span class="op">+</span><span class="dv">1</span>, nr_right<span class="op">-</span><span class="dv">1</span>], <span class="dv">1</span>))</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        reachable.append(([nr_left,   <span class="dv">0</span>         ], flood_right))</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> reachable</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>initial_state <span class="op">=</span> [nr_rabbits, <span class="dv">0</span>]  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> state <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        initial_state <span class="op">=</span> [nr_rabbits, <span class="dv">0</span>]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> initial_state</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    nr_left, nr_right <span class="op">=</span> state</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    reachable <span class="op">=</span> []</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> state[<span class="dv">0</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        reachable.append(([nr_left<span class="op">-</span><span class="dv">1</span>, nr_right<span class="op">+</span><span class="dv">1</span>], <span class="dv">1</span>))</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        reachable.append(([<span class="dv">0</span>,         nr_right  ], flood_left))</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> state[<span class="dv">1</span>] <span class="op">&gt;</span> <span class="dv">0</span>:   </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        reachable.append(([nr_left<span class="op">+</span><span class="dv">1</span>, nr_right<span class="op">-</span><span class="dv">1</span>], <span class="dv">1</span>))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        reachable.append(([nr_left,   <span class="dv">0</span>         ], flood_right))</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> reachable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <div class="no-row-height column-margin column-container"><div class="">
@@ -340,10 +341,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div></div><p>To then build the state space all you need to do is:</p>
-<div id="cell-11" class="cell" data-execution_count="11">
+<div id="cell-11" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptd.Graph(callback<span class="op">=</span>rabbit_islands, initial<span class="op">=</span>initial_state)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptd.Graph(callback<span class="op">=</span>rabbit_islands)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg ansi-bold">ptdalgorithms</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">as</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg ansi-bold">ptd</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> graph = <span class="ansi-yellow-bg">ptd</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">Graph</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">callback</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">rabbit_islands</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/ptdalgorithms/__init__.py:79</span>, in <span class="ansi-cyan-fg">Graph.__init__</span><span class="ansi-blue-fg">(self, state_length, callback, **kwargs)</span>
+<span class="ansi-green-fg">     76</span> <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> (callback <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>) + (state_length <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>) == <span class="ansi-green-fg">1</span>, <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Use either the state_length or callback argument</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">     78</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> callback:
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">79</span>     <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">super</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">.</span><span class="ansi-blue-fg ansi-yellow-bg">__init__</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">callback_tuples</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">partial</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">callback</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">     80</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">     81</span>     <span style="color:rgb(0,135,0)">super</span>().<span class="ansi-blue-fg">__init__</span>(state_length)
+
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 7</span>, in <span class="ansi-cyan-fg">rabbit_islands</span><span class="ansi-blue-fg">(state)</span>
+<span class="ansi-green-fg">      5</span>     initial_state = [nr_rabbits, <span class="ansi-green-fg">0</span>] 
+<span class="ansi-green-fg">      6</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> initial_state
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span> nr_left, nr_right = state
+<span class="ansi-green-fg">      8</span> reachable = []
+<span class="ansi-green-fg">      9</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> state[<span class="ansi-green-fg">0</span>] &gt; <span class="ansi-green-fg">0</span>:
+
+<span class="ansi-red-fg">ValueError</span>: not enough values to unpack (expected 2, got 0)</pre>
+</div>
+</div>
 </div>
 <p>Plot it to make sure it looks as expected. The gray <code>S</code> state is the “starting state” immediately transiting one or more model states where the model is allowed to begin. In the rabbit model, <code>S</code> goes to state <code>2,0</code> with probability 1 because the model can only begin there. The end (absorbing) state <code>0,0</code> is also colored gray.</p>
 <div id="cell-13" class="cell" data-execution_count="13">

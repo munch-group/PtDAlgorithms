@@ -234,6 +234,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>ptd.plot.set_theme(<span class="st">'dark'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ImportError</span>                               Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[1], line 2</span>
+<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> <span style="font-weight:bold;color:rgb(0,0,255)">sys</span>
+<span class="ansi-green-fg">----&gt; 2</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> <span style="font-weight:bold;color:rgb(0,0,255)">pandas</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> <span style="font-weight:bold;color:rgb(0,0,255)">pd</span>
+<span class="ansi-green-fg ansi-bold">      3</span> <span style="font-weight:bold;color:rgb(0,135,0)">from</span> <span style="font-weight:bold;color:rgb(0,0,255)">collections</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> defaultdict
+<span class="ansi-green-fg ansi-bold">      4</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> <span style="font-weight:bold;color:rgb(0,0,255)">numpy</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> <span style="font-weight:bold;color:rgb(0,0,255)">np</span>
+
+File <span class="ansi-green-fg">~/miniconda3/envs/phasetype/lib/python3.11/site-packages/pandas/__init__.py:19</span>
+<span class="ansi-green-fg ansi-bold">     16</span>         _missing_dependencies<span style="color:rgb(98,98,98)">.</span>append(<span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">"</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>_dependency<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>_e<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">"</span>)
+<span class="ansi-green-fg ansi-bold">     18</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> _missing_dependencies:  <span style="font-style:italic;color:rgb(95,135,135)"># pragma: no cover</span>
+<span class="ansi-green-fg">---&gt; 19</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ImportError</span>(
+<span class="ansi-green-fg ansi-bold">     20</span>         <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Unable to import required dependencies:</span><span style="font-weight:bold;color:rgb(175,95,0)">\n</span><span style="color:rgb(175,0,0)">"</span> <span style="color:rgb(98,98,98)">+</span> <span style="color:rgb(175,0,0)">"</span><span style="font-weight:bold;color:rgb(175,95,0)">\n</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(98,98,98)">.</span>join(_missing_dependencies)
+<span class="ansi-green-fg ansi-bold">     21</span>     )
+<span class="ansi-green-fg ansi-bold">     22</span> <span style="font-weight:bold;color:rgb(0,135,0)">del</span> _hard_dependencies, _dependency, _missing_dependencies
+<span class="ansi-green-fg ansi-bold">     24</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg ansi-bold">     25</span>     <span style="font-style:italic;color:rgb(95,135,135)"># numpy compat</span>
+
+<span class="ansi-red-fg">ImportError</span>: Unable to import required dependencies:
+numpy: Error importing numpy: you should not try to import numpy from
+        its source directory; please exit the numpy source tree, and relaunch
+        your python interpreter from there.</pre>
+</div>
+</div>
 </div>
 <section id="example-model-coalescent" class="level2">
 <h2 class="anchored" data-anchor-id="example-model-coalescent">Example model: Coalescent</h2>
@@ -400,7 +426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-7-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="coalescent-jointprob_files/figure-html/cell-7-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-8-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="coalescent-jointprob_files/figure-html/cell-8-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -453,7 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-13-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="coalescent-jointprob_files/figure-html/cell-13-output-2.png" width="476" height="309" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-14-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="coalescent-jointprob_files/figure-html/cell-14-output-2.png" width="476" height="309" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -464,7 +490,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-14-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="coalescent-jointprob_files/figure-html/cell-14-output-1.png" width="470" height="309" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-15-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="coalescent-jointprob_files/figure-html/cell-15-output-1.png" width="470" height="309" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -628,7 +654,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-16-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="coalescent-jointprob_files/figure-html/cell-16-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-17-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="coalescent-jointprob_files/figure-html/cell-17-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -651,7 +677,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display" data-execution_count="18">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-19-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="coalescent-jointprob_files/figure-html/cell-19-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-20-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="coalescent-jointprob_files/figure-html/cell-20-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -670,7 +696,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-21-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="coalescent-jointprob_files/figure-html/cell-21-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-22-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="coalescent-jointprob_files/figure-html/cell-22-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1178,7 +1204,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="35">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-31-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="coalescent-jointprob_files/figure-html/cell-31-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-32-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="coalescent-jointprob_files/figure-html/cell-32-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1192,7 +1218,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-32-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="coalescent-jointprob_files/figure-html/cell-32-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-33-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="coalescent-jointprob_files/figure-html/cell-33-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1240,7 +1266,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="83">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-33-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="coalescent-jointprob_files/figure-html/cell-33-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-34-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="coalescent-jointprob_files/figure-html/cell-34-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1334,7 +1360,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="80">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-35-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="coalescent-jointprob_files/figure-html/cell-35-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-36-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="coalescent-jointprob_files/figure-html/cell-36-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1349,7 +1375,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="81">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-36-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="coalescent-jointprob_files/figure-html/cell-36-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-37-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="coalescent-jointprob_files/figure-html/cell-37-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1408,7 +1434,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="82">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-37-output-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="coalescent-jointprob_files/figure-html/cell-37-output-3.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-38-output-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="coalescent-jointprob_files/figure-html/cell-38-output-3.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1426,7 +1452,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="67">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-38-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="coalescent-jointprob_files/figure-html/cell-38-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-39-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="coalescent-jointprob_files/figure-html/cell-39-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1447,7 +1473,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="64">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-40-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="coalescent-jointprob_files/figure-html/cell-40-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-41-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="coalescent-jointprob_files/figure-html/cell-41-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1554,7 +1580,7 @@ Cell <span class="ansi-green-fg">In[42], line 1</span>
 <div class="cell-output cell-output-display" data-execution_count="199">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-49-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="coalescent-jointprob_files/figure-html/cell-49-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-50-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="coalescent-jointprob_files/figure-html/cell-50-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1594,7 +1620,7 @@ Cell <span class="ansi-green-fg">In[42], line 1</span>
 <div class="cell-output cell-output-display" data-execution_count="87">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-50-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="coalescent-jointprob_files/figure-html/cell-50-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-51-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="coalescent-jointprob_files/figure-html/cell-51-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1605,7 +1631,7 @@ Cell <span class="ansi-green-fg">In[42], line 1</span>
 <div class="cell-output cell-output-display" data-execution_count="88">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-51-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="coalescent-jointprob_files/figure-html/cell-51-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-52-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="coalescent-jointprob_files/figure-html/cell-52-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1699,7 +1725,7 @@ Cell <span class="ansi-green-fg">In[42], line 1</span>
 <div class="cell-output cell-output-display" data-execution_count="112">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-54-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="coalescent-jointprob_files/figure-html/cell-54-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-55-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="coalescent-jointprob_files/figure-html/cell-55-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1832,7 +1858,7 @@ Cell <span class="ansi-green-fg">In[42], line 1</span>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-58-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="coalescent-jointprob_files/figure-html/cell-58-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-59-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="coalescent-jointprob_files/figure-html/cell-59-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1924,7 +1950,7 @@ Cell <span class="ansi-green-fg">In[42], line 1</span>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-61-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img src="coalescent-jointprob_files/figure-html/cell-61-output-1.png" width="720" height="330" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-62-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img src="coalescent-jointprob_files/figure-html/cell-62-output-1.png" width="720" height="330" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -2880,7 +2906,7 @@ Cell <span class="ansi-green-fg">In[42], line 1</span>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-72-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img src="coalescent-jointprob_files/figure-html/cell-72-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-73-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img src="coalescent-jointprob_files/figure-html/cell-73-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3331,7 +3357,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-78-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img src="coalescent-jointprob_files/figure-html/cell-78-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-79-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img src="coalescent-jointprob_files/figure-html/cell-79-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3573,7 +3599,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-81-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-25"><img src="coalescent-jointprob_files/figure-html/cell-81-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-82-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-25"><img src="coalescent-jointprob_files/figure-html/cell-82-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3599,7 +3625,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-83-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-26"><img src="coalescent-jointprob_files/figure-html/cell-83-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-84-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-26"><img src="coalescent-jointprob_files/figure-html/cell-84-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3641,7 +3667,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-85-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-27"><img src="coalescent-jointprob_files/figure-html/cell-85-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-86-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-27"><img src="coalescent-jointprob_files/figure-html/cell-86-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3894,7 +3920,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-99-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28"><img src="coalescent-jointprob_files/figure-html/cell-99-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-100-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28"><img src="coalescent-jointprob_files/figure-html/cell-100-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4011,7 +4037,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-101-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29"><img src="coalescent-jointprob_files/figure-html/cell-101-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-102-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29"><img src="coalescent-jointprob_files/figure-html/cell-102-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4030,7 +4056,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-103-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30"><img src="coalescent-jointprob_files/figure-html/cell-103-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-104-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30"><img src="coalescent-jointprob_files/figure-html/cell-104-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4048,7 +4074,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-105-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-31"><img src="coalescent-jointprob_files/figure-html/cell-105-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-106-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-31"><img src="coalescent-jointprob_files/figure-html/cell-106-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4074,7 +4100,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-108-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32"><img src="coalescent-jointprob_files/figure-html/cell-108-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-109-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32"><img src="coalescent-jointprob_files/figure-html/cell-109-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4095,7 +4121,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-110-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-33"><img src="coalescent-jointprob_files/figure-html/cell-110-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-111-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-33"><img src="coalescent-jointprob_files/figure-html/cell-111-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4112,7 +4138,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-111-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34"><img src="coalescent-jointprob_files/figure-html/cell-111-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-112-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34"><img src="coalescent-jointprob_files/figure-html/cell-112-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -5245,7 +5271,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-118-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35"><img src="coalescent-jointprob_files/figure-html/cell-118-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-119-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35"><img src="coalescent-jointprob_files/figure-html/cell-119-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -5264,7 +5290,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-119-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-36"><img src="coalescent-jointprob_files/figure-html/cell-119-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-120-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-36"><img src="coalescent-jointprob_files/figure-html/cell-120-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -5447,7 +5473,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-120-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-37"><img src="coalescent-jointprob_files/figure-html/cell-120-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-121-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-37"><img src="coalescent-jointprob_files/figure-html/cell-121-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>

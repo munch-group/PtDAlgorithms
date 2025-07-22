@@ -183,31 +183,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="dab491fb-6117-4d1e-91f8-ca7cb9d54f54" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:49.698019Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:49.697851Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:49.713289Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:49.712964Z&quot;}}" data-execution_count="1">
+<div id="dab491fb-6117-4d1e-91f8-ca7cb9d54f54" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:49.698019Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:49.697851Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:49.713289Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:49.712964Z&quot;}}" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Another example is the Coalescent, fully specified with only the code below:</p>
-<div id="2487f327-ee46-4559-a88e-a1f273aa290d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:49.715573Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:49.715420Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:49.841781Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:49.841386Z&quot;}}" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coalescent(state):</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    transitions <span class="op">=</span> []</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nr_samples):</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, nr_samples):            </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            same <span class="op">=</span> <span class="bu">int</span>(i <span class="op">==</span> j)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> same <span class="kw">and</span> state[i] <span class="op">&lt;</span> <span class="dv">2</span>:</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                <span class="cf">continue</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> same <span class="kw">and</span> (state[i] <span class="op">&lt;</span> <span class="dv">1</span> <span class="kw">or</span> state[j] <span class="op">&lt;</span> <span class="dv">1</span>):</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                <span class="cf">continue</span> </span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            new <span class="op">=</span> state[:]</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            new[i] <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            new[j] <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            new[i<span class="op">+</span>j<span class="op">+</span><span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            transitions.append((new, state[i]<span class="op">*</span>(state[j]<span class="op">-</span>same)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>same)))</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> transitions</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>nr_samples <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptd.Graph(callback<span class="op">=</span>coalescent, initial<span class="op">=</span>[nr_samples]<span class="op">+</span>[<span class="dv">0</span>]<span class="op">*</span>nr_samples)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>graph.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div id="19aee46c" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coalescent(state, nr_samples<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> state.size:</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        ipv <span class="op">=</span> [([nr_samples]<span class="op">+</span>[<span class="dv">0</span>]<span class="op">*</span>nr_samples, <span class="dv">1</span>)]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ipv</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        transitions <span class="op">=</span> []</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nr_samples):</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, nr_samples):            </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                same <span class="op">=</span> <span class="bu">int</span>(i <span class="op">==</span> j)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> same <span class="kw">and</span> state[i] <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> same <span class="kw">and</span> (state[i] <span class="op">&lt;</span> <span class="dv">1</span> <span class="kw">or</span> state[j] <span class="op">&lt;</span> <span class="dv">1</span>):</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span> </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                new <span class="op">=</span> state.copy()</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                new[i] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                new[j] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                new[i<span class="op">+</span>j<span class="op">+</span><span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                transitions.append((new, state[i]<span class="op">*</span>(state[j]<span class="op">-</span>same)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>same)))</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> transitions</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptd.Graph(callback<span class="op">=</span>coalescent, nr_samples<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>graph.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 <figure class="figure">
 <p><a href="coalescent_showcase_files/figure-html/cell-3-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="coalescent_showcase_files/figure-html/cell-3-output-1.svg" class="img-fluid figure-img"></a></p>
