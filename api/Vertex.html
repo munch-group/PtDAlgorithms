@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../api/Graph.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d68be38d83eca2bb035acf846ffba811.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -117,6 +118,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">ptdalgorithms</span>
     </a>
@@ -167,6 +170,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -238,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="ptdalgorithms.Vertex" class="level1">
 <h1>Vertex</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <table class="caption-top table">
@@ -281,39 +288,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <section id="ptdalgorithms.Vertex.add_edge" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Vertex.add_edge">add_edge</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex.add_edge()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex.add_edge()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>add_edge(self: ptdalgorithms.ptdalgorithmscpp_pybind.Vertex, to: ptdalgorithms.ptdalgorithmscpp_pybind.Vertex, weight: float) -&gt; None</p>
 <p>//’ Adds an edge between two vertices in the graph //’ //’ <span class="citation" data-cites="description">@description</span> //’ The graph represents transitions between states as //’ a weighted direction edge between two vertices. //’ //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::expected_waiting_time()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::moments()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::variance()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::covariance()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::graph_update_weights_parameterized()]</span> //’ //’ <span class="citation" data-cites="param">@param</span> phase_type_vertex_from The vertex that transitions from //’ <span class="citation" data-cites="param">@param</span> phase_type_vertex_to The vertex that transitions to //’ <span class="citation" data-cites="param">@param</span> weight The weight of the edge, i.e.&nbsp;the transition rate //’ <span class="citation" data-cites="param">@param</span> parameterized_edge_state Optional. Associate a numeric vector to an edge, for faster computations of moments when weights are changed. //’ //’ <span class="citation" data-cites="examples">@examples</span> //’ graph &lt;- create_graph(4) //’ vertex_a &lt;- find_or_create_vertex(graph, c(1,2,1,0)) //’ vertex_b &lt;- find_or_create_vertex(graph, c(2,0,1,0)) //’ add_edge(vertex_a, vertex_b, 1.5)</p>
 </section>
 <section id="ptdalgorithms.Vertex.add_edge_parameterized" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Vertex.add_edge_parameterized">add_edge_parameterized</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex.add_edge_parameterized()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex.add_edge_parameterized()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>add_edge_parameterized(self: ptdalgorithms.ptdalgorithmscpp_pybind.Vertex, to: ptdalgorithms.ptdalgorithmscpp_pybind.Vertex, weight: float, edge_state: list[float]) -&gt; None</p>
 </section>
 <section id="ptdalgorithms.Vertex.ae" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Vertex.ae">ae</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex.ae()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex.ae()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>ae(self: ptdalgorithms.ptdalgorithmscpp_pybind.Vertex, to: ptdalgorithms.ptdalgorithmscpp_pybind.Vertex, weight: float) -&gt; None</p>
 <p>Alias for add_edge</p>
 </section>
 <section id="ptdalgorithms.Vertex.edges" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Vertex.edges">edges</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex.edges()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex.edges()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>edges(self: ptdalgorithms.ptdalgorithmscpp_pybind.Vertex) -&gt; list[ptdalgorithms::Edge]</p>
 </section>
 <section id="ptdalgorithms.Vertex.index" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Vertex.index">index</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex.index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex.index()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>index(self: ptdalgorithms.ptdalgorithmscpp_pybind.Vertex) -&gt; int</p>
 </section>
 <section id="ptdalgorithms.Vertex.rate" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Vertex.rate">rate</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex.rate()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex.rate()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>rate(self: ptdalgorithms.ptdalgorithmscpp_pybind.Vertex) -&gt; float</p>
 </section>
 <section id="ptdalgorithms.Vertex.state" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Vertex.state">state</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex.state()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Vertex.state()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>state(self: ptdalgorithms.ptdalgorithmscpp_pybind.Vertex) -&gt; list[int]</p>
 
 
@@ -373,13 +380,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../api/index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d68be38d83eca2bb035acf846ffba811.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -119,7 +120,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -146,6 +147,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">ptdalgorithms</span>
     </a>
@@ -196,6 +199,10 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -309,13 +316,13 @@ window.Quarto = {
 
 <section id="ptdalgorithms.Graph" class="level1">
 <h1>Graph</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    state_length<span class="op">=</span><span class="va">None</span>,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    callback<span class="op">=</span><span class="va">None</span>,</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    initial<span class="op">=</span><span class="va">None</span>,</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    trans_as_dict<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <table class="caption-top table">
@@ -526,67 +533,67 @@ window.Quarto = {
 </table>
 <section id="ptdalgorithms.Graph.accumulated_visiting_time" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.accumulated_visiting_time">accumulated_visiting_time</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.accumulated_visiting_time()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.accumulated_visiting_time()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>accumulated_visiting_time(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, time: float, granularity: int = 0) -&gt; list[float]</p>
 </section>
 <section id="ptdalgorithms.Graph.accumulated_visits_discrete" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.accumulated_visits_discrete">accumulated_visits_discrete</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.accumulated_visits_discrete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.accumulated_visits_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>accumulated_visits_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: int) -&gt; list[float]</p>
 </section>
 <section id="ptdalgorithms.Graph.as_matrices" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.as_matrices">as_matrices</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.as_matrices()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.as_matrices()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>as_matrices(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; ptdalgorithms.ptdalgorithmscpp_pybind.MatrixRepresentation</p>
 </section>
 <section id="ptdalgorithms.Graph.cdf" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.cdf">cdf</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.cdf()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.cdf()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>cdf(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, time: numpy.ndarray[numpy.float32], granularity: numpy.ndarray[numpy.int32] = 0) -&gt; object</p>
 </section>
 <section id="ptdalgorithms.Graph.cdf_discrete" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.cdf_discrete">cdf_discrete</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.cdf_discrete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.cdf_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>cdf_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: numpy.ndarray[numpy.int32]) -&gt; object</p>
 </section>
 <section id="ptdalgorithms.Graph.clone" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.clone">clone</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.clone()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.clone()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>clone(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; ptdalgorithms.ptdalgorithmscpp_pybind.Graph</p>
 </section>
 <section id="ptdalgorithms.Graph.covariance" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.covariance">covariance</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.covariance()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.covariance()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>covariance(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards1: list[float], rewards2: list[float]) -&gt; float</p>
 </section>
 <section id="ptdalgorithms.Graph.covariance_discrete" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.covariance_discrete">covariance_discrete</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.covariance_discrete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.covariance_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>covariance_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards1: list[float], rewards2: list[float]) -&gt; float</p>
 </section>
 <section id="ptdalgorithms.Graph.create_vertex" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.create_vertex">create_vertex</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.create_vertex()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.create_vertex()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>create_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, state: list[int]) -&gt; ptdalgorithms::Vertex</p>
 </section>
 <section id="ptdalgorithms.Graph.defect" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.defect">defect</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.defect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.defect()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>defect(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; float</p>
 </section>
 <section id="ptdalgorithms.Graph.distribution_context" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.distribution_context">distribution_context</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.distribution_context()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.distribution_context()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>distribution_context(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, granularity: int = 0) -&gt; ptdalgorithms::ProbabilityDistributionContext</p>
 </section>
 <section id="ptdalgorithms.Graph.distribution_context_discrete" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.distribution_context_discrete">distribution_context_discrete</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.distribution_context_discrete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.distribution_context_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>distribution_context_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; ptdalgorithms::DPHProbabilityDistributionContext</p>
 </section>
 <section id="ptdalgorithms.Graph.expectation" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.expectation">expectation</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expectation()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expectation()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>expectation(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float] = []) -&gt; float</p>
 <p>//’ Computes the expectation (mean) of the phase-type distribution //’ //’ <span class="citation" data-cites="description">@description</span> //’ This function invokes [ptdalgorithms::expected_waiting_times()] //’ and takes the first entry (from starting vertex) //’ //’ <span class="citation" data-cites="return">@return</span> The expectation of the distribution //’ //’ <span class="citation" data-cites="param">@param</span> phase_type_graph A reference to the graph created by [ptdalgorithms::create_graph()] //’ <span class="citation" data-cites="param">@param</span> rewards Optional rewards, which should be applied to the phase-type distribution. Must have length equal to [ptdalgorithms::vertices_length()] //’ //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::expected_waiting_time()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::moments()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::variance()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::covariance()]</span> //’ //’ <span class="citation" data-cites="examples">@examples</span> //’ graph &lt;- ptdalgorithms::create_graph(4) //’ v1 &lt;- ptdalgorithms::create_vertex(graph, c(1,2,3,4)) //’ v2 &lt;- ptdalgorithms::create_vertex(graph, c(4,0,3,3)) //’ a &lt;- ptdalgorithms::create_vertex(graph, c(0,0,0,0)) //’ ptdalgorithms::add_edge(ptdalgorithms::starting_vertex(graph), v1, 1) //’ ptdalgorithms::add_edge(v1, v2, 4) //’ ptdalgorithms::add_edge(v2, a, 10) //’ ptdalgorithms::expectation(graph) # =&gt; //’ 0.35 //’ ptdalgorithms::expectation(graph, c(0,2,1,0)) # =&gt; //’ 0.6 //’ ph &lt;- ptdalgorithms::graph_as_matrix(graph) //’ # This is a much faster version of //’ ph<span class="math inline">\(IPV%*%solve(-ph\)</span>SIM) %<em>% rep(1, length(ph<span class="math inline">\(IPV)) # =&gt;
 //'   0.35
@@ -594,151 +601,151 @@ window.Quarto = {
 </section>
 <section id="ptdalgorithms.Graph.expectation_dag" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.expectation_dag">expectation_dag</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expectation_dag()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expectation_dag()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>expectation_dag(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float]) -&gt; ptdalgorithms.ptdalgorithmscpp_pybind.Graph</p>
 </section>
 <section id="ptdalgorithms.Graph.expectation_discrete" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.expectation_discrete">expectation_discrete</h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expectation_discrete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expectation_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>expectation_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, arg0: list[float]) -&gt; float</p>
 </section>
 <section id="ptdalgorithms.Graph.expected_residence_time" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.expected_residence_time">expected_residence_time</h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expected_residence_time()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expected_residence_time()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>expected_residence_time(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float] = []) -&gt; list[float]</p>
 </section>
 <section id="ptdalgorithms.Graph.expected_visits_discrete" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.expected_visits_discrete">expected_visits_discrete</h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expected_visits_discrete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expected_visits_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>expected_visits_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: int) -&gt; list[float]</p>
 </section>
 <section id="ptdalgorithms.Graph.expected_waiting_time" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.expected_waiting_time">expected_waiting_time</h3>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expected_waiting_time()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expected_waiting_time()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>expected_waiting_time(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float] = []) -&gt; list[float]</p>
 </section>
 <section id="ptdalgorithms.Graph.find_or_create_vertex" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.find_or_create_vertex">find_or_create_vertex</h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.find_or_create_vertex()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.find_or_create_vertex()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>find_or_create_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, state: list[int]) -&gt; ptdalgorithms::Vertex</p>
 <p>//’ Find or create a vertex matching <code>state</code> //’ //’ <span class="citation" data-cites="description">@description</span> //’ Finds a vertex by the <code>state</code> parameter. If no such //’ vertex exists, it creates the vertex and adds it to //’ the graph object instead. //’ //’ <span class="citation" data-cites="details">@details</span> //’ A faster and simpler version of calling [ptdalgorithms::find_vertex()] and [ptdalgorithms::create_vertex()] //’ //’ <span class="citation" data-cites="return">@return</span> The newly found or inserted vertex in the graph //’ //’ <span class="citation" data-cites="param">@param</span> phase_type_graph A reference to the graph created by [ptdalgorithms::create_graph()] //’ <span class="citation" data-cites="param">@param</span> state An integer vector of what vertex to look for. Has length as given by <code>state_length</code> in [ptdalgorithms::create_graph()] //’ //’ <span class="citation" data-cites="examples">@examples</span> //’ graph &lt;- create_graph(4) //’ find_or_create_vertex(graph, c(1,2,1,0)) # Adds and returns the vertex //’ find_or_create_vertex(graph, c(1,2,1,0)) # Only returns the vertex //’ # <code>graph</code> is now changed permanently</p>
 </section>
 <section id="ptdalgorithms.Graph.find_vertex" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.find_vertex">find_vertex</h3>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.find_vertex()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.find_vertex()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>find_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, state: list[int]) -&gt; ptdalgorithms::Vertex</p>
 </section>
 <section id="ptdalgorithms.Graph.focv" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.focv">focv</h3>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.focv()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.focv()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>focv(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, state: list[int]) -&gt; ptdalgorithms::Vertex</p>
 <p>Alias for find_or_create_vertex</p>
 </section>
 <section id="ptdalgorithms.Graph.is_acyclic" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.is_acyclic">is_acyclic</h3>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.is_acyclic()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.is_acyclic()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>is_acyclic(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; bool</p>
 </section>
 <section id="ptdalgorithms.Graph.moments" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.moments">moments</h3>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.moments()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.moments()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>moments(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, power: int, rewards: list[float] = []) -&gt; list[float]</p>
 <p>//’ Computes the first <code>k</code> moments of the phase-type distribution //’ //’ <span class="citation" data-cites="description">@description</span> //’ This function invokes [ptdalgorithms::expected_waiting_times()] consequtively to find the first moments, //’ given by the <code>power</code> argument //’ //’ <span class="citation" data-cites="return">@return</span> A numeric vector of the first <code>k</code> moments. The first entry is the first moment (mean) //’ //’ <span class="citation" data-cites="param">@param</span> phase_type_graph A reference to the graph created by [ptdalgorithms::create_graph()] //’ <span class="citation" data-cites="param">@param</span> power An integer of the first <code>k</code> moments. //’ <span class="citation" data-cites="param">@param</span> rewards Optional rewards, which should be applied to the phase-type distribution. Must have length equal to [ptdalgorithms::vertices_length()] //’ //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::expected_waiting_time()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::expectation()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::variance()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::covariance()]</span> //’ //’ <span class="citation" data-cites="examples">@examples</span> //’ graph &lt;- ptdalgorithms::create_graph(4) //’ v1 &lt;- ptdalgorithms::create_vertex(graph, c(1,2,3,4)) //’ v2 &lt;- ptdalgorithms::create_vertex(graph, c(4,0,3,3)) //’ a &lt;- ptdalgorithms::create_vertex(graph, c(0,0,0,0)) //’ ptdalgorithms::add_edge(ptdalgorithms::starting_vertex(graph), v1, 1) //’ ptdalgorithms::add_edge(v1, v2, 4) //’ ptdalgorithms::add_edge(v2, a, 10) //’ ptdalgorithms::moments(graph, 3) # =&gt; //’ (0.350000 0.097500 0.025375) //’ ptdalgorithms::moments(graph, 3, c(0,2,1,0)) # =&gt; //’ (0.600 0.160 0.041)</p>
 </section>
 <section id="ptdalgorithms.Graph.normalize" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.normalize">normalize</h3>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.normalize()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.normalize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>normalize(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; list[float]</p>
 </section>
 <section id="ptdalgorithms.Graph.normalize_discrete" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.normalize_discrete">normalize_discrete</h3>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.normalize_discrete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.normalize_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>normalize_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; list[float]</p>
 </section>
 <section id="ptdalgorithms.Graph.notify_change" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.notify_change">notify_change</h3>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.notify_change()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.notify_change()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>notify_change(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; None</p>
 </section>
 <section id="ptdalgorithms.Graph.pdf" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.pdf">pdf</h3>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.pdf()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.pdf()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>pdf(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, time: numpy.ndarray[numpy.float32], granularity: numpy.ndarray[numpy.int32] = 0) -&gt; object</p>
 </section>
 <section id="ptdalgorithms.Graph.pmf_discrete" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.pmf_discrete">pmf_discrete</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.pmf_discrete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.pmf_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>pmf_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: numpy.ndarray[numpy.int32]) -&gt; object</p>
 </section>
 <section id="ptdalgorithms.Graph.random_sample_discrete_stop_vertex" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.random_sample_discrete_stop_vertex">random_sample_discrete_stop_vertex</h3>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.random_sample_discrete_stop_vertex()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.random_sample_discrete_stop_vertex()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>random_sample_discrete_stop_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: int) -&gt; int</p>
 </section>
 <section id="ptdalgorithms.Graph.random_sample_stop_vertex" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.random_sample_stop_vertex">random_sample_stop_vertex</h3>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.random_sample_stop_vertex()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.random_sample_stop_vertex()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>random_sample_stop_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, time: float) -&gt; int</p>
 </section>
 <section id="ptdalgorithms.Graph.reward_transform" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.reward_transform">reward_transform</h3>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.reward_transform()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.reward_transform()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>reward_transform(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float]) -&gt; ptdalgorithms.ptdalgorithmscpp_pybind.Graph</p>
 </section>
 <section id="ptdalgorithms.Graph.reward_transform_discrete" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.reward_transform_discrete">reward_transform_discrete</h3>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.reward_transform_discrete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.reward_transform_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>reward_transform_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[int]) -&gt; ptdalgorithms.ptdalgorithmscpp_pybind.Graph</p>
 </section>
 <section id="ptdalgorithms.Graph.sample" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.sample">sample</h3>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.sample()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.sample()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>sample(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, n: int = 1, rewards: list[float] = []) -&gt; list[float]</p>
 </section>
 <section id="ptdalgorithms.Graph.sample_discrete" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.sample_discrete">sample_discrete</h3>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.sample_discrete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.sample_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>sample_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, n: int = 1, rewards: list[float] = []) -&gt; list[float]</p>
 </section>
 <section id="ptdalgorithms.Graph.sample_multivariate" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.sample_multivariate">sample_multivariate</h3>
-<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.sample_multivariate()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.sample_multivariate()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>sample_multivariate(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, n: int = 1, rewards: numpy.ndarray[numpy.float64[m, n]] = []) -&gt; numpy.ndarray[numpy.float64[m, n]]</p>
 </section>
 <section id="ptdalgorithms.Graph.sample_multivariate_discrete" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.sample_multivariate_discrete">sample_multivariate_discrete</h3>
-<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.sample_multivariate_discrete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.sample_multivariate_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>sample_multivariate_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, n: int = 1, rewards: numpy.ndarray[numpy.float64[m, n]] = []) -&gt; numpy.ndarray[numpy.float64[m, n]]</p>
 </section>
 <section id="ptdalgorithms.Graph.starting_vertex" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.starting_vertex">starting_vertex</h3>
-<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.starting_vertex()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.starting_vertex()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>starting_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; ptdalgorithms::Vertex</p>
 </section>
 <section id="ptdalgorithms.Graph.state_length" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.state_length">state_length</h3>
-<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.state_length()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.state_length()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>state_length(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; int</p>
 </section>
 <section id="ptdalgorithms.Graph.states" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.states">states</h3>
-<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.states()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.states()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>states(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; numpy.ndarray[numpy.int32[m, n]]</p>
 <p>//’ Returns a matrix where each row is the state of the vertex at that index //’ //’ <span class="citation" data-cites="return">@return</span> A matrix of size [ptdalgorithms::vertices_length()] where the rows match the state of the vertex at that index //’ //’ <span class="citation" data-cites="param">@param</span> phase_type_graph A reference to the graph created by [ptdalgorithms::create_graph()] //’ //’ <span class="citation" data-cites="examples">@examples</span> //’ graph &lt;- ptdalgorithms::create_graph(4) //’ ptdalgorithms::create_vertex(graph, c(1,2,3,4)) //’ ptdalgorithms::create_vertex(graph, c(4,3,3,3)) //’ ptdalgorithms::states(graph) # =&gt; //’ # 0 0 0 0 //’ # 1 2 3 4 //’ # 4 3 3 3</p>
 </section>
 <section id="ptdalgorithms.Graph.stop_probability" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.stop_probability">stop_probability</h3>
-<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.stop_probability()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.stop_probability()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>stop_probability(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, time: float, granularity: int = 0) -&gt; list[float]</p>
 </section>
 <section id="ptdalgorithms.Graph.stop_probability_discrete" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.stop_probability_discrete">stop_probability_discrete</h3>
-<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.stop_probability_discrete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.stop_probability_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>stop_probability_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: int) -&gt; list[float]</p>
 </section>
 <section id="ptdalgorithms.Graph.update_parameterized_weights" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.update_parameterized_weights">update_parameterized_weights</h3>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.update_parameterized_weights()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.update_parameterized_weights()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>update_parameterized_weights(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float]) -&gt; None</p>
 <p>//’ Updates all parameterized edges of the graph by given scalars. //’ //’ <span class="citation" data-cites="description">@description</span> //’ Given a vector of scalars, computes a new weight of //’ the parameterized edges in the graph by a simple inner //’ product of the edge state vector and the scalar vector. //’ //’ <span class="citation" data-cites="details">@details</span> //’ A faster and simpler version to compute new moments, when //’ the user wants to try multiple different weights. //’ //’ //’ <span class="citation" data-cites="param">@param</span> phase_type_graph A reference to the graph created by [ptdalgorithms::create_graph()] //’ <span class="citation" data-cites="param">@param</span> scalars A numeric vector of multiplies for the edge states. //’ //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::expected_waiting_time()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::add_edge()]</span> //’ //’ <span class="citation" data-cites="examples">@examples</span> //’ graph &lt;- create_graph(4) //’ v1 &lt;- find_or_create_vertex(graph, c(1,2,1,0)) //’ v2 &lt;- find_or_create_vertex(graph, c(2,0,1,0)) //’ add_edge(starting_vertex(graph), v1, 5) //’ add_edge(v1, v2, 0, c(5,2)) //’ edges(starting_vertex(graph))[[1]]<span class="math inline">\(weight # =&gt; 5
 //' edges(v1)[[1]]\)</span>weight # =&gt; 0 //’ graph_update_weights_parameterized(graph, c(9,7)) //’ edges(starting_vertex(graph))[[1]]<span class="math inline">\(weight # =&gt; 5
@@ -746,39 +753,39 @@ window.Quarto = {
 </section>
 <section id="ptdalgorithms.Graph.validate" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.validate">validate</h3>
-<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.validate()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.validate()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>validate(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; None</p>
 </section>
 <section id="ptdalgorithms.Graph.variance" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.variance">variance</h3>
-<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.variance()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.variance()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>variance(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float] = []) -&gt; float</p>
 <p>//’ Computes the variance of the phase-type distribution //’ //’ <span class="citation" data-cites="description">@description</span> //’ This function invokes [ptdalgorithms::expected_waiting_times()] //’ twice to find the first and second moment //’ //’ <span class="citation" data-cites="return">@return</span> The variance of the distribution //’ //’ <span class="citation" data-cites="param">@param</span> phase_type_graph A reference to the graph created by [ptdalgorithms::create_graph()] //’ <span class="citation" data-cites="param">@param</span> rewards Optional rewards, which should be applied to the phase-type distribution. Must have length equal to [ptdalgorithms::vertices_length()] //’ //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::expected_waiting_time()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::expectation()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::moments()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::covariance()]</span> //’ //’ <span class="citation" data-cites="examples">@examples</span> //’ graph &lt;- ptdalgorithms::create_graph(4) //’ v1 &lt;- ptdalgorithms::create_vertex(graph, c(1,2,3,4)) //’ v2 &lt;- ptdalgorithms::create_vertex(graph, c(4,0,3,3)) //’ a &lt;- ptdalgorithms::create_vertex(graph, c(0,0,0,0)) //’ ptdalgorithms::add_edge(ptdalgorithms::starting_vertex(graph), v1, 1) //’ ptdalgorithms::add_edge(v1, v2, 4) //’ ptdalgorithms::add_edge(v2, a, 10) //’ ptdalgorithms::variance(graph) # =&gt; //’ 0.0725 //’ ptdalgorithms::variance(graph, c(0,2,1,0)) # =&gt; //’ 0.26 //’ ph &lt;- ptdalgorithms::graph_as_matrix(graph) //’ # This is a much faster version of //’ 2<em>ph<span class="math inline">\(IPV%*%solve(-ph\)</span>SIM)%</em>%solve(-ph<span class="math inline">\(SIM) %*% rep(1, length(ph\)</span>IPV)) - ph<span class="math inline">\(IPV%*%solve(-ph\)</span>SIM) %<em>% rep(1, length(ph<span class="math inline">\(IPV)) %*% ph\)</span>IPV%</em>%solve(-ph<span class="math inline">\(SIM) %*% rep(1, length(ph\)</span>IPV)) # =&gt; //’ 0.0725 //’ 2<em>ph<span class="math inline">\(IPV%*%solve(-ph\)</span>SIM)%</em>%diag(c(2,1))%<em>%solve(-ph<span class="math inline">\(SIM)%*%diag(c(2,1)) %*% rep(1, length(ph\)</span>IPV)) - ph<span class="math inline">\(IPV%*%solve(-ph\)</span>SIM)%</em>%diag(c(2,1)) %<em>% rep(1, length(ph<span class="math inline">\(IPV)) %*% ph\)</span>IPV%</em>%solve(-ph<span class="math inline">\(SIM)%*%diag(c(2,1)) %*% rep(1, length(ph\)</span>IPV)) # =&gt; //’ 0.26</p>
 </section>
 <section id="ptdalgorithms.Graph.variance_discrete" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.variance_discrete">variance_discrete</h3>
-<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.variance_discrete()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.variance_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>variance_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, arg0: list[float]) -&gt; float</p>
 </section>
 <section id="ptdalgorithms.Graph.vertex_at" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.vertex_at">vertex_at</h3>
-<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.vertex_at()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.vertex_at()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>vertex_at(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, index: int) -&gt; ptdalgorithms::Vertex</p>
 </section>
 <section id="ptdalgorithms.Graph.vertex_exists" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.vertex_exists">vertex_exists</h3>
-<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.vertex_exists()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.vertex_exists()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>vertex_exists(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, state: list[int]) -&gt; bool</p>
 </section>
 <section id="ptdalgorithms.Graph.vertices" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.vertices">vertices</h3>
-<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.vertices()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.vertices()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>vertices(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; list[ptdalgorithms::Vertex]</p>
 <p>//’ Obtain a list of all vertices in the graph //’ //’ <span class="citation" data-cites="description">@description</span> //’ Returns all vertices that have been added to the //’ graph from either calling <code>find_or_create_vertex</code> or //’ <code>create_vertex</code>. The first vertex in the list is //’ <em>always</em> the starting vertex [ptdalgorithms::starting_vertex()]. //’ Importantly, for speed, use [ptdalgorithms::vertices_length()] to get the number //’ of added vertices, and use [ptdalgorithms::vertex_at()] to //’ get a vertex at a particular index. //’ //’ <span class="citation" data-cites="details">@details</span> //’ The list of vertices contains any added vertex, even //’ if it does not have any in-going / out-going edges. //’ //’ <span class="citation" data-cites="param">@param</span> phase_type_graph A reference to the graph created by [ptdalgorithms::create_graph()] //’ //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::starting_vertex()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::vertices_length()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::vertex_at()]</span> //’ //’ <span class="citation" data-cites="examples">@examples</span> //’ graph &lt;- create_graph(4) //’ vertex_a &lt;- find_or_create_vertex(graph, c(1,2,1,0)) //’ vertex_b &lt;- find_or_create_vertex(graph, c(2,0,1,0)) //’ vertices(graph)[[1]] == starting_vertex(graph) //’ vertices(graph)[[2]] == vertex_at(graph, 2) //’ vertices_length(graph) == 3</p>
 </section>
 <section id="ptdalgorithms.Graph.vertices_length" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.vertices_length">vertices_length</h3>
-<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.vertices_length()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.vertices_length()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>vertices_length(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; int</p>
 
 
@@ -838,13 +845,14 @@ window.Quarto = {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

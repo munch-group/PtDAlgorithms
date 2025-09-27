@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d68be38d83eca2bb035acf846ffba811.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -105,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
@@ -121,6 +122,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">ptdalgorithms</span>
     </a>
@@ -215,11 +218,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="installing-the-ptdalgorithms-library" class="level2">
 <h2 class="anchored" data-anchor-id="installing-the-ptdalgorithms-library">Installing the ptdalgorithms library</h2>
 <div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We install the package through devtools::install_github</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We install the package through devtools::install_github</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This requires the "devtools" package to be installed</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>,  <span class="at">INSTALL_opts =</span> <span class="fu">c</span>(<span class="st">'--no-lock'</span>))</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"TobiasRoikjer/PtDAlgorithms"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"TobiasRoikjer/PtDAlgorithms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning message:
 “unable to access index for repository https://cran.r-project.org/src/contrib:
@@ -269,18 +272,18 @@ Traceback:
 </div>
 </div>
 <div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the functions in the library</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the functions in the library</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ptdalgorithms)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The library supports setting seeds for some of its</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># sampling capability, as any other R package</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="state-space-construction" class="level1">
 <h1>State-space construction</h1>
 <div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is an example of constructing a state-space in R.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is an example of constructing a state-space in R.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The *construction* API (i.e. adding vertices and edges) is *slow* in R.</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># If we need e.g. a hundred thousand+ vertices, the R API for construction</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># should *not* be used. The C library should be used instead, and the graph</span></span>
@@ -344,7 +347,7 @@ Traceback:
 <span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>      index <span class="ot">&lt;-</span> index <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(graph)</span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="example-of-rabbit-graph" class="level2">
 <h2 class="anchored" data-anchor-id="example-of-rabbit-graph">Example of rabbit graph</h2>
@@ -358,7 +361,7 @@ Traceback:
 <section id="continuous-phase-type-distribution" class="level2">
 <h2 class="anchored" data-anchor-id="continuous-phase-type-distribution">Continuous phase-type distribution</h2>
 <div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can now construct the graphs by the function.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can now construct the graphs by the function.</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The flooding rates are set to 2 and 4</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>graph <span class="ot">&lt;-</span> <span class="fu">construct_rabbit_graph</span>(<span class="dv">2</span>, <span class="at">flooding_rate_l=</span><span class="dv">2</span>, <span class="at">flooding_rate_r=</span><span class="dv">4</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -382,7 +385,7 @@ Traceback:
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># This is only for easy "compatibility" and is rarely useful</span></span>
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"We can convert this to a sub-intensity matrix representation if we want.</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Notice how the indices do *not* correspond to our graph indices</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">graph_as_matrix</span>(graph))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">graph_as_matrix</span>(graph))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The graph has 7 vertices
 The states are:
@@ -430,7 +433,7 @@ $IPV
 </div>
 </div>
 <div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can find the distribution function for the graph. We show here the PDF and CDF</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can find the distribution function for the graph. We show here the PDF and CDF</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The functions are smart, and the results are *not* recomputed unless</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the graph changes. </span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="at">by=</span><span class="fl">0.01</span>)</span>
@@ -442,7 +445,7 @@ $IPV
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(time, pdf)</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Probability density function"</span>)</span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(time, cdf)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Cumulative density function"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Cumulative density function"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>PDF and CDF of distribution. Observe the long tails!</code></pre>
 </div>
@@ -458,7 +461,7 @@ $IPV
 <section id="rewards" class="level2">
 <h2 class="anchored" data-anchor-id="rewards">Rewards</h2>
 <div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can add rewards which are based on the number of rabbits on the second island.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can add rewards which are based on the number of rabbits on the second island.</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The phase-type distribution is now the total accumulated time that any rabbits spends on the</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># right island prior to them all being flooded</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>rewards <span class="ot">&lt;-</span> <span class="fu">states</span>(graph)[,<span class="dv">2</span>]</span>
@@ -469,7 +472,7 @@ $IPV
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\n</span><span class="st">Expectation:"</span>, <span class="fu">round</span>(<span class="fu">expectation</span>(graph, rewards),<span class="dv">5</span>),</span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\n</span><span class="st">Variance: "</span>, <span class="fu">round</span>(<span class="fu">variance</span>(graph, rewards),<span class="dv">5</span>),</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\n</span><span class="st">First three moments:"</span>, <span class="fu">paste</span>(<span class="fu">round</span>(<span class="fu">moments</span>(graph,<span class="dv">3</span>, rewards),<span class="dv">5</span>), <span class="at">collapse=</span><span class="st">" "</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\n</span><span class="st">First three moments:"</span>, <span class="fu">paste</span>(<span class="fu">round</span>(<span class="fu">moments</span>(graph,<span class="dv">3</span>, rewards),<span class="dv">5</span>), <span class="at">collapse=</span><span class="st">" "</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Expectation: 0.09439 
@@ -478,7 +481,7 @@ First three moments: 0.09439 0.05526 0.05233 </code></pre>
 </div>
 </div>
 <div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using rewards to the moment functions etc. is much faster than actually</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using rewards to the moment functions etc. is much faster than actually</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># changing the graph, but sometimes we might want to be interested in reward transforming</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the phase-type distribution, giving us the full distribution of accumulated rewards.</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># For example if we want the pdf/cdf</span></span>
@@ -502,7 +505,7 @@ First three moments: 0.09439 0.05526 0.05233 </code></pre>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">0</span>,<span class="fu">defect</span>(right_graph),<span class="at">pch=</span><span class="dv">4</span>)</span>
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Probability density function"</span>)</span>
 <span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(accumulated_rewards, cdf,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Cumulative density function"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Cumulative density function"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Expectation: 0.09439 
@@ -522,7 +525,7 @@ The *defect* is plotted as a cross in the PDF. Remember to always consider this 
 </div>
 </div>
 <div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are also utility methods to get the stop probability</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are also utility methods to get the stop probability</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># i.e. at a certain time, what is the probability of standing</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># in each vertex. We can also get the accumulated visiting time</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The stopping probability at times 0, 0.2, 0.4, ..., 1.0:"</span>)</span>
@@ -541,16 +544,16 @@ The *defect* is plotted as a cross in the PDF. Remember to always consider this 
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># We can e.g. find the accumulated time where there was at least one rabbit on the right island</span></span>
 <span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>rewards <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">states</span>(graph)[,<span class="dv">2</span>]<span class="sc">&gt;</span><span class="dv">0</span>)</span>
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Total time where there was a rabbit on the right island, before time t=0.5:</span><span class="sc">\n\t</span><span class="st">"</span>,</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>          <span class="fu">sum</span>(<span class="fu">accumulated_visiting_time</span>(graph, <span class="at">time=</span><span class="fl">0.5</span>) <span class="sc">*</span> rewards),<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>          <span class="fu">sum</span>(<span class="fu">accumulated_visiting_time</span>(graph, <span class="at">time=</span><span class="fl">0.5</span>) <span class="sc">*</span> rewards),<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The stopping probability at times 0, 0.2, 0.4, ..., 1.0:</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="dataframe caption-top table table-sm table-striped small">
 <caption>A matrix: 6 × 7 of type dbl</caption>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">stop.1</td>
+<th data-quarto-table-cell-role="th" scope="row">stop.1</th>
 <td>0</td>
 <td>1.00000000</td>
 <td>0.00000000</td>
@@ -560,7 +563,7 @@ The *defect* is plotted as a cross in the PDF. Remember to always consider this 
 <td>0.00000000</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">stop.2</td>
+<th data-quarto-table-cell-role="th" scope="row">stop.2</th>
 <td>0</td>
 <td>0.55615316</td>
 <td>0.07040542</td>
@@ -570,7 +573,7 @@ The *defect* is plotted as a cross in the PDF. Remember to always consider this 
 <td>0.03374891</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">stop.3</td>
+<th data-quarto-table-cell-role="th" scope="row">stop.3</th>
 <td>0</td>
 <td>0.31431361</td>
 <td>0.05442623</td>
@@ -580,7 +583,7 @@ The *defect* is plotted as a cross in the PDF. Remember to always consider this 
 <td>0.06027159</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">stop.4</td>
+<th data-quarto-table-cell-role="th" scope="row">stop.4</th>
 <td>0</td>
 <td>0.17871327</td>
 <td>0.03421840</td>
@@ -590,7 +593,7 @@ The *defect* is plotted as a cross in the PDF. Remember to always consider this 
 <td>0.06334177</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th" scope="row">stop.5</td>
+<th data-quarto-table-cell-role="th" scope="row">stop.5</th>
 <td>0</td>
 <td>0.10186655</td>
 <td>0.02032847</td>
@@ -600,7 +603,7 @@ The *defect* is plotted as a cross in the PDF. Remember to always consider this 
 <td>0.05448747</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th" scope="row">stop.6</td>
+<th data-quarto-table-cell-role="th" scope="row">stop.6</th>
 <td>0</td>
 <td>0.05829086</td>
 <td>0.01187000</td>
@@ -629,7 +632,7 @@ The *defect* is plotted as a cross in the PDF. Remember to always consider this 
 <section id="random-sampling" class="level1">
 <h1>Random sampling</h1>
 <div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The library includes functions to do random sampling.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The library includes functions to do random sampling.</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># These are useful to also validate the computations</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>sampling_2nd_moment <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">rph</span>(<span class="dv">1000000</span>, graph)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">1000000</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Sampling 2nd moment:"</span> ,sampling_2nd_moment,</span>
@@ -638,7 +641,7 @@ The *defect* is plotted as a cross in the PDF. Remember to always consider this 
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The sampling also allows rewards</span></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>sampling_2nd_moment <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">rph</span>(<span class="dv">1000000</span>, graph,<span class="fu">states</span>(graph)[,<span class="dv">2</span>])<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">1000000</span></span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Sampling 2nd moment (reward):"</span> ,sampling_2nd_moment,</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\n</span><span class="st">Graph algorithm 2nd moment (reward):"</span>, <span class="fu">moments</span>(graph,<span class="dv">2</span>,<span class="fu">states</span>(graph)[,<span class="dv">2</span>])[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\n</span><span class="st">Graph algorithm 2nd moment (reward):"</span>, <span class="fu">moments</span>(graph,<span class="dv">2</span>,<span class="fu">states</span>(graph)[,<span class="dv">2</span>])[<span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Sampling 2nd moment: 0.4774903 
 Graph algorithm 2nd moment: 0.4802979 
@@ -649,7 +652,7 @@ Graph algorithm 2nd moment (reward): 0.05525692</code></pre>
 <section id="discrete-phase-type-distributions" class="level2">
 <h2 class="anchored" data-anchor-id="discrete-phase-type-distributions">Discrete phase-type distributions</h2>
 <div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can also work with discrete phase-type distributions. This is</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can also work with discrete phase-type distributions. This is</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the number of jumps in a Markov Chain before absorption</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We will model that any rabbit can find a carrot at each time with rate 0.1</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># and see how many carrots the rabbits will have found</span></span>
@@ -682,12 +685,12 @@ Graph algorithm 2nd moment (reward): 0.05525692</code></pre>
 <span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>weights_were_multiplied_with <span class="ot">&lt;-</span> <span class="fu">normalize_graph</span>(carrot_graph)</span>
 <span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"This is the discrete state space as a sub-transition matrix:"</span>)</span>
-<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a><span class="fu">graph_as_dph_matrix</span>(carrot_graph)<span class="sc">$</span>STM</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a><span class="fu">graph_as_dph_matrix</span>(carrot_graph)<span class="sc">$</span>STM</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>This is the discrete state space as a sub-transition matrix:</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="dataframe caption-top table table-sm table-striped small">
 <caption>A matrix: 10 × 10 of type dbl</caption>
 <tbody>
 <tr class="odd">
@@ -815,7 +818,7 @@ Graph algorithm 2nd moment (reward): 0.05525692</code></pre>
 </div>
 </div>
 <div id="cell-19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We now want to find the expected number of eaten carrots</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We now want to find the expected number of eaten carrots</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We set the reward such that the carrot vertex has a reward of '1'</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>rewards <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(carrot_vertices)</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -828,7 +831,7 @@ Graph algorithm 2nd moment (reward): 0.05525692</code></pre>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">DPH variance: "</span>, <span class="fu">dph_variance</span>(carrot_graph, rewards)))</span>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">rdph</span>(<span class="dv">1000000</span>, carrot_graph, rewards)</span>
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Verified by sampling: "</span>, <span class="fu">sum</span>(samples<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">1000000</span><span class="sc">-</span>((<span class="fu">sum</span>(samples))<span class="sc">/</span><span class="dv">1000000</span>)<span class="sc">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Verified by sampling: "</span>, <span class="fu">sum</span>(samples<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">1000000</span><span class="sc">-</span>((<span class="fu">sum</span>(samples))<span class="sc">/</span><span class="dv">1000000</span>)<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>DPH expectation: 0.0905612244897959
 Scaled continuous expectation: 0.0905612244897959
@@ -837,7 +840,7 @@ Verified by sampling:  0.097206853744</code></pre>
 </div>
 </div>
 <div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can find the distribution function for the the total number of carrots found</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can find the distribution function for the the total number of carrots found</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>carrots <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Notice that with this reward transformation the graph is no longer sparse, as all paths through</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the graph are represented!!</span></span>
@@ -849,7 +852,7 @@ Verified by sampling:  0.097206853744</code></pre>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(carrots, pmf)</span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Probability mass function"</span>)</span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(carrots, cdf,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Cumulative density function"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Cumulative density function"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -863,7 +866,7 @@ Verified by sampling:  0.097206853744</code></pre>
 <section id="multivariate-phase-type-distributions" class="level1">
 <h1>Multivariate phase-type distributions</h1>
 <div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead of a univariate reward, we can have the distribution earn a </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead of a univariate reward, we can have the distribution earn a </span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># *vector* of rewards for each time unit spent at a vertex.</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We will continue with the rabbit example. We will now show the relationship</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># between total time spent by any rabbit on either of the two islands.</span></span>
@@ -871,14 +874,14 @@ Verified by sampling:  0.097206853744</code></pre>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>simulations <span class="ot">&lt;-</span> <span class="fu">rmph</span>(<span class="dv">100000</span>, graph, <span class="fu">states</span>(graph))</span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>simulated_cov <span class="ot">&lt;-</span> <span class="fu">sum</span>(simulations[<span class="dv">1</span>,]<span class="sc">*</span>simulations[<span class="dv">2</span>,])<span class="sc">/</span><span class="dv">100000</span> <span class="sc">-</span></span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">sum</span>(simulations[<span class="dv">1</span>,])<span class="sc">/</span><span class="dv">100000</span><span class="sc">*</span><span class="fu">sum</span>(simulations[<span class="dv">2</span>,])<span class="sc">/</span><span class="dv">100000</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Sampled covariance:"</span>, simulated_cov))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Sampled covariance:"</span>, simulated_cov))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Covariance: 0.0300037744689713
 Sampled covariance: 0.0294514983851195</code></pre>
 </div>
 </div>
 <div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The api also supports multivariate *discrete* phase-type distributions</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The api also supports multivariate *discrete* phase-type distributions</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We show the covariance between carrots found on either island</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>mdph_carrot_graph <span class="ot">&lt;-</span> <span class="fu">clone_graph</span>(graph)</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -919,7 +922,7 @@ Sampled covariance: 0.0294514983851195</code></pre>
 <span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>simulations <span class="ot">&lt;-</span> <span class="fu">rmdph</span>(<span class="dv">1000000</span>, mdph_carrot_graph, rewards)</span>
 <span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>simulated_cov <span class="ot">&lt;-</span> <span class="fu">sum</span>(simulations[<span class="dv">1</span>,]<span class="sc">*</span>simulations[<span class="dv">2</span>,])<span class="sc">/</span><span class="dv">1000000</span> <span class="sc">-</span></span>
 <span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">sum</span>(simulations[<span class="dv">1</span>,])<span class="sc">/</span><span class="dv">1000000</span><span class="sc">*</span><span class="fu">sum</span>(simulations[<span class="dv">2</span>,])<span class="sc">/</span><span class="dv">1000000</span></span>
-<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Sampled covariance:"</span>, simulated_cov))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Sampled covariance:"</span>, simulated_cov))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Covariance: 0.000300037744689713
 Sampled covariance: 0.000279220885</code></pre>
@@ -928,7 +931,7 @@ Sampled covariance: 0.000279220885</code></pre>
 <section id="parameterized-edges" class="level2">
 <h2 class="anchored" data-anchor-id="parameterized-edges">Parameterized edges</h2>
 <div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can *parameterize* the edges to easily update the weights of the edge</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can *parameterize* the edges to easily update the weights of the edge</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We do this by assigning a *state* to the *edge*.</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We will now also say that the rate of rabbits jumping is proportional to the</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># number of rabbits on the island.</span></span>
@@ -989,10 +992,10 @@ Sampled covariance: 0.000279220885</code></pre>
 <span id="cb28-59"><a href="#cb28-59" aria-hidden="true" tabindex="-1"></a>      index <span class="ot">&lt;-</span> index <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb28-60"><a href="#cb28-60" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb28-61"><a href="#cb28-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(graph)</span>
-<span id="cb28-62"><a href="#cb28-62" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-62"><a href="#cb28-62" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-26" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The parameterized edges have what ever weight is assigned to them,</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The parameterized edges have what ever weight is assigned to them,</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and the state does not by itself mean anything.</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>param_graph <span class="ot">&lt;-</span> <span class="fu">construct_rabbit_graph_params</span>(<span class="dv">2</span>)</span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1020,7 +1023,7 @@ Sampled covariance: 0.000279220885</code></pre>
 <span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">graph_as_matrix</span>(param_graph)<span class="sc">$</span>SIM)</span>
 <span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">SIM at 8,4,18:</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a><span class="fu">graph_update_weights_parameterized</span>(param_graph, <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">18</span>))</span>
-<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">graph_as_matrix</span>(param_graph)<span class="sc">$</span>SIM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">graph_as_matrix</span>(param_graph)<span class="sc">$</span>SIM)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Expectation (1,2,4): 0.508305647840532
 Expectation (2,2,4): 0.495652173913043
@@ -1050,7 +1053,7 @@ SIM at 8,4,18:
 <section id="time-inhomogeneity" class="level2">
 <h2 class="anchored" data-anchor-id="time-inhomogeneity">Time inhomogeneity</h2>
 <div id="cell-28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If the weights change over time - or new edges are added!</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If the weights change over time - or new edges are added!</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Then the distribution is time inhomogeneous. The api also</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># supports such distributions, but in limited manner.</span></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1094,7 +1097,7 @@ SIM at 8,4,18:
 <span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(times, cdfs)</span>
-<span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Time until all rabbits are dead. Flooding increases linearly after 1.5 time units"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Time until all rabbits are dead. Flooding increases linearly after 1.5 time units"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Integrating over accumulated visiting time: 0.503826530601454
 The first moment (expectation): 0.503826530612245</code></pre>
@@ -1108,7 +1111,7 @@ The first moment (expectation): 0.503826530612245</code></pre>
 </div>
 </div>
 <div id="cell-29" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If we pick a time far into the future, we can integrate under it to find the expectation!</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If we pick a time far into the future, we can integrate under it to find the expectation!</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This means that we can scale by a reward, and thereby find the marginal expectation</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Summing over accumulated visiting time (with reward):"</span>,</span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(<span class="fu">accumulated_visiting_time</span>(graph, <span class="dv">10</span>)<span class="sc">*</span><span class="fu">states</span>(graph)[,<span class="dv">2</span>])))</span>
@@ -1131,7 +1134,7 @@ The first moment (expectation): 0.503826530612245</code></pre>
 <span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">We can increase granularity for better performance:"</span>,</span>
 <span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>           <span class="fu">sum</span>(<span class="fu">accumulated_visiting_time</span>(graph, <span class="fl">0.05</span>, <span class="at">granularity=</span><span class="dv">1000000</span>)<span class="sc">*</span><span class="fu">states</span>(graph)[,<span class="dv">2</span>])))</span>
 <span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a><span class="co"># However, if there are sudden, single, large changes,</span></span>
-<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a><span class="co"># we can also just get the chunked expectation by subtracting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a><span class="co"># we can also just get the chunked expectation by subtracting</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Summing over accumulated visiting time (with reward): 0.0943877550988707
 The first moment (expectation) (with reward): 0.0943877551020408
@@ -1146,7 +1149,7 @@ We can increase granularity for better performance: 0.00111383178979534</code></
 <section id="fast-state-space-construction-through-c-api" class="level2">
 <h2 class="anchored" data-anchor-id="fast-state-space-construction-through-c-api">Fast state-space construction through C api</h2>
 <div id="cell-31" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># While the R api can create graphs, this is *slow* as the C++ binding layer</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># While the R api can create graphs, this is *slow* as the C++ binding layer</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># through Rcpp is slow when invoking many functions, and since R is a slow,</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># interpreted language</span></span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Clone or download the code, and include these files in the repository!</span></span>
@@ -1155,10 +1158,10 @@ We can increase granularity for better performance: 0.00111383178979534</code></
 <span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The file has comments and is easy to understand, so you should be able</span></span>
 <span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># to defined you own cool construction functions</span></span>
 <span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>Rcpp<span class="sc">::</span><span class="fu">sourceCpp</span>(<span class="st">"./rabbit_construction_c.cpp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>Rcpp<span class="sc">::</span><span class="fu">sourceCpp</span>(<span class="st">"./rabbit_construction_c.cpp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-32" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The included file (open it for youself and see!) defined a function construct_rabbit_graph</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The included file (open it for youself and see!) defined a function construct_rabbit_graph</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>graph <span class="ot">&lt;-</span> <span class="fu">construct_rabbit_graph</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"See how the graph is identical to the R construction?</span><span class="sc">\n</span><span class="st">"</span>)</span>
@@ -1171,12 +1174,12 @@ We can increase granularity for better performance: 0.00111383178979534</code></
 <span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Don't worry about speed when invoking the other api functions</span></span>
 <span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="co"># they are not slower as we invoke one C function once and wait</span></span>
 <span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="co"># for it to return!</span></span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Expectation:"</span>, <span class="fu">expectation</span>(large)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Expectation:"</span>, <span class="fu">expectation</span>(large)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>See how the graph is identical to the R construction?</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="dataframe caption-top table table-sm table-striped small">
 <caption>A matrix: 5 × 5 of type dbl</caption>
 <tbody>
 <tr class="odd">
@@ -1226,7 +1229,7 @@ Expectation: 0.536563856879033</code></pre>
 <section id="numerical-accuracy" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-accuracy">Numerical accuracy</h2>
 <div id="cell-34" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To prove that the algorithms are numerically accuracy, we will compare against</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To prove that the algorithms are numerically accuracy, we will compare against</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a baseline by matrix equations.</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We build an 100% dense graph, and compare the results</span></span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
@@ -1271,9 +1274,9 @@ Expectation: 0.536563856879033</code></pre>
 <span id="cb39-43"><a href="#cb39-43" aria-hidden="true" tabindex="-1"></a>               ))</span>
 <span id="cb39-44"><a href="#cb39-44" aria-hidden="true" tabindex="-1"></a>    MAT <span class="ot">&lt;-</span> U <span class="sc">%*%</span> MAT</span>
 <span id="cb39-45"><a href="#cb39-45" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb39-46"><a href="#cb39-46" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-46"><a href="#cb39-46" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="dataframe caption-top table table-sm table-striped small">
 <caption>A data.frame: 10 × 3</caption>
 <thead>
 <tr class="header">
@@ -1343,8 +1346,8 @@ Expectation: 0.536563856879033</code></pre>
 </div>
 </div>
 <div id="cell-35" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"expm"</span>)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(expm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"expm"</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(expm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Installing package into ‘/home/tobias/R/x86_64-pc-linux-gnu-library/4.1’
 (as ‘lib’ is unspecified)
@@ -1354,11 +1357,11 @@ Warning message in install.packages("expm"):
 </div>
 </div>
 <div id="cell-36" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.01</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.01</span>)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">pph</span>(t,g,<span class="at">granularity=</span><span class="dv">10000</span>)</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t, y1)</span>
 <span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">sapply</span>(t, <span class="cf">function</span>(t) {<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">%*%</span><span class="fu">expm</span>(S<span class="sc">*</span>t)<span class="sc">%*%</span>e})</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t, y2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t, y2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1375,8 +1378,8 @@ Warning message in install.packages("expm"):
 </div>
 </div>
 <div id="cell-37" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="58">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>((y2<span class="sc">-</span>y1)<span class="sc">/</span>y1)<span class="sc">*</span><span class="dv">100</span>, <span class="at">na.rm=</span>T)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">abs</span>((y2<span class="sc">-</span>y1)<span class="sc">/</span>y1)<span class="sc">*</span><span class="dv">100</span>, <span class="at">na.rm=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>((y2<span class="sc">-</span>y1)<span class="sc">/</span>y1)<span class="sc">*</span><span class="dv">100</span>, <span class="at">na.rm=</span>T)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">abs</span>((y2<span class="sc">-</span>y1)<span class="sc">/</span>y1)<span class="sc">*</span><span class="dv">100</span>, <span class="at">na.rm=</span>T)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 0.00274811498916354
 </div>
@@ -1388,13 +1391,13 @@ Warning message in install.packages("expm"):
 </div>
 </div>
 <div id="cell-38" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>stop1 <span class="ot">&lt;-</span> alpha<span class="sc">%*%</span><span class="fu">expm</span>(S)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>stop2 <span class="ot">&lt;-</span> <span class="fu">stop_probability</span>(g, <span class="dv">1</span>, <span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>stop1 <span class="ot">&lt;-</span> alpha<span class="sc">%*%</span><span class="fu">expm</span>(S)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>stop2 <span class="ot">&lt;-</span> <span class="fu">stop_probability</span>(g, <span class="dv">1</span>, <span class="dv">10000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-39" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="85">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>stop11 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">rev</span>(stop1),<span class="dv">0</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>stop11 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">rev</span>(stop1),<span class="dv">0</span>)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(stop11<span class="sc">-</span>stop2)<span class="sc">/</span>stop11<span class="sc">*</span><span class="dv">100</span>, <span class="at">na.rm=</span>T)</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">abs</span>(stop11<span class="sc">-</span>stop2)<span class="sc">/</span>stop11<span class="sc">*</span><span class="dv">100</span>, <span class="at">na.rm=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(<span class="fu">abs</span>(stop11<span class="sc">-</span>stop2)<span class="sc">/</span>stop11<span class="sc">*</span><span class="dv">100</span>, <span class="at">na.rm=</span>T)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 0.00120642027320843
 </div>
@@ -1459,13 +1462,14 @@ Warning message in install.packages("expm"):
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

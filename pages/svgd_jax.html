@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d68be38d83eca2bb035acf846ffba811.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,6 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">ptdalgorithms</span>
     </a>
@@ -164,8 +167,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div id="dd376bf9" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<div id="dd376bf9" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">DPH Inference Library with JAX</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">--------------------------------</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">Supports:</span></span>
@@ -367,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Loss: </span><span class="sc">{</span>loss2<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gradients: </span><span class="sc">{</span>grads2<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Testing with parameterized mock dph_pmf function...
 Parameters: [0.5 0.1]
@@ -381,62 +384,62 @@ PMF values: [0.30060961 0.33222499 0.3671654 ]</code></pre>
 
 <span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">&lt;frozen runpy&gt;:88</span>, in <span class="ansi-cyan-fg">_run_code</span><span class="ansi-blue-fg">()</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel_launcher.py:18</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel_launcher.py:18</span>
 <span class="ansi-green-fg">     16</span> <span style="font-weight:bold;color:rgb(0,135,0)">from</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg ansi-bold">ipykernel</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">import</span> kernelapp <span style="font-weight:bold;color:rgb(0,135,0)">as</span> app
 <span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">18</span> app.launch_new_instance()
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/traitlets/config/application.py:1075</span>, in <span class="ansi-cyan-fg">launch_instance</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/traitlets/config/application.py:1075</span>, in <span class="ansi-cyan-fg">launch_instance</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">   1074</span> app.initialize(argv)
 <span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1075</span> app.start()
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/kernelapp.py:739</span>, in <span class="ansi-cyan-fg">start</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/kernelapp.py:739</span>, in <span class="ansi-cyan-fg">start</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">    738</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">739</span>     <span style="color:rgb(0,135,0)">self</span>.io_loop.start()
 <span class="ansi-green-fg">    740</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> <span style="font-weight:bold;color:rgb(215,95,95)">KeyboardInterrupt</span>:
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/tornado/platform/asyncio.py:211</span>, in <span class="ansi-cyan-fg">start</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/tornado/platform/asyncio.py:211</span>, in <span class="ansi-cyan-fg">start</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">    210</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">start</span>(<span style="color:rgb(0,135,0)">self</span>) -&gt; <span style="font-weight:bold;color:rgb(0,135,0)">None</span>:
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">211</span>     <span style="color:rgb(0,135,0)">self</span>.asyncio_loop.run_forever()
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/asyncio/base_events.py:608</span>, in <span class="ansi-cyan-fg">run_forever</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/asyncio/base_events.py:608</span>, in <span class="ansi-cyan-fg">run_forever</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">    607</span> <span style="font-weight:bold;color:rgb(0,135,0)">while</span> <span style="font-weight:bold;color:rgb(0,135,0)">True</span>:
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">608</span>     <span style="color:rgb(0,135,0)">self</span>._run_once()
 <span class="ansi-green-fg">    609</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">self</span>._stopping:
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/asyncio/base_events.py:1936</span>, in <span class="ansi-cyan-fg">_run_once</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/asyncio/base_events.py:1936</span>, in <span class="ansi-cyan-fg">_run_once</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">   1935</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
 <span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1936</span>         handle._run()
 <span class="ansi-green-fg">   1937</span> handle = <span style="font-weight:bold;color:rgb(0,135,0)">None</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/asyncio/events.py:84</span>, in <span class="ansi-cyan-fg">_run</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/asyncio/events.py:84</span>, in <span class="ansi-cyan-fg">_run</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">     83</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
 <span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">84</span>     <span style="color:rgb(0,135,0)">self</span>._context.run(<span style="color:rgb(0,135,0)">self</span>._callback, *<span style="color:rgb(0,135,0)">self</span>._args)
 <span class="ansi-green-fg">     85</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> (<span style="font-weight:bold;color:rgb(215,95,95)">SystemExit</span>, <span style="font-weight:bold;color:rgb(215,95,95)">KeyboardInterrupt</span>):
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/kernelbase.py:545</span>, in <span class="ansi-cyan-fg">dispatch_queue</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/kernelbase.py:545</span>, in <span class="ansi-cyan-fg">dispatch_queue</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">    544</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">545</span>     <span style="font-weight:bold;color:rgb(0,135,0)">await</span> <span style="color:rgb(0,135,0)">self</span>.process_one()
 <span class="ansi-green-fg">    546</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> <span style="font-weight:bold;color:rgb(215,95,95)">Exception</span>:
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/kernelbase.py:534</span>, in <span class="ansi-cyan-fg">process_one</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/kernelbase.py:534</span>, in <span class="ansi-cyan-fg">process_one</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">    533</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span>
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">534</span> <span style="font-weight:bold;color:rgb(0,135,0)">await</span> dispatch(*args)
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/kernelbase.py:437</span>, in <span class="ansi-cyan-fg">dispatch_shell</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/kernelbase.py:437</span>, in <span class="ansi-cyan-fg">dispatch_shell</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">    436</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> inspect.isawaitable(result):
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">437</span>         <span style="font-weight:bold;color:rgb(0,135,0)">await</span> result
 <span class="ansi-green-fg">    438</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> <span style="font-weight:bold;color:rgb(215,95,95)">Exception</span>:
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/ipkernel.py:362</span>, in <span class="ansi-cyan-fg">execute_request</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/ipkernel.py:362</span>, in <span class="ansi-cyan-fg">execute_request</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">    361</span> <span style="color:rgb(0,135,0)">self</span>._associate_new_top_level_threads_with(parent_header)
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">362</span> <span style="font-weight:bold;color:rgb(0,135,0)">await</span> <span style="color:rgb(0,135,0)">super</span>().execute_request(stream, ident, parent)
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/kernelbase.py:778</span>, in <span class="ansi-cyan-fg">execute_request</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/kernelbase.py:778</span>, in <span class="ansi-cyan-fg">execute_request</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">    777</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> inspect.isawaitable(reply_content):
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">778</span>     reply_content = <span style="font-weight:bold;color:rgb(0,135,0)">await</span> reply_content
 <span class="ansi-green-fg">    780</span> <span style="font-style:italic;color:rgb(95,135,135)"># Flush output before sending the reply.</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/ipkernel.py:449</span>, in <span class="ansi-cyan-fg">do_execute</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/ipkernel.py:449</span>, in <span class="ansi-cyan-fg">do_execute</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">    448</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> accepts_params[<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">cell_id</span><span class="ansi-yellow-fg">"</span>]:
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">449</span>     res = shell.run_cell(
 <span class="ansi-green-fg">    450</span>         code,
@@ -446,62 +449,62 @@ PMF values: [0.30060961 0.33222499 0.3671654 ]</code></pre>
 <span class="ansi-green-fg">    454</span>     )
 <span class="ansi-green-fg">    455</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/zmqshell.py:549</span>, in <span class="ansi-cyan-fg">run_cell</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/ipykernel/zmqshell.py:549</span>, in <span class="ansi-cyan-fg">run_cell</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">    548</span> <span style="color:rgb(0,135,0)">self</span>._last_traceback = <span style="font-weight:bold;color:rgb(0,135,0)">None</span>
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">549</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)">super</span>().run_cell(*args, **kwargs)
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/IPython/core/interactiveshell.py:3116</span>, in <span class="ansi-cyan-fg">run_cell</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/IPython/core/interactiveshell.py:3116</span>, in <span class="ansi-cyan-fg">run_cell</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">   3115</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
 <span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">3116</span>     result = <span style="color:rgb(0,135,0)">self</span>._run_cell(
 <span class="ansi-green-fg">   3117</span>         raw_cell, store_history, silent, shell_futures, cell_id
 <span class="ansi-green-fg">   3118</span>     )
 <span class="ansi-green-fg">   3119</span> <span style="font-weight:bold;color:rgb(0,135,0)">finally</span>:
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/IPython/core/interactiveshell.py:3171</span>, in <span class="ansi-cyan-fg">_run_cell</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/IPython/core/interactiveshell.py:3171</span>, in <span class="ansi-cyan-fg">_run_cell</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">   3170</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
 <span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">3171</span>     result = runner(coro)
 <span class="ansi-green-fg">   3172</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> <span style="font-weight:bold;color:rgb(215,95,95)">BaseException</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> e:
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/IPython/core/async_helpers.py:128</span>, in <span class="ansi-cyan-fg">_pseudo_sync_runner</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/IPython/core/async_helpers.py:128</span>, in <span class="ansi-cyan-fg">_pseudo_sync_runner</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">    127</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">128</span>     coro.send(<span style="font-weight:bold;color:rgb(0,135,0)">None</span>)
 <span class="ansi-green-fg">    129</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> <span style="font-weight:bold;color:rgb(215,95,95)">StopIteration</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> exc:
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/IPython/core/interactiveshell.py:3394</span>, in <span class="ansi-cyan-fg">run_cell_async</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/IPython/core/interactiveshell.py:3394</span>, in <span class="ansi-cyan-fg">run_cell_async</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">   3391</span> interactivity = <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">none</span><span class="ansi-yellow-fg">"</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> silent <span style="font-weight:bold;color:rgb(0,135,0)">else</span> <span style="color:rgb(0,135,0)">self</span>.ast_node_interactivity
 <span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">3394</span> has_raised = <span style="font-weight:bold;color:rgb(0,135,0)">await</span> <span style="color:rgb(0,135,0)">self</span>.run_ast_nodes(code_ast.body, cell_name,
 <span class="ansi-green-fg">   3395</span>        interactivity=interactivity, compiler=compiler, result=result)
 <span class="ansi-green-fg">   3397</span> <span style="color:rgb(0,135,0)">self</span>.last_execution_succeeded = <span style="font-weight:bold;color:rgb(175,0,255)">not</span> has_raised
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/IPython/core/interactiveshell.py:3639</span>, in <span class="ansi-cyan-fg">run_ast_nodes</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/IPython/core/interactiveshell.py:3639</span>, in <span class="ansi-cyan-fg">run_ast_nodes</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">   3638</span>     asy = compare(code)
 <span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">3639</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(0,135,0)">await</span> <span style="color:rgb(0,135,0)">self</span>.run_code(code, result, async_=asy):
 <span class="ansi-green-fg">   3640</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="font-weight:bold;color:rgb(0,135,0)">True</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/IPython/core/interactiveshell.py:3699</span>, in <span class="ansi-cyan-fg">run_code</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/IPython/core/interactiveshell.py:3699</span>, in <span class="ansi-cyan-fg">run_code</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">   3698</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
 <span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">3699</span>         exec(code_obj, <span style="color:rgb(0,135,0)">self</span>.user_global_ns, <span style="color:rgb(0,135,0)">self</span>.user_ns)
 <span class="ansi-green-fg">   3700</span> <span style="font-weight:bold;color:rgb(0,135,0)">finally</span>:
 <span class="ansi-green-fg">   3701</span>     <span style="font-style:italic;color:rgb(95,135,135)"># Reset our crash handler in place</span>
 
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 188</span>
-<span class="ansi-green-fg">    186</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">PMF values: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>pmfs<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">188</span> loss = jax.jit(dph_negloglik)(z, t_obs)
-<span class="ansi-green-fg">    189</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Loss: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>loss<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 189</span>
+<span class="ansi-green-fg">    187</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">PMF values: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>pmfs<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">189</span> loss = jax.jit(dph_negloglik)(z, t_obs)
+<span class="ansi-green-fg">    190</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Loss: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>loss<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
 
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 47</span>, in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 47</span>, in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-fg">     46</span> theta = decode_fn(_theta)
 <span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">47</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> f(theta, t_obs)
 
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 139</span>, in <span class="ansi-cyan-fg">dph_negloglik</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">    137</span> <span style="color:rgb(175,0,255)">@dph_model</span>(decode_z)
-<span class="ansi-green-fg">    138</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">dph_negloglik</span>(theta, t_obs):
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">139</span>     pmfs = dph_pmf(theta, t_obs)
-<span class="ansi-green-fg">    140</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> -jnp.sum(jnp.log(pmfs + <span class="ansi-green-fg">1e-8</span>))
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 140</span>, in <span class="ansi-cyan-fg">dph_negloglik</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">    138</span> <span style="color:rgb(175,0,255)">@dph_model</span>(decode_z)
+<span class="ansi-green-fg">    139</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">dph_negloglik</span>(theta, t_obs):
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">140</span>     pmfs = dph_pmf(theta, t_obs)
+<span class="ansi-green-fg">    141</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> -jnp.sum(jnp.log(pmfs + <span class="ansi-green-fg">1e-8</span>))
 
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 110</span>, in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">    109</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">wrapper</span>(theta, times):
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">110</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> prim.bind(theta, times)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 111</span>, in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">    110</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">wrapper</span>(theta, times):
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">111</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> prim.bind(theta, times)
 
 <span class="ansi-red-fg">JaxStackTraceBeforeTransformation</span>: TypeError: register_ptd_kernel.&lt;locals&gt;.decorator.&lt;locals&gt;.lowering() missing 1 required positional argument: 'times'
 
@@ -512,16 +515,16 @@ The preceding stack trace is the source of the JAX operation that, once transfor
 The above exception was the direct cause of the following exception:
 
 <span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 188</span>
-<span class="ansi-green-fg">    185</span> pmfs = test_dph_pmf(z, t_obs)
-<span class="ansi-green-fg">    186</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">PMF values: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>pmfs<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">188</span> loss = <span class="ansi-yellow-bg">jax</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">jit</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">dph_negloglik</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">z</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">t_obs</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg">    189</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Loss: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>loss<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">    191</span> grads = jax.grad(dph_negloglik)(z, t_obs)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 189</span>
+<span class="ansi-green-fg">    186</span> pmfs = test_dph_pmf(z, t_obs)
+<span class="ansi-green-fg">    187</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">PMF values: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>pmfs<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">189</span> loss = <span class="ansi-yellow-bg">jax</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">jit</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">dph_negloglik</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">z</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">t_obs</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    190</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Loss: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>loss<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">    192</span> grads = jax.grad(dph_negloglik)(z, t_obs)
 
     <span class="ansi-red-fg">[... skipping hidden 12 frame]</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDalgorithms/.pixi/envs/default/lib/python3.11/site-packages/jax/_src/interpreters/mlir.py:2111</span>, in <span class="ansi-cyan-fg">lower_per_platform</span><span class="ansi-blue-fg">(ctx, description, platform_rules, default_rule, effects, *rule_args, **rule_kwargs)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.11/site-packages/jax/_src/interpreters/mlir.py:2111</span>, in <span class="ansi-cyan-fg">lower_per_platform</span><span class="ansi-blue-fg">(ctx, description, platform_rules, default_rule, effects, *rule_args, **rule_kwargs)</span>
 <span class="ansi-green-fg">   2109</span> <span style="font-style:italic;color:rgb(95,135,135)"># If there is a single rule left just apply the rule, without conditionals.</span>
 <span class="ansi-green-fg">   2110</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">len</span>(kept_rules) == <span class="ansi-green-fg">1</span>:
 <span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">2111</span>   output = <span class="ansi-yellow-bg">kept_rules</span><span class="ansi-yellow-bg">[</span><span class="ansi-green-fg ansi-yellow-bg">0</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">ctx</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">rule_args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">rule_kwargs</span><span class="ansi-yellow-bg">)</span>
@@ -593,13 +596,14 @@ The above exception was the direct cause of the following exception:
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

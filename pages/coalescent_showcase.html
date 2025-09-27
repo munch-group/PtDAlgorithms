@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d68be38d83eca2bb035acf846ffba811.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -118,6 +119,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">ptdalgorithms</span>
     </a>
@@ -183,12 +186,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="dab491fb-6117-4d1e-91f8-ca7cb9d54f54" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:49.698019Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:49.697851Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:49.713289Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:49.712964Z&quot;}}" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="dab491fb-6117-4d1e-91f8-ca7cb9d54f54" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:49.698019Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:49.697851Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:49.713289Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:49.712964Z&quot;}}" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Another example is the Coalescent, fully specified with only the code below:</p>
-<div id="19aee46c" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coalescent(state, nr_samples<span class="op">=</span><span class="va">None</span>):</span>
+<div id="19aee46c" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coalescent(state, nr_samples<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> state.size:</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        ipv <span class="op">=</span> [([nr_samples]<span class="op">+</span>[<span class="dv">0</span>]<span class="op">*</span>nr_samples, <span class="dv">1</span>)]</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ipv</span>
@@ -209,41 +212,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> transitions</span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptd.Graph(callback<span class="op">=</span>coalescent, nr_samples<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>graph.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<div>
-<figure class="figure">
-<p><a href="coalescent_showcase_files/figure-html/cell-3-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="coalescent_showcase_files/figure-html/cell-3-output-1.svg" class="img-fluid figure-img"></a></p>
-</figure>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>graph.states()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>array([[0, 0, 0, 0, 0],
+       [4, 0, 0, 0, 0],
+       [2, 1, 0, 0, 0],
+       [0, 2, 0, 0, 0],
+       [1, 0, 1, 0, 0],
+       [0, 0, 0, 1, 0]], dtype=int32)</code></pre>
 </div>
+</div>
+<div id="b0084589" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>graph.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+KeyboardInterrupt
+</code></pre>
 </div>
 </div>
 <p>Computing the expected TMRCA is then just:</p>
-<div id="4d162ea0-3360-42a5-9e32-8d0d15f9d93e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:49.843644Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:49.843527Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:49.846519Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:49.846243Z&quot;}}" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>graph.expectation()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="4d162ea0-3360-42a5-9e32-8d0d15f9d93e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:49.843644Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:49.843527Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:49.846519Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:49.846243Z&quot;}}" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>graph.expectation()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO: building reward compute graph...</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>1.5</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>1.4999999999999996</code></pre>
 </div>
 </div>
 <p>The graph grows quickly with the number of samples:</p>
 <div id="39535b89-52ea-4e93-8ca2-0fc89a07cecc" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:49.848015Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:49.847916Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:49.973463Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:49.973087Z&quot;}}" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nr_samples <span class="op">=</span> <span class="dv">15</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptd.Graph(callback<span class="op">=</span>coalescent, initial<span class="op">=</span>[nr_samples]<span class="op">+</span>[<span class="dv">0</span>]<span class="op">*</span>nr_samples)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>graph.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nr_samples <span class="op">=</span> <span class="dv">15</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptd.Graph(callback<span class="op">=</span>coalescent, initial<span class="op">=</span>[nr_samples]<span class="op">+</span>[<span class="dv">0</span>]<span class="op">*</span>nr_samples)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>graph.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 <figure class="figure">
-<p><a href="coalescent_showcase_files/figure-html/cell-5-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="coalescent_showcase_files/figure-html/cell-5-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent_showcase_files/figure-html/cell-6-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="coalescent_showcase_files/figure-html/cell-6-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <div id="e2b4a8e8-76b7-4f10-80f9-a3e8528ffeaf" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:49.976371Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:49.976255Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:49.979181Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:49.978883Z&quot;}}" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>graph.expectation()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>graph.expectation()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO: building reward compute graph...</code></pre>
 </div>
@@ -251,13 +263,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>1.866666666666666</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout callout-style-default callout-caution callout-empty-content callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-This pages is under construction
+<span class="screen-reader-only">Caution</span>This pages is under construction
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -319,13 +331,14 @@ This pages is under construction
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
