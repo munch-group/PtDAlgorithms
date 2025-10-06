@@ -1213,7 +1213,7 @@ GRAPH AS MATRIX MAKES THE KERNEL DIE...</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>param_graph <span class="op">=</span> construct_rabbit_graph_params(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If we let the edge have a state, this gives us an easy way of changing the weights based on some model parameters. In this case, it is the rate of jumping left rate of flooding and right rate of flooding.</p>
-<p>The update simply takes the inner product of the state vector and the model parameters, e.g.&nbsp;if the state is x1, x2 and the parameters are p1, p2, then the weight of the edge becomed x1<em>p1+x2</em>p2</p>
+<p>The update simply takes the inner product of the state vector and the model parameters, e.g.&nbsp;if the state is x1, x2 and the parameters are p1, p2, then the weight of the edge become x1<em>p1+x2</em>p2</p>
 <div id="cell-124" class="cell" data-execution_count="62">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>param_graph.update_parameterized_weights([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>])</span>
 <span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Expectation (1,2,4):"</span>, param_graph.expectation())</span>

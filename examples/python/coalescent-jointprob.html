@@ -383,64 +383,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>ptd.plot.set_theme(<span class="st">'dark'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ImportError</span>                               Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[1], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> <span style="font-weight:bold;color:rgb(0,0,255)">sys</span>
-<span class="ansi-green-fg">----&gt; 2</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> <span style="font-weight:bold;color:rgb(0,0,255)">pandas</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> <span style="font-weight:bold;color:rgb(0,0,255)">pd</span>
-<span class="ansi-green-fg ansi-bold">      3</span> <span style="font-weight:bold;color:rgb(0,135,0)">from</span> <span style="font-weight:bold;color:rgb(0,0,255)">collections</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> defaultdict
-<span class="ansi-green-fg ansi-bold">      4</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> <span style="font-weight:bold;color:rgb(0,0,255)">numpy</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> <span style="font-weight:bold;color:rgb(0,0,255)">np</span>
-
-File <span class="ansi-green-fg">~/miniconda3/envs/phasetype/lib/python3.11/site-packages/pandas/__init__.py:19</span>
-<span class="ansi-green-fg ansi-bold">     16</span>         _missing_dependencies<span style="color:rgb(98,98,98)">.</span>append(<span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">"</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>_dependency<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>_e<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">"</span>)
-<span class="ansi-green-fg ansi-bold">     18</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> _missing_dependencies:  <span style="font-style:italic;color:rgb(95,135,135)"># pragma: no cover</span>
-<span class="ansi-green-fg">---&gt; 19</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ImportError</span>(
-<span class="ansi-green-fg ansi-bold">     20</span>         <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Unable to import required dependencies:</span><span style="font-weight:bold;color:rgb(175,95,0)">\n</span><span style="color:rgb(175,0,0)">"</span> <span style="color:rgb(98,98,98)">+</span> <span style="color:rgb(175,0,0)">"</span><span style="font-weight:bold;color:rgb(175,95,0)">\n</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(98,98,98)">.</span>join(_missing_dependencies)
-<span class="ansi-green-fg ansi-bold">     21</span>     )
-<span class="ansi-green-fg ansi-bold">     22</span> <span style="font-weight:bold;color:rgb(0,135,0)">del</span> _hard_dependencies, _dependency, _missing_dependencies
-<span class="ansi-green-fg ansi-bold">     24</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
-<span class="ansi-green-fg ansi-bold">     25</span>     <span style="font-style:italic;color:rgb(95,135,135)"># numpy compat</span>
-
-<span class="ansi-red-fg">ImportError</span>: Unable to import required dependencies:
-numpy: Error importing numpy: you should not try to import numpy from
-        its source directory; please exit the numpy source tree, and relaunch
-        your python interpreter from there.</pre>
-</div>
-</div>
 </div>
 <section id="example-model-coalescent" class="level2">
 <h2 class="anchored" data-anchor-id="example-model-coalescent">Example model: Coalescent</h2>
-<div id="900fde71" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coalescent(state, nr_samples<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> state.size:</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        ipv <span class="op">=</span> [([nr_samples]<span class="op">+</span>[<span class="dv">0</span>]<span class="op">*</span>nr_samples, <span class="dv">1</span>)]</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ipv</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        transitions <span class="op">=</span> []</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nr_samples):</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, nr_samples):            </span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                same <span class="op">=</span> <span class="bu">int</span>(i <span class="op">==</span> j)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> same <span class="kw">and</span> state[i] <span class="op">&lt;</span> <span class="dv">2</span>:</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> same <span class="kw">and</span> (state[i] <span class="op">&lt;</span> <span class="dv">1</span> <span class="kw">or</span> state[j] <span class="op">&lt;</span> <span class="dv">1</span>):</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span> </span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                new <span class="op">=</span> state.copy()</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                new[i] <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                new[j] <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                new[i<span class="op">+</span>j<span class="op">+</span><span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                transitions.append((new, state[i]<span class="op">*</span>(state[j]<span class="op">-</span>same)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>same)))</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> transitions</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptd.Graph(callback<span class="op">=</span>coalescent, nr_samples<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>graph.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<div>
-<figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-3-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="coalescent-jointprob_files/figure-html/cell-3-output-1.svg" class="img-fluid figure-img"></a></p>
-</figure>
+<div id="900fde71" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coalescent(state, nr_samples<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> state.size:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        ipv <span class="op">=</span> [([nr_samples]<span class="op">+</span>[<span class="dv">0</span>]<span class="op">*</span>nr_samples, <span class="dv">1</span>)]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ipv</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        transitions <span class="op">=</span> []</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nr_samples):</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, nr_samples):            </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                same <span class="op">=</span> <span class="bu">int</span>(i <span class="op">==</span> j)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> same <span class="kw">and</span> state[i] <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> same <span class="kw">and</span> (state[i] <span class="op">&lt;</span> <span class="dv">1</span> <span class="kw">or</span> state[j] <span class="op">&lt;</span> <span class="dv">1</span>):</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span> </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                new <span class="op">=</span> state.copy()</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                new[i] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                new[j] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                new[i<span class="op">+</span>j<span class="op">+</span><span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                transitions.append((new, state[i]<span class="op">*</span>(state[j]<span class="op">-</span>same)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>same)))</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> transitions</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptd.Graph(callback<span class="op">=</span>coalescent, nr_samples<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>graph.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 24</span>
+<span class="ansi-green-fg">     21</span>                 transitions.append((new, state[i]*(state[j]-same)/(<span class="ansi-green-fg">1</span>+same)/Ne))
+<span class="ansi-green-fg">     22</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> transitions
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">24</span> graph = <span class="ansi-yellow-bg">ptd</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">Graph</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">callback</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">coalescent</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">nr_samples</span><span class="ansi-yellow-bg">=</span><span class="ansi-green-fg ansi-yellow-bg">4</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">     26</span> graph.plot()
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/src/ptdalgorithms/__init__.py:482</span>, in <span class="ansi-cyan-fg">Graph.__init__</span><span class="ansi-blue-fg">(self, state_length, callback, **kwargs)</span>
+<span class="ansi-green-fg">    479</span> <span style="font-weight:bold;color:rgb(0,135,0)">assert</span> (callback <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>) + (state_length <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>) == <span class="ansi-green-fg">1</span>, <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Use either the state_length or callback argument</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">    481</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> callback:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">482</span>     <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">super</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">.</span><span class="ansi-blue-fg ansi-yellow-bg">__init__</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">callback_tuples</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">partial</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">callback</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    483</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">    484</span>     <span style="color:rgb(0,135,0)">super</span>().<span class="ansi-blue-fg">__init__</span>(state_length)
+
+<span class="ansi-red-fg">TypeError</span>: coalescent() missing 1 required positional argument: 'theta'</pre>
 </div>
 </div>
 </div>
@@ -470,7 +458,7 @@ numpy: Error importing numpy: you should not try to import numpy from
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-6-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="coalescent-jointprob_files/figure-html/cell-6-output-1.png" width="470" height="309" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-6-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="coalescent-jointprob_files/figure-html/cell-6-output-1.png" width="470" height="309" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -575,7 +563,7 @@ numpy: Error importing numpy: you should not try to import numpy from
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-8-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="coalescent-jointprob_files/figure-html/cell-8-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-8-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="coalescent-jointprob_files/figure-html/cell-8-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -628,7 +616,7 @@ numpy: Error importing numpy: you should not try to import numpy from
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-14-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="coalescent-jointprob_files/figure-html/cell-14-output-2.png" width="476" height="309" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-14-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="coalescent-jointprob_files/figure-html/cell-14-output-2.png" width="476" height="309" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -639,7 +627,7 @@ numpy: Error importing numpy: you should not try to import numpy from
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-15-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="coalescent-jointprob_files/figure-html/cell-15-output-1.png" width="470" height="309" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-15-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="coalescent-jointprob_files/figure-html/cell-15-output-1.png" width="470" height="309" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -803,7 +791,7 @@ numpy: Error importing numpy: you should not try to import numpy from
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-17-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="coalescent-jointprob_files/figure-html/cell-17-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-17-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="coalescent-jointprob_files/figure-html/cell-17-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -826,7 +814,7 @@ numpy: Error importing numpy: you should not try to import numpy from
 <div class="cell-output cell-output-display" data-execution_count="18">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-20-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="coalescent-jointprob_files/figure-html/cell-20-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-20-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="coalescent-jointprob_files/figure-html/cell-20-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -845,7 +833,7 @@ numpy: Error importing numpy: you should not try to import numpy from
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-22-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="coalescent-jointprob_files/figure-html/cell-22-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-22-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="coalescent-jointprob_files/figure-html/cell-22-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1353,7 +1341,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="35">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-32-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="coalescent-jointprob_files/figure-html/cell-32-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-32-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="coalescent-jointprob_files/figure-html/cell-32-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1367,7 +1355,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-33-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="coalescent-jointprob_files/figure-html/cell-33-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-33-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="coalescent-jointprob_files/figure-html/cell-33-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1415,7 +1403,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="83">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-34-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="coalescent-jointprob_files/figure-html/cell-34-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-34-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="coalescent-jointprob_files/figure-html/cell-34-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1509,7 +1497,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="80">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-36-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="coalescent-jointprob_files/figure-html/cell-36-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-36-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="coalescent-jointprob_files/figure-html/cell-36-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1524,7 +1512,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="81">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-37-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="coalescent-jointprob_files/figure-html/cell-37-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-37-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="coalescent-jointprob_files/figure-html/cell-37-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1583,7 +1571,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="82">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-38-output-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="coalescent-jointprob_files/figure-html/cell-38-output-3.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-38-output-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="coalescent-jointprob_files/figure-html/cell-38-output-3.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1601,7 +1589,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="67">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-39-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="coalescent-jointprob_files/figure-html/cell-39-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-39-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="coalescent-jointprob_files/figure-html/cell-39-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1622,7 +1610,7 @@ Cell <span class="ansi-green-fg">In[36], line 4</span>
 <div class="cell-output cell-output-display" data-execution_count="64">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-41-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="coalescent-jointprob_files/figure-html/cell-41-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-41-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="coalescent-jointprob_files/figure-html/cell-41-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1729,7 +1717,7 @@ Cell <span class="ansi-green-fg">In[42], line 1</span>
 <div class="cell-output cell-output-display" data-execution_count="199">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-50-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="coalescent-jointprob_files/figure-html/cell-50-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-50-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="coalescent-jointprob_files/figure-html/cell-50-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1769,7 +1757,7 @@ Cell <span class="ansi-green-fg">In[42], line 1</span>
 <div class="cell-output cell-output-display" data-execution_count="87">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-51-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="coalescent-jointprob_files/figure-html/cell-51-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-51-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="coalescent-jointprob_files/figure-html/cell-51-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1780,7 +1768,7 @@ Cell <span class="ansi-green-fg">In[42], line 1</span>
 <div class="cell-output cell-output-display" data-execution_count="88">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-52-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="coalescent-jointprob_files/figure-html/cell-52-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-52-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="coalescent-jointprob_files/figure-html/cell-52-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -1874,7 +1862,7 @@ Cell <span class="ansi-green-fg">In[42], line 1</span>
 <div class="cell-output cell-output-display" data-execution_count="112">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-55-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="coalescent-jointprob_files/figure-html/cell-55-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-55-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="coalescent-jointprob_files/figure-html/cell-55-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -2007,7 +1995,7 @@ Cell <span class="ansi-green-fg">In[42], line 1</span>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-59-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="coalescent-jointprob_files/figure-html/cell-59-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-59-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="coalescent-jointprob_files/figure-html/cell-59-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -2099,7 +2087,7 @@ Cell <span class="ansi-green-fg">In[42], line 1</span>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-62-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img src="coalescent-jointprob_files/figure-html/cell-62-output-1.png" width="720" height="330" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-62-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="coalescent-jointprob_files/figure-html/cell-62-output-1.png" width="720" height="330" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3055,7 +3043,7 @@ Cell <span class="ansi-green-fg">In[42], line 1</span>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-73-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img src="coalescent-jointprob_files/figure-html/cell-73-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-73-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img src="coalescent-jointprob_files/figure-html/cell-73-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3506,7 +3494,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-79-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img src="coalescent-jointprob_files/figure-html/cell-79-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-79-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img src="coalescent-jointprob_files/figure-html/cell-79-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3748,7 +3736,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-82-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-25"><img src="coalescent-jointprob_files/figure-html/cell-82-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-82-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img src="coalescent-jointprob_files/figure-html/cell-82-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3774,7 +3762,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-84-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-26"><img src="coalescent-jointprob_files/figure-html/cell-84-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-84-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-25"><img src="coalescent-jointprob_files/figure-html/cell-84-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -3816,7 +3804,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-86-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-27"><img src="coalescent-jointprob_files/figure-html/cell-86-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-86-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-26"><img src="coalescent-jointprob_files/figure-html/cell-86-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4069,7 +4057,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-100-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28"><img src="coalescent-jointprob_files/figure-html/cell-100-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-100-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27"><img src="coalescent-jointprob_files/figure-html/cell-100-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4186,7 +4174,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-102-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29"><img src="coalescent-jointprob_files/figure-html/cell-102-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-102-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28"><img src="coalescent-jointprob_files/figure-html/cell-102-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4205,7 +4193,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-104-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30"><img src="coalescent-jointprob_files/figure-html/cell-104-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-104-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29"><img src="coalescent-jointprob_files/figure-html/cell-104-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4223,7 +4211,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-106-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-31"><img src="coalescent-jointprob_files/figure-html/cell-106-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-106-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30"><img src="coalescent-jointprob_files/figure-html/cell-106-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4249,7 +4237,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-109-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32"><img src="coalescent-jointprob_files/figure-html/cell-109-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-109-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-31"><img src="coalescent-jointprob_files/figure-html/cell-109-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4270,7 +4258,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-111-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-33"><img src="coalescent-jointprob_files/figure-html/cell-111-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-111-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32"><img src="coalescent-jointprob_files/figure-html/cell-111-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -4287,7 +4275,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-112-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34"><img src="coalescent-jointprob_files/figure-html/cell-112-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-112-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-33"><img src="coalescent-jointprob_files/figure-html/cell-112-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -5420,7 +5408,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-119-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35"><img src="coalescent-jointprob_files/figure-html/cell-119-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-119-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34"><img src="coalescent-jointprob_files/figure-html/cell-119-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -5439,7 +5427,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-120-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-36"><img src="coalescent-jointprob_files/figure-html/cell-120-output-1.png" width="420" height="300" class="figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-120-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35"><img src="coalescent-jointprob_files/figure-html/cell-120-output-1.png" width="420" height="300" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -5622,7 +5610,7 @@ Traceback:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="coalescent-jointprob_files/figure-html/cell-121-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-37"><img src="coalescent-jointprob_files/figure-html/cell-121-output-1.svg" class="img-fluid figure-img"></a></p>
+<p><a href="coalescent-jointprob_files/figure-html/cell-121-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-36"><img src="coalescent-jointprob_files/figure-html/cell-121-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
