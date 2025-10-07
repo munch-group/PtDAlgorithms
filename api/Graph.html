@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../api/Vertex.html" rel="next">
+<link href="../api/compute_pmf_ffi.html" rel="next">
 <link href="../api/index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -106,35 +106,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../api/_styles-quartodoc.css">
 <link rel="stylesheet" href="../styles.css">
@@ -189,7 +160,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/Graph.html">Some section</a></li><li class="breadcrumb-item"><a href="../api/Graph.html">Graph</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/Graph.html">Graph Construction</a></li><li class="breadcrumb-item"><a href="../api/Graph.html">Graph</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -214,7 +185,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Some section</span></a>
+ <span class="menu-text">Graph Construction</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -226,16 +197,127 @@ window.Quarto = {
  <span class="menu-text">Graph</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">JAX-compatible utils</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/Vertex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Vertex</span></a>
+  <a href="../api/compute_pmf_ffi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">compute_pmf_ffi</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../api/Edge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Edge</span></a>
+  <a href="../api/compute_moments_ffi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">compute_moments_ffi</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/compute_pmf_and_moments_ffi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">compute_pmf_and_moments_ffi</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Inference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/SVGD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SVGD</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Distributed Computing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/DistributedConfig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DistributedConfig</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/initialize_distributed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">initialize_distributed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/detect_slurm_environment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">detect_slurm_environment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/get_coordinator_address.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">get_coordinator_address</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/configure_jax_devices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">configure_jax_devices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/initialize_jax_distributed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">initialize_jax_distributed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/ClusterConfig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ClusterConfig</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/load_config.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">load_config</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/get_default_config.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">get_default_config</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/validate_config.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">validate_config</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../api/suggest_config.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">suggest_config</span></a>
   </div>
 </li>
       </ul>
@@ -254,62 +336,36 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
-  <li><a href="#ptdalgorithms.Graph.accumulated_visiting_time" id="toc-ptdalgorithms.Graph.accumulated_visiting_time" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.accumulated_visiting_time">accumulated_visiting_time</a></li>
-  <li><a href="#ptdalgorithms.Graph.accumulated_visits_discrete" id="toc-ptdalgorithms.Graph.accumulated_visits_discrete" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.accumulated_visits_discrete">accumulated_visits_discrete</a></li>
   <li><a href="#ptdalgorithms.Graph.as_matrices" id="toc-ptdalgorithms.Graph.as_matrices" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.as_matrices">as_matrices</a></li>
-  <li><a href="#ptdalgorithms.Graph.cdf" id="toc-ptdalgorithms.Graph.cdf" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.cdf">cdf</a></li>
-  <li><a href="#ptdalgorithms.Graph.cdf_discrete" id="toc-ptdalgorithms.Graph.cdf_discrete" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.cdf_discrete">cdf_discrete</a></li>
-  <li><a href="#ptdalgorithms.Graph.clone" id="toc-ptdalgorithms.Graph.clone" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.clone">clone</a></li>
-  <li><a href="#ptdalgorithms.Graph.covariance" id="toc-ptdalgorithms.Graph.covariance" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.covariance">covariance</a></li>
-  <li><a href="#ptdalgorithms.Graph.covariance_discrete" id="toc-ptdalgorithms.Graph.covariance_discrete" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.covariance_discrete">covariance_discrete</a></li>
-  <li><a href="#ptdalgorithms.Graph.create_vertex" id="toc-ptdalgorithms.Graph.create_vertex" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.create_vertex">create_vertex</a></li>
-  <li><a href="#ptdalgorithms.Graph.defect" id="toc-ptdalgorithms.Graph.defect" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.defect">defect</a></li>
-  <li><a href="#ptdalgorithms.Graph.distribution_context" id="toc-ptdalgorithms.Graph.distribution_context" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.distribution_context">distribution_context</a></li>
-  <li><a href="#ptdalgorithms.Graph.distribution_context_discrete" id="toc-ptdalgorithms.Graph.distribution_context_discrete" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.distribution_context_discrete">distribution_context_discrete</a></li>
-  <li><a href="#ptdalgorithms.Graph.expectation" id="toc-ptdalgorithms.Graph.expectation" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.expectation">expectation</a></li>
-  <li><a href="#ptdalgorithms.Graph.expectation_dag" id="toc-ptdalgorithms.Graph.expectation_dag" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.expectation_dag">expectation_dag</a></li>
-  <li><a href="#ptdalgorithms.Graph.expectation_discrete" id="toc-ptdalgorithms.Graph.expectation_discrete" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.expectation_discrete">expectation_discrete</a></li>
-  <li><a href="#ptdalgorithms.Graph.expected_residence_time" id="toc-ptdalgorithms.Graph.expected_residence_time" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.expected_residence_time">expected_residence_time</a></li>
-  <li><a href="#ptdalgorithms.Graph.expected_visits_discrete" id="toc-ptdalgorithms.Graph.expected_visits_discrete" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.expected_visits_discrete">expected_visits_discrete</a></li>
-  <li><a href="#ptdalgorithms.Graph.expected_waiting_time" id="toc-ptdalgorithms.Graph.expected_waiting_time" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.expected_waiting_time">expected_waiting_time</a></li>
-  <li><a href="#ptdalgorithms.Graph.find_or_create_vertex" id="toc-ptdalgorithms.Graph.find_or_create_vertex" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.find_or_create_vertex">find_or_create_vertex</a></li>
-  <li><a href="#ptdalgorithms.Graph.find_vertex" id="toc-ptdalgorithms.Graph.find_vertex" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.find_vertex">find_vertex</a></li>
-  <li><a href="#ptdalgorithms.Graph.focv" id="toc-ptdalgorithms.Graph.focv" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.focv">focv</a></li>
-  <li><a href="#ptdalgorithms.Graph.is_acyclic" id="toc-ptdalgorithms.Graph.is_acyclic" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.is_acyclic">is_acyclic</a></li>
-  <li><a href="#ptdalgorithms.Graph.moments" id="toc-ptdalgorithms.Graph.moments" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.moments">moments</a></li>
-  <li><a href="#ptdalgorithms.Graph.normalize" id="toc-ptdalgorithms.Graph.normalize" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.normalize">normalize</a></li>
-  <li><a href="#ptdalgorithms.Graph.normalize_discrete" id="toc-ptdalgorithms.Graph.normalize_discrete" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.normalize_discrete">normalize_discrete</a></li>
-  <li><a href="#ptdalgorithms.Graph.notify_change" id="toc-ptdalgorithms.Graph.notify_change" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.notify_change">notify_change</a></li>
-  <li><a href="#ptdalgorithms.Graph.pdf" id="toc-ptdalgorithms.Graph.pdf" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.pdf">pdf</a></li>
-  <li><a href="#ptdalgorithms.Graph.pmf_discrete" id="toc-ptdalgorithms.Graph.pmf_discrete" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.pmf_discrete">pmf_discrete</a></li>
-  <li><a href="#ptdalgorithms.Graph.random_sample_discrete_stop_vertex" id="toc-ptdalgorithms.Graph.random_sample_discrete_stop_vertex" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.random_sample_discrete_stop_vertex">random_sample_discrete_stop_vertex</a></li>
-  <li><a href="#ptdalgorithms.Graph.random_sample_stop_vertex" id="toc-ptdalgorithms.Graph.random_sample_stop_vertex" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.random_sample_stop_vertex">random_sample_stop_vertex</a></li>
-  <li><a href="#ptdalgorithms.Graph.reward_transform" id="toc-ptdalgorithms.Graph.reward_transform" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.reward_transform">reward_transform</a></li>
-  <li><a href="#ptdalgorithms.Graph.reward_transform_discrete" id="toc-ptdalgorithms.Graph.reward_transform_discrete" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.reward_transform_discrete">reward_transform_discrete</a></li>
-  <li><a href="#ptdalgorithms.Graph.sample" id="toc-ptdalgorithms.Graph.sample" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.sample">sample</a></li>
-  <li><a href="#ptdalgorithms.Graph.sample_discrete" id="toc-ptdalgorithms.Graph.sample_discrete" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.sample_discrete">sample_discrete</a></li>
-  <li><a href="#ptdalgorithms.Graph.sample_multivariate" id="toc-ptdalgorithms.Graph.sample_multivariate" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.sample_multivariate">sample_multivariate</a></li>
-  <li><a href="#ptdalgorithms.Graph.sample_multivariate_discrete" id="toc-ptdalgorithms.Graph.sample_multivariate_discrete" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.sample_multivariate_discrete">sample_multivariate_discrete</a></li>
-  <li><a href="#ptdalgorithms.Graph.starting_vertex" id="toc-ptdalgorithms.Graph.starting_vertex" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.starting_vertex">starting_vertex</a></li>
-  <li><a href="#ptdalgorithms.Graph.state_length" id="toc-ptdalgorithms.Graph.state_length" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.state_length">state_length</a></li>
-  <li><a href="#ptdalgorithms.Graph.states" id="toc-ptdalgorithms.Graph.states" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.states">states</a></li>
-  <li><a href="#ptdalgorithms.Graph.stop_probability" id="toc-ptdalgorithms.Graph.stop_probability" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.stop_probability">stop_probability</a></li>
-  <li><a href="#ptdalgorithms.Graph.stop_probability_discrete" id="toc-ptdalgorithms.Graph.stop_probability_discrete" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.stop_probability_discrete">stop_probability_discrete</a></li>
-  <li><a href="#ptdalgorithms.Graph.update_parameterized_weights" id="toc-ptdalgorithms.Graph.update_parameterized_weights" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.update_parameterized_weights">update_parameterized_weights</a></li>
-  <li><a href="#ptdalgorithms.Graph.validate" id="toc-ptdalgorithms.Graph.validate" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.validate">validate</a></li>
-  <li><a href="#ptdalgorithms.Graph.variance" id="toc-ptdalgorithms.Graph.variance" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.variance">variance</a></li>
-  <li><a href="#ptdalgorithms.Graph.variance_discrete" id="toc-ptdalgorithms.Graph.variance_discrete" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.variance_discrete">variance_discrete</a></li>
-  <li><a href="#ptdalgorithms.Graph.vertex_at" id="toc-ptdalgorithms.Graph.vertex_at" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.vertex_at">vertex_at</a></li>
-  <li><a href="#ptdalgorithms.Graph.vertex_exists" id="toc-ptdalgorithms.Graph.vertex_exists" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.vertex_exists">vertex_exists</a></li>
-  <li><a href="#ptdalgorithms.Graph.vertices" id="toc-ptdalgorithms.Graph.vertices" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.vertices">vertices</a></li>
-  <li><a href="#ptdalgorithms.Graph.vertices_length" id="toc-ptdalgorithms.Graph.vertices_length" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.vertices_length">vertices_length</a></li>
+  <li><a href="#ptdalgorithms.Graph.copy" id="toc-ptdalgorithms.Graph.copy" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.copy">copy</a></li>
+  <li><a href="#ptdalgorithms.Graph.discretize" id="toc-ptdalgorithms.Graph.discretize" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.discretize">discretize</a></li>
+  <li><a href="#ptdalgorithms.Graph.from_matrices" id="toc-ptdalgorithms.Graph.from_matrices" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.from_matrices">from_matrices</a></li>
+  <li><a href="#ptdalgorithms.Graph.make_discrete" id="toc-ptdalgorithms.Graph.make_discrete" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.make_discrete">make_discrete</a></li>
+  <li><a href="#ptdalgorithms.Graph.moments_from_graph" id="toc-ptdalgorithms.Graph.moments_from_graph" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.moments_from_graph">moments_from_graph</a></li>
+  <li><a href="#ptdalgorithms.Graph.plot" id="toc-ptdalgorithms.Graph.plot" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.plot">plot</a></li>
+  <li><a href="#ptdalgorithms.Graph.pmf_and_moments_from_graph" id="toc-ptdalgorithms.Graph.pmf_and_moments_from_graph" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.pmf_and_moments_from_graph">pmf_and_moments_from_graph</a></li>
+  <li><a href="#ptdalgorithms.Graph.pmf_from_cpp" id="toc-ptdalgorithms.Graph.pmf_from_cpp" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.pmf_from_cpp">pmf_from_cpp</a></li>
   </ul></li>
+  </ul></li>
+  <li><a href="#jax-compatible-approach-default---for-svgd-gradients-optimization" id="toc-jax-compatible-approach-default---for-svgd-gradients-optimization" class="nav-link" data-scroll-target="#jax-compatible-approach-default---for-svgd-gradients-optimization">JAX-compatible approach (default - for SVGD, gradients, optimization)</a></li>
+  <li><a href="#discrete-phase-type-distribution" id="toc-discrete-phase-type-distribution" class="nav-link" data-scroll-target="#discrete-phase-type-distribution">Discrete phase-type distribution</a></li>
+  <li><a href="#for-direct-c-access-without-jax-faster-for-repeated-evaluations" id="toc-for-direct-c-access-without-jax-faster-for-repeated-evaluations" class="nav-link" data-scroll-target="#for-direct-c-access-without-jax-faster-for-repeated-evaluations">For direct C++ access without JAX (faster for repeated evaluations):</a>
+  <ul class="collapse">
+  <li><a href="#ptdalgorithms.Graph.pmf_from_graph" id="toc-ptdalgorithms.Graph.pmf_from_graph" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.pmf_from_graph">pmf_from_graph</a></li>
+  </ul></li>
+  <li><a href="#non-parameterized-graph-regular-edges-only" id="toc-non-parameterized-graph-regular-edges-only" class="nav-link" data-scroll-target="#non-parameterized-graph-regular-edges-only">Non-parameterized graph (regular edges only)</a></li>
+  <li><a href="#parameterized-graph-with-edge-states-for-gradient-support" id="toc-parameterized-graph-with-edge-states-for-gradient-support" class="nav-link" data-scroll-target="#parameterized-graph-with-edge-states-for-gradient-support">Parameterized graph (with edge states for gradient support)</a></li>
+  <li><a href="#for-direct-c-access-no-jax-overhead-use-graph-methods" id="toc-for-direct-c-access-no-jax-overhead-use-graph-methods" class="nav-link" data-scroll-target="#for-direct-c-access-no-jax-overhead-use-graph-methods">For direct C++ access (no JAX overhead), use graph methods:</a>
+  <ul class="collapse">
+  <li><a href="#ptdalgorithms.Graph.pmf_from_graph_parameterized" id="toc-ptdalgorithms.Graph.pmf_from_graph_parameterized" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.pmf_from_graph_parameterized">pmf_from_graph_parameterized</a></li>
+  <li><a href="#ptdalgorithms.Graph.serialize" id="toc-ptdalgorithms.Graph.serialize" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.serialize">serialize</a></li>
+  <li><a href="#ptdalgorithms.Graph.svgd" id="toc-ptdalgorithms.Graph.svgd" class="nav-link" data-scroll-target="#ptdalgorithms.Graph.svgd">svgd</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/Graph.html">Some section</a></li><li class="breadcrumb-item"><a href="../api/Graph.html">Graph</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../api/Graph.html">Graph Construction</a></li><li class="breadcrumb-item"><a href="../api/Graph.html">Graph</a></li></ol></nav></header>
 
 
 
@@ -317,12 +373,11 @@ window.Quarto = {
 <section id="ptdalgorithms.Graph" class="level1">
 <h1>Graph</h1>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    state_length<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    callback<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    initial<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    trans_as_dict<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    state_length<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    callback<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    parameterized<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span>kwargs,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <table class="caption-top table">
@@ -334,459 +389,658 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="#ptdalgorithms.Graph.accumulated_visiting_time">accumulated_visiting_time</a></td>
-<td>accumulated_visiting_time(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, time: float, granularity: int = 0) -&gt; list[float]</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.accumulated_visits_discrete">accumulated_visits_discrete</a></td>
-<td>accumulated_visits_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: int) -&gt; list[float]</td>
-</tr>
-<tr class="odd">
 <td><a href="#ptdalgorithms.Graph.as_matrices">as_matrices</a></td>
-<td>as_matrices(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; ptdalgorithms.ptdalgorithmscpp_pybind.MatrixRepresentation</td>
+<td>Convert the graph to its matrix representation.</td>
 </tr>
 <tr class="even">
-<td><a href="#ptdalgorithms.Graph.cdf">cdf</a></td>
-<td>cdf(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, time: numpy.ndarray[numpy.float32], granularity: numpy.ndarray[numpy.int32] = 0) -&gt; object</td>
+<td><a href="#ptdalgorithms.Graph.copy">copy</a></td>
+<td>Returns a deep copy of the graph.</td>
 </tr>
 <tr class="odd">
-<td><a href="#ptdalgorithms.Graph.cdf_discrete">cdf_discrete</a></td>
-<td>cdf_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: numpy.ndarray[numpy.int32]) -&gt; object</td>
+<td><a href="#ptdalgorithms.Graph.discretize">discretize</a></td>
+<td>Creates a graph for a discrete distribution from a continuous one.</td>
 </tr>
 <tr class="even">
-<td><a href="#ptdalgorithms.Graph.clone">clone</a></td>
-<td>clone(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; ptdalgorithms.ptdalgorithmscpp_pybind.Graph</td>
+<td><a href="#ptdalgorithms.Graph.from_matrices">from_matrices</a></td>
+<td>Construct a Graph from matrix representation.</td>
 </tr>
 <tr class="odd">
-<td><a href="#ptdalgorithms.Graph.covariance">covariance</a></td>
-<td>covariance(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards1: list[float], rewards2: list[float]) -&gt; float</td>
+<td><a href="#ptdalgorithms.Graph.make_discrete">make_discrete</a></td>
+<td>Takes a graph for a continuous distribution and turns</td>
 </tr>
 <tr class="even">
-<td><a href="#ptdalgorithms.Graph.covariance_discrete">covariance_discrete</a></td>
-<td>covariance_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards1: list[float], rewards2: list[float]) -&gt; float</td>
+<td><a href="#ptdalgorithms.Graph.moments_from_graph">moments_from_graph</a></td>
+<td>Convert a parameterized Graph to a JAX-compatible function that computes moments.</td>
 </tr>
 <tr class="odd">
-<td><a href="#ptdalgorithms.Graph.create_vertex">create_vertex</a></td>
-<td>create_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, state: list[int]) -&gt; ptdalgorithms::Vertex</td>
+<td><a href="#ptdalgorithms.Graph.plot">plot</a></td>
+<td>Plots the graph using graphviz. See plot::plot_graph.py for more details.</td>
 </tr>
 <tr class="even">
-<td><a href="#ptdalgorithms.Graph.defect">defect</a></td>
-<td>defect(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; float</td>
+<td><a href="#ptdalgorithms.Graph.pmf_and_moments_from_graph">pmf_and_moments_from_graph</a></td>
+<td>Convert a parameterized Graph to a function that computes both PMF/PDF and moments.</td>
 </tr>
 <tr class="odd">
-<td><a href="#ptdalgorithms.Graph.distribution_context">distribution_context</a></td>
-<td>distribution_context(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, granularity: int = 0) -&gt; ptdalgorithms::ProbabilityDistributionContext</td>
+<td><a href="#ptdalgorithms.Graph.pmf_from_cpp">pmf_from_cpp</a></td>
+<td>Load a phase-type model from a user’s C++ file and return a JAX-compatible function.</td>
 </tr>
 <tr class="even">
-<td><a href="#ptdalgorithms.Graph.distribution_context_discrete">distribution_context_discrete</a></td>
-<td>distribution_context_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; ptdalgorithms::DPHProbabilityDistributionContext</td>
+<td><a href="#ptdalgorithms.Graph.pmf_from_graph">pmf_from_graph</a></td>
+<td>Convert a Python-built Graph to a JAX-compatible function with full gradient support.</td>
 </tr>
 <tr class="odd">
-<td><a href="#ptdalgorithms.Graph.expectation">expectation</a></td>
-<td>expectation(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float] = []) -&gt; float</td>
+<td><a href="#ptdalgorithms.Graph.pmf_from_graph_parameterized">pmf_from_graph_parameterized</a></td>
+<td>Convert a parameterized Python graph builder to a JAX-compatible function.</td>
 </tr>
 <tr class="even">
-<td><a href="#ptdalgorithms.Graph.expectation_dag">expectation_dag</a></td>
-<td>expectation_dag(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float]) -&gt; ptdalgorithms.ptdalgorithmscpp_pybind.Graph</td>
+<td><a href="#ptdalgorithms.Graph.serialize">serialize</a></td>
+<td>Serialize graph to array representation for efficient computation.</td>
 </tr>
 <tr class="odd">
-<td><a href="#ptdalgorithms.Graph.expectation_discrete">expectation_discrete</a></td>
-<td>expectation_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, arg0: list[float]) -&gt; float</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.expected_residence_time">expected_residence_time</a></td>
-<td>expected_residence_time(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float] = []) -&gt; list[float]</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.expected_visits_discrete">expected_visits_discrete</a></td>
-<td>expected_visits_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: int) -&gt; list[float]</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.expected_waiting_time">expected_waiting_time</a></td>
-<td>expected_waiting_time(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float] = []) -&gt; list[float]</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.find_or_create_vertex">find_or_create_vertex</a></td>
-<td>find_or_create_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, state: list[int]) -&gt; ptdalgorithms::Vertex</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.find_vertex">find_vertex</a></td>
-<td>find_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, state: list[int]) -&gt; ptdalgorithms::Vertex</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.focv">focv</a></td>
-<td>focv(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, state: list[int]) -&gt; ptdalgorithms::Vertex</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.is_acyclic">is_acyclic</a></td>
-<td>is_acyclic(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; bool</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.moments">moments</a></td>
-<td>moments(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, power: int, rewards: list[float] = []) -&gt; list[float]</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.normalize">normalize</a></td>
-<td>normalize(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; list[float]</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.normalize_discrete">normalize_discrete</a></td>
-<td>normalize_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; list[float]</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.notify_change">notify_change</a></td>
-<td>notify_change(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; None</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.pdf">pdf</a></td>
-<td>pdf(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, time: numpy.ndarray[numpy.float32], granularity: numpy.ndarray[numpy.int32] = 0) -&gt; object</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.pmf_discrete">pmf_discrete</a></td>
-<td>pmf_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: numpy.ndarray[numpy.int32]) -&gt; object</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.random_sample_discrete_stop_vertex">random_sample_discrete_stop_vertex</a></td>
-<td>random_sample_discrete_stop_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: int) -&gt; int</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.random_sample_stop_vertex">random_sample_stop_vertex</a></td>
-<td>random_sample_stop_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, time: float) -&gt; int</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.reward_transform">reward_transform</a></td>
-<td>reward_transform(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float]) -&gt; ptdalgorithms.ptdalgorithmscpp_pybind.Graph</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.reward_transform_discrete">reward_transform_discrete</a></td>
-<td>reward_transform_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[int]) -&gt; ptdalgorithms.ptdalgorithmscpp_pybind.Graph</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.sample">sample</a></td>
-<td>sample(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, n: int = 1, rewards: list[float] = []) -&gt; list[float]</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.sample_discrete">sample_discrete</a></td>
-<td>sample_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, n: int = 1, rewards: list[float] = []) -&gt; list[float]</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.sample_multivariate">sample_multivariate</a></td>
-<td>sample_multivariate(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, n: int = 1, rewards: numpy.ndarray[numpy.float64[m, n]] = []) -&gt; numpy.ndarray[numpy.float64[m, n]]</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.sample_multivariate_discrete">sample_multivariate_discrete</a></td>
-<td>sample_multivariate_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, n: int = 1, rewards: numpy.ndarray[numpy.float64[m, n]] = []) -&gt; numpy.ndarray[numpy.float64[m, n]]</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.starting_vertex">starting_vertex</a></td>
-<td>starting_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; ptdalgorithms::Vertex</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.state_length">state_length</a></td>
-<td>state_length(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; int</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.states">states</a></td>
-<td>states(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; numpy.ndarray[numpy.int32[m, n]]</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.stop_probability">stop_probability</a></td>
-<td>stop_probability(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, time: float, granularity: int = 0) -&gt; list[float]</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.stop_probability_discrete">stop_probability_discrete</a></td>
-<td>stop_probability_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: int) -&gt; list[float]</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.update_parameterized_weights">update_parameterized_weights</a></td>
-<td>update_parameterized_weights(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float]) -&gt; None</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.validate">validate</a></td>
-<td>validate(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; None</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.variance">variance</a></td>
-<td>variance(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float] = []) -&gt; float</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.variance_discrete">variance_discrete</a></td>
-<td>variance_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, arg0: list[float]) -&gt; float</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.vertex_at">vertex_at</a></td>
-<td>vertex_at(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, index: int) -&gt; ptdalgorithms::Vertex</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.vertex_exists">vertex_exists</a></td>
-<td>vertex_exists(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, state: list[int]) -&gt; bool</td>
-</tr>
-<tr class="even">
-<td><a href="#ptdalgorithms.Graph.vertices">vertices</a></td>
-<td>vertices(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; list[ptdalgorithms::Vertex]</td>
-</tr>
-<tr class="odd">
-<td><a href="#ptdalgorithms.Graph.vertices_length">vertices_length</a></td>
-<td>vertices_length(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; int</td>
+<td><a href="#ptdalgorithms.Graph.svgd">svgd</a></td>
+<td>Run Stein Variational Gradient Descent (SVGD) inference for Bayesian parameter estimation.</td>
 </tr>
 </tbody>
 </table>
-<section id="ptdalgorithms.Graph.accumulated_visiting_time" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.accumulated_visiting_time">accumulated_visiting_time</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.accumulated_visiting_time()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>accumulated_visiting_time(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, time: float, granularity: int = 0) -&gt; list[float]</p>
-</section>
-<section id="ptdalgorithms.Graph.accumulated_visits_discrete" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.accumulated_visits_discrete">accumulated_visits_discrete</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.accumulated_visits_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>accumulated_visits_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: int) -&gt; list[float]</p>
-</section>
 <section id="ptdalgorithms.Graph.as_matrices" class="level3">
 <h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.as_matrices">as_matrices</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.as_matrices()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>as_matrices(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; ptdalgorithms.ptdalgorithmscpp_pybind.MatrixRepresentation</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.as_matrices()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Convert the graph to its matrix representation.</p>
+<p>Returns a NamedTuple containing the traditional phase-type distribution matrices and associated information.</p>
+<section id="returns" class="level4 doc-section doc-section-returns">
+<h4 class="doc-section doc-section-returns anchored" data-anchor-id="returns">Returns</h4>
+<dl>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>MatrixRepresentation</code></span></code></dt>
+<dd>
+<p>NamedTuple with the following attributes: - states: np.ndarray of shape (n_states, state_dim), dtype=int32 State vector for each vertex - sim: np.ndarray of shape (n_states, n_states), dtype=float64 Sub-intensity matrix - ipv: np.ndarray of shape (n_states,), dtype=float64 Initial probability vector - indices: np.ndarray of shape (n_states,), dtype=int32 1-based indices for vertices (for use with vertex_at())</p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.cdf" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.cdf">cdf</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.cdf()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>cdf(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, time: numpy.ndarray[numpy.float32], granularity: numpy.ndarray[numpy.int32] = 0) -&gt; object</p>
+<section id="examples" class="level4 doc-section doc-section-examples">
+<h4 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> g <span class="op">=</span> Graph(<span class="dv">1</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> start <span class="op">=</span> g.starting_vertex()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> v1 <span class="op">=</span> g.find_or_create_vertex([<span class="dv">1</span>])</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> v2 <span class="op">=</span> g.find_or_create_vertex([<span class="dv">2</span>])</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> start.add_edge(v1, <span class="fl">1.0</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> v1.add_edge(v2, <span class="fl">2.0</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> g.normalize()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> matrices <span class="op">=</span> g.as_matrices()</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(matrices.sim)  <span class="co"># Sub-intensity matrix (attribute access)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(matrices.ipv)  <span class="co"># Initial probability vector</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Can also use index access like a tuple</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> states, sim, ipv, indices <span class="op">=</span> matrices</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="ptdalgorithms.Graph.cdf_discrete" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.cdf_discrete">cdf_discrete</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.cdf_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>cdf_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: numpy.ndarray[numpy.int32]) -&gt; object</p>
 </section>
-<section id="ptdalgorithms.Graph.clone" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.clone">clone</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.clone()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>clone(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; ptdalgorithms.ptdalgorithmscpp_pybind.Graph</p>
+<section id="ptdalgorithms.Graph.copy" class="level3">
+<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.copy">copy</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.copy()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Returns a deep copy of the graph.</p>
 </section>
-<section id="ptdalgorithms.Graph.covariance" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.covariance">covariance</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.covariance()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>covariance(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards1: list[float], rewards2: list[float]) -&gt; float</p>
+<section id="ptdalgorithms.Graph.discretize" class="level3">
+<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.discretize">discretize</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.discretize(reward_rate, skip_states<span class="op">=</span>[], skip_slots<span class="op">=</span>[])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Creates a graph for a discrete distribution from a continuous one.</p>
+<pre><code>    Creates a graph augmented with auxiliary vertices and edges to represent the discrete distribution. </code></pre>
+<section id="parameters" class="level4 doc-section doc-section---------parameters">
+<h4 class="doc-section doc-section---------parameters anchored" data-anchor-id="parameters">Parameters</h4>
+<pre><code>    reward_rate : 
+        Rate of discrete events.
+    skip_states : 
+        Vertex indices to not add auxiliary states to, by default []
+    skip_slots : 
+        State vector indices to not add rewards to, by default []</code></pre>
 </section>
-<section id="ptdalgorithms.Graph.covariance_discrete" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.covariance_discrete">covariance_discrete</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.covariance_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>covariance_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards1: list[float], rewards2: list[float]) -&gt; float</p>
+<section id="returns-1" class="level4 doc-section doc-section---------returns">
+<h4 class="doc-section doc-section---------returns anchored" data-anchor-id="returns-1">Returns</h4>
+<pre><code>    :
+        A new graph and a matrix of rewards for computing marginal moments.</code></pre>
 </section>
-<section id="ptdalgorithms.Graph.create_vertex" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.create_vertex">create_vertex</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.create_vertex()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>create_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, state: list[int]) -&gt; ptdalgorithms::Vertex</p>
+<section id="examples-1" class="level4 doc-section doc-section---------examples">
+<h4 class="doc-section doc-section---------examples anchored" data-anchor-id="examples-1">Examples</h4>
+<pre><code>    &gt;&gt;&gt; from ptdalgorithms import Graph
+    &gt;&gt;&gt; def callback(state):
+    ...     return [(state[0] + 1, [(state[0], 1)])]
+    &gt;&gt;&gt; g = Graph(callback=callback)
+    &gt;&gt;&gt; g.discretize(0.1)
+    &gt;&gt;&gt; a = [1, 2, 3]
+    &gt;&gt;&gt; print([x + 3 for x in a])
+    [4, 5, 6]
+    &gt;&gt;&gt; print("a</code></pre>
+<p>b”) a b</p>
 </section>
-<section id="ptdalgorithms.Graph.defect" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.defect">defect</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.defect()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>defect(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; float</p>
 </section>
-<section id="ptdalgorithms.Graph.distribution_context" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.distribution_context">distribution_context</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.distribution_context()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>distribution_context(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, granularity: int = 0) -&gt; ptdalgorithms::ProbabilityDistributionContext</p>
+<section id="ptdalgorithms.Graph.from_matrices" class="level3">
+<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.from_matrices">from_matrices</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.from_matrices(ipv, sim, states<span class="op">=</span><span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Construct a Graph from matrix representation.</p>
+<section id="parameters-1" class="level4 doc-section doc-section-parameters">
+<h4 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters-1">Parameters</h4>
+<dl>
+<dt><code><span class="parameter-name"><strong>ipv</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>np</code>.<code>ndarray</code></span></code></dt>
+<dd>
+<p>Initial probability vector, shape (n_states,)</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>sim</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>np</code>.<code>ndarray</code></span></code></dt>
+<dd>
+<p>Sub-intensity matrix, shape (n_states, n_states)</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>states</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>np</code>.<code>ndarray</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
+<dd>
+<p>State vectors, shape (n_states, state_dim), dtype=int32 If None, uses default states [0], [1], [2], …</p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.distribution_context_discrete" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.distribution_context_discrete">distribution_context_discrete</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.distribution_context_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>distribution_context_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; ptdalgorithms::DPHProbabilityDistributionContext</p>
+<section id="returns-2" class="level4 doc-section doc-section-returns">
+<h4 class="doc-section doc-section-returns anchored" data-anchor-id="returns-2">Returns</h4>
+<dl>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>Graph</code></span></code></dt>
+<dd>
+<p>The reconstructed phase-type distribution graph</p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.expectation" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.expectation">expectation</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expectation()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>expectation(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float] = []) -&gt; float</p>
-<p>//’ Computes the expectation (mean) of the phase-type distribution //’ //’ <span class="citation" data-cites="description">@description</span> //’ This function invokes [ptdalgorithms::expected_waiting_times()] //’ and takes the first entry (from starting vertex) //’ //’ <span class="citation" data-cites="return">@return</span> The expectation of the distribution //’ //’ <span class="citation" data-cites="param">@param</span> phase_type_graph A reference to the graph created by [ptdalgorithms::create_graph()] //’ <span class="citation" data-cites="param">@param</span> rewards Optional rewards, which should be applied to the phase-type distribution. Must have length equal to [ptdalgorithms::vertices_length()] //’ //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::expected_waiting_time()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::moments()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::variance()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::covariance()]</span> //’ //’ <span class="citation" data-cites="examples">@examples</span> //’ graph &lt;- ptdalgorithms::create_graph(4) //’ v1 &lt;- ptdalgorithms::create_vertex(graph, c(1,2,3,4)) //’ v2 &lt;- ptdalgorithms::create_vertex(graph, c(4,0,3,3)) //’ a &lt;- ptdalgorithms::create_vertex(graph, c(0,0,0,0)) //’ ptdalgorithms::add_edge(ptdalgorithms::starting_vertex(graph), v1, 1) //’ ptdalgorithms::add_edge(v1, v2, 4) //’ ptdalgorithms::add_edge(v2, a, 10) //’ ptdalgorithms::expectation(graph) # =&gt; //’ 0.35 //’ ptdalgorithms::expectation(graph, c(0,2,1,0)) # =&gt; //’ 0.6 //’ ph &lt;- ptdalgorithms::graph_as_matrix(graph) //’ # This is a much faster version of //’ ph<span class="math inline">\(IPV%*%solve(-ph\)</span>SIM) %<em>% rep(1, length(ph<span class="math inline">\(IPV)) # =&gt;
-//'   0.35
-//' ph\)</span>IPV%</em>%solve(-ph<span class="math inline">\(SIM) %*% diag(c(2,1))%*% rep(1, length(ph\)</span>IPV)) # =&gt; //’ 0.35</p>
+<section id="examples-2" class="level4 doc-section doc-section-examples">
+<h4 class="doc-section doc-section-examples anchored" data-anchor-id="examples-2">Examples</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> ipv <span class="op">=</span> np.array([<span class="fl">0.6</span>, <span class="fl">0.4</span>])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> sim <span class="op">=</span> np.array([[<span class="op">-</span><span class="fl">2.0</span>, <span class="fl">1.0</span>], [<span class="fl">0.0</span>, <span class="op">-</span><span class="fl">3.0</span>]])</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> g <span class="op">=</span> Graph.from_matrices(ipv, sim)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> pdf <span class="op">=</span> g.pdf(<span class="fl">1.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="ptdalgorithms.Graph.expectation_dag" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.expectation_dag">expectation_dag</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expectation_dag()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>expectation_dag(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float]) -&gt; ptdalgorithms.ptdalgorithmscpp_pybind.Graph</p>
 </section>
-<section id="ptdalgorithms.Graph.expectation_discrete" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.expectation_discrete">expectation_discrete</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expectation_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>expectation_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, arg0: list[float]) -&gt; float</p>
+<section id="ptdalgorithms.Graph.make_discrete" class="level3">
+<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.make_discrete">make_discrete</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.make_discrete(mutation_rate, skip_states<span class="op">=</span>[], skip_slots<span class="op">=</span>[])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Takes a graph for a continuous distribution and turns it into a descrete one (inplace). Returns a matrix of rewards for computing marginal moments</p>
 </section>
-<section id="ptdalgorithms.Graph.expected_residence_time" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.expected_residence_time">expected_residence_time</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expected_residence_time()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>expected_residence_time(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float] = []) -&gt; list[float]</p>
+<section id="ptdalgorithms.Graph.moments_from_graph" class="level3">
+<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.moments_from_graph">moments_from_graph</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.moments_from_graph(graph, nr_moments<span class="op">=</span><span class="dv">2</span>, use_ffi<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Convert a parameterized Graph to a JAX-compatible function that computes moments.</p>
+<p>This method creates a function that computes the first <code>nr_moments</code> moments of the phase-type distribution: [E[T], E[T^2], …, E[T^nr_moments]].</p>
+<p>Moments are computed using the existing C++ <code>graph.moments(power)</code> method for efficiency.</p>
+<section id="parameters-2" class="level4 doc-section doc-section-parameters">
+<h4 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters-2">Parameters</h4>
+<dl>
+<dt><code><span class="parameter-name"><strong>graph</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>Graph</code></span></code></dt>
+<dd>
+<p>Parameterized graph built using the Python API with parameterized edges. Must have edges created with <code>add_edge_parameterized()</code>.</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>nr_moments</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>int</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">2</span></code></dt>
+<dd>
+<p>Number of moments to compute. For example: - 1: Returns [E[T]] (mean only) - 2: Returns [E[T], E[T^2]] (mean and second moment) - 3: Returns [E[T], E[T^2], E[T^3]]</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>use_ffi</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>bool</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">False</span></code></dt>
+<dd>
+<p>If True, uses Foreign Function Interface approach.</p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.expected_visits_discrete" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.expected_visits_discrete">expected_visits_discrete</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expected_visits_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>expected_visits_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: int) -&gt; list[float]</p>
+<section id="returns-3" class="level4 doc-section doc-section-returns">
+<h4 class="doc-section doc-section-returns anchored" data-anchor-id="returns-3">Returns</h4>
+<dl>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>callable</code></span></code></dt>
+<dd>
+<p>JAX-compatible function with signature: moments_fn(theta) -&gt; jnp.array(nr_moments,) Returns array of moments: [E[T], E[T^2], …, E[T^k]]</p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.expected_waiting_time" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.expected_waiting_time">expected_waiting_time</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.expected_waiting_time()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>expected_waiting_time(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float] = []) -&gt; list[float]</p>
+<section id="examples-3" class="level4 doc-section doc-section-examples">
+<h4 class="doc-section doc-section-examples anchored" data-anchor-id="examples-3">Examples</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Create parameterized coalescent model</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> coalescent(state, nr_samples<span class="op">=</span><span class="dv">2</span>):</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">if</span> <span class="bu">len</span>(state) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> [(np.array([nr_samples]), <span class="fl">1.0</span>, [<span class="fl">1.0</span>])]</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">if</span> state[<span class="dv">0</span>] <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>...         n <span class="op">=</span> state[<span class="dv">0</span>]</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>...         rate <span class="op">=</span> n <span class="op">*</span> (n <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> [(np.array([n<span class="op">-</span><span class="dv">1</span>]), <span class="fl">0.0</span>, [rate])]</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">return</span> []</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> moments_fn <span class="op">=</span> Graph.moments_from_graph(graph, nr_moments<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Compute moments for given theta</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> theta <span class="op">=</span> jnp.array([<span class="fl">0.5</span>])</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> moments <span class="op">=</span> moments_fn(theta)  <span class="co"># [E[T], E[T^2]]</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="ss">f"Mean: </span><span class="sc">{</span>moments[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">, Second moment: </span><span class="sc">{</span>moments[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Variance can be computed as: Var[T] = E[T^2] - E[T]^2</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> variance <span class="op">=</span> moments[<span class="dv">1</span>] <span class="op">-</span> moments[<span class="dv">0</span>]<span class="op">**</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="ptdalgorithms.Graph.find_or_create_vertex" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.find_or_create_vertex">find_or_create_vertex</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.find_or_create_vertex()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>find_or_create_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, state: list[int]) -&gt; ptdalgorithms::Vertex</p>
-<p>//’ Find or create a vertex matching <code>state</code> //’ //’ <span class="citation" data-cites="description">@description</span> //’ Finds a vertex by the <code>state</code> parameter. If no such //’ vertex exists, it creates the vertex and adds it to //’ the graph object instead. //’ //’ <span class="citation" data-cites="details">@details</span> //’ A faster and simpler version of calling [ptdalgorithms::find_vertex()] and [ptdalgorithms::create_vertex()] //’ //’ <span class="citation" data-cites="return">@return</span> The newly found or inserted vertex in the graph //’ //’ <span class="citation" data-cites="param">@param</span> phase_type_graph A reference to the graph created by [ptdalgorithms::create_graph()] //’ <span class="citation" data-cites="param">@param</span> state An integer vector of what vertex to look for. Has length as given by <code>state_length</code> in [ptdalgorithms::create_graph()] //’ //’ <span class="citation" data-cites="examples">@examples</span> //’ graph &lt;- create_graph(4) //’ find_or_create_vertex(graph, c(1,2,1,0)) # Adds and returns the vertex //’ find_or_create_vertex(graph, c(1,2,1,0)) # Only returns the vertex //’ # <code>graph</code> is now changed permanently</p>
+<section id="notes" class="level4 doc-section doc-section-notes">
+<h4 class="doc-section doc-section-notes anchored" data-anchor-id="notes">Notes</h4>
+<ul>
+<li>Requires graph to have parameterized edges (created with parameterized=True)</li>
+<li>Moments are raw moments, not central moments</li>
+<li>For variance, compute: Var[T] = E[T^2] - E[T]^2</li>
+<li>For standard deviation: std[T] = sqrt(Var[T])</li>
+</ul>
 </section>
-<section id="ptdalgorithms.Graph.find_vertex" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.find_vertex">find_vertex</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.find_vertex()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>find_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, state: list[int]) -&gt; ptdalgorithms::Vertex</p>
 </section>
-<section id="ptdalgorithms.Graph.focv" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.focv">focv</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.focv()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>focv(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, state: list[int]) -&gt; ptdalgorithms::Vertex</p>
-<p>Alias for find_or_create_vertex</p>
+<section id="ptdalgorithms.Graph.plot" class="level3">
+<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.plot">plot</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.plot(<span class="op">*</span>args, <span class="op">**</span>kwargs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Plots the graph using graphviz. See plot::plot_graph.py for more details.</p>
+<section id="returns-4" class="level4 doc-section doc-section-returns">
+<h4 class="doc-section doc-section-returns anchored" data-anchor-id="returns-4">Returns</h4>
+<dl>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"></span></code></dt>
+<dd>
+<p><em>description</em></p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.is_acyclic" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.is_acyclic">is_acyclic</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.is_acyclic()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>is_acyclic(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; bool</p>
 </section>
-<section id="ptdalgorithms.Graph.moments" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.moments">moments</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.moments()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>moments(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, power: int, rewards: list[float] = []) -&gt; list[float]</p>
-<p>//’ Computes the first <code>k</code> moments of the phase-type distribution //’ //’ <span class="citation" data-cites="description">@description</span> //’ This function invokes [ptdalgorithms::expected_waiting_times()] consequtively to find the first moments, //’ given by the <code>power</code> argument //’ //’ <span class="citation" data-cites="return">@return</span> A numeric vector of the first <code>k</code> moments. The first entry is the first moment (mean) //’ //’ <span class="citation" data-cites="param">@param</span> phase_type_graph A reference to the graph created by [ptdalgorithms::create_graph()] //’ <span class="citation" data-cites="param">@param</span> power An integer of the first <code>k</code> moments. //’ <span class="citation" data-cites="param">@param</span> rewards Optional rewards, which should be applied to the phase-type distribution. Must have length equal to [ptdalgorithms::vertices_length()] //’ //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::expected_waiting_time()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::expectation()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::variance()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::covariance()]</span> //’ //’ <span class="citation" data-cites="examples">@examples</span> //’ graph &lt;- ptdalgorithms::create_graph(4) //’ v1 &lt;- ptdalgorithms::create_vertex(graph, c(1,2,3,4)) //’ v2 &lt;- ptdalgorithms::create_vertex(graph, c(4,0,3,3)) //’ a &lt;- ptdalgorithms::create_vertex(graph, c(0,0,0,0)) //’ ptdalgorithms::add_edge(ptdalgorithms::starting_vertex(graph), v1, 1) //’ ptdalgorithms::add_edge(v1, v2, 4) //’ ptdalgorithms::add_edge(v2, a, 10) //’ ptdalgorithms::moments(graph, 3) # =&gt; //’ (0.350000 0.097500 0.025375) //’ ptdalgorithms::moments(graph, 3, c(0,2,1,0)) # =&gt; //’ (0.600 0.160 0.041)</p>
+<section id="ptdalgorithms.Graph.pmf_and_moments_from_graph" class="level3">
+<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.pmf_and_moments_from_graph">pmf_and_moments_from_graph</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.pmf_and_moments_from_graph(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    graph,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    nr_moments<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    discrete<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    use_ffi<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Convert a parameterized Graph to a function that computes both PMF/PDF and moments.</p>
+<p>This is more efficient than calling <code>pmf_from_graph()</code> and <code>moments_from_graph()</code> separately because it builds the graph once and computes both quantities.</p>
+<section id="parameters-3" class="level4 doc-section doc-section-parameters">
+<h4 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters-3">Parameters</h4>
+<dl>
+<dt><code><span class="parameter-name"><strong>graph</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>Graph</code></span></code></dt>
+<dd>
+<p>Parameterized graph built using the Python API with parameterized edges.</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>nr_moments</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>int</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">2</span></code></dt>
+<dd>
+<p>Number of moments to compute</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>discrete</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>bool</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">False</span></code></dt>
+<dd>
+<p>If True, computes discrete PMF. If False, computes continuous PDF.</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>use_ffi</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>bool</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">False</span></code></dt>
+<dd>
+<p>If True, uses Foreign Function Interface approach.</p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.normalize" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.normalize">normalize</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.normalize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>normalize(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; list[float]</p>
+<section id="returns-5" class="level4 doc-section doc-section-returns">
+<h4 class="doc-section doc-section-returns anchored" data-anchor-id="returns-5">Returns</h4>
+<dl>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>callable</code></span></code></dt>
+<dd>
+<p>JAX-compatible function with signature: model(theta, times) -&gt; (pmf_values, moments) Where: - pmf_values: jnp.array(len(times),) - PMF/PDF values at each time - moments: jnp.array(nr_moments,) - [E[T], E[T^2], …, E[T^k]]</p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.normalize_discrete" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.normalize_discrete">normalize_discrete</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.normalize_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>normalize_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; list[float]</p>
+<section id="examples-4" class="level4 doc-section doc-section-examples">
+<h4 class="doc-section doc-section-examples anchored" data-anchor-id="examples-4">Examples</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Create parameterized model</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> model <span class="op">=</span> Graph.pmf_and_moments_from_graph(graph, nr_moments<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Compute both PMF and moments</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> theta <span class="op">=</span> jnp.array([<span class="fl">0.5</span>])</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> times <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>])</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> pmf_vals, moments <span class="op">=</span> model(theta, times)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="ss">f"PMF at times: </span><span class="sc">{</span>pmf_vals<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="ss">f"Moments: </span><span class="sc">{</span>moments<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># [E[T], E[T^2]]</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Use in SVGD with moment regularization</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> svgd <span class="op">=</span> SVGD(model, observed_pmf, theta_dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> svgd.fit_regularized(observed_times<span class="op">=</span>data, nr_moments<span class="op">=</span><span class="dv">2</span>, regularization<span class="op">=</span><span class="fl">1.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="ptdalgorithms.Graph.notify_change" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.notify_change">notify_change</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.notify_change()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>notify_change(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; None</p>
+<section id="notes-1" class="level4 doc-section doc-section-notes">
+<h4 class="doc-section doc-section-notes anchored" data-anchor-id="notes-1">Notes</h4>
+<ul>
+<li>More efficient than separate calls to pmf_from_graph() and moments_from_graph()</li>
+<li>Required for using moment-based regularization in SVGD.fit_regularized()</li>
+<li>The moments are always computed from the same graph used for PMF/PDF</li>
+</ul>
 </section>
-<section id="ptdalgorithms.Graph.pdf" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.pdf">pdf</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.pdf()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>pdf(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, time: numpy.ndarray[numpy.float32], granularity: numpy.ndarray[numpy.int32] = 0) -&gt; object</p>
 </section>
-<section id="ptdalgorithms.Graph.pmf_discrete" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.pmf_discrete">pmf_discrete</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.pmf_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>pmf_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: numpy.ndarray[numpy.int32]) -&gt; object</p>
+<section id="ptdalgorithms.Graph.pmf_from_cpp" class="level3">
+<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.pmf_from_cpp">pmf_from_cpp</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.pmf_from_cpp(cpp_file, discrete<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Load a phase-type model from a user’s C++ file and return a JAX-compatible function.</p>
+<p>The C++ file should include ‘user_model.h’ and implement:</p>
+<p>ptdalgorithms::Graph build_model(const double* theta, int n_params) { // Build and return Graph instance }</p>
+<p>For efficient repeated evaluations with the same parameters without JAX overhead, use load_cpp_builder() instead to get a builder function that creates Graph objects.</p>
+<section id="parameters-4" class="level4 doc-section doc-section-parameters">
+<h4 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters-4">Parameters</h4>
+<dl>
+<dt><code><span class="parameter-name"><strong>cpp_file</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>str</code> or <code>Path</code></span></code></dt>
+<dd>
+<p>Path to the user’s C++ file</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>discrete</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>bool</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">False</span></code></dt>
+<dd>
+<p>If True, uses discrete phase-type distribution (DPH) computation. If False, uses continuous phase-type distribution (PDF).</p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.random_sample_discrete_stop_vertex" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.random_sample_discrete_stop_vertex">random_sample_discrete_stop_vertex</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.random_sample_discrete_stop_vertex()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>random_sample_discrete_stop_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: int) -&gt; int</p>
+<section id="raises" class="level4 doc-section doc-section-raises">
+<h4 class="doc-section doc-section-raises anchored" data-anchor-id="raises">Raises</h4>
+<dl>
+<dt><code><span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>ImportError</code></span></code></dt>
+<dd>
+<p>If JAX is not installed. Install with: pip install jax jaxlib</p>
+</dd>
+<dt><code><span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>FileNotFoundError</code></span></code></dt>
+<dd>
+<p>If the specified C++ file does not exist</p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.random_sample_stop_vertex" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.random_sample_stop_vertex">random_sample_stop_vertex</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.random_sample_stop_vertex()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>random_sample_stop_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, time: float) -&gt; int</p>
+<section id="returns-6" class="level4 doc-section doc-section-returns">
+<h4 class="doc-section doc-section-returns anchored" data-anchor-id="returns-6">Returns</h4>
+<dl>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>callable</code></span></code></dt>
+<dd>
+<p>JAX-compatible function (theta, times) -&gt; pmf_values that supports JIT, grad, vmap, etc.</p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.reward_transform" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.reward_transform">reward_transform</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.reward_transform()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>reward_transform(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float]) -&gt; ptdalgorithms.ptdalgorithmscpp_pybind.Graph</p>
+<section id="examples-5" class="level4 doc-section doc-section-examples">
+<h4 class="doc-section doc-section-examples anchored" data-anchor-id="examples-5">Examples</h4>
 </section>
-<section id="ptdalgorithms.Graph.reward_transform_discrete" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.reward_transform_discrete">reward_transform_discrete</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.reward_transform_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>reward_transform_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[int]) -&gt; ptdalgorithms.ptdalgorithmscpp_pybind.Graph</p>
 </section>
-<section id="ptdalgorithms.Graph.sample" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.sample">sample</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.sample()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>sample(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, n: int = 1, rewards: list[float] = []) -&gt; list[float]</p>
 </section>
-<section id="ptdalgorithms.Graph.sample_discrete" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.sample_discrete">sample_discrete</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.sample_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>sample_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, n: int = 1, rewards: list[float] = []) -&gt; list[float]</p>
 </section>
-<section id="ptdalgorithms.Graph.sample_multivariate" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.sample_multivariate">sample_multivariate</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.sample_multivariate()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>sample_multivariate(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, n: int = 1, rewards: numpy.ndarray[numpy.float64[m, n]] = []) -&gt; numpy.ndarray[numpy.float64[m, n]]</p>
+<section id="jax-compatible-approach-default---for-svgd-gradients-optimization" class="level1">
+<h1>JAX-compatible approach (default - for SVGD, gradients, optimization)</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> model <span class="op">=</span> Graph.pmf_from_cpp(<span class="st">"my_model.cpp"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> theta <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">2.0</span>])</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> times <span class="op">=</span> jnp.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> pmf <span class="op">=</span> model(theta, times)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> gradient <span class="op">=</span> jax.grad(<span class="kw">lambda</span> p: jnp.<span class="bu">sum</span>(model(p, times)))(theta)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="ptdalgorithms.Graph.sample_multivariate_discrete" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.sample_multivariate_discrete">sample_multivariate_discrete</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.sample_multivariate_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>sample_multivariate_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, n: int = 1, rewards: numpy.ndarray[numpy.float64[m, n]] = []) -&gt; numpy.ndarray[numpy.float64[m, n]]</p>
+<section id="discrete-phase-type-distribution" class="level1">
+<h1>Discrete phase-type distribution</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> model <span class="op">=</span> Graph.pmf_from_cpp(<span class="st">"my_model.cpp"</span>, discrete<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> theta <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">2.0</span>])</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> jumps <span class="op">=</span> jnp.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> dph_pmf <span class="op">=</span> model(theta, jumps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="ptdalgorithms.Graph.starting_vertex" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.starting_vertex">starting_vertex</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.starting_vertex()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>starting_vertex(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; ptdalgorithms::Vertex</p>
+<section id="for-direct-c-access-without-jax-faster-for-repeated-evaluations" class="level1">
+<h1>For direct C++ access without JAX (faster for repeated evaluations):</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> builder <span class="op">=</span> load_cpp_builder(<span class="st">"my_model.cpp"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> graph <span class="op">=</span> builder(np.array([<span class="fl">1.0</span>, <span class="fl">2.0</span>]))  <span class="co"># Build graph once</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> pdf1 <span class="op">=</span> graph.pdf(<span class="fl">1.0</span>)  <span class="co"># Use many times</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> pdf2 <span class="op">=</span> graph.pdf(<span class="fl">2.0</span>)  <span class="co"># No rebuild needed</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="ptdalgorithms.Graph.pmf_from_graph" class="level3">
+<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.pmf_from_graph">pmf_from_graph</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.pmf_from_graph(graph, discrete<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Convert a Python-built Graph to a JAX-compatible function with full gradient support.</p>
+<p>This method automatically detects if the graph has parameterized edges (edges with state vectors) and generates optimized C++ code to enable full JAX transformations including gradients, vmap, and jit compilation.</p>
+<p>For direct C++ access without JAX wrapping, use the Graph object’s methods directly: graph.pdf(time), graph.dph_pmf(jump), graph.moments(power), etc.</p>
+<section id="raises-1" class="level4 doc-section doc-section-raises">
+<h4 class="doc-section doc-section-raises anchored" data-anchor-id="raises-1">Raises</h4>
+<dl>
+<dt><code><span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>ImportError</code></span></code></dt>
+<dd>
+<p>If JAX is not installed. Install with: pip install jax jaxlib</p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.state_length" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.state_length">state_length</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.state_length()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>state_length(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; int</p>
+<section id="parameters-5" class="level4 doc-section doc-section-parameters">
+<h4 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters-5">Parameters</h4>
+<dl>
+<dt><code><span class="parameter-name"><strong>graph</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>Graph</code></span></code></dt>
+<dd>
+<p>Graph built using the Python API. Can have regular edges or parameterized edges.</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>discrete</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>bool</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">False</span></code></dt>
+<dd>
+<p>If True, uses discrete phase-type distribution (DPH) computation. If False, uses continuous phase-type distribution (PDF).</p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.states" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.states">states</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.states()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>states(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; numpy.ndarray[numpy.int32[m, n]]</p>
-<p>//’ Returns a matrix where each row is the state of the vertex at that index //’ //’ <span class="citation" data-cites="return">@return</span> A matrix of size [ptdalgorithms::vertices_length()] where the rows match the state of the vertex at that index //’ //’ <span class="citation" data-cites="param">@param</span> phase_type_graph A reference to the graph created by [ptdalgorithms::create_graph()] //’ //’ <span class="citation" data-cites="examples">@examples</span> //’ graph &lt;- ptdalgorithms::create_graph(4) //’ ptdalgorithms::create_vertex(graph, c(1,2,3,4)) //’ ptdalgorithms::create_vertex(graph, c(4,3,3,3)) //’ ptdalgorithms::states(graph) # =&gt; //’ # 0 0 0 0 //’ # 1 2 3 4 //’ # 4 3 3 3</p>
+<section id="returns-7" class="level4 doc-section doc-section-returns">
+<h4 class="doc-section doc-section-returns anchored" data-anchor-id="returns-7">Returns</h4>
+<dl>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>callable</code></span></code></dt>
+<dd>
+<p>If graph has parameterized edges: JAX-compatible function (theta, times) -&gt; pmf_values Supports JIT, grad, vmap, etc. If graph has no parameterized edges: JAX-compatible function (times) -&gt; pmf_values Supports JIT (backward compatible signature)</p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.stop_probability" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.stop_probability">stop_probability</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.stop_probability()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>stop_probability(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, time: float, granularity: int = 0) -&gt; list[float]</p>
+<section id="examples-6" class="level4 doc-section doc-section-examples">
+<h4 class="doc-section doc-section-examples anchored" data-anchor-id="examples-6">Examples</h4>
 </section>
-<section id="ptdalgorithms.Graph.stop_probability_discrete" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.stop_probability_discrete">stop_probability_discrete</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.stop_probability_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>stop_probability_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, jumps: int) -&gt; list[float]</p>
 </section>
-<section id="ptdalgorithms.Graph.update_parameterized_weights" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.update_parameterized_weights">update_parameterized_weights</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.update_parameterized_weights()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>update_parameterized_weights(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float]) -&gt; None</p>
-<p>//’ Updates all parameterized edges of the graph by given scalars. //’ //’ <span class="citation" data-cites="description">@description</span> //’ Given a vector of scalars, computes a new weight of //’ the parameterized edges in the graph by a simple inner //’ product of the edge state vector and the scalar vector. //’ //’ <span class="citation" data-cites="details">@details</span> //’ A faster and simpler version to compute new moments, when //’ the user wants to try multiple different weights. //’ //’ //’ <span class="citation" data-cites="param">@param</span> phase_type_graph A reference to the graph created by [ptdalgorithms::create_graph()] //’ <span class="citation" data-cites="param">@param</span> scalars A numeric vector of multiplies for the edge states. //’ //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::expected_waiting_time()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::add_edge()]</span> //’ //’ <span class="citation" data-cites="examples">@examples</span> //’ graph &lt;- create_graph(4) //’ v1 &lt;- find_or_create_vertex(graph, c(1,2,1,0)) //’ v2 &lt;- find_or_create_vertex(graph, c(2,0,1,0)) //’ add_edge(starting_vertex(graph), v1, 5) //’ add_edge(v1, v2, 0, c(5,2)) //’ edges(starting_vertex(graph))[[1]]<span class="math inline">\(weight # =&gt; 5
-//' edges(v1)[[1]]\)</span>weight # =&gt; 0 //’ graph_update_weights_parameterized(graph, c(9,7)) //’ edges(starting_vertex(graph))[[1]]<span class="math inline">\(weight # =&gt; 5
-//' edges(v1)[[1]]\)</span>weight # =&gt; 59</p>
 </section>
-<section id="ptdalgorithms.Graph.validate" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.validate">validate</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.validate()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>validate(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; None</p>
+<section id="non-parameterized-graph-regular-edges-only" class="level1">
+<h1>Non-parameterized graph (regular edges only)</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> g <span class="op">=</span> Graph(<span class="dv">1</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> start <span class="op">=</span> g.starting_vertex()</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> v0 <span class="op">=</span> g.find_or_create_vertex([<span class="dv">0</span>])</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> v1 <span class="op">=</span> g.find_or_create_vertex([<span class="dv">1</span>])</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> start.add_edge(v0, <span class="fl">1.0</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> v0.add_edge(v1, <span class="fl">2.0</span>)  <span class="co"># fixed weight</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> model <span class="op">=</span> Graph.pmf_from_graph(g)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> times <span class="op">=</span> jnp.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">50</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> pdf <span class="op">=</span> model(times)  <span class="co"># No theta needed</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="ptdalgorithms.Graph.variance" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.variance">variance</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.variance()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>variance(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, rewards: list[float] = []) -&gt; float</p>
-<p>//’ Computes the variance of the phase-type distribution //’ //’ <span class="citation" data-cites="description">@description</span> //’ This function invokes [ptdalgorithms::expected_waiting_times()] //’ twice to find the first and second moment //’ //’ <span class="citation" data-cites="return">@return</span> The variance of the distribution //’ //’ <span class="citation" data-cites="param">@param</span> phase_type_graph A reference to the graph created by [ptdalgorithms::create_graph()] //’ <span class="citation" data-cites="param">@param</span> rewards Optional rewards, which should be applied to the phase-type distribution. Must have length equal to [ptdalgorithms::vertices_length()] //’ //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::expected_waiting_time()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::expectation()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::moments()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::covariance()]</span> //’ //’ <span class="citation" data-cites="examples">@examples</span> //’ graph &lt;- ptdalgorithms::create_graph(4) //’ v1 &lt;- ptdalgorithms::create_vertex(graph, c(1,2,3,4)) //’ v2 &lt;- ptdalgorithms::create_vertex(graph, c(4,0,3,3)) //’ a &lt;- ptdalgorithms::create_vertex(graph, c(0,0,0,0)) //’ ptdalgorithms::add_edge(ptdalgorithms::starting_vertex(graph), v1, 1) //’ ptdalgorithms::add_edge(v1, v2, 4) //’ ptdalgorithms::add_edge(v2, a, 10) //’ ptdalgorithms::variance(graph) # =&gt; //’ 0.0725 //’ ptdalgorithms::variance(graph, c(0,2,1,0)) # =&gt; //’ 0.26 //’ ph &lt;- ptdalgorithms::graph_as_matrix(graph) //’ # This is a much faster version of //’ 2<em>ph<span class="math inline">\(IPV%*%solve(-ph\)</span>SIM)%</em>%solve(-ph<span class="math inline">\(SIM) %*% rep(1, length(ph\)</span>IPV)) - ph<span class="math inline">\(IPV%*%solve(-ph\)</span>SIM) %<em>% rep(1, length(ph<span class="math inline">\(IPV)) %*% ph\)</span>IPV%</em>%solve(-ph<span class="math inline">\(SIM) %*% rep(1, length(ph\)</span>IPV)) # =&gt; //’ 0.0725 //’ 2<em>ph<span class="math inline">\(IPV%*%solve(-ph\)</span>SIM)%</em>%diag(c(2,1))%<em>%solve(-ph<span class="math inline">\(SIM)%*%diag(c(2,1)) %*% rep(1, length(ph\)</span>IPV)) - ph<span class="math inline">\(IPV%*%solve(-ph\)</span>SIM)%</em>%diag(c(2,1)) %<em>% rep(1, length(ph<span class="math inline">\(IPV)) %*% ph\)</span>IPV%</em>%solve(-ph<span class="math inline">\(SIM)%*%diag(c(2,1)) %*% rep(1, length(ph\)</span>IPV)) # =&gt; //’ 0.26</p>
+<section id="parameterized-graph-with-edge-states-for-gradient-support" class="level1">
+<h1>Parameterized graph (with edge states for gradient support)</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> g <span class="op">=</span> Graph(<span class="dv">1</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> start <span class="op">=</span> g.starting_vertex()</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> v0 <span class="op">=</span> g.find_or_create_vertex([<span class="dv">0</span>])</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> v1 <span class="op">=</span> g.find_or_create_vertex([<span class="dv">1</span>])</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> start.add_edge(v0, <span class="fl">1.0</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> v0.add_edge_parameterized(v1, <span class="fl">0.0</span>, [<span class="fl">2.0</span>, <span class="fl">0.5</span>])  <span class="co"># weight = 2.0*theta[0] + 0.5*theta[1]</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> model <span class="op">=</span> Graph.pmf_from_graph(g)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> theta <span class="op">=</span> jnp.array([<span class="fl">1.0</span>, <span class="fl">3.0</span>])</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> pdf <span class="op">=</span> model(theta, times)  <span class="co"># weight becomes 2.0*1.0 + 0.5*3.0 = 3.5</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Full JAX support for parameterized graphs</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> grad_fn <span class="op">=</span> jax.grad(<span class="kw">lambda</span> t: jnp.<span class="bu">sum</span>(model(t, times)))</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> gradient <span class="op">=</span> grad_fn(theta)  <span class="co"># Gradients work!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="ptdalgorithms.Graph.variance_discrete" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.variance_discrete">variance_discrete</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.variance_discrete()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>variance_discrete(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, arg0: list[float]) -&gt; float</p>
+<section id="for-direct-c-access-no-jax-overhead-use-graph-methods" class="level1">
+<h1>For direct C++ access (no JAX overhead), use graph methods:</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> pdf_value <span class="op">=</span> g.pdf(<span class="fl">1.5</span>)  <span class="co"># Direct C++ call</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> pmf_value <span class="op">=</span> g.dph_pmf(<span class="dv">3</span>)  <span class="co"># Direct C++ call</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="ptdalgorithms.Graph.pmf_from_graph_parameterized" class="level3">
+<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.pmf_from_graph_parameterized">pmf_from_graph_parameterized</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.pmf_from_graph_parameterized(graph_builder, discrete<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Convert a parameterized Python graph builder to a JAX-compatible function.</p>
+<p>This allows users to define parameterized models where the graph structure or edge weights depend on parameters.</p>
+<section id="parameters-6" class="level4 doc-section doc-section-parameters">
+<h4 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters-6">Parameters</h4>
+<dl>
+<dt><code><span class="parameter-name"><strong>graph_builder</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>callable</code></span></code></dt>
+<dd>
+<p>Function (theta) -&gt; Graph that builds a graph with given parameters</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>discrete</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>bool</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">False</span></code></dt>
+<dd>
+<p>If True, uses discrete phase-type distribution (DPH) computation. If False, uses continuous phase-type distribution (PDF).</p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.vertex_at" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.vertex_at">vertex_at</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.vertex_at()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>vertex_at(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, index: int) -&gt; ptdalgorithms::Vertex</p>
+<section id="returns-8" class="level4 doc-section doc-section-returns">
+<h4 class="doc-section doc-section-returns anchored" data-anchor-id="returns-8">Returns</h4>
+<dl>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>callable</code></span></code></dt>
+<dd>
+<p>JAX-compatible function (theta, times) -&gt; pdf_values that supports JIT, grad, vmap, etc.</p>
+</dd>
+</dl>
 </section>
-<section id="ptdalgorithms.Graph.vertex_exists" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.vertex_exists">vertex_exists</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.vertex_exists()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>vertex_exists(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph, state: list[int]) -&gt; bool</p>
+<section id="examples-7" class="level4 doc-section doc-section-examples">
+<h4 class="doc-section doc-section-examples anchored" data-anchor-id="examples-7">Examples</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> build_exponential(rate):</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>...     g <span class="op">=</span> Graph(<span class="dv">1</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>...     start <span class="op">=</span> g.starting_vertex()</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>...     v0 <span class="op">=</span> g.find_or_create_vertex([<span class="dv">0</span>])</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>...     v1 <span class="op">=</span> g.find_or_create_vertex([<span class="dv">1</span>])</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>...     start.add_edge(v0, <span class="fl">1.0</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>...     v0.add_edge(v1, <span class="bu">float</span>(rate))</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">return</span> g</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> model <span class="op">=</span> Graph.pmf_from_graph_parameterized(build_exponential)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> theta <span class="op">=</span> jnp.array([<span class="fl">1.5</span>])</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> times <span class="op">=</span> jnp.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">50</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> pdf <span class="op">=</span> model(theta, times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="ptdalgorithms.Graph.vertices" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.vertices">vertices</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.vertices()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>vertices(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; list[ptdalgorithms::Vertex]</p>
-<p>//’ Obtain a list of all vertices in the graph //’ //’ <span class="citation" data-cites="description">@description</span> //’ Returns all vertices that have been added to the //’ graph from either calling <code>find_or_create_vertex</code> or //’ <code>create_vertex</code>. The first vertex in the list is //’ <em>always</em> the starting vertex [ptdalgorithms::starting_vertex()]. //’ Importantly, for speed, use [ptdalgorithms::vertices_length()] to get the number //’ of added vertices, and use [ptdalgorithms::vertex_at()] to //’ get a vertex at a particular index. //’ //’ <span class="citation" data-cites="details">@details</span> //’ The list of vertices contains any added vertex, even //’ if it does not have any in-going / out-going edges. //’ //’ <span class="citation" data-cites="param">@param</span> phase_type_graph A reference to the graph created by [ptdalgorithms::create_graph()] //’ //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::starting_vertex()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::vertices_length()]</span> //’ <span class="citation" data-cites="seealso">@seealso [ptdalgorithms::vertex_at()]</span> //’ //’ <span class="citation" data-cites="examples">@examples</span> //’ graph &lt;- create_graph(4) //’ vertex_a &lt;- find_or_create_vertex(graph, c(1,2,1,0)) //’ vertex_b &lt;- find_or_create_vertex(graph, c(2,0,1,0)) //’ vertices(graph)[[1]] == starting_vertex(graph) //’ vertices(graph)[[2]] == vertex_at(graph, 2) //’ vertices_length(graph) == 3</p>
 </section>
-<section id="ptdalgorithms.Graph.vertices_length" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.vertices_length">vertices_length</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.vertices_length()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>vertices_length(self: ptdalgorithms.ptdalgorithmscpp_pybind.Graph) -&gt; int</p>
+<section id="ptdalgorithms.Graph.serialize" class="level3">
+<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.serialize">serialize</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.serialize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Serialize graph to array representation for efficient computation.</p>
+<section id="returns-9" class="level4 doc-section doc-section-returns">
+<h4 class="doc-section doc-section-returns anchored" data-anchor-id="returns-9">Returns</h4>
+<dl>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>dict</code></span></code></dt>
+<dd>
+<p>Dictionary containing: - ‘states’: Array of vertex states (n_vertices, state_dim) - ‘edges’: Array of regular edges [from_idx, to_idx, weight] (n_edges, 3) - ‘start_edges’: Array of starting vertex regular edges [to_idx, weight] (n_start_edges, 2) - ‘param_edges’: Array of parameterized edges [from_idx, to_idx, x1, x2, …] (n_param_edges, param_length+2) - ‘start_param_edges’: Array of starting vertex parameterized edges [to_idx, x1, x2, …] (n_start_param_edges, param_length+1) - ‘param_length’: Length of parameter vector (0 if no parameterized edges) - ‘state_length’: Integer state dimension - ‘n_vertices’: Number of vertices</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="ptdalgorithms.Graph.svgd" class="level3">
+<h3 class="anchored" data-anchor-id="ptdalgorithms.Graph.svgd">svgd</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ptdalgorithms.Graph.svgd(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    model,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    observed_data,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    prior<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    n_particles<span class="op">=</span><span class="dv">50</span>,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    n_iterations<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    learning_rate<span class="op">=</span><span class="fl">0.001</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    kernel<span class="op">=</span><span class="st">'rbf_median'</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    theta_init<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    theta_dim<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    return_history<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    seed<span class="op">=</span><span class="dv">42</span>,</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run Stein Variational Gradient Descent (SVGD) inference for Bayesian parameter estimation.</p>
+<p>SVGD finds the posterior distribution p(theta | data) by optimizing a set of particles to approximate the posterior. This method works with parameterized models created by pmf_from_graph() or pmf_from_cpp() where the model signature is model(theta, times).</p>
+<section id="parameters-7" class="level4 doc-section doc-section-parameters">
+<h4 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters-7">Parameters</h4>
+<dl>
+<dt><code><span class="parameter-name"><strong>model</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>callable</code></span></code></dt>
+<dd>
+<p>JAX-compatible parameterized model from pmf_from_graph() or pmf_from_cpp(). Must have signature: model(theta, times) -&gt; values</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>observed_data</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>array_like</code></span></code></dt>
+<dd>
+<p>Observed data points. For continuous models (PDF), these are time points where the density was observed. For discrete models (PMF), these are jump counts.</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>prior</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>callable</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
+<dd>
+<p>Log prior function: prior(theta) -&gt; scalar. If None, uses standard normal prior: log p(theta) = -0.5 * sum(theta^2)</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>n_particles</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>int</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">50</span></code></dt>
+<dd>
+<p>Number of SVGD particles. More particles = better posterior approximation but slower.</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>n_iterations</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>int</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">1000</span></code></dt>
+<dd>
+<p>Number of SVGD optimization steps</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>learning_rate</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>float</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">0.001</span></code></dt>
+<dd>
+<p>SVGD step size. Larger values = faster convergence but may be unstable.</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>kernel</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>str</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">'rbf_median'</span></code></dt>
+<dd>
+<p>Kernel bandwidth selection method: - ‘rbf_median’: RBF kernel with median heuristic bandwidth (default) - ‘rbf_adaptive’: RBF kernel with adaptive bandwidth</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>theta_init</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>array_like</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
+<dd>
+<p>Initial particle positions (n_particles, theta_dim). If None, initializes randomly from standard normal.</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>theta_dim</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>int</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
+<dd>
+<p>Dimension of theta parameter vector. Required if theta_init is None.</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>return_history</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>bool</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">False</span></code></dt>
+<dd>
+<p>If True, return particle positions throughout optimization</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>seed</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>int</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">42</span></code></dt>
+<dd>
+<p>Random seed for reproducibility</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>verbose</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>bool</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">True</span></code></dt>
+<dd>
+<p>Print progress information</p>
+</dd>
+</dl>
+</section>
+<section id="returns-10" class="level4 doc-section doc-section-returns">
+<h4 class="doc-section doc-section-returns anchored" data-anchor-id="returns-10">Returns</h4>
+<dl>
+<dt><code><span class="parameter-name"></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>dict</code></span></code></dt>
+<dd>
+<p>Inference results containing: - ‘particles’: Final posterior samples (n_particles, theta_dim) - ‘theta_mean’: Posterior mean estimate - ‘theta_std’: Posterior standard deviation - ‘history’: Particle evolution over iterations (if return_history=True)</p>
+</dd>
+</dl>
+</section>
+<section id="raises-2" class="level4 doc-section doc-section-raises">
+<h4 class="doc-section doc-section-raises anchored" data-anchor-id="raises-2">Raises</h4>
+<dl>
+<dt><code><span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>ImportError</code></span></code></dt>
+<dd>
+<p>If JAX is not installed</p>
+</dd>
+<dt><code><span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>ValueError</code></span></code></dt>
+<dd>
+<p>If model is not parameterized or theta_dim cannot be inferred</p>
+</dd>
+</dl>
+</section>
+<section id="examples-8" class="level4 doc-section doc-section-examples">
+<h4 class="doc-section doc-section-examples anchored" data-anchor-id="examples-8">Examples</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> ptdalgorithms <span class="im">import</span> Graph</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Build parameterized coalescent model</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> coalescent_callback(state, nr_samples<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">if</span> <span class="bu">len</span>(state) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> [(np.array([nr_samples]), <span class="fl">1.0</span>, [<span class="fl">1.0</span>])]</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">if</span> state[<span class="dv">0</span>] <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>...         n <span class="op">=</span> state[<span class="dv">0</span>]</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>...         rate <span class="op">=</span> n <span class="op">*</span> (n <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>...         <span class="cf">return</span> [(np.array([n <span class="op">-</span> <span class="dv">1</span>]), <span class="fl">0.0</span>, [rate])]</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>...     <span class="cf">return</span> []</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> g <span class="op">=</span> Graph.from_callback_parameterized(coalescent_callback, nr_samples<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> model <span class="op">=</span> Graph.pmf_from_graph(g, discrete<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Generate synthetic observed data</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> true_theta <span class="op">=</span> jnp.array([<span class="fl">2.0</span>])</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> times <span class="op">=</span> jnp.linspace(<span class="fl">0.1</span>, <span class="fl">3.0</span>, <span class="dv">15</span>)</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> observed_pdf <span class="op">=</span> model(true_theta, times)</span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Run SVGD inference</span></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> results <span class="op">=</span> Graph.svgd(</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>...     model<span class="op">=</span>model,</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>...     observed_data<span class="op">=</span>observed_pdf,</span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>...     theta_dim<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>...     n_particles<span class="op">=</span><span class="dv">30</span>,</span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>...     n_iterations<span class="op">=</span><span class="dv">500</span>,</span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>...     learning_rate<span class="op">=</span><span class="fl">0.01</span></span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>... )</span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="ss">f"True theta: </span><span class="sc">{</span>true_theta<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="ss">f"Posterior mean: </span><span class="sc">{</span>results[<span class="st">'theta_mean'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="ss">f"Posterior std: </span><span class="sc">{</span>results[<span class="st">'theta_std'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="notes-2" class="level4 doc-section doc-section-notes">
+<h4 class="doc-section doc-section-notes anchored" data-anchor-id="notes-2">Notes</h4>
+<ul>
+<li>SVGD requires a parameterized model. Non-parameterized models (signature: model(times)) cannot be used for inference as there are no parameters to estimate.</li>
+<li>The likelihood is computed as sum(log(model(theta, observed_data)))</li>
+<li>For better results, ensure observed_data has sufficient information about the parameters</li>
+<li>Learning rate and number of iterations may need tuning for different problems</li>
+</ul>
 
 
 </section>
@@ -1201,8 +1455,8 @@ window.Quarto = {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../api/Vertex.html" class="pagination-link" aria-label="Vertex">
-        <span class="nav-page-text">Vertex</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../api/compute_pmf_ffi.html" class="pagination-link" aria-label="compute_pmf_ffi">
+        <span class="nav-page-text">compute_pmf_ffi</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
