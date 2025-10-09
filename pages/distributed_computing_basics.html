@@ -273,6 +273,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">SLURM Cluster Setup and Configuration</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PtDAlgorithms Project Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/auto_parallel_computing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Automatic Parallelization with PtDAlgorithms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/cpu_monitoring_showcase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CPU monitoring</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/distributed_computing_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distributed Computing Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/distributed_computing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distributed Computing with PtDAlgorithms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/distributed_svgd_inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distributed SVGD Inference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/graphbuilder_showcase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comprehensive GraphBuilder &amp; JAX FFI Showcase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/math_and_algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">My document</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/phase-type-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phase-Type Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/slurm_multinode_guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multi-Node SLURM Guide for Distributed SVGD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/svgd_inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">title: Inference with SVGD</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -338,11 +404,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#distributed-computing-basics" id="toc-distributed-computing-basics" class="nav-link active" data-scroll-target="#distributed-computing-basics">Distributed Computing Basics</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#the-problem-slurm-boilerplate" id="toc-the-problem-slurm-boilerplate" class="nav-link" data-scroll-target="#the-problem-slurm-boilerplate">The Problem: SLURM Boilerplate</a>
   <ul class="collapse">
-  <li><a href="#before-200-lines" id="toc-before-200-lines" class="nav-link" data-scroll-target="#before-200-lines">Before ❌ (200+ lines)</a></li>
-  <li><a href="#after-1-line" id="toc-after-1-line" class="nav-link" data-scroll-target="#after-1-line">After ✅ (1 line)</a></li>
+  <li><a href="#before-200-lines" id="toc-before-200-lines" class="nav-link" data-scroll-target="#before-200-lines">Before (200+ lines)</a></li>
+  <li><a href="#after-1-line" id="toc-after-1-line" class="nav-link" data-scroll-target="#after-1-line">After (1 line)</a></li>
   </ul></li>
   <li><a href="#quick-start-example" id="toc-quick-start-example" class="nav-link" data-scroll-target="#quick-start-example">Quick Start Example</a></li>
   <li><a href="#distributedconfig-object" id="toc-distributedconfig-object" class="nav-link" data-scroll-target="#distributedconfig-object">DistributedConfig Object</a></li>
@@ -366,6 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#performance-scaling" id="toc-performance-scaling" class="nav-link" data-scroll-target="#performance-scaling">Performance Scaling</a></li>
   <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -391,6 +460,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="distributed-computing-basics" class="level1">
+<h1>Distributed Computing Basics</h1>
 <p>This guide introduces the distributed computing capabilities in PtDAlgorithms, showing how to scale computations from a single machine to 100+ node clusters with minimal code changes.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
@@ -405,7 +476,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-problem-slurm-boilerplate" class="level2">
 <h2 class="anchored" data-anchor-id="the-problem-slurm-boilerplate">The Problem: SLURM Boilerplate</h2>
 <section id="before-200-lines" class="level3">
-<h3 class="anchored" data-anchor-id="before-200-lines">Before ❌ (200+ lines)</h3>
+<h3 class="anchored" data-anchor-id="before-200-lines">Before (200+ lines)</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detect SLURM environment</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'SLURM_JOB_ID'</span> <span class="kw">in</span> os.environ:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    num_processes <span class="op">=</span> <span class="bu">int</span>(os.environ[<span class="st">'SLURM_NTASKS'</span>])</span>
@@ -427,7 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ... 150+ more lines ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="after-1-line" class="level3">
-<h3 class="anchored" data-anchor-id="after-1-line">After ✅ (1 line)</h3>
+<h3 class="anchored" data-anchor-id="after-1-line">After (1 line)</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> initialize_distributed</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dist_info <span class="op">=</span> initialize_distributed()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -601,7 +672,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">✓ PDF computed using </span><span class="sc">{</span>dist_info<span class="sc">.</span>global_device_count<span class="sc">}</span><span class="ss"> parallel devices"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">PDF computed using </span><span class="sc">{</span>dist_info<span class="sc">.</span>global_device_count<span class="sc">}</span><span class="ss"> parallel devices"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -660,17 +731,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="what-happens-automatically">What Happens Automatically</h3>
 <p>When running on SLURM, <code>initialize_distributed()</code> automatically:</p>
 <ol type="1">
-<li>✅ Detects SLURM environment variables</li>
-<li>✅ Identifies coordinator node</li>
-<li>✅ Configures JAX devices</li>
-<li>✅ Initializes distributed JAX</li>
-<li>✅ Sets up inter-node communication</li>
+<li>Detects SLURM environment variables</li>
+<li>Identifies coordinator node</li>
+<li>Configures JAX devices</li>
+<li>Initializes distributed JAX</li>
+<li>Sets up inter-node communication</li>
 </ol>
 <p>When running locally, it:</p>
 <ol type="1">
-<li>✅ Creates multiple local devices</li>
-<li>✅ Enables CPU parallelization</li>
-<li>✅ Works just like SLURM mode (but single node)</li>
+<li>Creates multiple local devices</li>
+<li>Enables CPU parallelization</li>
+<li>Works just like SLURM mode (but single node)</li>
 </ol>
 </section>
 </section>
@@ -725,14 +796,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>✅ <strong>One-line initialization</strong> replaces 200+ lines of boilerplate</p>
-<p>✅ <strong>Automatic environment detection</strong> works locally and on SLURM</p>
-<p>✅ <strong>Full JAX integration</strong> with pmap/vmap/jit support</p>
-<p>✅ <strong>Same code everywhere</strong> - develop locally, deploy to cluster</p>
+<p><strong>One-line initialization</strong> replaces 200+ lines of boilerplate</p>
+<p><strong>Automatic environment detection</strong> works locally and on SLURM</p>
+<p><strong>Full JAX integration</strong> with pmap/vmap/jit support</p>
+<p><strong>Same code everywhere</strong> - develop locally, deploy to cluster</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># That's all you need!</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dist_info <span class="op">=</span> initialize_distributed()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

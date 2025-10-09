@@ -273,6 +273,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">SLURM Cluster Setup and Configuration</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PtDAlgorithms Project Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/auto_parallel_computing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Automatic Parallelization with PtDAlgorithms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/cpu_monitoring_showcase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CPU monitoring</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/distributed_computing_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distributed Computing Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/distributed_computing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distributed Computing with PtDAlgorithms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/distributed_svgd_inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distributed SVGD Inference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/graphbuilder_showcase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comprehensive GraphBuilder &amp; JAX FFI Showcase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/math_and_algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">My document</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/phase-type-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phase-Type Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/slurm_multinode_guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multi-Node SLURM Guide for Distributed SVGD</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/svgd_inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">title: Inference with SVGD</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -338,7 +404,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-is-svgd" id="toc-what-is-svgd" class="nav-link active" data-scroll-target="#what-is-svgd">What is SVGD?</a></li>
+  <li><a href="#distributed-svgd-inference" id="toc-distributed-svgd-inference" class="nav-link active" data-scroll-target="#distributed-svgd-inference">Distributed SVGD Inference</a>
+  <ul class="collapse">
+  <li><a href="#what-is-svgd" id="toc-what-is-svgd" class="nav-link" data-scroll-target="#what-is-svgd">What is SVGD?</a></li>
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#building-a-parameterized-model" id="toc-building-a-parameterized-model" class="nav-link" data-scroll-target="#building-a-parameterized-model">Building a Parameterized Model</a>
@@ -368,6 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
   <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -393,6 +462,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="distributed-svgd-inference" class="level1">
+<h1>Distributed SVGD Inference</h1>
 <p>This guide demonstrates how to perform Bayesian inference using Stein Variational Gradient Descent (SVGD) distributed across multiple nodes and devices.</p>
 <section id="what-is-svgd" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-svgd">What is SVGD?</h2>
@@ -647,7 +718,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check if true value is in credible interval</span></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> lower <span class="op">&lt;=</span> true_theta[<span class="dv">0</span>] <span class="op">&lt;=</span> upper:</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">✓ True parameter within 95% credible interval"</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">True parameter within 95% credible interval"</span>)</span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">⚠ True parameter outside 95% credible interval"</span>)</span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"  (Try increasing iterations or particles)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -741,7 +812,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
 <span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
 <span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">✓ Plotted </span><span class="sc">{</span>n_posterior_samples<span class="sc">}</span><span class="ss"> posterior predictive samples"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Plotted </span><span class="sc">{</span>n_posterior_samples<span class="sc">}</span><span class="ss"> posterior predictive samples"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -824,11 +895,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="key-takeaways" class="level2">
 <h2 class="anchored" data-anchor-id="key-takeaways">Key Takeaways</h2>
-<p>✅ <strong>Distributed SVGD</strong> scales seamlessly from laptop to cluster</p>
-<p>✅ <strong>No code changes</strong> needed between local and SLURM execution</p>
-<p>✅ <strong>Automatic parallelization</strong> across all available devices</p>
-<p>✅ <strong>JAX integration</strong> enables gradients and JIT compilation</p>
-<p>✅ <strong>Flexible models</strong> - works with any parameterized graph</p>
+<p><strong>Distributed SVGD</strong> scales seamlessly from laptop to cluster</p>
+<p><strong>No code changes</strong> needed between local and SLURM execution</p>
+<p><strong>Automatic parallelization</strong> across all available devices</p>
+<p><strong>JAX integration</strong> enables gradients and JIT compilation</p>
+<p><strong>Flexible models</strong> - works with any parameterized graph</p>
 </section>
 <section id="next-steps" class="level2">
 <h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
@@ -852,6 +923,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dist_info <span class="op">=</span> initialize_distributed()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
