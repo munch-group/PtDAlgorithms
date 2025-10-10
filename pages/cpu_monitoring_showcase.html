@@ -528,8 +528,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>You can customize the display width:</p>
-<div id="magic-width" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>usage <span class="op">-</span>w <span class="dv">100</span></span>
+<div id="magic-width" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor <span class="op">-</span>w <span class="dv">100</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running with custom width..."</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
@@ -541,8 +541,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Increase update frequency for smoother visualization:</p>
-<div id="magic-fast" class="cell" data-execution_count="58">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>usage <span class="op">-</span>i <span class="fl">0.25</span></span>
+<div id="magic-fast" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor <span class="op">-</span>i <span class="fl">0.25</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Updates 4 times per second</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fast updates enabled..."</span>)</span>
@@ -667,8 +667,8 @@ Processed 6 batches</code></pre>
 <p>Let’s monitor some actual computational work!</p>
 <section id="example-5.1-matrix-operations" class="level3">
 <h3 class="anchored" data-anchor-id="example-5.1-matrix-operations">Example 5.1: Matrix Operations</h3>
-<div id="real-matrix" class="cell" data-execution_count="64">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>usage</span>
+<div id="real-matrix" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Performing large matrix operations...</span><span class="ch">\n</span><span class="st">"</span>)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -694,8 +694,8 @@ Processed 6 batches</code></pre>
 </section>
 <section id="example-5.2-fft-and-signal-processing" class="level3">
 <h3 class="anchored" data-anchor-id="example-5.2-fft-and-signal-processing">Example 5.2: FFT and Signal Processing</h3>
-<div id="real-fft-code" class="cell" data-execution_count="65">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>usage <span class="op">-</span>i <span class="fl">0.3</span></span>
+<div id="real-fft-code" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor <span class="op">-</span>i <span class="fl">0.3</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Signal processing tasks...</span><span class="ch">\n</span><span class="st">"</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -750,8 +750,8 @@ Processed 6 batches</code></pre>
   Ready for computation!</code></pre>
 </div>
 </div>
-<div id="real-graph-compute" class="cell" data-execution_count="67">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>usage</span>
+<div id="real-graph-compute" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Computing phase-type distribution PDF...</span><span class="ch">\n</span><span class="st">"</span>)</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -775,8 +775,8 @@ Processed 6 batches</code></pre>
 </section>
 <section id="example-5.4-batch-moments-calculation" class="level3">
 <h3 class="anchored" data-anchor-id="example-5.4-batch-moments-calculation">Example 5.4: Batch Moments Calculation</h3>
-<div id="real-moments-code" class="cell" data-execution_count="68">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>usage</span>
+<div id="real-moments-code" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Computing distribution moments...</span><span class="ch">\n</span><span class="st">"</span>)</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -839,8 +839,8 @@ Processed 6 batches</code></pre>
 </section>
 <section id="example-6.2-monitoring-multiple-phases" class="level3">
 <h3 class="anchored" data-anchor-id="example-6.2-monitoring-multiple-phases">Example 6.2: Monitoring Multiple Phases</h3>
-<div id="advanced-phases" class="cell" data-execution_count="70">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>usage</span>
+<div id="advanced-phases" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>phases <span class="op">=</span> [</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Data Loading"</span>, <span class="dv">1_000_000</span>, <span class="dv">3</span>),</span>
@@ -993,7 +993,7 @@ Both complete!</code></pre>
 Pipeline complete!</code></pre>
 </div>
 </div>
-<div id="b8742f67" class="cell" data-execution_count="76">
+<div id="b8742f67" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python3</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">CPU Monitoring Example for PtDAlgorithms</span></span>
@@ -1232,8 +1232,8 @@ Pipeline complete!</code></pre>
 <span id="cb34-236"><a href="#cb34-236" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"For Jupyter notebook usage, see:"</span>)</span>
 <span id="cb34-237"><a href="#cb34-237" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  examples/cpu_monitoring_notebook.ipynb"</span>)</span>
 <span id="cb34-238"><a href="#cb34-238" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb34-239"><a href="#cb34-239" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"In Jupyter, you can use the </span><span class="sc">%%</span><span class="st">usage cell magic:"</span>)</span>
-<span id="cb34-240"><a href="#cb34-240" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  </span><span class="sc">%%</span><span class="st">usage"</span>)</span>
+<span id="cb34-239"><a href="#cb34-239" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"In Jupyter, you can use the </span><span class="sc">%%</span><span class="st">monitor cell magic:"</span>)</span>
+<span id="cb34-240"><a href="#cb34-240" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  </span><span class="sc">%%</span><span class="st">monitor"</span>)</span>
 <span id="cb34-241"><a href="#cb34-241" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  # your code here"</span>)</span>
 <span id="cb34-242"><a href="#cb34-242" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
