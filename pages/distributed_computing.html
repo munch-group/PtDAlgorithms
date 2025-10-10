@@ -811,7 +811,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> run_computation()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Automatic detection:</strong> - Detects SLURM nodes from <code>SLURM_JOB_NODELIST</code> - Shows only allocated CPUs from <code>SLURM_CPUS_PER_TASK</code> - Falls back to local node detection - Works in terminal, Jupyter, and VSCode</p>
 <p><strong>Cell magic</strong> (Jupyter/VSCode):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>usage <span class="op">--</span>color <span class="op">--</span>persist <span class="op">--</span>summary</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor <span class="op">--</span>color <span class="op">--</span>persist <span class="op">--</span>summary</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Your computation</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
@@ -899,7 +899,7 @@ node02 52% mem
 <section id="jupyter-notebook-monitoring" class="level3">
 <h3 class="anchored" data-anchor-id="jupyter-notebook-monitoring">Jupyter Notebook Monitoring</h3>
 <p>For Jupyter/VSCode notebooks, use the cell magic:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>usage <span class="op">--</span>color</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor <span class="op">--</span>color</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Your distributed computation</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model, data, n_particles<span class="op">=</span><span class="dv">64</span>)</span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> svgd.fit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
