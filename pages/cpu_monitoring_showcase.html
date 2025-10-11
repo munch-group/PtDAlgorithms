@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../pages/distributed_computing.html" rel="next">
-<link href="../pages/auto_parallel_computing.html" rel="prev">
+<link href="../examples/python/rabbits_full_py_api_example.html" rel="next">
+<link href="../pages/slurm_cluster_setup.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -74,14 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-668a99090d8b08bf025f8b2d39003dbc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e7f4145358ce1d0cd37d8d374dbb44f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-668a99090d8b08bf025f8b2d39003dbc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aa7f48a65c332c670c33845652e8a97e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,173 +111,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../api/_styles-quartodoc.css">
-<link rel="stylesheet" href="numpy-navbar-sidebar.css">
+<link rel="stylesheet" href="custom.css">
 <link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="numpy.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -322,7 +157,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -331,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/distributed_computing_basics.html">Distributed Computing</a></li><li class="breadcrumb-item"><a href="../pages/cpu_monitoring_showcase.html">CPU monitoring</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Distributed Computing</li><li class="breadcrumb-item"><a href="../pages/cpu_monitoring_showcase.html">CPU monitoring</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -364,6 +198,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../pages/phase-type-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phase-Type Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../pages/state_space.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">State space</span></a>
   </div>
@@ -380,18 +220,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Distributions</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/laplace.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Laplace transform</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Advanced</span></a>
+ <span class="menu-text">Background</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -399,8 +233,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../pages/math_and_algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Math and background</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../pages/state_lumping.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">State lumping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/laplace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Laplace transform</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -419,25 +276,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Distributed Computing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/distributed_computing_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed Computing Basics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/distributed_svgd_inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed SVGD Inference</span></a>
-  </div>
-</li>
+ <span class="menu-text">pages/svgd.qmd</span>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/slurm_cluster_setup.html" class="sidebar-item-text sidebar-link">
@@ -446,81 +294,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/architecture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PtDAlgorithms Project Architecture</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/auto_parallel_computing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Automatic Parallelization with PtDAlgorithms</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../pages/cpu_monitoring_showcase.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">CPU monitoring</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/distributed_computing_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed Computing Basics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/distributed_computing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed Computing with PtDAlgorithms</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/distributed_svgd_inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed SVGD Inference</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/graphbuilder_showcase.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Comprehensive GraphBuilder &amp; JAX FFI Showcase</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/math_and_algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">My document</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/phase-type-distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Phase-Type Distributions</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/slurm_multinode_guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multi-Node SLURM Guide for Distributed SVGD</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/svgd_inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">title: Inference with SVGD</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Examples</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../examples/python/rabbits_full_py_api_example.html" class="sidebar-item-text sidebar-link">
@@ -546,21 +334,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">examples/python/getting_started.ipynb</span>
-  </li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../examples/python/somecode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">somecode.html</span></a>
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">examples/python/laplace.ipynb</span>
-  </li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../examples/python/two-island-two-locus-arg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">two-island-two-locus-arg.html</span></a>
+ <span class="menu-text">Two Island Two Locus Argument</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">examples/python/svgd.ipynb</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Development</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PtDAlgorithms Project Architecture</span></a>
   </div>
 </li>
       </ul>
@@ -576,39 +378,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#cell-magic" id="toc-cell-magic" class="nav-link active" data-scroll-target="#cell-magic">Cell Magic</a></li>
-  <li><a href="#context-manager-for-scripts" id="toc-context-manager-for-scripts" class="nav-link" data-scroll-target="#context-manager-for-scripts">3. Context Manager: For Scripts </a><a id="context-manager" class="nav-link" data-scroll-target="undefined"></a>
+  <li><a href="#context-manager-for-scripts" id="toc-context-manager-for-scripts" class="nav-link" data-scroll-target="#context-manager-for-scripts">Context Manager: For Scripts</a>
   <ul class="collapse">
-  <li><a href="#example-3.1-basic-context-manager" id="toc-example-3.1-basic-context-manager" class="nav-link" data-scroll-target="#example-3.1-basic-context-manager">Example 3.1: Basic Context Manager</a></li>
-  <li><a href="#example-3.2-custom-configuration" id="toc-example-3.2-custom-configuration" class="nav-link" data-scroll-target="#example-3.2-custom-configuration">Example 3.2: Custom Configuration</a></li>
-  <li><a href="#example-3.3-disable-summary-for-quick-tests" id="toc-example-3.3-disable-summary-for-quick-tests" class="nav-link" data-scroll-target="#example-3.3-disable-summary-for-quick-tests">Example 3.3: Disable Summary (for quick tests)</a></li>
+  <li><a href="#basic-context-manager" id="toc-basic-context-manager" class="nav-link" data-scroll-target="#basic-context-manager">Basic Context Manager</a></li>
+  <li><a href="#custom-configuration" id="toc-custom-configuration" class="nav-link" data-scroll-target="#custom-configuration">Custom Configuration</a></li>
+  <li><a href="#disable-summary-for-quick-tests" id="toc-disable-summary-for-quick-tests" class="nav-link" data-scroll-target="#disable-summary-for-quick-tests">Disable Summary (for quick tests)</a></li>
   </ul></li>
-  <li><a href="#decorator-for-functions" id="toc-decorator-for-functions" class="nav-link" data-scroll-target="#decorator-for-functions">4. Decorator: For Functions </a><a id="decorator" class="nav-link" data-scroll-target="undefined"></a>
+  <li><a href="#decorator-for-functions" id="toc-decorator-for-functions" class="nav-link" data-scroll-target="#decorator-for-functions">Decorator: For Functions</a>
   <ul class="collapse">
-  <li><a href="#example-4.1-basic-decorator" id="toc-example-4.1-basic-decorator" class="nav-link" data-scroll-target="#example-4.1-basic-decorator">Example 4.1: Basic Decorator</a></li>
-  <li><a href="#example-4.2-decorator-with-custom-settings" id="toc-example-4.2-decorator-with-custom-settings" class="nav-link" data-scroll-target="#example-4.2-decorator-with-custom-settings">Example 4.2: Decorator with Custom Settings</a></li>
+  <li><a href="#basic-decorator" id="toc-basic-decorator" class="nav-link" data-scroll-target="#basic-decorator">Basic Decorator</a></li>
+  <li><a href="#decorator-with-custom-settings" id="toc-decorator-with-custom-settings" class="nav-link" data-scroll-target="#decorator-with-custom-settings">Decorator with Custom Settings</a></li>
   </ul></li>
-  <li><a href="#real-computations" id="toc-real-computations" class="nav-link" data-scroll-target="#real-computations">5. Real Computations </a><a id="real-computations" class="nav-link" data-scroll-target="undefined"></a>
+  <li><a href="#real-computations" id="toc-real-computations" class="nav-link" data-scroll-target="#real-computations">Real Computations </a><a id="real-computations" class="nav-link" data-scroll-target="undefined"></a>
   <ul class="collapse">
-  <li><a href="#example-5.1-matrix-operations" id="toc-example-5.1-matrix-operations" class="nav-link" data-scroll-target="#example-5.1-matrix-operations">Example 5.1: Matrix Operations</a></li>
-  <li><a href="#example-5.2-fft-and-signal-processing" id="toc-example-5.2-fft-and-signal-processing" class="nav-link" data-scroll-target="#example-5.2-fft-and-signal-processing">Example 5.2: FFT and Signal Processing</a></li>
-  <li><a href="#example-5.3-ptdalgorithms-graph-operations" id="toc-example-5.3-ptdalgorithms-graph-operations" class="nav-link" data-scroll-target="#example-5.3-ptdalgorithms-graph-operations">Example 5.3: PtDAlgorithms Graph Operations</a></li>
-  <li><a href="#example-5.4-batch-moments-calculation" id="toc-example-5.4-batch-moments-calculation" class="nav-link" data-scroll-target="#example-5.4-batch-moments-calculation">Example 5.4: Batch Moments Calculation</a></li>
+  <li><a href="#matrix-operations" id="toc-matrix-operations" class="nav-link" data-scroll-target="#matrix-operations">Matrix Operations</a></li>
+  <li><a href="#fft-and-signal-processing" id="toc-fft-and-signal-processing" class="nav-link" data-scroll-target="#fft-and-signal-processing">FFT and Signal Processing</a></li>
+  <li><a href="#ptdalgorithms-graph-operations" id="toc-ptdalgorithms-graph-operations" class="nav-link" data-scroll-target="#ptdalgorithms-graph-operations">PtDAlgorithms Graph Operations</a></li>
+  <li><a href="#batch-moments-calculation" id="toc-batch-moments-calculation" class="nav-link" data-scroll-target="#batch-moments-calculation">Batch Moments Calculation</a></li>
   </ul></li>
-  <li><a href="#advanced-configuration" id="toc-advanced-configuration" class="nav-link" data-scroll-target="#advanced-configuration">6. Advanced Configuration </a><a id="advanced" class="nav-link" data-scroll-target="undefined"></a>
+  <li><a href="#advanced-configuration" id="toc-advanced-configuration" class="nav-link" data-scroll-target="#advanced-configuration">Advanced Configuration </a><a id="advanced" class="nav-link" data-scroll-target="undefined"></a>
   <ul class="collapse">
-  <li><a href="#example-6.1-comparing-different-workloads" id="toc-example-6.1-comparing-different-workloads" class="nav-link" data-scroll-target="#example-6.1-comparing-different-workloads">Example 6.1: Comparing Different Workloads</a></li>
-  <li><a href="#example-6.2-monitoring-multiple-phases" id="toc-example-6.2-monitoring-multiple-phases" class="nav-link" data-scroll-target="#example-6.2-monitoring-multiple-phases">Example 6.2: Monitoring Multiple Phases</a></li>
+  <li><a href="#comparing-different-workloads" id="toc-comparing-different-workloads" class="nav-link" data-scroll-target="#comparing-different-workloads">Comparing Different Workloads</a></li>
+  <li><a href="#monitoring-multiple-phases" id="toc-monitoring-multiple-phases" class="nav-link" data-scroll-target="#monitoring-multiple-phases">Monitoring Multiple Phases</a></li>
   </ul></li>
   <li><a href="#slurm-usage" id="toc-slurm-usage" class="nav-link" data-scroll-target="#slurm-usage">SLURM usage</a>
   <ul class="collapse">
   <li><a href="#check-current-environment" id="toc-check-current-environment" class="nav-link" data-scroll-target="#check-current-environment">Check Current Environment</a></li>
   </ul></li>
-  <li><a href="#tips-and-tricks" id="toc-tips-and-tricks" class="nav-link" data-scroll-target="#tips-and-tricks">8. Tips and Tricks </a><a id="tips" class="nav-link" data-scroll-target="undefined"></a>
+  <li><a href="#tips-and-tricks" id="toc-tips-and-tricks" class="nav-link" data-scroll-target="#tips-and-tricks">Tips and Tricks </a><a id="tips" class="nav-link" data-scroll-target="undefined"></a>
   <ul class="collapse">
-  <li><a href="#tip-1-quick-testing-without-summary" id="toc-tip-1-quick-testing-without-summary" class="nav-link" data-scroll-target="#tip-1-quick-testing-without-summary">Tip 1: Quick Testing Without Summary</a></li>
-  <li><a href="#tip-2-combine-with-parallel-configuration" id="toc-tip-2-combine-with-parallel-configuration" class="nav-link" data-scroll-target="#tip-2-combine-with-parallel-configuration">Tip 2: Combine with Parallel Configuration</a></li>
-  <li><a href="#tip-3-adjust-update-interval-based-on-workload" id="toc-tip-3-adjust-update-interval-based-on-workload" class="nav-link" data-scroll-target="#tip-3-adjust-update-interval-based-on-workload">Tip 3: Adjust Update Interval Based on Workload</a></li>
-  <li><a href="#tip-4-monitor-specific-functions-only" id="toc-tip-4-monitor-specific-functions-only" class="nav-link" data-scroll-target="#tip-4-monitor-specific-functions-only">Tip 4: Monitor Specific Functions Only</a></li>
+  <li><a href="#quick-testing-without-summary" id="toc-quick-testing-without-summary" class="nav-link" data-scroll-target="#quick-testing-without-summary">Quick Testing Without Summary</a></li>
+  <li><a href="#combine-with-parallel-configuration" id="toc-combine-with-parallel-configuration" class="nav-link" data-scroll-target="#combine-with-parallel-configuration">Combine with Parallel Configuration</a></li>
+  <li><a href="#adjust-update-interval-based-on-workload" id="toc-adjust-update-interval-based-on-workload" class="nav-link" data-scroll-target="#adjust-update-interval-based-on-workload">Adjust Update Interval Based on Workload</a></li>
+  <li><a href="#monitor-specific-functions-only" id="toc-monitor-specific-functions-only" class="nav-link" data-scroll-target="#monitor-specific-functions-only">Monitor Specific Functions Only</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -616,8 +418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/distributed_computing_basics.html">Distributed Computing</a></li><li class="breadcrumb-item"><a href="../pages/cpu_monitoring_showcase.html">CPU monitoring</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Distributed Computing</li><li class="breadcrumb-item"><a href="../pages/cpu_monitoring_showcase.html">CPU monitoring</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">CPU monitoring</h1>
 </div>
@@ -722,10 +523,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="context-manager-for-scripts" class="level2">
-<h2 class="anchored" data-anchor-id="context-manager-for-scripts">3. Context Manager: For Scripts <a id="context-manager"></a></h2>
+<h2 class="anchored" data-anchor-id="context-manager-for-scripts">Context Manager: For Scripts</h2>
 <p>The context manager gives you explicit control over monitoring. Perfect for Python scripts or when you want programmatic control.</p>
-<section id="example-3.1-basic-context-manager" class="level3">
-<h3 class="anchored" data-anchor-id="example-3.1-basic-context-manager">Example 3.1: Basic Context Manager</h3>
+<section id="basic-context-manager" class="level3">
+<h3 class="anchored" data-anchor-id="basic-context-manager">Basic Context Manager</h3>
 <div id="context-basic" class="cell" data-execution_count="59">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Using context manager..."</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -741,8 +542,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="example-3.2-custom-configuration" class="level3">
-<h3 class="anchored" data-anchor-id="example-3.2-custom-configuration">Example 3.2: Custom Configuration</h3>
+<section id="custom-configuration" class="level3">
+<h3 class="anchored" data-anchor-id="custom-configuration">Custom Configuration</h3>
 <div id="context-config" class="cell" data-execution_count="60">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Custom configuration..."</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -763,8 +564,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="example-3.3-disable-summary-for-quick-tests" class="level3">
-<h3 class="anchored" data-anchor-id="example-3.3-disable-summary-for-quick-tests">Example 3.3: Disable Summary (for quick tests)</h3>
+<section id="disable-summary-for-quick-tests" class="level3">
+<h3 class="anchored" data-anchor-id="disable-summary-for-quick-tests">Disable Summary (for quick tests)</h3>
 <div id="context-nosummary-code" class="cell" data-execution_count="61">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># No summary statistics - just live monitoring</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ptd.CPUMonitor(show_summary<span class="op">=</span><span class="va">False</span>):</span>
@@ -780,10 +581,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="decorator-for-functions" class="level2">
-<h2 class="anchored" data-anchor-id="decorator-for-functions">4. Decorator: For Functions <a id="decorator"></a></h2>
+<h2 class="anchored" data-anchor-id="decorator-for-functions">Decorator: For Functions</h2>
 <p>Wrap any function with <code>@monitor_cpu</code> to automatically monitor its execution.</p>
-<section id="example-4.1-basic-decorator" class="level3">
-<h3 class="anchored" data-anchor-id="example-4.1-basic-decorator">Example 4.1: Basic Decorator</h3>
+<section id="basic-decorator" class="level3">
+<h3 class="anchored" data-anchor-id="basic-decorator">Basic Decorator</h3>
 <div id="decorator-basic" class="cell" data-execution_count="62">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="at">@ptd.monitor_cpu</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate_training():</span>
@@ -806,8 +607,8 @@ Saved to: model.pkl</code></pre>
 </div>
 </div>
 </section>
-<section id="example-4.2-decorator-with-custom-settings" class="level3">
-<h3 class="anchored" data-anchor-id="example-4.2-decorator-with-custom-settings">Example 4.2: Decorator with Custom Settings</h3>
+<section id="decorator-with-custom-settings" class="level3">
+<h3 class="anchored" data-anchor-id="decorator-with-custom-settings">Decorator with Custom Settings</h3>
 <div id="decorator-custom" class="cell" data-execution_count="63">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="at">@ptd.monitor_cpu</span>(update_interval<span class="op">=</span><span class="fl">0.25</span>, show_summary<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process_data(n_iterations):</span>
@@ -832,10 +633,10 @@ Processed 6 batches</code></pre>
 </section>
 </section>
 <section id="real-computations" class="level2">
-<h2 class="anchored" data-anchor-id="real-computations">5. Real Computations <a id="real-computations"></a></h2>
+<h2 class="anchored" data-anchor-id="real-computations">Real Computations <a id="real-computations"></a></h2>
 <p>Let’s monitor some actual computational work!</p>
-<section id="example-5.1-matrix-operations" class="level3">
-<h3 class="anchored" data-anchor-id="example-5.1-matrix-operations">Example 5.1: Matrix Operations</h3>
+<section id="matrix-operations" class="level3">
+<h3 class="anchored" data-anchor-id="matrix-operations">Matrix Operations</h3>
 <div id="real-matrix" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -861,8 +662,8 @@ Processed 6 batches</code></pre>
 <span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Singular values computed: </span><span class="sc">{</span><span class="bu">len</span>(s)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="example-5.2-fft-and-signal-processing" class="level3">
-<h3 class="anchored" data-anchor-id="example-5.2-fft-and-signal-processing">Example 5.2: FFT and Signal Processing</h3>
+<section id="fft-and-signal-processing" class="level3">
+<h3 class="anchored" data-anchor-id="fft-and-signal-processing">FFT and Signal Processing</h3>
 <div id="real-fft-code" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor <span class="op">-</span>i <span class="fl">0.3</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -887,8 +688,8 @@ Processed 6 batches</code></pre>
 <span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Peaks found: </span><span class="sc">{</span><span class="bu">len</span>(peaks)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="example-5.3-ptdalgorithms-graph-operations" class="level3">
-<h3 class="anchored" data-anchor-id="example-5.3-ptdalgorithms-graph-operations">Example 5.3: PtDAlgorithms Graph Operations</h3>
+<section id="ptdalgorithms-graph-operations" class="level3">
+<h3 class="anchored" data-anchor-id="ptdalgorithms-graph-operations">PtDAlgorithms Graph Operations</h3>
 <div id="real-graph-build" class="cell" data-execution_count="66">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitor phase-type distribution computations:</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -942,8 +743,8 @@ Processed 6 batches</code></pre>
 <span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Total probability: </span><span class="sc">{</span>total_prob<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="example-5.4-batch-moments-calculation" class="level3">
-<h3 class="anchored" data-anchor-id="example-5.4-batch-moments-calculation">Example 5.4: Batch Moments Calculation</h3>
+<section id="batch-moments-calculation" class="level3">
+<h3 class="anchored" data-anchor-id="batch-moments-calculation">Batch Moments Calculation</h3>
 <div id="real-moments-code" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -971,9 +772,9 @@ Processed 6 batches</code></pre>
 </section>
 </section>
 <section id="advanced-configuration" class="level2">
-<h2 class="anchored" data-anchor-id="advanced-configuration">6. Advanced Configuration <a id="advanced"></a></h2>
-<section id="example-6.1-comparing-different-workloads" class="level3">
-<h3 class="anchored" data-anchor-id="example-6.1-comparing-different-workloads">Example 6.1: Comparing Different Workloads</h3>
+<h2 class="anchored" data-anchor-id="advanced-configuration">Advanced Configuration <a id="advanced"></a></h2>
+<section id="comparing-different-workloads" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-different-workloads">Comparing Different Workloads</h3>
 <div id="advanced-compare" class="cell" data-execution_count="69">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> workload_light():</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Light CPU usage."""</span></span>
@@ -1006,8 +807,8 @@ Processed 6 batches</code></pre>
 </div>
 </div>
 </section>
-<section id="example-6.2-monitoring-multiple-phases" class="level3">
-<h3 class="anchored" data-anchor-id="example-6.2-monitoring-multiple-phases">Example 6.2: Monitoring Multiple Phases</h3>
+<section id="monitoring-multiple-phases" class="level3">
+<h3 class="anchored" data-anchor-id="monitoring-multiple-phases">Monitoring Multiple Phases</h3>
 <div id="advanced-phases" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1071,9 +872,9 @@ Detected Resources:
 </section>
 </section>
 <section id="tips-and-tricks" class="level2">
-<h2 class="anchored" data-anchor-id="tips-and-tricks">8. Tips and Tricks <a id="tips"></a></h2>
-<section id="tip-1-quick-testing-without-summary" class="level3">
-<h3 class="anchored" data-anchor-id="tip-1-quick-testing-without-summary">Tip 1: Quick Testing Without Summary</h3>
+<h2 class="anchored" data-anchor-id="tips-and-tricks">Tips and Tricks <a id="tips"></a></h2>
+<section id="quick-testing-without-summary" class="level3">
+<h3 class="anchored" data-anchor-id="quick-testing-without-summary">Quick Testing Without Summary</h3>
 <div id="tips-quick" class="cell" data-execution_count="72">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For quick tests, disable summary</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ptd.CPUMonitor(show_summary<span class="op">=</span><span class="va">False</span>):</span>
@@ -1085,8 +886,8 @@ Detected Resources:
 </div>
 </div>
 </section>
-<section id="tip-2-combine-with-parallel-configuration" class="level3">
-<h3 class="anchored" data-anchor-id="tip-2-combine-with-parallel-configuration">Tip 2: Combine with Parallel Configuration</h3>
+<section id="combine-with-parallel-configuration" class="level3">
+<h3 class="anchored" data-anchor-id="combine-with-parallel-configuration">Combine with Parallel Configuration</h3>
 <div id="tips-parallel-code" class="cell" data-execution_count="73">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize parallel configuration</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
@@ -1107,8 +908,8 @@ Detected Resources:
 <span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Computation not available: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="tip-3-adjust-update-interval-based-on-workload" class="level3">
-<h3 class="anchored" data-anchor-id="tip-3-adjust-update-interval-based-on-workload">Tip 3: Adjust Update Interval Based on Workload</h3>
+<section id="adjust-update-interval-based-on-workload" class="level3">
+<h3 class="anchored" data-anchor-id="adjust-update-interval-based-on-workload">Adjust Update Interval Based on Workload</h3>
 <div id="tips-interval" class="cell" data-execution_count="74">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fast computation → frequent updates:"</span>)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ptd.CPUMonitor(update_interval<span class="op">=</span><span class="fl">0.2</span>):</span>
@@ -1129,8 +930,8 @@ Both complete!</code></pre>
 </div>
 </div>
 </section>
-<section id="tip-4-monitor-specific-functions-only" class="level3">
-<h3 class="anchored" data-anchor-id="tip-4-monitor-specific-functions-only">Tip 4: Monitor Specific Functions Only</h3>
+<section id="monitor-specific-functions-only" class="level3">
+<h3 class="anchored" data-anchor-id="monitor-specific-functions-only">Monitor Specific Functions Only</h3>
 <div id="tips-selective" class="cell" data-execution_count="75">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> preprocessing():</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Not monitored."""</span></span>
@@ -1162,273 +963,6 @@ Both complete!</code></pre>
 Pipeline complete!</code></pre>
 </div>
 </div>
-<div id="b8742f67" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python3</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">CPU Monitoring Example for PtDAlgorithms</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co">This script demonstrates how to use the CPU monitoring features</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co">in PtDAlgorithms for both local and SLURM environments.</span></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co">Features demonstrated:</span></span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co">- Context manager usage</span></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co">- Decorator usage</span></span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co">- Custom width and update interval</span></span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co">- Per-core CPU monitoring</span></span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="co">- Summary statistics</span></span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="co">Requirements:</span></span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co">- ptdalgorithms with psutil and rich</span></span>
-<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="co">- Optional: JAX for parallel computations</span></span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co">Author: PtDAlgorithms Team</span></span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="co">Date: 2025-10-08</span></span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
-<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> pta</span>
-<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">80</span>)</span>
-<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"CPU Monitoring Examples"</span>)</span>
-<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">80</span>)</span>
-<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 1: Basic Context Manager</span></span>
-<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Example 1: Basic CPU Monitoring with Context Manager"</span>)</span>
-<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
-<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate_computation(duration<span class="op">=</span><span class="dv">3</span>, intensity<span class="op">=</span><span class="st">'medium'</span>):</span>
-<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a><span class="co">    Simulate CPU-intensive computation.</span></span>
-<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-43"><a href="#cb34-43" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
-<span id="cb34-44"><a href="#cb34-44" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
-<span id="cb34-45"><a href="#cb34-45" aria-hidden="true" tabindex="-1"></a><span class="co">    duration : float</span></span>
-<span id="cb34-46"><a href="#cb34-46" aria-hidden="true" tabindex="-1"></a><span class="co">        How long to run (seconds)</span></span>
-<span id="cb34-47"><a href="#cb34-47" aria-hidden="true" tabindex="-1"></a><span class="co">    intensity : str</span></span>
-<span id="cb34-48"><a href="#cb34-48" aria-hidden="true" tabindex="-1"></a><span class="co">        'light', 'medium', or 'heavy' - affects CPU load</span></span>
-<span id="cb34-49"><a href="#cb34-49" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb34-50"><a href="#cb34-50" aria-hidden="true" tabindex="-1"></a>    end_time <span class="op">=</span> time.time() <span class="op">+</span> duration</span>
-<span id="cb34-51"><a href="#cb34-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-52"><a href="#cb34-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> intensity <span class="op">==</span> <span class="st">'light'</span>:</span>
-<span id="cb34-53"><a href="#cb34-53" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Light computation - mostly sleeping</span></span>
-<span id="cb34-54"><a href="#cb34-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> time.time() <span class="op">&lt;</span> end_time:</span>
-<span id="cb34-55"><a href="#cb34-55" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> <span class="bu">sum</span>(<span class="bu">range</span>(<span class="dv">1000</span>))</span>
-<span id="cb34-56"><a href="#cb34-56" aria-hidden="true" tabindex="-1"></a>            time.sleep(<span class="fl">0.1</span>)</span>
-<span id="cb34-57"><a href="#cb34-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-58"><a href="#cb34-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> intensity <span class="op">==</span> <span class="st">'medium'</span>:</span>
-<span id="cb34-59"><a href="#cb34-59" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Medium computation - some work, some rest</span></span>
-<span id="cb34-60"><a href="#cb34-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> time.time() <span class="op">&lt;</span> end_time:</span>
-<span id="cb34-61"><a href="#cb34-61" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> <span class="bu">sum</span>(<span class="bu">range</span>(<span class="dv">100000</span>))</span>
-<span id="cb34-62"><a href="#cb34-62" aria-hidden="true" tabindex="-1"></a>            time.sleep(<span class="fl">0.01</span>)</span>
-<span id="cb34-63"><a href="#cb34-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-64"><a href="#cb34-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:  <span class="co"># heavy</span></span>
-<span id="cb34-65"><a href="#cb34-65" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Heavy computation - continuous work</span></span>
-<span id="cb34-66"><a href="#cb34-66" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> time.time() <span class="op">&lt;</span> end_time:</span>
-<span id="cb34-67"><a href="#cb34-67" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> <span class="bu">sum</span>(<span class="bu">range</span>(<span class="dv">1000000</span>))</span>
-<span id="cb34-68"><a href="#cb34-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-69"><a href="#cb34-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-70"><a href="#cb34-70" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running light computation (3 seconds)..."</span>)</span>
-<span id="cb34-71"><a href="#cb34-71" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pta.CPUMonitor():</span>
-<span id="cb34-72"><a href="#cb34-72" aria-hidden="true" tabindex="-1"></a>    simulate_computation(duration<span class="op">=</span><span class="dv">3</span>, intensity<span class="op">=</span><span class="st">'light'</span>)</span>
-<span id="cb34-73"><a href="#cb34-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-74"><a href="#cb34-74" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb34-75"><a href="#cb34-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-76"><a href="#cb34-76" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-77"><a href="#cb34-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 2: Custom Configuration</span></span>
-<span id="cb34-78"><a href="#cb34-78" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-79"><a href="#cb34-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-80"><a href="#cb34-80" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Example 2: Custom Width and Update Interval"</span>)</span>
-<span id="cb34-81"><a href="#cb34-81" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
-<span id="cb34-82"><a href="#cb34-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-83"><a href="#cb34-83" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running medium computation with custom settings..."</span>)</span>
-<span id="cb34-84"><a href="#cb34-84" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pta.CPUMonitor(width<span class="op">=</span><span class="dv">100</span>, update_interval<span class="op">=</span><span class="fl">0.25</span>):</span>
-<span id="cb34-85"><a href="#cb34-85" aria-hidden="true" tabindex="-1"></a>    simulate_computation(duration<span class="op">=</span><span class="dv">3</span>, intensity<span class="op">=</span><span class="st">'medium'</span>)</span>
-<span id="cb34-86"><a href="#cb34-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-87"><a href="#cb34-87" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb34-88"><a href="#cb34-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-89"><a href="#cb34-89" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-90"><a href="#cb34-90" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 3: Decorator Usage</span></span>
-<span id="cb34-91"><a href="#cb34-91" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-92"><a href="#cb34-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-93"><a href="#cb34-93" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Example 3: Using @monitor_cpu Decorator"</span>)</span>
-<span id="cb34-94"><a href="#cb34-94" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
-<span id="cb34-95"><a href="#cb34-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-96"><a href="#cb34-96" aria-hidden="true" tabindex="-1"></a><span class="at">@pta.monitor_cpu</span></span>
-<span id="cb34-97"><a href="#cb34-97" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_computation():</span>
-<span id="cb34-98"><a href="#cb34-98" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""A decorated function that will be monitored."""</span></span>
-<span id="cb34-99"><a href="#cb34-99" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Running decorated computation..."</span>)</span>
-<span id="cb34-100"><a href="#cb34-100" aria-hidden="true" tabindex="-1"></a>    simulate_computation(duration<span class="op">=</span><span class="dv">3</span>, intensity<span class="op">=</span><span class="st">'heavy'</span>)</span>
-<span id="cb34-101"><a href="#cb34-101" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Computation complete!"</span></span>
-<span id="cb34-102"><a href="#cb34-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-103"><a href="#cb34-103" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> my_computation()</span>
-<span id="cb34-104"><a href="#cb34-104" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Result: </span><span class="sc">{</span>result<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb34-105"><a href="#cb34-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-106"><a href="#cb34-106" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb34-107"><a href="#cb34-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-108"><a href="#cb34-108" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-109"><a href="#cb34-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 4: Decorator with Custom Settings</span></span>
-<span id="cb34-110"><a href="#cb34-110" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-111"><a href="#cb34-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-112"><a href="#cb34-112" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Example 4: Decorator with Custom Settings"</span>)</span>
-<span id="cb34-113"><a href="#cb34-113" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
-<span id="cb34-114"><a href="#cb34-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-115"><a href="#cb34-115" aria-hidden="true" tabindex="-1"></a><span class="at">@pta.monitor_cpu</span>(update_interval<span class="op">=</span><span class="fl">1.0</span>, width<span class="op">=</span><span class="dv">80</span>)</span>
-<span id="cb34-116"><a href="#cb34-116" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> another_computation():</span>
-<span id="cb34-117"><a href="#cb34-117" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Another decorated function with custom monitor settings."""</span></span>
-<span id="cb34-118"><a href="#cb34-118" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Running another computation..."</span>)</span>
-<span id="cb34-119"><a href="#cb34-119" aria-hidden="true" tabindex="-1"></a>    simulate_computation(duration<span class="op">=</span><span class="dv">4</span>, intensity<span class="op">=</span><span class="st">'medium'</span>)</span>
-<span id="cb34-120"><a href="#cb34-120" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">42</span></span>
-<span id="cb34-121"><a href="#cb34-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-122"><a href="#cb34-122" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> another_computation()</span>
-<span id="cb34-123"><a href="#cb34-123" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Returned value: </span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb34-124"><a href="#cb34-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-125"><a href="#cb34-125" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb34-126"><a href="#cb34-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-127"><a href="#cb34-127" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-128"><a href="#cb34-128" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 5: Real Computation with NumPy</span></span>
-<span id="cb34-129"><a href="#cb34-129" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-130"><a href="#cb34-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-131"><a href="#cb34-131" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Example 5: Real NumPy Computation"</span>)</span>
-<span id="cb34-132"><a href="#cb34-132" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
-<span id="cb34-133"><a href="#cb34-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-134"><a href="#cb34-134" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> matrix_operations():</span>
-<span id="cb34-135"><a href="#cb34-135" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Perform some real CPU-intensive matrix operations."""</span></span>
-<span id="cb34-136"><a href="#cb34-136" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Performing matrix operations..."</span>)</span>
-<span id="cb34-137"><a href="#cb34-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-138"><a href="#cb34-138" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create large matrices</span></span>
-<span id="cb34-139"><a href="#cb34-139" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="dv">2000</span></span>
-<span id="cb34-140"><a href="#cb34-140" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> np.random.randn(n, n)</span>
-<span id="cb34-141"><a href="#cb34-141" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> np.random.randn(n, n)</span>
-<span id="cb34-142"><a href="#cb34-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-143"><a href="#cb34-143" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Matrix multiplication</span></span>
-<span id="cb34-144"><a href="#cb34-144" aria-hidden="true" tabindex="-1"></a>    C <span class="op">=</span> np.dot(A, B)</span>
-<span id="cb34-145"><a href="#cb34-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-146"><a href="#cb34-146" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Eigenvalue computation</span></span>
-<span id="cb34-147"><a href="#cb34-147" aria-hidden="true" tabindex="-1"></a>    eigenvalues <span class="op">=</span> np.linalg.eigvals(C[:<span class="dv">500</span>, :<span class="dv">500</span>])</span>
-<span id="cb34-148"><a href="#cb34-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-149"><a href="#cb34-149" aria-hidden="true" tabindex="-1"></a>    <span class="co"># SVD</span></span>
-<span id="cb34-150"><a href="#cb34-150" aria-hidden="true" tabindex="-1"></a>    U, s, Vh <span class="op">=</span> np.linalg.svd(C[:<span class="dv">500</span>, :<span class="dv">500</span>], full_matrices<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb34-151"><a href="#cb34-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-152"><a href="#cb34-152" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span>
-<span id="cb34-153"><a href="#cb34-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-154"><a href="#cb34-154" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running matrix computations..."</span>)</span>
-<span id="cb34-155"><a href="#cb34-155" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pta.CPUMonitor():</span>
-<span id="cb34-156"><a href="#cb34-156" aria-hidden="true" tabindex="-1"></a>    singular_values <span class="op">=</span> matrix_operations()</span>
-<span id="cb34-157"><a href="#cb34-157" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Computed </span><span class="sc">{</span><span class="bu">len</span>(singular_values)<span class="sc">}</span><span class="ss"> singular values"</span>)</span>
-<span id="cb34-158"><a href="#cb34-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-159"><a href="#cb34-159" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb34-160"><a href="#cb34-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-161"><a href="#cb34-161" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-162"><a href="#cb34-162" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 6: With PtDAlgorithms Graph Operations (if available)</span></span>
-<span id="cb34-163"><a href="#cb34-163" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-164"><a href="#cb34-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-165"><a href="#cb34-165" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Example 6: Monitoring PtDAlgorithms Operations"</span>)</span>
-<span id="cb34-166"><a href="#cb34-166" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
-<span id="cb34-167"><a href="#cb34-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-168"><a href="#cb34-168" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb34-169"><a href="#cb34-169" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a phase-type distribution</span></span>
-<span id="cb34-170"><a href="#cb34-170" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> pta.Graph(<span class="dv">1</span>)</span>
-<span id="cb34-171"><a href="#cb34-171" aria-hidden="true" tabindex="-1"></a>    start <span class="op">=</span> g.starting_vertex()</span>
-<span id="cb34-172"><a href="#cb34-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-173"><a href="#cb34-173" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create vertices</span></span>
-<span id="cb34-174"><a href="#cb34-174" aria-hidden="true" tabindex="-1"></a>    v0 <span class="op">=</span> g.find_or_create_vertex([<span class="dv">0</span>])</span>
-<span id="cb34-175"><a href="#cb34-175" aria-hidden="true" tabindex="-1"></a>    v1 <span class="op">=</span> g.find_or_create_vertex([<span class="dv">1</span>])</span>
-<span id="cb34-176"><a href="#cb34-176" aria-hidden="true" tabindex="-1"></a>    v2 <span class="op">=</span> g.find_or_create_vertex([<span class="dv">2</span>])</span>
-<span id="cb34-177"><a href="#cb34-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-178"><a href="#cb34-178" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add transitions</span></span>
-<span id="cb34-179"><a href="#cb34-179" aria-hidden="true" tabindex="-1"></a>    start.add_edge(v0, <span class="fl">1.0</span>)</span>
-<span id="cb34-180"><a href="#cb34-180" aria-hidden="true" tabindex="-1"></a>    v0.add_edge(v1, <span class="fl">2.0</span>)</span>
-<span id="cb34-181"><a href="#cb34-181" aria-hidden="true" tabindex="-1"></a>    v1.add_edge(v2, <span class="fl">1.5</span>)</span>
-<span id="cb34-182"><a href="#cb34-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-183"><a href="#cb34-183" aria-hidden="true" tabindex="-1"></a>    g.normalize()</span>
-<span id="cb34-184"><a href="#cb34-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-185"><a href="#cb34-185" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Created graph with </span><span class="sc">{</span>g<span class="sc">.</span>vertices_length()<span class="sc">}</span><span class="ss"> vertices"</span>)</span>
-<span id="cb34-186"><a href="#cb34-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-187"><a href="#cb34-187" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Evaluate PDF with CPU monitoring</span></span>
-<span id="cb34-188"><a href="#cb34-188" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Evaluating PDF at 10,000 time points..."</span>)</span>
-<span id="cb34-189"><a href="#cb34-189" aria-hidden="true" tabindex="-1"></a>    times <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="fl">10.0</span>, <span class="dv">10000</span>)</span>
-<span id="cb34-190"><a href="#cb34-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-191"><a href="#cb34-191" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pta.CPUMonitor():</span>
-<span id="cb34-192"><a href="#cb34-192" aria-hidden="true" tabindex="-1"></a>        pdf_values <span class="op">=</span> g.pdf_batch(times)</span>
-<span id="cb34-193"><a href="#cb34-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-194"><a href="#cb34-194" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Computed PDF, max value: </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">max</span>(pdf_values)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb34-195"><a href="#cb34-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-196"><a href="#cb34-196" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb34-197"><a href="#cb34-197" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Could not run Graph example: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb34-198"><a href="#cb34-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-199"><a href="#cb34-199" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb34-200"><a href="#cb34-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-201"><a href="#cb34-201" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-202"><a href="#cb34-202" aria-hidden="true" tabindex="-1"></a><span class="co"># Example 7: Multiple Sequential Operations</span></span>
-<span id="cb34-203"><a href="#cb34-203" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-204"><a href="#cb34-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-205"><a href="#cb34-205" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Example 7: Monitoring Multiple Operations"</span>)</span>
-<span id="cb34-206"><a href="#cb34-206" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
-<span id="cb34-207"><a href="#cb34-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-208"><a href="#cb34-208" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pta.CPUMonitor():</span>
-<span id="cb34-209"><a href="#cb34-209" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Phase 1: Light computation (2s)"</span>)</span>
-<span id="cb34-210"><a href="#cb34-210" aria-hidden="true" tabindex="-1"></a>    simulate_computation(duration<span class="op">=</span><span class="dv">2</span>, intensity<span class="op">=</span><span class="st">'light'</span>)</span>
-<span id="cb34-211"><a href="#cb34-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-212"><a href="#cb34-212" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Phase 2: Heavy computation (2s)"</span>)</span>
-<span id="cb34-213"><a href="#cb34-213" aria-hidden="true" tabindex="-1"></a>    simulate_computation(duration<span class="op">=</span><span class="dv">2</span>, intensity<span class="op">=</span><span class="st">'heavy'</span>)</span>
-<span id="cb34-214"><a href="#cb34-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-215"><a href="#cb34-215" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Phase 3: Medium computation (2s)"</span>)</span>
-<span id="cb34-216"><a href="#cb34-216" aria-hidden="true" tabindex="-1"></a>    simulate_computation(duration<span class="op">=</span><span class="dv">2</span>, intensity<span class="op">=</span><span class="st">'medium'</span>)</span>
-<span id="cb34-217"><a href="#cb34-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-218"><a href="#cb34-218" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb34-219"><a href="#cb34-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-220"><a href="#cb34-220" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-221"><a href="#cb34-221" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary</span></span>
-<span id="cb34-222"><a href="#cb34-222" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
-<span id="cb34-223"><a href="#cb34-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-224"><a href="#cb34-224" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">80</span>)</span>
-<span id="cb34-225"><a href="#cb34-225" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"CPU Monitoring Examples Complete!"</span>)</span>
-<span id="cb34-226"><a href="#cb34-226" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">80</span>)</span>
-<span id="cb34-227"><a href="#cb34-227" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb34-228"><a href="#cb34-228" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Key Features:"</span>)</span>
-<span id="cb34-229"><a href="#cb34-229" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Context manager: with pta.CPUMonitor(): ..."</span>)</span>
-<span id="cb34-230"><a href="#cb34-230" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Decorator: @pta.monitor_cpu"</span>)</span>
-<span id="cb34-231"><a href="#cb34-231" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Custom settings: width, update_interval"</span>)</span>
-<span id="cb34-232"><a href="#cb34-232" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Per-core monitoring with Unicode bars"</span>)</span>
-<span id="cb34-233"><a href="#cb34-233" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Summary statistics after completion"</span>)</span>
-<span id="cb34-234"><a href="#cb34-234" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  SLURM-aware (detects allocated nodes/CPUs)"</span>)</span>
-<span id="cb34-235"><a href="#cb34-235" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb34-236"><a href="#cb34-236" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"For Jupyter notebook usage, see:"</span>)</span>
-<span id="cb34-237"><a href="#cb34-237" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  examples/cpu_monitoring_notebook.ipynb"</span>)</span>
-<span id="cb34-238"><a href="#cb34-238" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb34-239"><a href="#cb34-239" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"In Jupyter, you can use the </span><span class="sc">%%</span><span class="st">monitor cell magic:"</span>)</span>
-<span id="cb34-240"><a href="#cb34-240" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  </span><span class="sc">%%</span><span class="st">monitor"</span>)</span>
-<span id="cb34-241"><a href="#cb34-241" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  # your code here"</span>)</span>
-<span id="cb34-242"><a href="#cb34-242" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-
-================================================================================
-CPU Monitoring Examples Complete!
-================================================================================
-
-Key Features:
-  Context manager: with pta.CPUMonitor(): ...
-  Decorator: @pta.monitor_cpu
-  Custom settings: width, update_interval
-  Per-core monitoring with Unicode bars
-  Summary statistics after completion
-  SLURM-aware (detects allocated nodes/CPUs)
-
-For Jupyter notebook usage, see:
-  examples/cpu_monitoring_notebook.ipynb
-
-In Jupyter, you can use the %%usage cell magic:
-  %%usage
-  # your code here
-</code></pre>
-</div>
-</div>
 
 
 </section>
@@ -1437,19 +971,6 @@ In Jupyter, you can use the %%usage cell magic:
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -1850,13 +1371,13 @@ In Jupyter, you can use the %%usage cell magic:
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../pages/auto_parallel_computing.html" class="pagination-link" aria-label="Automatic Parallelization with PtDAlgorithms">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Automatic Parallelization with PtDAlgorithms</span>
+      <a href="../pages/slurm_cluster_setup.html" class="pagination-link" aria-label="SLURM Cluster Setup and Configuration">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">SLURM Cluster Setup and Configuration</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../pages/distributed_computing.html" class="pagination-link" aria-label="Distributed Computing with PtDAlgorithms">
-        <span class="nav-page-text">Distributed Computing with PtDAlgorithms</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../examples/python/rabbits_full_py_api_example.html" class="pagination-link" aria-label="Rabbits (full API example)">
+        <span class="nav-page-text">Rabbits (full API example)</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

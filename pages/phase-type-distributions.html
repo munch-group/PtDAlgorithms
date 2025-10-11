@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../pages/slurm_multinode_guide.html" rel="next">
-<link href="../pages/math_and_algorithms.html" rel="prev">
+<link href="../pages/state_space.html" rel="next">
+<link href="../pages/getting_started.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -74,14 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-668a99090d8b08bf025f8b2d39003dbc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e7f4145358ce1d0cd37d8d374dbb44f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-668a99090d8b08bf025f8b2d39003dbc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-aa7f48a65c332c670c33845652e8a97e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,8 +106,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -141,173 +151,12 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../api/_styles-quartodoc.css">
-<link rel="stylesheet" href="numpy-navbar-sidebar.css">
+<link rel="stylesheet" href="custom.css">
 <link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="numpy.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -348,7 +197,6 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -357,7 +205,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/distributed_computing_basics.html">Distributed Computing</a></li><li class="breadcrumb-item"><a href="../pages/phase-type-distributions.html">Phase-Type Distributions</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/phase-type-distributions.html">Basics</a></li><li class="breadcrumb-item"><a href="../pages/phase-type-distributions.html">Phase-Type Distributions</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -390,6 +238,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../pages/phase-type-distributions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Phase-Type Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../pages/state_space.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">State space</span></a>
   </div>
@@ -406,18 +260,12 @@ window.Quarto = {
  <span class="menu-text">Distributions</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/laplace.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Laplace transform</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Advanced</span></a>
+ <span class="menu-text">Background</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -425,8 +273,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../pages/math_and_algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Math and background</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../pages/state_lumping.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">State lumping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/laplace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Laplace transform</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -445,25 +316,16 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Distributed Computing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/distributed_computing_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed Computing Basics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/distributed_svgd_inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed SVGD Inference</span></a>
-  </div>
-</li>
+ <span class="menu-text">pages/svgd.qmd</span>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/slurm_cluster_setup.html" class="sidebar-item-text sidebar-link">
@@ -472,81 +334,21 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/architecture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PtDAlgorithms Project Architecture</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/auto_parallel_computing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Automatic Parallelization with PtDAlgorithms</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../pages/cpu_monitoring_showcase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CPU monitoring</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/distributed_computing_basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed Computing Basics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/distributed_computing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed Computing with PtDAlgorithms</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/distributed_svgd_inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed SVGD Inference</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/graphbuilder_showcase.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Comprehensive GraphBuilder &amp; JAX FFI Showcase</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/math_and_algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">My document</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/phase-type-distributions.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Phase-Type Distributions</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/slurm_multinode_guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multi-Node SLURM Guide for Distributed SVGD</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/svgd_inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">title: Inference with SVGD</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Examples</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../examples/python/rabbits_full_py_api_example.html" class="sidebar-item-text sidebar-link">
@@ -572,21 +374,35 @@ window.Quarto = {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">examples/python/getting_started.ipynb</span>
-  </li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../examples/python/somecode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">somecode.html</span></a>
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">examples/python/laplace.ipynb</span>
-  </li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../examples/python/two-island-two-locus-arg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">two-island-two-locus-arg.html</span></a>
+ <span class="menu-text">Two Island Two Locus Argument</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">examples/python/svgd.ipynb</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Development</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PtDAlgorithms Project Architecture</span></a>
   </div>
 </li>
       </ul>
@@ -638,8 +454,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/distributed_computing_basics.html">Distributed Computing</a></li><li class="breadcrumb-item"><a href="../pages/phase-type-distributions.html">Phase-Type Distributions</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/phase-type-distributions.html">Basics</a></li><li class="breadcrumb-item"><a href="../pages/phase-type-distributions.html">Phase-Type Distributions</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Phase-Type Distributions</h1>
 </div>
@@ -681,125 +496,125 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="mathematical-formulation">Mathematical Formulation</h2>
 <section id="continuous-phase-type-distributions-1" class="level3">
 <h3 class="anchored" data-anchor-id="continuous-phase-type-distributions-1">Continuous Phase-Type Distributions</h3>
-<p>Let <span class="math inline">\(\tau\)</span> be a phase-type distributed random variable with <span class="math inline">\(p\)</span> transient states. We write <span class="math inline">\(\tau \sim PH_p(\boldsymbol{\alpha}, \mathbf{S})\)</span> where:</p>
+<p>Let <span class="math inline">\tau</span> be a phase-type distributed random variable with <span class="math inline">p</span> transient states. We write <span class="math inline">\tau \sim PH_p(\boldsymbol{\alpha}, \mathbf{S})</span> where:</p>
 <ul>
-<li><strong><span class="math inline">\(\boldsymbol{\alpha} = (\alpha_1, \ldots, \alpha_p)\)</span></strong>: Initial probability vector
+<li><strong><span class="math inline">\boldsymbol{\alpha} = (\alpha_1, \ldots, \alpha_p)</span></strong>: Initial probability vector
 <ul>
-<li><span class="math inline">\(\alpha_i\)</span> is the probability of starting in state <span class="math inline">\(i\)</span></li>
-<li>Potential defect: <span class="math inline">\(\alpha_0 = 1 - \sum_{i=1}^p \alpha_i\)</span> (probability of starting in absorbing state)</li>
+<li><span class="math inline">\alpha_i</span> is the probability of starting in state <span class="math inline">i</span></li>
+<li>Potential defect: <span class="math inline">\alpha_0 = 1 - \sum_{i=1}^p \alpha_i</span> (probability of starting in absorbing state)</li>
 </ul></li>
-<li><strong><span class="math inline">\(\mathbf{S}\)</span></strong>: Sub-intensity matrix (rate matrix excluding absorbing states)
+<li><strong><span class="math inline">\mathbf{S}</span></strong>: Sub-intensity matrix (rate matrix excluding absorbing states)
 <ul>
-<li>Entry <span class="math inline">\(s_{ij}\)</span> is the rate of transition from state <span class="math inline">\(i\)</span> to state <span class="math inline">\(j\)</span></li>
-<li>Diagonal entries are negative: <span class="math inline">\(s_{ii} = -\sum_{j \neq i} s_{ij}\)</span></li>
+<li>Entry <span class="math inline">s_{ij}</span> is the rate of transition from state <span class="math inline">i</span> to state <span class="math inline">j</span></li>
+<li>Diagonal entries are negative: <span class="math inline">s_{ii} = -\sum_{j \neq i} s_{ij}</span></li>
 </ul></li>
-<li><strong><span class="math inline">\(\mathbf{U} = (-\mathbf{S})^{-1}\)</span></strong>: Green matrix
+<li><strong><span class="math inline">\mathbf{U} = (-\mathbf{S})^{-1}</span></strong>: Green matrix
 <ul>
-<li>Entry <span class="math inline">\(u_{ij}\)</span> is the expected total time spent in state <span class="math inline">\(j\)</span> when starting in state <span class="math inline">\(i\)</span></li>
+<li>Entry <span class="math inline">u_{ij}</span> is the expected total time spent in state <span class="math inline">j</span> when starting in state <span class="math inline">i</span></li>
 </ul></li>
 </ul>
 <section id="cumulative-distribution-function-cdf" class="level4">
 <h4 class="anchored" data-anchor-id="cumulative-distribution-function-cdf">Cumulative Distribution Function (CDF)</h4>
-<p>The probability that absorption occurs by time <span class="math inline">\(t\)</span>:</p>
-<p><span class="math display">\[
+<p>The probability that absorption occurs by time <span class="math inline">t</span>:</p>
+<p><span class="math display">
 F(t) = 1 - \boldsymbol{\alpha} e^{\mathbf{S}t} \mathbf{e}, \quad t \geq 0
-\]</span></p>
-<p>where <span class="math inline">\(e^{\mathbf{S}t}\)</span> is the matrix exponential and <span class="math inline">\(\mathbf{e}\)</span> is a vector of ones.</p>
+</span></p>
+<p>where <span class="math inline">e^{\mathbf{S}t}</span> is the matrix exponential and <span class="math inline">\mathbf{e}</span> is a vector of ones.</p>
 </section>
 <section id="probability-density-function-pdf" class="level4">
 <h4 class="anchored" data-anchor-id="probability-density-function-pdf">Probability Density Function (PDF)</h4>
 <p>The density function is:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 f(t) = \boldsymbol{\alpha} e^{\mathbf{S}t} (-\mathbf{S}) \mathbf{e}, \quad t \geq 0
-\]</span></p>
+</span></p>
 </section>
 <section id="moments" class="level4">
 <h4 class="anchored" data-anchor-id="moments">Moments</h4>
 <p>The expectation (first moment):</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbb{E}[\tau] = \boldsymbol{\alpha} \mathbf{U} \mathbf{e}
-\]</span></p>
+</span></p>
 <p>Higher-order moments:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbb{E}[\tau^k] = k! \boldsymbol{\alpha} \mathbf{U}^k \mathbf{e}
-\]</span></p>
+</span></p>
 <p>The variance:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \text{Var}(\tau) = 2\boldsymbol{\alpha} \mathbf{U}^2 \mathbf{e} - (\boldsymbol{\alpha} \mathbf{U} \mathbf{e})^2
-\]</span></p>
+</span></p>
 </section>
 </section>
 <section id="discrete-phase-type-distributions-1" class="level3">
 <h3 class="anchored" data-anchor-id="discrete-phase-type-distributions-1">Discrete Phase-Type Distributions</h3>
-<p>For discrete phase-type distributions with sub-transition matrix <span class="math inline">\(\mathbf{T}\)</span> and initial distribution <span class="math inline">\(\boldsymbol{\pi}\)</span>:</p>
+<p>For discrete phase-type distributions with sub-transition matrix <span class="math inline">\mathbf{T}</span> and initial distribution <span class="math inline">\boldsymbol{\pi}</span>:</p>
 <section id="green-matrix" class="level4">
 <h4 class="anchored" data-anchor-id="green-matrix">Green Matrix</h4>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbf{U} = -(\mathbf{T} - \mathbf{I})^{-1}
-\]</span></p>
+</span></p>
 </section>
 <section id="cdf-probability-mass-function" class="level4">
 <h4 class="anchored" data-anchor-id="cdf-probability-mass-function">CDF (Probability Mass Function)</h4>
-<p>The probability of absorption at exactly jump <span class="math inline">\(t\)</span>:</p>
-<p><span class="math display">\[
+<p>The probability of absorption at exactly jump <span class="math inline">t</span>:</p>
+<p><span class="math display">
 F(t) = 1 - \boldsymbol{\pi} \mathbf{T}^t \mathbf{e}
-\]</span></p>
+</span></p>
 </section>
 <section id="moments-1" class="level4">
 <h4 class="anchored" data-anchor-id="moments-1">Moments</h4>
 <p>The expectation:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbb{E}[\tau] = \boldsymbol{\pi} \mathbf{U} \mathbf{e}
-\]</span></p>
+</span></p>
 </section>
 </section>
 <section id="reward-transformed-distributions" class="level3">
 <h3 class="anchored" data-anchor-id="reward-transformed-distributions">Reward-Transformed Distributions</h3>
-<p>Phase-type distributions can be <strong>reward-transformed</strong> by assigning rewards <span class="math inline">\(r_i &gt; 0\)</span> to each state <span class="math inline">\(i\)</span>. Instead of measuring time until absorption, the distribution represents accumulated reward until absorption.</p>
+<p>Phase-type distributions can be <strong>reward-transformed</strong> by assigning rewards <span class="math inline">r_i &gt; 0</span> to each state <span class="math inline">i</span>. Instead of measuring time until absorption, the distribution represents accumulated reward until absorption.</p>
 <section id="mathematical-interpretation" class="level4">
 <h4 class="anchored" data-anchor-id="mathematical-interpretation">Mathematical Interpretation</h4>
-<p><strong>Intuition</strong>: Rewards scale the “waiting time” in each state. If state <span class="math inline">\(i\)</span> has reward <span class="math inline">\(r_i = 2\)</span>, then spending time <span class="math inline">\(t\)</span> in that state accumulates reward <span class="math inline">\(2t\)</span>. This is like earning interest at different rates in different states.</p>
-<p>Given rewards <span class="math inline">\(\mathbf{r} = (r_1, \ldots, r_p)\)</span>, the reward-transformed variable is:</p>
-<p><span class="math display">\[
+<p><strong>Intuition</strong>: Rewards scale the “waiting time” in each state. If state <span class="math inline">i</span> has reward <span class="math inline">r_i = 2</span>, then spending time <span class="math inline">t</span> in that state accumulates reward <span class="math inline">2t</span>. This is like earning interest at different rates in different states.</p>
+<p>Given rewards <span class="math inline">\mathbf{r} = (r_1, \ldots, r_p)</span>, the reward-transformed variable is:</p>
+<p><span class="math display">
 Y = \int_0^\tau r(X_t) dt
-\]</span></p>
-<p>where <span class="math inline">\(\{X_t\}\)</span> is the underlying Markov process and <span class="math inline">\(\tau\)</span> is the time until absorption.</p>
-<p><strong>Example</strong>: Consider a system where: - State 1 has reward <span class="math inline">\(r_1 = 1\)</span> (baseline accumulation rate) - State 2 has reward <span class="math inline">\(r_2 = 5\)</span> (accumulates 5× faster) - The process spends time <span class="math inline">\(t_1\)</span> in state 1 and <span class="math inline">\(t_2\)</span> in state 2</p>
-<p>Then the total accumulated reward is <span class="math inline">\(Y = 1 \cdot t_1 + 5 \cdot t_2\)</span>.</p>
-<p>The <span class="math inline">\(k\)</span>-th moment of the reward-transformed distribution:</p>
-<p><span class="math display">\[
+</span></p>
+<p>where <span class="math inline">\{X_t\}</span> is the underlying Markov process and <span class="math inline">\tau</span> is the time until absorption.</p>
+<p><strong>Example</strong>: Consider a system where: - State 1 has reward <span class="math inline">r_1 = 1</span> (baseline accumulation rate) - State 2 has reward <span class="math inline">r_2 = 5</span> (accumulates 5× faster) - The process spends time <span class="math inline">t_1</span> in state 1 and <span class="math inline">t_2</span> in state 2</p>
+<p>Then the total accumulated reward is <span class="math inline">Y = 1 \cdot t_1 + 5 \cdot t_2</span>.</p>
+<p>The <span class="math inline">k</span>-th moment of the reward-transformed distribution:</p>
+<p><span class="math display">
 \mathbb{E}[Y^k] = k! \boldsymbol{\alpha} (\mathbf{U} \boldsymbol{\Delta}(\mathbf{r}))^k \mathbf{e}
-\]</span></p>
-<p>where <span class="math inline">\(\boldsymbol{\Delta}(\mathbf{r})\)</span> is a diagonal matrix with rewards on the diagonal.</p>
+</span></p>
+<p>where <span class="math inline">\boldsymbol{\Delta}(\mathbf{r})</span> is a diagonal matrix with rewards on the diagonal.</p>
 </section>
 <section id="graph-interpretation" class="level4">
 <h4 class="anchored" data-anchor-id="graph-interpretation">Graph Interpretation</h4>
 <p>In the graph representation, <strong>rewards are vertex scalars</strong> that modify what we measure:</p>
 <ul>
 <li><strong>Without rewards</strong>: Measure time until absorption (standard phase-type distribution)</li>
-<li><strong>With rewards</strong>: Each vertex <span class="math inline">\(v\)</span> has an associated reward <span class="math inline">\(r_v\)</span> (a positive scalar)</li>
-<li><strong>Accumulation</strong>: While the process resides in vertex <span class="math inline">\(v\)</span>, reward accumulates at rate <span class="math inline">\(r_v\)</span> per unit time</li>
+<li><strong>With rewards</strong>: Each vertex <span class="math inline">v</span> has an associated reward <span class="math inline">r_v</span> (a positive scalar)</li>
+<li><strong>Accumulation</strong>: While the process resides in vertex <span class="math inline">v</span>, reward accumulates at rate <span class="math inline">r_v</span> per unit time</li>
 <li><strong>Edge weights unchanged</strong>: Transition rates (edge weights) remain the same; only the “value” of time in each state changes</li>
 </ul>
-<p>Think of rewards as <strong>time multipliers</strong> at each vertex: spending time <span class="math inline">\(\Delta t\)</span> in vertex <span class="math inline">\(v\)</span> contributes <span class="math inline">\(r_v \cdot \Delta t\)</span> to the total accumulated reward.</p>
+<p>Think of rewards as <strong>time multipliers</strong> at each vertex: spending time <span class="math inline">\Delta t</span> in vertex <span class="math inline">v</span> contributes <span class="math inline">r_v \cdot \Delta t</span> to the total accumulated reward.</p>
 <p><strong>Key insight</strong>: Rewards don’t change the transition structure of the graph—they only change what we’re measuring. The same stochastic process gives different distributions depending on the rewards.</p>
 <p><strong>Practical uses</strong>: - <strong>Population genetics</strong>: Counting mutations (reward = mutation rate per lineage) - <strong>Queuing theory</strong>: Accumulated cost (reward = cost per unit time in each state) - <strong>Physics</strong>: Energy or distance (reward = rate of energy/distance change in each state)</p>
-<p><strong>Example</strong>: In a population genetics model: - Each state represents a configuration of genealogical lineages - State with <span class="math inline">\(k\)</span> lineages has reward <span class="math inline">\(r_k = \binom{k}{2}\)</span> (number of pairs that could coalesce) - The reward-transformed distribution represents total branch length, not just time</p>
+<p><strong>Example</strong>: In a population genetics model: - Each state represents a configuration of genealogical lineages - State with <span class="math inline">k</span> lineages has reward <span class="math inline">r_k = \binom{k}{2}</span> (number of pairs that could coalesce) - The reward-transformed distribution represents total branch length, not just time</p>
 </section>
 </section>
 <section id="multivariate-phase-type-distributions" class="level3">
 <h3 class="anchored" data-anchor-id="multivariate-phase-type-distributions">Multivariate Phase-Type Distributions</h3>
 <p><strong>Multivariate phase-type distributions</strong> assign a vector of rewards to each state, resulting in a vector-valued outcome:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbf{Y} \sim MPH^*(\boldsymbol{\alpha}, \mathbf{S}, \mathbf{R})
-\]</span></p>
-<p>where <span class="math inline">\(\mathbf{R}\)</span> is a matrix of rewards (each row corresponds to a state, each column to a reward dimension).</p>
+</span></p>
+<p>where <span class="math inline">\mathbf{R}</span> is a matrix of rewards (each row corresponds to a state, each column to a reward dimension).</p>
 <p><strong>Applications</strong>: Modeling multiple correlated quantities accumulated along the same stochastic process.</p>
 <p><strong>Marginal moments</strong>: Computed independently for each dimension.</p>
-<p><strong>Joint moments</strong>: The covariance between dimensions <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>:</p>
-<p><span class="math display">\[
+<p><strong>Joint moments</strong>: The covariance between dimensions <span class="math inline">i</span> and <span class="math inline">j</span>:</p>
+<p><span class="math display">
 \text{Cov}(Y_i, Y_j) = \boldsymbol{\alpha}\mathbf{U}(\mathbf{R}_{\cdot i})\mathbf{U}(\mathbf{R}_{\cdot j})\mathbf{e} + \boldsymbol{\alpha}\mathbf{U}(\mathbf{R}_{\cdot j})\mathbf{U}(\mathbf{R}_{\cdot i})\mathbf{e} - \boldsymbol{\alpha}\mathbf{U}(\mathbf{R}_{\cdot i})\mathbf{e} \cdot \boldsymbol{\alpha}\mathbf{U}(\mathbf{R}_{\cdot j})\mathbf{e}
-\]</span></p>
+</span></p>
 </section>
 </section>
 <section id="graph-based-representation" class="level2">
@@ -807,18 +622,18 @@ Y = \int_0^\tau r(X_t) dt
 <p>Traditional matrix-based formulations become computationally infeasible for systems with thousands of states. However, many real-world systems have <strong>sparse state spaces</strong> where each state connects to only a few others. This sparseness makes a <strong>graph-based representation</strong> more natural and efficient.</p>
 <section id="graph-representation" class="level3">
 <h3 class="anchored" data-anchor-id="graph-representation">Graph Representation</h3>
-<p>A phase-type distribution can be represented as a <strong>weighted directed graph</strong> <span class="math inline">\(G = (V, E)\)</span> where:</p>
+<p>A phase-type distribution can be represented as a <strong>weighted directed graph</strong> <span class="math inline">G = (V, E)</span> where:</p>
 <ul>
-<li><strong>Vertices (<span class="math inline">\(V\)</span>)</strong>: Represent states in the Markov chain
+<li><strong>Vertices (<span class="math inline">V</span>)</strong>: Represent states in the Markov chain
 <ul>
-<li>Special <strong>starting vertex</strong> <span class="math inline">\(S\)</span>: initial state</li>
+<li>Special <strong>starting vertex</strong> <span class="math inline">S</span>: initial state</li>
 <li><strong>Transient vertices</strong>: states the process can visit</li>
 <li><strong>Absorbing vertices</strong>: terminal states (no outgoing edges)</li>
 </ul></li>
-<li><strong>Edges (<span class="math inline">\(E\)</span>)</strong>: Represent transitions between states
+<li><strong>Edges (<span class="math inline">E</span>)</strong>: Represent transitions between states
 <ul>
-<li>An edge <span class="math inline">\((v \to z)\)</span> connects vertex <span class="math inline">\(v\)</span> to vertex <span class="math inline">\(z\)</span></li>
-<li>Each edge has a <strong>weight</strong> <span class="math inline">\(w(v \to z)\)</span> representing the transition rate</li>
+<li>An edge <span class="math inline">(v \to z)</span> connects vertex <span class="math inline">v</span> to vertex <span class="math inline">z</span></li>
+<li>Each edge has a <strong>weight</strong> <span class="math inline">w(v \to z)</span> representing the transition rate</li>
 </ul></li>
 <li><strong>Edge weights</strong>:
 <ul>
@@ -843,47 +658,47 @@ Y = \int_0^\tau r(X_t) dt
 </thead>
 <tbody>
 <tr class="odd">
-<td>State <span class="math inline">\(i\)</span></td>
-<td>Vertex <span class="math inline">\(v\)</span></td>
+<td>State <span class="math inline">i</span></td>
+<td>Vertex <span class="math inline">v</span></td>
 </tr>
 <tr class="even">
-<td>Initial probability <span class="math inline">\(\alpha_i\)</span></td>
-<td>Weight <span class="math inline">\(w(S \to v_i)\)</span> from starting vertex</td>
+<td>Initial probability <span class="math inline">\alpha_i</span></td>
+<td>Weight <span class="math inline">w(S \to v_i)</span> from starting vertex</td>
 </tr>
 <tr class="odd">
-<td>Sub-intensity entry <span class="math inline">\(s_{ij}\)</span></td>
-<td>Edge weight <span class="math inline">\(w(v_i \to v_j)\)</span></td>
+<td>Sub-intensity entry <span class="math inline">s_{ij}</span></td>
+<td>Edge weight <span class="math inline">w(v_i \to v_j)</span></td>
 </tr>
 <tr class="even">
 <td>Absorbing state</td>
 <td>Vertex with no outgoing edges</td>
 </tr>
 <tr class="odd">
-<td>Total exit rate from state <span class="math inline">\(i\)</span></td>
-<td><span class="math inline">\(\lambda_v = \sum_{z \in \text{children}(v)} w(v \to z)\)</span></td>
+<td>Total exit rate from state <span class="math inline">i</span></td>
+<td><span class="math inline">\lambda_v = \sum_{z \in \text{children}(v)} w(v \to z)</span></td>
 </tr>
 </tbody>
 </table>
 <p><strong>Example</strong>: The sub-intensity matrix</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbf{S} = \begin{pmatrix}
 -5 &amp; 1 &amp; 4 \\
 1 &amp; -8 &amp; 2 \\
 0 &amp; 1 &amp; -3
 \end{pmatrix}
-\]</span></p>
-<p>corresponds to a graph with: - Vertex A with edges: (A → B, weight=1), (A → C, weight=4) - Vertex B with edges: (B → A, weight=1), (B → C, weight=2) - Vertex C with edges: (C → B, weight=1) - Total exit rates: <span class="math inline">\(\lambda_A = 5\)</span>, <span class="math inline">\(\lambda_B = 8\)</span>, <span class="math inline">\(\lambda_C = 3\)</span></p>
+</span></p>
+<p>corresponds to a graph with: - Vertex A with edges: (A → B, weight=1), (A → C, weight=4) - Vertex B with edges: (B → A, weight=1), (B → C, weight=2) - Vertex C with edges: (C → B, weight=1) - Total exit rates: <span class="math inline">\lambda_A = 5</span>, <span class="math inline">\lambda_B = 8</span>, <span class="math inline">\lambda_C = 3</span></p>
 </section>
 <section id="advantages-of-graph-representation" class="level3">
 <h3 class="anchored" data-anchor-id="advantages-of-graph-representation">Advantages of Graph Representation</h3>
 <ol type="1">
-<li><strong>Memory efficiency</strong>: Store only existing transitions (not full <span class="math inline">\(p \times p\)</span> matrix)
+<li><strong>Memory efficiency</strong>: Store only existing transitions (not full <span class="math inline">p \times p</span> matrix)
 <ul>
-<li>For sparse systems: <span class="math inline">\(O(|E|)\)</span> vs <span class="math inline">\(O(p^2)\)</span> memory</li>
+<li>For sparse systems: <span class="math inline">O(|E|)</span> vs <span class="math inline">O(p^2)</span> memory</li>
 </ul></li>
 <li><strong>Computational efficiency</strong>: Operations on edges only
 <ul>
-<li>Many algorithms: <span class="math inline">\(O(|V|^2)\)</span> vs <span class="math inline">\(O(p^3)\)</span> for matrix operations</li>
+<li>Many algorithms: <span class="math inline">O(|V|^2)</span> vs <span class="math inline">O(p^3)</span> for matrix operations</li>
 </ul></li>
 <li><strong>Iterative construction</strong>: Build state space incrementally
 <ul>
@@ -901,8 +716,8 @@ Y = \int_0^\tau r(X_t) dt
 <section id="example-rabbit-island-model" class="level3">
 <h3 class="anchored" data-anchor-id="example-rabbit-island-model">Example: Rabbit Island Model</h3>
 <p>Consider rabbits jumping between two islands at rate 1. Islands flood at rates 2 and 4, drowning all rabbits on that island. The absorbing state is when all rabbits have drowned.</p>
-<p><strong>State representation</strong>: Vector <span class="math inline">\((n_1, n_2)\)</span> where <span class="math inline">\(n_i\)</span> is the number of rabbits on island <span class="math inline">\(i\)</span>.</p>
-<p><strong>Graph construction</strong>: - Start with state <span class="math inline">\((2, 0)\)</span>: 2 rabbits on island 1 - From state <span class="math inline">\((i, j)\)</span>: - If <span class="math inline">\(i &gt; 0\)</span>: transition to <span class="math inline">\((i-1, j+1)\)</span> at rate <span class="math inline">\(i\)</span> (rabbit jumps left to right) - If <span class="math inline">\(j &gt; 0\)</span>: transition to <span class="math inline">\((i+1, j-1)\)</span> at rate <span class="math inline">\(j\)</span> (rabbit jumps right to left) - If <span class="math inline">\(i &gt; 0\)</span>: transition to <span class="math inline">\((0, j)\)</span> at rate 2 (island 1 floods) - If <span class="math inline">\(j &gt; 0\)</span>: transition to <span class="math inline">\((i, 0)\)</span> at rate 4 (island 2 floods) - Absorbing state: <span class="math inline">\((0, 0)\)</span></p>
+<p><strong>State representation</strong>: Vector <span class="math inline">(n_1, n_2)</span> where <span class="math inline">n_i</span> is the number of rabbits on island <span class="math inline">i</span>.</p>
+<p><strong>Graph construction</strong>: - Start with state <span class="math inline">(2, 0)</span>: 2 rabbits on island 1 - From state <span class="math inline">(i, j)</span>: - If <span class="math inline">i &gt; 0</span>: transition to <span class="math inline">(i-1, j+1)</span> at rate <span class="math inline">i</span> (rabbit jumps left to right) - If <span class="math inline">j &gt; 0</span>: transition to <span class="math inline">(i+1, j-1)</span> at rate <span class="math inline">j</span> (rabbit jumps right to left) - If <span class="math inline">i &gt; 0</span>: transition to <span class="math inline">(0, j)</span> at rate 2 (island 1 floods) - If <span class="math inline">j &gt; 0</span>: transition to <span class="math inline">(i, 0)</span> at rate 4 (island 2 floods) - Absorbing state: <span class="math inline">(0, 0)</span></p>
 <p>This naturally sparse structure makes graphs ideal for representation.</p>
 </section>
 </section>
@@ -921,7 +736,7 @@ Y = \int_0^\tau r(X_t) dt
 <p>From Røikjer, Hobolth, and Munch (2022):</p>
 <ul>
 <li><strong>Acyclic graph transformation</strong>: Convert cyclic graphs to acyclic form for recursive computation</li>
-<li><strong>Cached operations</strong>: Compute moments in <span class="math inline">\(O(|V|^2)\)</span> time after initial <span class="math inline">\(O(|V|^3)\)</span> setup</li>
+<li><strong>Cached operations</strong>: Compute moments in <span class="math inline">O(|V|^2)</span> time after initial <span class="math inline">O(|V|^3)</span> setup</li>
 <li><strong>Discrete approximation</strong>: Approximate continuous distributions with arbitrary precision</li>
 <li><strong>Parallel computation</strong>: Natural parallelization over graph structure</li>
 </ul>
@@ -1002,19 +817,6 @@ Y = \int_0^\tau r(X_t) dt
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -1415,13 +1217,13 @@ Y = \int_0^\tau r(X_t) dt
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../pages/math_and_algorithms.html" class="pagination-link" aria-label="My document">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">My document</span>
+      <a href="../pages/getting_started.html" class="pagination-link" aria-label="Getting started">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Getting started</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../pages/slurm_multinode_guide.html" class="pagination-link" aria-label="Multi-Node SLURM Guide for Distributed SVGD">
-        <span class="nav-page-text">Multi-Node SLURM Guide for Distributed SVGD</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../pages/state_space.html" class="pagination-link" aria-label="State space">
+        <span class="nav-page-text">State space</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

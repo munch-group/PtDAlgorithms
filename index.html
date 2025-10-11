@@ -1,18 +1,8 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <title>Redirect</title>
-  <script type="text/javascript">
-    var redirects = {"":"pages/getting_started.html"};
-    var hash = window.location.hash.startsWith('#') ? window.location.hash.slice(1) : window.location.hash;
-    var redirect = redirects[hash] || redirects[""] || "/";
-    window.document.title = 'Redirect to  ' +  redirect;
-    if (!redirects[hash]) {
-      redirect = redirect + window.location.hash;
-    }
-    redirect = redirect + window.location.search;
-    window.location.replace(redirect);
-  </script>
-</head>
-<body>
-</body>
-</html>
+<html xmlns="http://www.w3.org/1999/xhtml">    
+  <head>      
+    <title>Redirect to api/compute_moments_ffi.html</title>      
+    <meta http-equiv="refresh" content="0;URL='api/compute_moments_ffi.html'" />    
+  </head>    
+  <body> 
+  </body>  
+</html>     
