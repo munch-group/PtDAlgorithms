@@ -81,12 +81,15 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <div id="quarto-announcement" data-announcement-id="9616bfb5c47a60811ea96e08f2ae1bd0" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p><strong>Alert</strong> - this is some information that you should pay attention to</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../" class="navbar-brand navbar-brand-logo">
-    <img src="../dummy.png" alt="Phasic" class="navbar-logo light-content">
-    <img src="../dummy.png" alt="Phasic" class="navbar-logo dark-content">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo.png" alt="Phasic" class="navbar-logo light-content">
+    <img src="../logo.png" alt="Phasic" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -125,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/state_lumping.html">Modelling</a></li><li class="breadcrumb-item"><a href="../pages/joint_prob.html">Joint probabilities</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/state_lumping.html">State space modelling</a></li><li class="breadcrumb-item"><a href="../pages/joint_prob.html">Joint probabilities</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -150,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Basics</span></a>
+ <span class="menu-text">Tutorials</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -158,26 +161,17 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/phase-type-distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Phase-Type Distributions</span></a>
+  <a href="../examples/python/rabbits_full_py_api_example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rabbits (full API example)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
+ <span class="menu-text">pages/phase-type-distributions.qmd</span>
+  </li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/state_space.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/state_space_construction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">State space</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/moments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Moments</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributions</span></a>
   </div>
 </li>
       </ul>
@@ -185,7 +179,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Background</span></a>
+ <span class="menu-text">How it works</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -193,8 +187,26 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/math_and_algorithms.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/math.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Math and background</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Math and background</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PtDAlgorithms Project Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/symbolic_gauss_elimination.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symbolic Graph Elimination for Efficient Parameterized Phase-Type Distributions</span></a>
   </div>
 </li>
       </ul>
@@ -202,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Modelling</span></a>
+ <span class="menu-text">State space modelling</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -251,10 +263,27 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../examples/python/svgd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SVGD Inference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../pages/slurm_cluster_setup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SLURM Cluster Setup and Configuration</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Utils</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/cpu_monitoring_showcase.html" class="sidebar-item-text sidebar-link">
@@ -265,19 +294,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Examples</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Popgen examples</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../examples/python/rabbits_full_py_api_example.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Rabbits (full API example)</span></a>
-  </div>
-</li>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../examples/python/coalescent-jointprob.html" class="sidebar-item-text sidebar-link">
@@ -308,29 +331,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Two Island Two Locus Argument</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../examples/python/svgd.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SVGD Inference</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Development</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/architecture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PtDAlgorithms Project Architecture</span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -344,7 +344,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/state_lumping.html">Modelling</a></li><li class="breadcrumb-item"><a href="../pages/joint_prob.html">Joint probabilities</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/state_lumping.html">State space modelling</a></li><li class="breadcrumb-item"><a href="../pages/joint_prob.html">Joint probabilities</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Joint probabilities</h1>
 </div>

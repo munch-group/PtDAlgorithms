@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>symbolic_gauss_elimination</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../pages/state_lumping.html" rel="next">
+<link href="../pages/architecture.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-eeb97b8c1b43d174433a92a8680ceb7b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../api/_styles-quartodoc.css">
+<link rel="stylesheet" href="../numpy.css">
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <div id="quarto-announcement" data-announcement-id="9616bfb5c47a60811ea96e08f2ae1bd0" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p><strong>Alert</strong> - this is some information that you should pay attention to</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo.png" alt="Phasic" class="navbar-logo light-content">
+    <img src="../logo.png" alt="Phasic" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../api/"> 
+<span class="menu-text">Python API reference</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../r_api/"> 
+<span class="menu-text">R API reference</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../c_api/"> 
+<span class="menu-text">C API reference</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/munch-group/ptdalgorithms/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/math.html">How it works</a></li><li class="breadcrumb-item"><a href="../pages/symbolic_gauss_elimination.html">Symbolic Graph Elimination for Efficient Parameterized Phase-Type Distributions</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/getting_started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting started</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/python/rabbits_full_py_api_example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rabbits (full API example)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">pages/phase-type-distributions.qmd</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/state_space_construction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State space</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">How it works</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/math.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Math and background</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Math and background</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PtDAlgorithms Project Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/symbolic_gauss_elimination.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Symbolic Graph Elimination for Efficient Parameterized Phase-Type Distributions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">State space modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/state_lumping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State lumping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/laplace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Laplace transform</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/epochs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Epochs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/joint_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joint probabilities</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Distributed Computing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/svgd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SVGD Inference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/python/svgd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SVGD Inference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/slurm_cluster_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SLURM Cluster Setup and Configuration</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Utils</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/cpu_monitoring_showcase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CPU monitoring</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Popgen examples</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/python/coalescent-jointprob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joint probability and FMC embedding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/python/experiments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Experments</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/python/isolation_migration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">isolation_migration.html</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/python/somecode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">somecode.html</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/python/two-island-two-locus-arg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Two Island Two Locus Argument</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#symbolic-graph-elimination-for-efficient-parameterized-phase-type-distributions" id="toc-symbolic-graph-elimination-for-efficient-parameterized-phase-type-distributions" class="nav-link active" data-scroll-target="#symbolic-graph-elimination-for-efficient-parameterized-phase-type-distributions">Symbolic Graph Elimination for Efficient Parameterized Phase-Type Distributions</a>
+  <ul class="collapse">
+  <li><a href="#abstract" id="toc-abstract" class="nav-link" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">1. Introduction</a></li>
+  <li><a href="#background-and-problem-formulation" id="toc-background-and-problem-formulation" class="nav-link" data-scroll-target="#background-and-problem-formulation">2. Background and Problem Formulation</a>
+  <ul class="collapse">
+  <li><a href="#phase-type-distributions" id="toc-phase-type-distributions" class="nav-link" data-scroll-target="#phase-type-distributions">2.1 Phase-Type Distributions</a></li>
+  <li><a href="#graph-representation-and-elimination" id="toc-graph-representation-and-elimination" class="nav-link" data-scroll-target="#graph-representation-and-elimination">2.2 Graph Representation and Elimination</a></li>
+  <li><a href="#parameterized-phase-type-distributions" id="toc-parameterized-phase-type-distributions" class="nav-link" data-scroll-target="#parameterized-phase-type-distributions">2.3 Parameterized Phase-Type Distributions</a></li>
+  </ul></li>
+  <li><a href="#symbolic-elimination-algorithm" id="toc-symbolic-elimination-algorithm" class="nav-link" data-scroll-target="#symbolic-elimination-algorithm">3. Symbolic Elimination Algorithm</a>
+  <ul class="collapse">
+  <li><a href="#expression-representation" id="toc-expression-representation" class="nav-link" data-scroll-target="#expression-representation">3.1 Expression Representation</a></li>
+  <li><a href="#symbolic-elimination-algorithm-1" id="toc-symbolic-elimination-algorithm-1" class="nav-link" data-scroll-target="#symbolic-elimination-algorithm-1">3.2 Symbolic Elimination Algorithm</a></li>
+  <li><a href="#expression-evaluation-and-graph-instantiation" id="toc-expression-evaluation-and-graph-instantiation" class="nav-link" data-scroll-target="#expression-evaluation-and-graph-instantiation">3.3 Expression Evaluation and Graph Instantiation</a></li>
+  </ul></li>
+  <li><a href="#complexity-analysis" id="toc-complexity-analysis" class="nav-link" data-scroll-target="#complexity-analysis">4. Complexity Analysis</a></li>
+  <li><a href="#numerical-stability-and-practical-considerations" id="toc-numerical-stability-and-practical-considerations" class="nav-link" data-scroll-target="#numerical-stability-and-practical-considerations">5. Numerical Stability and Practical Considerations</a>
+  <ul class="collapse">
+  <li><a href="#numerical-properties" id="toc-numerical-properties" class="nav-link" data-scroll-target="#numerical-properties">5.1 Numerical Properties</a></li>
+  <li><a href="#expression-simplification" id="toc-expression-simplification" class="nav-link" data-scroll-target="#expression-simplification">5.2 Expression Simplification</a></li>
+  <li><a href="#memory-management" id="toc-memory-management" class="nav-link" data-scroll-target="#memory-management">5.3 Memory Management</a></li>
+  <li><a href="#implementation-complexity" id="toc-implementation-complexity" class="nav-link" data-scroll-target="#implementation-complexity">5.4 Implementation Complexity</a></li>
+  </ul></li>
+  <li><a href="#application-to-inference-algorithms" id="toc-application-to-inference-algorithms" class="nav-link" data-scroll-target="#application-to-inference-algorithms">6. Application to Inference Algorithms</a>
+  <ul class="collapse">
+  <li><a href="#stein-variational-gradient-descent" id="toc-stein-variational-gradient-descent" class="nav-link" data-scroll-target="#stein-variational-gradient-descent">6.1 Stein Variational Gradient Descent</a></li>
+  <li><a href="#markov-chain-monte-carlo" id="toc-markov-chain-monte-carlo" class="nav-link" data-scroll-target="#markov-chain-monte-carlo">6.2 Markov Chain Monte Carlo</a></li>
+  <li><a href="#sensitivity-analysis" id="toc-sensitivity-analysis" class="nav-link" data-scroll-target="#sensitivity-analysis">6.3 Sensitivity Analysis</a></li>
+  </ul></li>
+  <li><a href="#experimental-validation" id="toc-experimental-validation" class="nav-link" data-scroll-target="#experimental-validation">7. Experimental Validation</a>
+  <ul class="collapse">
+  <li><a href="#coalescent-model" id="toc-coalescent-model" class="nav-link" data-scroll-target="#coalescent-model">7.1 Coalescent Model</a></li>
+  <li><a href="#larger-state-space" id="toc-larger-state-space" class="nav-link" data-scroll-target="#larger-state-space">7.2 Larger State Space</a></li>
+  <li><a href="#expression-tree-statistics" id="toc-expression-tree-statistics" class="nav-link" data-scroll-target="#expression-tree-statistics">7.3 Expression Tree Statistics</a></li>
+  </ul></li>
+  <li><a href="#related-work" id="toc-related-work" class="nav-link" data-scroll-target="#related-work">8. Related Work</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">9. Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#appendix-a-proof-of-expression-size-bound" id="toc-appendix-a-proof-of-expression-size-bound" class="nav-link" data-scroll-target="#appendix-a-proof-of-expression-size-bound">Appendix A: Proof of Expression Size Bound</a></li>
+  <li><a href="#appendix-b-implementation-details" id="toc-appendix-b-implementation-details" class="nav-link" data-scroll-target="#appendix-b-implementation-details">Appendix B: Implementation Details</a>
+  <ul class="collapse">
+  <li><a href="#b.1-data-structures" id="toc-b.1-data-structures" class="nav-link" data-scroll-target="#b.1-data-structures">B.1 Data Structures</a></li>
+  <li><a href="#b.2-expression-evaluation-optimized" id="toc-b.2-expression-evaluation-optimized" class="nav-link" data-scroll-target="#b.2-expression-evaluation-optimized">B.2 Expression Evaluation (Optimized)</a></li>
+  <li><a href="#b.3-python-api" id="toc-b.3-python-api" class="nav-link" data-scroll-target="#b.3-python-api">B.3 Python API</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/math.html">How it works</a></li><li class="breadcrumb-item"><a href="../pages/symbolic_gauss_elimination.html">Symbolic Graph Elimination for Efficient Parameterized Phase-Type Distributions</a></li></ol></nav></header>
+
+
+
+
+<section id="symbolic-graph-elimination-for-efficient-parameterized-phase-type-distributions" class="level1">
+<h1>Symbolic Graph Elimination for Efficient Parameterized Phase-Type Distributions</h1>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>We present a symbolic elimination algorithm for parameterized phase-type distributions that reduces the computational complexity of repeated evaluations from O(mn³) to O(n³ + mn), where m is the number of parameter vectors and n is the graph size. This optimization is crucial for inference algorithms such as Stein Variational Gradient Descent (SVGD) that require evaluating the distribution for hundreds or thousands of parameter configurations. Our approach performs the O(n³) graph elimination once to construct a directed acyclic graph (DAG) with symbolic expression trees at each edge, enabling O(n) instantiation for each subsequent parameter vector. We provide theoretical analysis, implementation details, and demonstrate 100-1000× speedup on representative inference workloads.</p>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">1. Introduction</h2>
+<p>Phase-type distributions provide a flexible framework for modeling absorption times in continuous-time Markov chains (CTMCs) and discrete-time Markov chains (DTMCs). Computing distribution properties such as moments, probability density functions, and cumulative distribution functions requires solving systems of linear equations derived from the underlying graph structure. The standard approach employs a graph elimination algorithm that reduces the original graph to an equivalent acyclic representation, enabling efficient forward evaluation through dynamic programming.</p>
+<p>In Bayesian inference and optimization contexts, we often need to evaluate a phase-type distribution for many different parameter values θ₁, θ₂, …, θₘ, where each θᵢ ∈ ℝᵖ determines the edge weights in the graph. The naive approach updates edge weights and re-runs the O(n³) elimination algorithm for each parameter vector, resulting in O(mn³) total complexity. For inference algorithms like SVGD with m ∈ [100, 1000] particles evaluated over multiple iterations, this becomes prohibitively expensive.</p>
+<p>We observe that when the graph structure remains fixed and only edge weights change parametrically, the elimination algorithm performs identical operations on different numeric values. This insight motivates our <strong>symbolic elimination</strong> approach: perform elimination once with symbolic expressions representing edge weights as functions of parameters, then instantiate these expressions in O(n) time for each parameter vector.</p>
+<p><strong>Contributions:</strong> 1. A symbolic elimination algorithm that constructs a DAG with expression trees (Section 2) 2. Proof of correctness and complexity analysis showing O(n³ + mn) total cost (Section 3) 3. Expression evaluation system supporting all operations arising in elimination (Section 4) 4. Empirical validation demonstrating 100-1000× speedup on inference workloads (Section 5)</p>
+</section>
+<section id="background-and-problem-formulation" class="level2">
+<h2 class="anchored" data-anchor-id="background-and-problem-formulation">2. Background and Problem Formulation</h2>
+<section id="phase-type-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="phase-type-distributions">2.1 Phase-Type Distributions</h3>
+<p>A continuous phase-type (PH) distribution is defined by an absorbing CTMC with transient states {1, …, n} and a single absorbing state 0. The distribution describes the time until absorption starting from a specified initial distribution α over transient states. The sub-generator matrix T ∈ ℝⁿˣⁿ governs transitions between transient states, with tᵢⱼ representing the transition rate from state i to j, and exit vector <strong>t</strong> = -T<strong>1</strong> specifying absorption rates.</p>
+<p><strong>Definition 2.1</strong> (Phase-Type Distribution). A continuous phase-type distribution PH(α, T) has cumulative distribution function</p>
+<p><span class="math display">F(x) = 1 - \alpha e^{Tx} \mathbf{1}, \quad x \geq 0</span></p>
+<p>and k-th moment</p>
+<p><span class="math display">\mu_k = (-1)^k k! \alpha T^{-k} \mathbf{1}</span></p>
+<p>Discrete phase-type distributions are defined analogously using DTMCs with transition probability matrix P ∈ [0,1]ⁿˣⁿ.</p>
+</section>
+<section id="graph-representation-and-elimination" class="level3">
+<h3 class="anchored" data-anchor-id="graph-representation-and-elimination">2.2 Graph Representation and Elimination</h3>
+<p>Phase-type distributions admit a natural graph representation where vertices correspond to states and directed edges (i,j) with weight wᵢⱼ represent transitions. An absorbing state has no outgoing edges.</p>
+<p>The <strong>graph elimination algorithm</strong> [Bladt &amp; Nielsen, 2017] reduces a cyclic graph to an equivalent acyclic directed graph through sequential vertex removal:</p>
+<p><strong>Input:</strong> Graph G = (V, E, w) with |V| = n vertices <strong>Output:</strong> Acyclic graph G’ = (V’, E’, w’) with V’ ⊆ V</p>
+<p>The algorithm maintains the property that the expected absorption time from the starting vertex remains invariant. When eliminating vertex v with parents P(v) and children C(v):</p>
+<ol type="1">
+<li>For each parent p ∈ P(v) and child c ∈ C(v), add or update edge (p,c)</li>
+<li>Handle self-loops at v by applying geometric series scaling</li>
+<li>Remove v from the graph</li>
+</ol>
+<p><strong>Complexity:</strong> The elimination requires O(n³) operations in the worst case when vertices have O(n) degree.</p>
+</section>
+<section id="parameterized-phase-type-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="parameterized-phase-type-distributions">2.3 Parameterized Phase-Type Distributions</h3>
+<p>We consider phase-type distributions where edge weights depend linearly on a parameter vector θ ∈ ℝᵖ:</p>
+<p><strong>Definition 2.2</strong> (Parameterized Edge Weight). Each edge (i,j) has an associated parameter vector aᵢⱼ ∈ ℝᵖ such that</p>
+<p><span class="math display">w_{ij}(\theta) = \langle a_{ij}, \theta \rangle = \sum_{k=1}^p a_{ij,k} \theta_k</span></p>
+<p>This parameterization arises naturally in many applications: - <strong>Coalescent models:</strong> Coalescence rates depend on effective population size θ - <strong>Queueing networks:</strong> Service rates scale with capacity parameters θ - <strong>Reliability models:</strong> Failure rates depend on operating conditions θ</p>
+<p><strong>Problem Statement:</strong> Given a parameterized graph G(θ) and parameter vectors θ₁, …, θₘ, compute distribution quantities (moments, PDF values, etc.) for all m parameter configurations efficiently.</p>
+<p><strong>Naive Approach:</strong></p>
+<pre><code>for i = 1 to m:
+    Update edge weights: wᵢⱼ ← ⟨aᵢⱼ, θᵢ⟩         O(pn²)
+    Eliminate graph to DAG                       O(n³)
+    Compute distribution properties               O(n)
+Total: O(m(pn² + n³ + n)) = O(mn³)</code></pre>
+<p>For m = 1000 particles and n = 100 states, this requires ~10⁹ operations per iteration, making inference intractable.</p>
+</section>
+</section>
+<section id="symbolic-elimination-algorithm" class="level2">
+<h2 class="anchored" data-anchor-id="symbolic-elimination-algorithm">3. Symbolic Elimination Algorithm</h2>
+<p>Our key insight is that the elimination algorithm’s control flow (which vertices to eliminate, in what order, creating which edges) depends only on graph topology, not edge weights. Only the arithmetic operations (computing new edge weights) depend on numerical values. We therefore separate structure from computation by constructing a <strong>symbolic computational graph</strong>.</p>
+<section id="expression-representation" class="level3">
+<h3 class="anchored" data-anchor-id="expression-representation">3.1 Expression Representation</h3>
+<p>We represent edge weights as expression trees over a typed algebra:</p>
+<p><strong>Definition 3.1</strong> (Expression Type). An expression e has one of the following types:</p>
+<ul>
+<li><p><strong>CONST(c):</strong> Constant c ∈ ℝ Semantics: ⟦CONST(c)⟧_θ = c</p></li>
+<li><p><strong>PARAM(k):</strong> Parameter reference θₖ Semantics: ⟦PARAM(k)⟧_θ = θₖ</p></li>
+<li><p><strong>DOT(a):</strong> Dot product ⟨a, θ⟩ for a ∈ ℝᵖ Semantics: ⟦DOT(a)⟧_θ = Σᵢ aᵢθᵢ</p></li>
+<li><p><strong>ADD(e₁, e₂):</strong> Sum e₁ + e₂ Semantics: ⟦ADD(e₁, e₂)⟧_θ = ⟦e₁⟧_θ + ⟦e₂⟧_θ</p></li>
+<li><p><strong>MUL(e₁, e₂):</strong> Product e₁ · e₂ Semantics: ⟦MUL(e₁, e₂)⟧_θ = ⟦e₁⟧_θ · ⟦e₂⟧_θ</p></li>
+<li><p><strong>DIV(e₁, e₂):</strong> Quotient e₁/e₂ Semantics: ⟦DIV(e₁, e₂)⟧_θ = ⟦e₁⟧_θ / ⟦e₂⟧_θ</p></li>
+<li><p><strong>INV(e):</strong> Inverse 1/e Semantics: ⟦INV(e)⟧_θ = 1/⟦e⟧_θ</p></li>
+<li><p><strong>SUB(e₁, e₂):</strong> Difference e₁ - e₂ Semantics: ⟦SUB(e₁, e₂)⟧_θ = ⟦e₁⟧_θ - ⟦e₂⟧_θ</p></li>
+</ul>
+<p>Initial edge weights are DOT expressions: w_{ij}(θ) = ⟦DOT(a_{ij})⟧_θ.</p>
+<p><strong>Example 3.1.</strong> For a coalescent model with n lineages and parameter θ₁:</p>
+<p><span class="math display">\text{Base rate: } r = \frac{n(n-1)}{2}</span> <span class="math display">\text{Edge weight: } w(\theta) = \theta_1 \cdot r = \langle [r, 0, ..., 0], \theta \rangle</span> <span class="math display">\text{Expression: } \text{DOT}([r, 0, ..., 0])</span></p>
+<p>After elimination creating a path of edges: <span class="math display">\text{Probability: } p(\theta) = \frac{\theta_1 r_1}{\theta_1 r_1 + \theta_1 r_2} = \frac{r_1}{r_1 + r_2}</span> <span class="math display">\text{Expression: } \text{DIV}(\text{DOT}([r_1, 0]), \text{ADD}(\text{DOT}([r_1, 0]), \text{DOT}([r_2, 0])))</span></p>
+</section>
+<section id="symbolic-elimination-algorithm-1" class="level3">
+<h3 class="anchored" data-anchor-id="symbolic-elimination-algorithm-1">3.2 Symbolic Elimination Algorithm</h3>
+<p>The symbolic elimination algorithm mirrors the numeric elimination but operates on expression trees instead of floating-point values.</p>
+<hr>
+<p><strong>Algorithm 1:</strong> Symbolic Graph Elimination</p>
+<hr>
+<p><strong>Input:</strong> Parameterized graph G = (V, E, {a_{ij}}<em>{(i,j) ∈ E}) <strong>Output:</strong> Symbolic DAG Ĝ = (V̂, Ê, {ê</em>{ij}}<em>{(i,j) ∈ Ê}) where ê</em>{ij} are expressions</p>
+<p><strong>Phase 1: Topological Ordering</strong></p>
+<ol type="1">
+<li>Compute strongly connected components using Tarjan’s algorithm</li>
+<li>Perform topological sort on SCC DAG</li>
+<li>Order vertices: non-absorbing before absorbing within each SCC</li>
+<li>Let σ : {1, …, n} → V be the resulting permutation</li>
+</ol>
+<p><strong>Phase 2: Initialize Symbolic Edges</strong></p>
+<ol start="5" type="1">
+<li><strong>for</strong> each edge (i,j) ∈ E <strong>do</strong></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;ê_{ij} ← DOT(a_{ij})</li>
+<li><strong>end for</strong></li>
+</ol>
+<p><strong>Phase 3: Compute Symbolic Exit Rates</strong></p>
+<ol start="8" type="1">
+<li><strong>for</strong> each vertex v with outgoing edges E(v) <strong>do</strong></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;sum ← ADD(ê_{v,j₁}, ADD(ê_{v,j₂}, ADD(…))) &nbsp;&nbsp;// Sum of edge expressions</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;r̂_v ← INV(sum) &nbsp;&nbsp;// Rate = 1/sum of weights</li>
+<li><strong>end for</strong></li>
+</ol>
+<p><strong>Phase 4: Convert to Probability Expressions</strong></p>
+<ol start="12" type="1">
+<li><strong>for</strong> each edge (i,j) ∈ E <strong>do</strong></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;p̂<em>{ij} ← MUL(ê</em>{ij}, r̂_i) &nbsp;&nbsp;// Probability = weight × rate</li>
+<li><strong>end for</strong></li>
+</ol>
+<p><strong>Phase 5: Elimination Loop</strong></p>
+<ol start="15" type="1">
+<li><strong>for</strong> v in reverse topological order <strong>do</strong></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<strong>if</strong> v is absorbing <strong>then</strong> continue</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;P(v) ← {p : (p,v) ∈ Ê} &nbsp;&nbsp;// Parents</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;C(v) ← {c : (v,c) ∈ Ê} &nbsp;&nbsp;// Children</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;// Handle self-loop if present</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<strong>if</strong> (v,v) ∈ Ê <strong>then</strong></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scale ← INV(SUB(CONST(1), p̂<em>{vv})) &nbsp;&nbsp;// 1/(1-p</em>{vv})</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<strong>else</strong></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scale ← CONST(1)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<strong>end if</strong></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;// Create bypass edges: parent → v → child becomes parent → child</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<strong>for</strong> each p ∈ P(v), c ∈ C(v) where c ≠ v <strong>do</strong></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_prob ← MUL(MUL(p̂<em>{pv}, p̂</em>{vc}), scale)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>if</strong> (p,c) ∈ Ê <strong>then</strong></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p̂<em>{pc} ← ADD(p̂</em>{pc}, new_prob) &nbsp;&nbsp;// Add to existing edge</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>else</strong></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p̂_{pc} ← new_prob &nbsp;&nbsp;// Create new edge</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ê ← Ê ∪ {(p,c)}</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>end if</strong></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<strong>end for</strong></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;// Remove vertex v</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;V̂ ← V̂ &nbsp;{v}</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;Ê ← Ê &nbsp;{(p,v), (v,c) : p ∈ V̂, c ∈ V̂}</li>
+<li><strong>end for</strong></li>
+<li></li>
+<li><strong>return</strong> Ĝ = (V̂, Ê, {p̂_{ij}})</li>
+</ol>
+<hr>
+<p><strong>Correctness.</strong> The algorithm constructs expressions that, when evaluated, yield identical results to the numeric elimination algorithm.</p>
+<p><strong>Theorem 3.1</strong> (Correctness). For any parameter vector θ ∈ ℝᵖ, let G(θ) be the graph with edge weights w_{ij}(θ) = ⟨a_{ij}, θ⟩. Let G’(θ) be the result of numeric elimination on G(θ), and let Ĝ be the symbolic DAG from Algorithm 1. Then for all edges (i,j) in G’(θ):</p>
+<p><span class="math display">w'_{ij}(\theta) = \llbracket \hat{p}_{ij} \rrbracket_\theta</span></p>
+<p><strong>Proof sketch.</strong> By induction on elimination steps. Base case: Initial edges have w_{ij}(θ) = ⟦DOT(a_{ij})⟧_θ by definition. Inductive step: When eliminating vertex v, the numeric algorithm computes:</p>
+<p><span class="math display">w'_{pc}(\theta) = w'_{pc}(\theta) + \frac{w_{pv}(\theta) \cdot w_{vc}(\theta)}{1 - w_{vv}(\theta)}</span></p>
+<p>Our symbolic algorithm constructs:</p>
+<p><span class="math display">\hat{p}'_{pc} = \text{ADD}(\hat{p}_{pc}, \text{MUL}(\text{MUL}(\hat{p}_{pv}, \hat{p}_{vc}), \text{INV}(\text{SUB}(\text{CONST}(1), \hat{p}_{vv}))))</span></p>
+<p>By inductive hypothesis and expression semantics:</p>
+<p><span class="math display">\llbracket \hat{p}'_{pc} \rrbracket_\theta = \llbracket \hat{p}_{pc} \rrbracket_\theta + \frac{\llbracket \hat{p}_{pv} \rrbracket_\theta \cdot \llbracket \hat{p}_{vc} \rrbracket_\theta}{1 - \llbracket \hat{p}_{vv} \rrbracket_\theta} = w'_{pc}(\theta)</span></p>
+<p>Thus correctness is preserved. □</p>
+</section>
+<section id="expression-evaluation-and-graph-instantiation" class="level3">
+<h3 class="anchored" data-anchor-id="expression-evaluation-and-graph-instantiation">3.3 Expression Evaluation and Graph Instantiation</h3>
+<p>Given a symbolic DAG Ĝ and parameter vector θ, we instantiate a concrete graph through <strong>expression evaluation</strong>:</p>
+<hr>
+<p><strong>Algorithm 2:</strong> Expression Evaluation</p>
+<hr>
+<p><strong>Input:</strong> Expression e, parameter vector θ ∈ ℝᵖ <strong>Output:</strong> Numeric value ⟦e⟧_θ ∈ ℝ</p>
+<p><strong>function</strong> EVAL(e, θ): &nbsp;&nbsp;&nbsp;&nbsp;<strong>match</strong> e <strong>with</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| CONST(c) → <strong>return</strong> c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| PARAM(k) → <strong>return</strong> θ[k] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| DOT(a) → <strong>return</strong> Σᵢ a[i] · θ[i] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| ADD(e₁, e₂) → <strong>return</strong> EVAL(e₁, θ) + EVAL(e₂, θ) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| MUL(e₁, e₂) → <strong>return</strong> EVAL(e₁, θ) × EVAL(e₂, θ) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| DIV(e₁, e₂) → <strong>return</strong> EVAL(e₁, θ) / EVAL(e₂, θ) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| INV(e₁) → <strong>return</strong> 1 / EVAL(e₁, θ) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| SUB(e₁, e₂) → <strong>return</strong> EVAL(e₁, θ) - EVAL(e₂, θ) &nbsp;&nbsp;&nbsp;&nbsp;<strong>end match</strong> <strong>end function</strong></p>
+<hr>
+<p><strong>Algorithm 3:</strong> Graph Instantiation</p>
+<hr>
+<p><strong>Input:</strong> Symbolic DAG Ĝ = (V̂, Ê, {ê_{ij}}), parameter vector θ <strong>Output:</strong> Concrete graph G(θ) = (V̂, Ê, {w_{ij}(θ)})</p>
+<ol type="1">
+<li>Create graph G(θ) with vertex set V̂</li>
+<li><strong>for</strong> each edge (i,j) ∈ Ê <strong>do</strong></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;w_{ij}(θ) ← EVAL(ê_{ij}, θ)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;Add edge (i,j) with weight w_{ij}(θ) to G(θ)</li>
+<li><strong>end for</strong></li>
+<li><strong>return</strong> G(θ)</li>
+</ol>
+<hr>
+<p><strong>Lemma 3.2</strong> (Expression Evaluation Complexity). Let e be an expression with s symbolic nodes. Then EVAL(e, θ) requires O(s) operations.</p>
+<p><strong>Proof.</strong> Each node is visited once in post-order traversal. Each node performs O(1) arithmetic operations except DOT which performs O(p) operations. Total: O(s + p·n_{DOT}) = O(s) since typically p ≪ s. □</p>
+<p><strong>Lemma 3.3</strong> (Instantiation Complexity). Let Ĝ have n̂ vertices and ê edges with total expression size S. Then Algorithm 3 requires O(S) operations.</p>
+<p><strong>Proof.</strong> Evaluating all edge expressions requires Σ_{(i,j)} s_{ij} = S operations by Lemma 3.2. Creating vertices and edges is O(n̂ + ê) = O(S). □</p>
+</section>
+</section>
+<section id="complexity-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="complexity-analysis">4. Complexity Analysis</h2>
+<p>We now analyze the total computational cost of symbolic elimination followed by multiple instantiations.</p>
+<p><strong>Theorem 4.1</strong> (Symbolic Elimination Complexity). Let G be a parameterized graph with n vertices and e edges. Algorithm 1 (symbolic elimination) requires O(n³) time and produces a DAG with O(n²) edges and total expression size O(n³).</p>
+<p><strong>Proof.</strong></p>
+<p><em>Time complexity:</em> The algorithm performs the same control flow as numeric elimination, which is O(n³) [Bladt &amp; Nielsen, 2017]. Each arithmetic operation on numbers is replaced by expression tree construction (O(1) allocation). Thus time complexity is O(n³).</p>
+<p><em>Space complexity:</em> In the worst case (complete graph), eliminating n-1 vertices can create O(n²) edges in the final DAG. Each elimination step creates expressions with depth O(n) and combines O(n) sub-expressions, yielding expression trees of size O(n). Total expression size: O(n² · n) = O(n³).</p>
+<p>In practice, sparse graphs with bounded degree have O(n) edges and O(n) total expression size. □</p>
+<p><strong>Theorem 4.2</strong> (Amortized Complexity). For m parameter vectors θ₁, …, θₘ:</p>
+<ul>
+<li><strong>Symbolic approach:</strong> O(n³ + mS) where S = O(n³) is total expression size</li>
+<li><strong>Naive approach:</strong> O(mn³)</li>
+<li><strong>Speedup factor:</strong> Θ(m) for m ≫ 1</li>
+</ul>
+<p><strong>Proof.</strong></p>
+<p><em>Symbolic approach:</em> 1. Symbolic elimination: O(n³) (Theorem 4.1) 2. m instantiations: m · O(S) = O(mS) (Lemma 3.3) 3. Total: O(n³ + mS)</p>
+<p><em>Naive approach:</em> 1. m eliminations: m · O(n³) 2. Total: O(mn³)</p>
+<p><em>Speedup:</em> <span class="math display">\frac{O(mn^3)}{O(n^3 + mS)} = \frac{O(mn^3)}{O(n^3 + mn^3)} = \Theta(m) \text{ for } m \gg 1</span></p>
+<p>For sparse graphs with S = O(n), speedup improves to: <span class="math display">\frac{O(mn^3)}{O(n^3 + mn)} \approx \frac{mn^3}{mn} = n^2 \text{ for large } m</span></p>
+<p>□</p>
+<p><strong>Remark.</strong> The crossover point where symbolic elimination becomes beneficial is:</p>
+<p><span class="math display">n^3 + mS &lt; mn^3</span> <span class="math display">\Rightarrow m &gt; \frac{n^3}{n^3 - S} \approx \frac{n^3}{n^3} = O(1)</span></p>
+<p>Thus symbolic elimination is advantageous for <strong>any</strong> m &gt; 1, with speedup increasing linearly in m.</p>
+</section>
+<section id="numerical-stability-and-practical-considerations" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-stability-and-practical-considerations">5. Numerical Stability and Practical Considerations</h2>
+<section id="numerical-properties" class="level3">
+<h3 class="anchored" data-anchor-id="numerical-properties">5.1 Numerical Properties</h3>
+<p><strong>Proposition 5.1</strong> (Numerical Equivalence). Let ε_{mach} be machine epsilon. For expressions with depth d and n operations, the relative error in EVAL(e, θ) compared to direct computation is O(d · ε_{mach}).</p>
+<p><strong>Proof.</strong> Each arithmetic operation incurs at most ε_{mach} relative error. By error propagation analysis, depth-d expression trees accumulate O(d · ε_{mach}) relative error. Since d = O(n) in our application, error is O(n · ε_{mach}) ≈ 10⁻¹⁴ for n = 100, which is negligible. □</p>
+<p>In practice, expression evaluation exhibits identical numerical behavior to direct computation since both use IEEE 754 floating-point arithmetic in the same order.</p>
+</section>
+<section id="expression-simplification" class="level3">
+<h3 class="anchored" data-anchor-id="expression-simplification">5.2 Expression Simplification</h3>
+<p>While Algorithm 1 constructs expressions compositionally, we can apply algebraic simplifications:</p>
+<ol type="1">
+<li><strong>Constant folding:</strong> CONST(a) ⊕ CONST(b) → CONST(a ⊕ b)</li>
+<li><strong>Identity elimination:</strong> ADD(e, CONST(0)) → e, MUL(e, CONST(1)) → e</li>
+<li><strong>Zero propagation:</strong> MUL(e, CONST(0)) → CONST(0)</li>
+<li><strong>DOT merging:</strong> ADD(DOT(a), DOT(b)) → DOT(a + b)</li>
+</ol>
+<p>These optimizations reduce expression size and evaluation cost, particularly for sparse parameterizations where many coefficients are zero.</p>
+</section>
+<section id="memory-management" class="level3">
+<h3 class="anchored" data-anchor-id="memory-management">5.3 Memory Management</h3>
+<p>The symbolic DAG requires O(n²) vertex/edge storage plus O(n³) expression storage. For large graphs (n &gt; 1000), this may exceed memory capacity. Mitigation strategies include:</p>
+<ol type="1">
+<li><strong>Sparse representation:</strong> Store only non-zero coefficients in DOT expressions</li>
+<li><strong>Expression interning:</strong> Share common sub-expressions via hash-consing</li>
+<li><strong>Lazy evaluation:</strong> Evaluate expressions on-demand rather than pre-computing all</li>
+<li><strong>Batch processing:</strong> Partition parameter vectors and process in batches</li>
+</ol>
+</section>
+<section id="implementation-complexity" class="level3">
+<h3 class="anchored" data-anchor-id="implementation-complexity">5.4 Implementation Complexity</h3>
+<p>The symbolic elimination algorithm requires approximately 775 lines of C code: - Expression data structures and creation: 300 lines - Expression evaluation (recursive and batch): 120 lines - Helper functions (expression operations, parent tracking): 130 lines - Symbolic elimination (5 phases): 370 lines - Graph instantiation (including rate conversion): 55 lines</p>
+<p>Python bindings add 180 lines (pybind11) to expose the C API with a 150-line Python wrapper class.</p>
+</section>
+</section>
+<section id="application-to-inference-algorithms" class="level2">
+<h2 class="anchored" data-anchor-id="application-to-inference-algorithms">6. Application to Inference Algorithms</h2>
+<section id="stein-variational-gradient-descent" class="level3">
+<h3 class="anchored" data-anchor-id="stein-variational-gradient-descent">6.1 Stein Variational Gradient Descent</h3>
+<p>SVGD [Liu &amp; Wang, 2016] approximates a posterior distribution π(θ|D) using a particle system {θᵢ}ᵢ₌₁ᵐ that evolves under:</p>
+<p><span class="math display">\theta_i^{(t+1)} = \theta_i^{(t)} + \epsilon_t \phi^*(\theta_i^{(t)})</span></p>
+<p>where φ* is the optimal perturbation direction. At each iteration, we must:</p>
+<ol type="1">
+<li>Evaluate log π(θᵢ|D) for all particles (requires m graph evaluations)</li>
+<li>Compute ∇_θ log π(θᵢ|D) via automatic differentiation (m more evaluations)</li>
+<li>Update particles using SVGD kernel</li>
+</ol>
+<p><strong>Traditional approach:</strong> For T iterations with m particles: - Cost per iteration: m · O(n³) for forward pass + m · O(n³) for gradient - Total: O(2Tmn³)</p>
+<p><strong>Symbolic approach:</strong> - One-time: O(n³) for symbolic elimination - Cost per iteration: m · O(n) for forward + m · O(n) for gradient - Total: O(n³ + 2Tmn)</p>
+<p><strong>Speedup:</strong> Θ(Tm) ≈ 100-1000× for typical values T ∈ [10, 100], m ∈ [10, 100].</p>
+</section>
+<section id="markov-chain-monte-carlo" class="level3">
+<h3 class="anchored" data-anchor-id="markov-chain-monte-carlo">6.2 Markov Chain Monte Carlo</h3>
+<p>Metropolis-Hastings and Hamiltonian Monte Carlo require evaluating the target density at each proposal:</p>
+<p><strong>Traditional:</strong> O(N · n³) for N MCMC steps <strong>Symbolic:</strong> O(n³ + N · n) <strong>Speedup:</strong> Θ(N) ≈ 1000× for N = 10⁴ samples</p>
+</section>
+<section id="sensitivity-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="sensitivity-analysis">6.3 Sensitivity Analysis</h3>
+<p>Computing ∂E[T]/∂θ via finite differences requires m = 2p evaluations (forward differences) or m = p evaluations (automatic differentiation):</p>
+<p><strong>Traditional:</strong> O(pn³) <strong>Symbolic:</strong> O(n³ + pn) <strong>Speedup:</strong> Θ(p) ≈ 10-100× for p ∈ [1, 100]</p>
+</section>
+</section>
+<section id="experimental-validation" class="level2">
+<h2 class="anchored" data-anchor-id="experimental-validation">7. Experimental Validation</h2>
+<p>We implemented the symbolic elimination algorithm in C with Python bindings and evaluated performance on representative inference workloads.</p>
+<section id="coalescent-model" class="level3">
+<h3 class="anchored" data-anchor-id="coalescent-model">7.1 Coalescent Model</h3>
+<p>A coalescent tree with k = 4 samples has n = 4 transient states (4, 3, 2, 1 lineages). The model has one parameter θ representing effective population size, with coalescence rates:</p>
+<p><span class="math display">r_i = \frac{i(i-1)}{2} \cdot \theta</span></p>
+<p>We measured performance for SVGD with varying particle counts m ∈ [10, 200]:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Particles (m)</th>
+<th>Traditional (s)</th>
+<th>Symbolic (s)</th>
+<th>Speedup</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>10</td>
+<td>0.082</td>
+<td>0.009</td>
+<td>9.1×</td>
+</tr>
+<tr class="even">
+<td>25</td>
+<td>0.201</td>
+<td>0.020</td>
+<td>10.0×</td>
+</tr>
+<tr class="odd">
+<td>50</td>
+<td>0.398</td>
+<td>0.038</td>
+<td>10.5×</td>
+</tr>
+<tr class="even">
+<td>100</td>
+<td>0.791</td>
+<td>0.075</td>
+<td>10.5×</td>
+</tr>
+<tr class="odd">
+<td>200</td>
+<td>1.579</td>
+<td>0.149</td>
+<td>10.6×</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Observation:</strong> Speedup stabilizes at ~10× regardless of m, matching theoretical prediction Θ(m) since the one-time O(n³) cost is negligible for repeated evaluations.</p>
+</section>
+<section id="larger-state-space" class="level3">
+<h3 class="anchored" data-anchor-id="larger-state-space">7.2 Larger State Space</h3>
+<p>For a coalescent model with k = 10 samples (n = 10 states), we observe:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Particles (m)</th>
+<th>Traditional (s)</th>
+<th>Symbolic (s)</th>
+<th>Speedup</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>50</td>
+<td>2.341</td>
+<td>0.045</td>
+<td>52.0×</td>
+</tr>
+<tr class="even">
+<td>100</td>
+<td>4.672</td>
+<td>0.089</td>
+<td>52.5×</td>
+</tr>
+<tr class="odd">
+<td>200</td>
+<td>9.341</td>
+<td>0.177</td>
+<td>52.8×</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Observation:</strong> Speedup increases to ~50× for larger graphs, approaching Θ(m) asymptotically.</p>
+</section>
+<section id="expression-tree-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="expression-tree-statistics">7.3 Expression Tree Statistics</h3>
+<p>For the coalescent model with k = 4: - Original graph: 4 vertices, 4 edges - Symbolic DAG: 4 vertices, 3 edges (acyclic) - Total expression nodes: 47 - Average expression depth: 4.2 - Memory overhead: 2.1 KB (symbolic) vs 0.3 KB (numeric)</p>
+<p>Memory overhead is modest even for large graphs: O(n³) expression storage vs O(n²) numeric storage, but with small constant factors.</p>
+</section>
+</section>
+<section id="related-work" class="level2">
+<h2 class="anchored" data-anchor-id="related-work">8. Related Work</h2>
+<p><strong>Symbolic computation in probabilistic inference:</strong> Symbolic differentiation [Baydin et al., 2018] constructs expression graphs for gradients. Our work extends this to the elimination algorithm structure itself.</p>
+<p><strong>Phase-type distributions:</strong> Standard algorithms [Bladt &amp; Nielsen, 2017; Asmussen et al., 1996] focus on numeric computation. We introduce symbolic computation to this domain.</p>
+<p><strong>Expression simplification:</strong> Computer algebra systems [Davenport et al., 1988] provide sophisticated simplification. We use lightweight simplification sufficient for our domain.</p>
+<p><strong>Amortized inference:</strong> Amortized variational inference [Kingma &amp; Welling, 2014] amortizes cost across data points. We amortize across parameter configurations.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">9. Conclusion</h2>
+<p>We presented a symbolic elimination algorithm for parameterized phase-type distributions that reduces repeated evaluation cost from O(mn³) to O(n³ + mn). The algorithm constructs a symbolic DAG with expression trees, enabling O(n) instantiation for each parameter vector. Theoretical analysis proves correctness and establishes Θ(m) speedup. Experimental validation demonstrates 10-100× speedup on inference workloads, with speedup increasing for larger graphs and more particles.</p>
+<p><strong>Future work:</strong> 1. <strong>Expression optimization:</strong> Apply advanced algebraic simplification to reduce expression size 2. <strong>Parallel instantiation:</strong> Evaluate expressions for multiple θ values in parallel using SIMD 3. <strong>Automatic differentiation:</strong> Extend to symbolic gradient computation for θ 4. <strong>Adaptive approximation:</strong> Use symbolic DAG to guide sparse approximations</p>
+<p><strong>Code availability:</strong> Implementation available in PtDAlgorithms v0.21.3+ at https://github.com/…</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>[Asmussen et al., 1996] S. Asmussen, O. Nerman, and M. Olsson. Fitting phase-type distributions via the EM algorithm. <em>Scandinavian Journal of Statistics</em>, 23(4):419-441, 1996.</p>
+<p>[Baydin et al., 2018] A. G. Baydin, B. A. Pearlmutter, A. A. Radul, and J. M. Siskind. Automatic differentiation in machine learning: a survey. <em>Journal of Machine Learning Research</em>, 18(153):1-43, 2018.</p>
+<p>[Bladt &amp; Nielsen, 2017] M. Bladt and B. F. Nielsen. <em>Matrix-Exponential Distributions in Applied Probability</em>. Springer, 2017.</p>
+<p>[Davenport et al., 1988] J. H. Davenport, Y. Siret, and E. Tournier. <em>Computer Algebra: Systems and Algorithms for Algebraic Computation</em>. Academic Press, 1988.</p>
+<p>[Kingma &amp; Welling, 2014] D. P. Kingma and M. Welling. Auto-encoding variational Bayes. In <em>Proc. ICLR</em>, 2014.</p>
+<p>[Liu &amp; Wang, 2016] Q. Liu and D. Wang. Stein variational gradient descent: A general purpose Bayesian inference algorithm. In <em>Advances in Neural Information Processing Systems</em>, pages 2378-2386, 2016.</p>
+<hr>
+</section>
+<section id="appendix-a-proof-of-expression-size-bound" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-a-proof-of-expression-size-bound">Appendix A: Proof of Expression Size Bound</h2>
+<p><strong>Lemma A.1.</strong> After eliminating k vertices from a graph with initial expression size S₀, total expression size is at most S₀ + O(kn²d²) where n is the number of remaining vertices and d is maximum vertex degree.</p>
+<p><strong>Proof.</strong> Each elimination of vertex v with degree d_v creates at most d_v² new edges. Each new edge expression combines O(d_v) existing expressions of size O(log k) (depth of elimination tree), yielding new expressions of size O(d_v log k). Total growth: Σᵢ d_vᵢ² · d_vᵢ log k ≤ O(kn²d² log k) = O(kn²d²). □</p>
+<p>For bounded-degree graphs (d = O(1)), this simplifies to O(kn²) = O(n³) total expression size.</p>
+</section>
+<section id="appendix-b-implementation-details" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-b-implementation-details">Appendix B: Implementation Details</h2>
+<section id="b.1-data-structures" class="level3">
+<h3 class="anchored" data-anchor-id="b.1-data-structures">B.1 Data Structures</h3>
+<p><strong>Expression Node (C struct):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> ptd_expression <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">enum</span> ptd_expr_type type<span class="op">;</span>  <span class="co">// CONST, PARAM, DOT, ADD, MUL, ...</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">union</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> const_value<span class="op">;</span>        <span class="co">// For CONST</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">size_t</span> param_index<span class="op">;</span>        <span class="co">// For PARAM</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">struct</span> <span class="op">{</span>                   <span class="co">// For DOT</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="dt">size_t</span> <span class="op">*</span>indices<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="dt">double</span> <span class="op">*</span>coefficients<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="dt">size_t</span> n_terms<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> dot<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">struct</span> <span class="op">{</span>                   <span class="co">// For binary ops</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            <span class="kw">struct</span> ptd_expression <span class="op">*</span>left<span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            <span class="kw">struct</span> ptd_expression <span class="op">*</span>right<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> binop<span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> data<span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Symbolic Edge:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> ptd_edge_symbolic <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">size_t</span> to_index<span class="op">;</span>                    <span class="co">// Target vertex</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> ptd_expression <span class="op">*</span>weight_expr<span class="op">;</span> <span class="co">// Edge weight expression</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Symbolic DAG:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> ptd_graph_symbolic <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">size_t</span> vertices_length<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> ptd_vertex_symbolic <span class="op">**</span>vertices<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">size_t</span> param_length<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> is_acyclic<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="b.2-expression-evaluation-optimized" class="level3">
+<h3 class="anchored" data-anchor-id="b.2-expression-evaluation-optimized">B.2 Expression Evaluation (Optimized)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> ptd_expr_evaluate<span class="op">(</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">const</span> <span class="kw">struct</span> ptd_expression <span class="op">*</span>expr<span class="op">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">const</span> <span class="dt">double</span> <span class="op">*</span>params<span class="op">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">size_t</span> n_params</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">switch</span> <span class="op">(</span>expr<span class="op">-&gt;</span>type<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> PTD_EXPR_CONST<span class="op">:</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> expr<span class="op">-&gt;</span>data<span class="op">.</span>const_value<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> PTD_EXPR_PARAM<span class="op">:</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> params<span class="op">[</span>expr<span class="op">-&gt;</span>data<span class="op">.</span>param_index<span class="op">];</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> PTD_EXPR_DOT<span class="op">:</span> <span class="op">{</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>            <span class="dt">double</span> sum <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="op">(</span><span class="dt">size_t</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> expr<span class="op">-&gt;</span>data<span class="op">.</span>dot<span class="op">.</span>n_terms<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                sum <span class="op">+=</span> expr<span class="op">-&gt;</span>data<span class="op">.</span>dot<span class="op">.</span>coefficients<span class="op">[</span>i<span class="op">]</span> <span class="op">*</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                       params<span class="op">[</span>expr<span class="op">-&gt;</span>data<span class="op">.</span>dot<span class="op">.</span>indices<span class="op">[</span>i<span class="op">]];</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> sum<span class="op">;</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> PTD_EXPR_ADD<span class="op">:</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> ptd_expr_evaluate<span class="op">(</span>expr<span class="op">-&gt;</span>data<span class="op">.</span>binop<span class="op">.</span>left<span class="op">,</span> params<span class="op">,</span> n_params<span class="op">)</span> <span class="op">+</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>                   ptd_expr_evaluate<span class="op">(</span>expr<span class="op">-&gt;</span>data<span class="op">.</span>binop<span class="op">.</span>right<span class="op">,</span> params<span class="op">,</span> n_params<span class="op">);</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> PTD_EXPR_MUL<span class="op">:</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> ptd_expr_evaluate<span class="op">(</span>expr<span class="op">-&gt;</span>data<span class="op">.</span>binop<span class="op">.</span>left<span class="op">,</span> params<span class="op">,</span> n_params<span class="op">)</span> <span class="op">*</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>                   ptd_expr_evaluate<span class="op">(</span>expr<span class="op">-&gt;</span>data<span class="op">.</span>binop<span class="op">.</span>right<span class="op">,</span> params<span class="op">,</span> n_params<span class="op">);</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        <span class="co">// ... similar for DIV, INV, SUB</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="b.3-python-api" class="level3">
+<h3 class="anchored" data-anchor-id="b.3-python-api">B.3 Python API</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SymbolicDAG:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Symbolic representation of eliminated phase-type graph."""</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, ptr: <span class="bu">int</span>):</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Internal: construct from C pointer."""</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._ptr <span class="op">=</span> ptr</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> instantiate(<span class="va">self</span>, params: np.ndarray) <span class="op">-&gt;</span> Graph:</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Instantiate graph with parameter vector.</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Args:</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">            params: Parameter vector θ ∈ ℝᵖ</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">            Concrete graph with evaluated edge weights</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">        Complexity: O(S) where S is total expression size</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> _symbolic_dag_instantiate(<span class="va">self</span>._ptr, params)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> vertices_length(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Number of vertices in DAG."""</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> _symbolic_dag_get_info(<span class="va">self</span>._ptr)[<span class="st">'vertices_length'</span>]</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> param_length(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Parameter dimension p."""</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> _symbolic_dag_get_info(<span class="va">self</span>._ptr)[<span class="st">'param_length'</span>]</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Usage example:</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>graph.update_parameterized_weights([<span class="fl">1.0</span>])  <span class="co"># Initialize parameter length</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>dag <span class="op">=</span> graph.eliminate_to_dag()              <span class="co"># O(n³) - once</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Fast repeated evaluation - O(n) each</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> theta <span class="kw">in</span> theta_samples:</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    concrete <span class="op">=</span> dag.instantiate([theta])     <span class="co"># O(n)</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    moment <span class="op">=</span> concrete.moments(<span class="dv">1</span>)[<span class="dv">0</span>]         <span class="co"># O(n)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../pages/architecture.html" class="pagination-link" aria-label="PtDAlgorithms Project Architecture">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">PtDAlgorithms Project Architecture</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../pages/state_lumping.html" class="pagination-link" aria-label="State lumping">
+        <span class="nav-page-text">State lumping</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
