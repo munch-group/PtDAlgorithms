@@ -375,7 +375,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    theta_dim<span class="op">=</span><span class="va">None</span>,</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    seed<span class="op">=</span><span class="dv">42</span>,</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    precompile<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    compilation_config<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Stein Variational Gradient Descent (SVGD) for Bayesian parameter inference.</p>
 <p>This class provides an object-oriented interface for SVGD inference with automatic result storage and diagnostic plotting capabilities.</p>
 <section id="parameters" class="level2 doc-section doc-section-parameters">
@@ -425,6 +427,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dd>
 <p>Print progress information</p>
 </dd>
+<dt><code><span class="parameter-name"><strong>precompile</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation"><code>bool</code></span> <span class="parameter-default-sep">=</span> <span class="parameter-default">True</span></code></dt>
+<dd>
+<p>Precompile model and gradient functions for faster execution. First run will take longer (compilation time) but subsequent iterations will be much faster. Compiled functions are cached in memory and on disk (~/.ptdalgorithms_cache/).</p>
+</dd>
+<dt><code><span class="parameter-name"><strong>compilation_config</strong></span> <span class="parameter-annotation-sep">:</span> <span class="parameter-annotation">CompilationConfig, dict, str, or Path</span> <span class="parameter-default-sep">=</span> <span class="parameter-default">None</span></code></dt>
+<dd>
+<p>JAX compilation optimization configuration. Can be: - CompilationConfig object from ptdalgorithms.CompilationConfig - dict with CompilationConfig parameters - str/Path to JSON config file - None (uses default balanced configuration) The configuration controls JAX/XLA compilation behavior including: - Persistent cache directory for cross-session caching - Optimization level (0-3) - Parallel compilation settings Examples: - Use preset: CompilationConfig.fast_compile() - Load from file: ‘my_config.json’ - Custom dict: {‘optimization_level’: 2, ‘cache_dir’: ‘/tmp/cache’}</p>
+</dd>
 </dl>
 </section>
 <section id="attributes" class="level2 doc-section doc-section-attributes">
@@ -458,8 +468,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> model <span class="op">=</span> Graph.pmf_from_graph(graph)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Create SVGD object and fit</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> svgd <span class="op">=</span> SVGD(model, observed_data, theta_dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Create SVGD object and fit (with precompilation)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> svgd <span class="op">=</span> SVGD(model, observed_data, theta_dim<span class="op">=</span><span class="dv">1</span>, precompile<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> svgd.fit()</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Access results</span></span>
