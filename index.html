@@ -70,8 +70,19 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>
 
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: black;
+      }
+
       .quarto-title-block .quarto-title-banner {
-        background-image: url(banner.png);
+        color: black;
+background-image: url(banner.png);
 background-size: cover;
       }
 </style>
@@ -179,11 +190,10 @@ background-size: cover;
 <p><i class="bi bi-code-slash"></i> <strong>C/C++ backend</strong>: <br>High-performance C/C++ core with bindings for Python, R, and direct C/C++ usage. Leverages Eigen for optimized linear algebra operations, providing both speed and numerical stability for production applications.</p>
 </div>
 <div class="g-col-12 g-col-md-4">
-<p><i class="bi bi-eye"></i> <strong>Symbolic Gauss Elimination</strong>: <br>Directed acyclic graphs produced by symbolic Gaussian elimination, allow extremely fast reparametrization and recomputation.</p>
+<p><i class="bi bi-eye"></i> <strong>Symbolic Gauss Elimination</strong>: <br>Converting parameterized cyclic to acyclic graphs using symbolic Gaussian elimination, allows for extremely fast computation across parameter values.</p>
 </div>
 <div class="g-col-12 g-col-md-4">
-<p><i class="bi bi-question-circle"></i> <strong>JAX integration</strong>: <br>Automatic differentiation for gradient-based inference methods including builtin SVGD (Stein Variational Gradient Descent).</p>
-<p>Fit phase-type models to observed data with modern Bayesian inference techniques.</p>
+<p><i class="bi bi-question-circle"></i> <strong>Bayesian Inference</strong>: <br> JAX integration and automatic differentiation allow inference using SVGD (Stein Variational Gradient Descent) by fitting phase-type models to observed data.</p>
 </div>
 <div class="g-col-12 g-col-md-4">
 <p><i class="bi bi-cpu"></i> <strong>Multiprocessing</strong>: <br>Automatic parallel computation with JAX’s pmap and vmap for batched operations. Efficiently utilize multi-core CPUs for inference tasks with automatic distribution across available performance cores.</p>
@@ -201,7 +211,7 @@ background-size: cover;
 <section id="get-help" class="level3 g-col-12 g-col-md-6">
 <h3 class="anchored" data-anchor-id="get-help">Get Help</h3>
 <ul>
-<li><i class="bi bi-box-seam"></i> <a href="https://github.com/munch-group/franklin-cli/issues">Issue Tracker</a> - Report bugs</li>
+<li><i class="bi bi-box-seam"></i> <a href="https://github.com/munch-group/ptdalgorithms/issues">Issue Tracker</a> - Report bugs</li>
 <li><i class="bi bi-box-seam"></i> <a href="mailto:kaspermunch@birc.au.dk">Contact</a> - Direct support</li>
 </ul>
 </section>
