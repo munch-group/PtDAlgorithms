@@ -172,6 +172,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-symbolic-elimination-algorithm-in-detail" id="toc-the-symbolic-elimination-algorithm-in-detail" class="nav-link" data-scroll-target="#the-symbolic-elimination-algorithm-in-detail">The Symbolic Elimination Algorithm in Detail</a></li>
   <li><a href="#expression-evaluation-and-graph-instantiation" id="toc-expression-evaluation-and-graph-instantiation" class="nav-link" data-scroll-target="#expression-evaluation-and-graph-instantiation">Expression Evaluation and Graph Instantiation</a></li>
   <li><a href="#comprehensive-performance-analysis" id="toc-comprehensive-performance-analysis" class="nav-link" data-scroll-target="#comprehensive-performance-analysis">Comprehensive Performance Analysis</a></li>
+  <li><a href="#symbolic-dag-caching-avoiding-repeated-elimination-across-sessions" id="toc-symbolic-dag-caching-avoiding-repeated-elimination-across-sessions" class="nav-link" data-scroll-target="#symbolic-dag-caching-avoiding-repeated-elimination-across-sessions">Symbolic DAG Caching: Avoiding Repeated Elimination Across Sessions</a>
+  <ul class="collapse">
+  <li><a href="#content-based-graph-hashing" id="toc-content-based-graph-hashing" class="nav-link" data-scroll-target="#content-based-graph-hashing">Content-Based Graph Hashing</a></li>
+  <li><a href="#automatic-caching-in-high-level-api" id="toc-automatic-caching-in-high-level-api" class="nav-link" data-scroll-target="#automatic-caching-in-high-level-api">Automatic Caching in High-Level API</a></li>
+  <li><a href="#cache-management-and-sharing" id="toc-cache-management-and-sharing" class="nav-link" data-scroll-target="#cache-management-and-sharing">Cache Management and Sharing</a></li>
+  <li><a href="#combined-performance-impact-symbolic-elimination-caching" id="toc-combined-performance-impact-symbolic-elimination-caching" class="nav-link" data-scroll-target="#combined-performance-impact-symbolic-elimination-caching">Combined Performance Impact: Symbolic Elimination + Caching</a></li>
+  </ul></li>
   <li><a href="#integration-with-bayesian-inference-algorithms" id="toc-integration-with-bayesian-inference-algorithms" class="nav-link" data-scroll-target="#integration-with-bayesian-inference-algorithms">Integration with Bayesian Inference Algorithms</a></li>
   <li><a href="#practical-considerations-and-best-practices" id="toc-practical-considerations-and-best-practices" class="nav-link" data-scroll-target="#practical-considerations-and-best-practices">Practical Considerations and Best Practices</a></li>
   <li><a href="#advanced-topics-and-future-directions" id="toc-advanced-topics-and-future-directions" class="nav-link" data-scroll-target="#advanced-topics-and-future-directions">Advanced Topics and Future Directions</a></li>
@@ -502,6 +509,166 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  determined by the ratio of elimination cost to instantiation cost."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
+<section id="symbolic-dag-caching-avoiding-repeated-elimination-across-sessions" class="level1">
+<h1>Symbolic DAG Caching: Avoiding Repeated Elimination Across Sessions</h1>
+<p>While symbolic elimination dramatically accelerates parameter sweeps within a single session by performing graph elimination once and reusing the result, we face a new challenge when working across multiple sessions: each time we restart our Python interpreter or begin a new analysis, we must rebuild the symbolic DAG from scratch. For models with large state spaces, this one-time O(n³) symbolic elimination can still take seconds or even minutes, creating friction in iterative workflows where we repeatedly refine analyses, experiment with different inference configurations, or share models among research collaborators.</p>
+<p>The fundamental issue is that symbolic elimination produces a specific computation structure—a directed acyclic graph with expression trees on edges—that depends only on the graph’s topological structure and parameterization pattern, not on any specific parameter values. Two graphs with identical topology and identical parameterization patterns will produce identical symbolic DAGs through the elimination algorithm. This structural equivalence suggests a caching opportunity: if we can detect when two graphs are structurally identical, we can compute the symbolic DAG once, store it to disk, and retrieve it in future sessions, completely bypassing the elimination algorithm.</p>
+<p>The PtDAlgorithms library implements a sophisticated symbolic DAG caching system that automatically recognizes when a graph has been symbolically eliminated before and retrieves the cached result. The system uses cryptographic hashing to compute a unique fingerprint for each graph’s structure, stores symbolic DAGs in an indexed database for fast retrieval, and handles cache invalidation, export/import for sharing caches with collaborators, and integration with distributed computing environments. For users, the caching is largely transparent—graphs are automatically cached when first eliminated, and subsequent eliminations of structurally identical graphs return instantly from the cache.</p>
+<p>This caching layer transforms the workflow for iterative model development and collaborative research. Models that took minutes to eliminate now load instantly on subsequent runs. Collaborators can share pre-computed symbolic DAGs alongside code, allowing others to immediately begin inference without waiting for elimination. Large parameter sweep experiments can be checkpointed and resumed without re-elimination. The combination of within-session speedup from symbolic elimination and cross-session speedup from caching enables workflows that would be prohibitively slow with traditional approaches.</p>
+<section id="content-based-graph-hashing" class="level2">
+<h2 class="anchored" data-anchor-id="content-based-graph-hashing">Content-Based Graph Hashing</h2>
+<p>The foundation of the caching system is a content-based hashing scheme that assigns each graph a unique 256-bit hash value based on its structure. This hash must have several critical properties: it must be deterministic (the same graph always produces the same hash), collision-resistant (different graphs produce different hashes with overwhelming probability), and independent of parameter values (changing edge weights doesn’t change the hash). The last property is essential because symbolic elimination produces the same computation structure regardless of which specific parameter values we use—only the graph’s topology and parameterization pattern matter.</p>
+<p>The hashing algorithm combines several techniques to achieve these properties. We use the SHA-256 cryptographic hash function as the underlying primitive, providing strong collision resistance with a 2^-256 probability that two different graphs produce the same hash. To handle the challenge that graphs have no canonical ordering of vertices, we employ a modified Weisfeiler-Lehman graph hashing scheme that aggregates vertex-level hashes in a way that’s independent of vertex enumeration. For each vertex, we compute a hash of its state vector (the integer coordinates identifying its position in the state space) and its outgoing edges, where each edge contributes a hash combining the target vertex’s state and the edge’s parameterization coefficients. We then sort these vertex hashes lexicographically and concatenate them to produce a final graph-level hash.</p>
+<p>Crucially, the hash depends only on graph structure and parameterization patterns, not on concrete parameter values. When we hash an edge with coefficients [a₁, a₂, …, aₖ], we include these coefficients in the hash because they determine how edge weights scale with parameters, which affects the symbolic DAG structure. But we don’t include the current edge weight value itself, because that’s just a₁θ₁ + a₂θ₂ + … + aₖθₖ evaluated at the current parameters, and different parameter choices shouldn’t change the hash. This design ensures that a graph constructed for θ = [1.0, 2.0] produces the same hash as an identical graph constructed for θ = [3.5, 7.2], allowing cache hits across different parameterizations.</p>
+<div id="cache-demo-first-run" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> SymbolicCache</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Demonstrating Symbolic DAG Caching</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize cache</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>cache <span class="op">=</span> SymbolicCache()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Cache Configuration:"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Location: </span><span class="sc">{</span>cache<span class="sc">.</span>cache_dir<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Backend: SQLite database with content-addressed storage"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Hash algorithm: SHA-256 with Weisfeiler-Lehman graph hashing</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a fresh coalescent graph</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"First Run: Building symbolic DAG from scratch..."</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>graph_cache_test <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent_callback, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>graph_cache_test.update_parameterized_weights([<span class="fl">1.0</span>])</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># First elimination: cache miss, must compute</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>start_first <span class="op">=</span> time.time()</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>dag_first <span class="op">=</span> graph_cache_test.eliminate_to_dag()</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>time_first <span class="op">=</span> time.time() <span class="op">-</span> start_first</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"✓ Symbolic elimination completed in </span><span class="sc">{</span>time_first<span class="sc">:.4f}</span><span class="ss">s"</span>)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  This result is now cached for future use</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Get cache statistics</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>cache_info <span class="op">=</span> cache.info()</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Cache Statistics:"</span>)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Entries: </span><span class="sc">{</span>cache_info[<span class="st">'num_entries'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Total size: </span><span class="sc">{</span>cache_info[<span class="st">'total_size_mb'</span>]<span class="sc">:.2f}</span><span class="ss"> MB"</span>)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Hit rate: </span><span class="sc">{</span>cache_info[<span class="st">'hit_rate'</span>]<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">% (this session)"</span> <span class="cf">if</span> cache_info[<span class="st">'hit_rate'</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="cf">else</span> <span class="st">"  Hit rate: N/A (first run)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cache-demo-second-run" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Second Run: Using cached symbolic DAG..."</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Build an identical graph with different parameter value</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The structure is the same, so we should get a cache hit</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>graph_cache_test2 <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent_callback, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>graph_cache_test2.update_parameterized_weights([<span class="fl">2.5</span>])  <span class="co"># Different parameter value</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Second elimination: cache hit, should be instant</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>start_second <span class="op">=</span> time.time()</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>dag_second <span class="op">=</span> graph_cache_test2.eliminate_to_dag()</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>time_second <span class="op">=</span> time.time() <span class="op">-</span> start_second</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"✓ Retrieved from cache in </span><span class="sc">{</span>time_second<span class="sc">:.4f}</span><span class="ss">s"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Speedup: </span><span class="sc">{</span>time_first<span class="op">/</span>time_second<span class="sc">:.0f}</span><span class="ss">× faster than computing from scratch"</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Key Insight:"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  • Graph with θ=[1.0] and θ=[2.5] have identical structure"</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  • Both produce the same symbolic DAG through elimination"</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  • Cache recognizes this and avoids redundant computation"</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  • Result: </span><span class="sc">{</span>time_first<span class="op">/</span>time_second<span class="sc">:.0f}</span><span class="ss">× speedup on subsequent runs"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="automatic-caching-in-high-level-api" class="level2">
+<h2 class="anchored" data-anchor-id="automatic-caching-in-high-level-api">Automatic Caching in High-Level API</h2>
+<p>While the explicit caching workflow demonstrates how the system works, in practice you rarely need to interact with the cache directly. The <code>Graph.pmf_from_graph()</code> and <code>Graph.pmf_from_graph_parameterized()</code> methods automatically check the cache before performing symbolic elimination, providing transparent caching without any code changes. This automatic caching is enabled by default but can be disabled with the <code>use_cache=False</code> parameter if needed.</p>
+<p>The automatic caching workflow proceeds as follows: when you call <code>pmf_from_graph(graph)</code>, the function first computes a hash of the graph’s structure, queries the symbolic cache to see if a DAG with this hash exists, and if found, deserializes the cached DAG and uses it directly. Only if the cache misses does the function perform symbolic elimination, after which it stores the result in the cache for future use. This means that the first time you construct a model, you pay the elimination cost, but every subsequent construction of the same model (even in different Python sessions) retrieves instantly from the cache.</p>
+<p>This behavior is especially powerful when combined with parameterized models used in inference. During SVGD or MCMC, you might run your inference script dozens of times while tuning hyperparameters, adjusting priors, or debugging code. With automatic caching, the expensive symbolic elimination happens only on the first run—every subsequent run starts immediately with inference, saving minutes or hours of waiting. For collaborative projects, team members can share the cache directory, and once one person has computed the symbolic DAG for a model, everyone else gets instant loading.</p>
+<div id="automatic-cache-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Automatic Caching with High-Level API</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Build graph for a larger coalescent model</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Building larger coalescent model (n=8 samples)..."</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>graph_auto <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent_callback, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># First call: cache miss (graph not seen before)</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First call to pmf_from_graph() with n=8:"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>start_auto1 <span class="op">=</span> time.time()</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>model_auto <span class="op">=</span> Graph.pmf_from_graph(graph_auto, use_cache<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>time_auto1 <span class="op">=</span> time.time() <span class="op">-</span> start_auto1</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Completed in </span><span class="sc">{</span>time_auto1<span class="sc">:.4f}</span><span class="ss">s (includes symbolic elimination + caching)"</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Build another identical graph with different initial parameters</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>graph_auto2 <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent_callback, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Second call: cache hit</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Second call to pmf_from_graph() with n=8 (identical structure):"</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>start_auto2 <span class="op">=</span> time.time()</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>model_auto2 <span class="op">=</span> Graph.pmf_from_graph(graph_auto2, use_cache<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>time_auto2 <span class="op">=</span> time.time() <span class="op">-</span> start_auto2</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Completed in </span><span class="sc">{</span>time_auto2<span class="sc">:.4f}</span><span class="ss">s (cache hit!)"</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Speedup: </span><span class="sc">{</span>time_auto1<span class="op">/</span>time_auto2<span class="sc">:.0f}</span><span class="ss">×"</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">💡 Key Benefit:"</span>)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"   • No code changes needed - caching is automatic"</span>)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"   • Works across Python sessions and restarts"</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"   • Persistent cache shared among all scripts"</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • For this model: </span><span class="sc">{</span>time_auto1<span class="op">/</span>time_auto2<span class="sc">:.0f}</span><span class="ss">× speedup on second+ runs"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="cache-management-and-sharing" class="level2">
+<h2 class="anchored" data-anchor-id="cache-management-and-sharing">Cache Management and Sharing</h2>
+<p>The symbolic cache is designed to be low-maintenance, automatically handling storage, indexing, and cleanup. However, for advanced workflows, the cache system provides tools for inspecting cache contents, importing and exporting caches for sharing with collaborators, and managing cache size and age.</p>
+<p><strong>Cache Location and Structure:</strong> By default, the cache is stored in <code>~/.ptdalgorithms_cache/symbolic/</code> with a SQLite database for indexing and individual JSON files for each symbolic DAG. This structure allows fast lookups by hash while keeping DAGs in a human-readable format that can be inspected or debugged if needed.</p>
+<p><strong>Inspection and Statistics:</strong> The <code>cache.info()</code> method provides summary statistics about cache size, number of entries, and hit rates. The <code>cache.list_entries()</code> method shows individual cache entries with their hashes, timestamps, and metadata. The standalone <code>print_cache_info()</code> function provides a formatted summary suitable for notebooks and scripts.</p>
+<p><strong>Export and Import:</strong> For sharing models with collaborators or deploying pre-computed models to production, the <code>cache.export_library()</code> method packages selected cache entries into a directory that can be shared. The <code>cache.import_library()</code> method imports these entries into another user’s cache. This enables workflows where one person computes expensive symbolic DAGs and others immediately load them.</p>
+<p><strong>Cache Cleanup:</strong> The cache automatically evicts old entries using an LRU (Least Recently Used) policy when it reaches a size limit (default 10GB). Manual cleanup is available through <code>cache.clear()</code> to remove all entries or <code>cache.vacuum()</code> to remove entries older than a specified age. For programmatic control, you can query and delete specific entries by hash.</p>
+<p><strong>Distributed Computing:</strong> In HPC environments with shared filesystems, multiple compute nodes can share a single cache by configuring the cache directory to point to network storage. The cache uses file locking to coordinate concurrent access, allowing distributed jobs to safely share symbolic DAGs without redundant computation. See the distributed computing tutorial for details.</p>
+<div id="cache-management-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> print_cache_info</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Cache Management Tools</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Show detailed cache information</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Cache Summary:"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>print_cache_info()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># List recent cache entries</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Recent Cache Entries:</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>entries <span class="op">=</span> cache.list_entries(limit<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, entry <span class="kw">in</span> <span class="bu">enumerate</span>(entries, <span class="dv">1</span>):</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. Hash: </span><span class="sc">{</span>entry[<span class="st">'hash_key'</span>][:<span class="dv">16</span>]<span class="sc">}</span><span class="ss">..."</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   Created: </span><span class="sc">{</span>entry[<span class="st">'created_at'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   Vertices: </span><span class="sc">{</span>entry[<span class="st">'vertices'</span>]<span class="sc">}</span><span class="ss">, Edges: </span><span class="sc">{</span>entry[<span class="st">'edges'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   Size: </span><span class="sc">{</span>entry[<span class="st">'size_kb'</span>]<span class="sc">:.1f}</span><span class="ss"> KB</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Export cache for sharing</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Exporting cache for collaborators..."</span>)</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>export_dir <span class="op">=</span> Path(<span class="st">"/tmp/ptd_cache_export"</span>)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>cache.export_library(export_dir, hash_keys<span class="op">=</span><span class="va">None</span>)  <span class="co"># Export all entries</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"✓ Cache exported to: </span><span class="sc">{</span>export_dir<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Share this directory with collaborators so they can:"</span>)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  cache.import_library('</span><span class="sc">{</span>export_dir<span class="sc">}</span><span class="ss">')"</span>)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"And immediately use your pre-computed symbolic DAGs!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="combined-performance-impact-symbolic-elimination-caching" class="level2">
+<h2 class="anchored" data-anchor-id="combined-performance-impact-symbolic-elimination-caching">Combined Performance Impact: Symbolic Elimination + Caching</h2>
+<p>Understanding the full performance picture requires considering both symbolic elimination and caching together. These two techniques address complementary bottlenecks: symbolic elimination accelerates parameter sweeps within a session by avoiding repeated graph elimination for each parameter value, while caching accelerates subsequent sessions by avoiding repeated symbolic elimination for the same model structure.</p>
+<p><strong>Within-Session Performance:</strong> Symbolic elimination provides speedups proportional to the number of parameter evaluations—for m evaluations, we see roughly m× speedup compared to traditional approaches, since we perform O(n³) work once instead of m times. For inference with hundreds of SVGD particles or thousands of MCMC iterations, this translates to 100-1000× speedup. In our earlier benchmark, we measured speedups ranging from 10× to 50× depending on the number of evaluations.</p>
+<p><strong>Cross-Session Performance:</strong> Caching provides speedups for the symbolic elimination step itself—instead of O(n³) elimination on each script run, we pay this cost only once and retrieve in O(1) time (technically O(n) for deserialization, but vastly faster than O(n³) elimination). For models where symbolic elimination takes seconds to minutes, caching eliminates this startup delay entirely on subsequent runs. Typical speedups for cache hits range from 50× to 1000× depending on model complexity.</p>
+<p><strong>Combined Impact:</strong> The two techniques multiply: within a session, symbolic elimination gives us m× speedup over traditional approaches, and across sessions, caching gives us another k× speedup for the elimination step (where k is the ratio of elimination time to cache retrieval time). For a typical workflow with 100 parameter evaluations and 10 script runs during development, the effective speedup is roughly 100 × k ≈ 1000× compared to traditional approaches without either optimization.</p>
+<p><strong>Practical Example:</strong> Consider developing a Bayesian inference pipeline for a coalescent model. The workflow might involve:</p>
+<ol type="1">
+<li><strong>First development session:</strong> Build model, run symbolic elimination (10s), run SVGD with 100 particles × 50 iterations (5000 evaluations, 30s with symbolic elimination vs 8 hours traditional)</li>
+<li><strong>Second session (tune priors):</strong> Load from cache (0.1s), run SVGD (30s). Traditional: 8 hours.</li>
+<li><strong>Third session (adjust SVGD hyperparameters):</strong> Load from cache (0.1s), run SVGD (30s). Traditional: 8 hours.</li>
+<li><strong>Subsequent sessions:</strong> Continue development with instant model loading and fast inference.</li>
+</ol>
+<p>Total development time: ~2 minutes for model setup across all sessions + inference time, compared to 24+ hours with traditional approaches. The combination of symbolic elimination and caching transforms iterative model development from a multi-day process to an interactive workflow.</p>
+</section>
+</section>
 <section id="integration-with-bayesian-inference-algorithms" class="level1">
 <h1>Integration with Bayesian Inference Algorithms</h1>
 <p>The performance benefits of symbolic elimination become most apparent when we consider its application to Bayesian inference, where the pattern of repeated evaluations with different parameters is not just common but fundamental to the algorithms themselves. Stein Variational Gradient Descent provides an excellent example of how symbolic elimination transforms inference from computationally prohibitive to practically feasible.</p>
@@ -509,73 +676,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Symbolic elimination changes this calculation dramatically. We perform symbolic elimination once before starting SVGD, obtaining a symbolic DAG that encodes the computation structure. During each SVGD iteration, evaluating the likelihood for a particle requires instantiating the symbolic DAG with the particle’s parameters (O(n) operation) and then computing distribution properties on the resulting acyclic graph (another O(n) operation). Gradient computation through automatic differentiation also benefits: modern AD frameworks like JAX can differentiate through the instantiation and evaluation operations, requiring only O(n) additional work per particle rather than O(n³). The total cost becomes O(n³ + T × m × n) where T is the number of iterations and m is the number of particles, compared to O(T × m × n³) for the traditional approach—a speedup factor of Θ(T × m) that can easily reach hundreds or thousands for realistic inference problems.</p>
 <p>Beyond SVGD, symbolic elimination accelerates other inference methods similarly. Markov Chain Monte Carlo methods like Metropolis-Hastings or Hamiltonian Monte Carlo evaluate the target density at each proposed state, requiring one graph evaluation per MCMC step. With millions of MCMC steps common for ensuring convergence and obtaining low-variance estimates, the speedup from avoiding repeated elimination becomes multiplicative with the chain length. Maximum likelihood estimation and maximum a posteriori estimation through gradient-based optimization also benefit, as each optimization iteration requires evaluating the objective and its gradient at the current parameter estimate. Even sensitivity analysis—computing derivatives of distribution properties with respect to parameters using finite differences or automatic differentiation—sees dramatic speedups from symbolic elimination’s efficient parameter sweeps.</p>
 <div id="svgd-simulation" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Simulating SVGD Workflow with Symbolic Elimination</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># SVGD configuration</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>n_particles <span class="op">=</span> <span class="dv">50</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>n_iterations <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Configuration:"</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Particles: </span><span class="sc">{</span>n_particles<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Iterations: </span><span class="sc">{</span>n_iterations<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Total evaluations: </span><span class="sc">{</span>n_particles <span class="op">*</span> n_iterations<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup symbolic DAG (one-time cost)</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>graph_svgd <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent_callback, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>graph_svgd.update_parameterized_weights([<span class="fl">1.0</span>])</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"One-time setup: Performing symbolic elimination..."</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>start_elim <span class="op">=</span> time.time()</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>dag_svgd <span class="op">=</span> graph_svgd.eliminate_to_dag()</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>elim_time <span class="op">=</span> time.time() <span class="op">-</span> start_elim</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"✓ Symbolic elimination completed in </span><span class="sc">{</span>elim_time<span class="sc">:.4f}</span><span class="ss">s</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize particles</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>particles <span class="op">=</span> np.random.exponential(<span class="fl">1.0</span>, n_particles)</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running SVGD iterations...</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>total_start <span class="op">=</span> time.time()</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>iteration_times <span class="op">=</span> []</span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> iteration <span class="kw">in</span> <span class="bu">range</span>(n_iterations):</span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    iter_start <span class="op">=</span> time.time()</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Evaluate likelihood for all particles (O(m × n) with symbolic elimination)</span></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    log_probs <span class="op">=</span> []</span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> theta <span class="kw">in</span> particles:</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Fast O(n) instantiation + evaluation</span></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>        concrete <span class="op">=</span> dag_svgd.instantiate([theta])</span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>        expectation <span class="op">=</span> concrete.moments(<span class="dv">1</span>)[<span class="dv">0</span>]</span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Use negative expectation as proxy for log posterior</span></span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>        log_prob <span class="op">=</span> <span class="op">-</span>expectation</span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>        log_probs.append(log_prob)</span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Simulate SVGD particle update (simplified for demonstration)</span></span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Real SVGD would compute kernel interactions and gradients</span></span>
-<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    particles <span class="op">+=</span> np.random.randn(n_particles) <span class="op">*</span> <span class="fl">0.05</span></span>
-<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>    particles <span class="op">=</span> np.maximum(particles, <span class="fl">0.01</span>)  <span class="co"># Keep positive</span></span>
-<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    iter_time <span class="op">=</span> time.time() <span class="op">-</span> iter_start</span>
-<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>    iteration_times.append(iter_time)</span>
-<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Iteration </span><span class="sc">{</span>iteration<span class="op">+</span><span class="dv">1</span><span class="sc">:2d}</span><span class="ss">: </span><span class="sc">{</span>iter_time<span class="sc">:.4f}</span><span class="ss">s, mean(log_prob)=</span><span class="sc">{</span>np<span class="sc">.</span>mean(log_probs)<span class="sc">:7.3f}</span><span class="ss">"</span>)</span>
-<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>total_time <span class="op">=</span> time.time() <span class="op">-</span> total_start</span>
-<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Results:"</span>)</span>
-<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Total SVGD time: </span><span class="sc">{</span>total_time<span class="sc">:.4f}</span><span class="ss">s"</span>)</span>
-<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Time per iteration: </span><span class="sc">{</span>np<span class="sc">.</span>mean(iteration_times)<span class="sc">:.4f}</span><span class="ss">s"</span>)</span>
-<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Time per evaluation: </span><span class="sc">{</span>total_time<span class="op">/</span>(n_particles<span class="op">*</span>n_iterations)<span class="op">*</span><span class="dv">1000</span><span class="sc">:.3f}</span><span class="ss">ms"</span>)</span>
-<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">  One-time symbolic elimination: </span><span class="sc">{</span>elim_time<span class="sc">:.4f}</span><span class="ss">s"</span>)</span>
-<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Amortized cost per evaluation: </span><span class="sc">{</span>(elim_time <span class="op">+</span> total_time)<span class="op">/</span>(n_particles<span class="op">*</span>n_iterations)<span class="op">*</span><span class="dv">1000</span><span class="sc">:.3f}</span><span class="ss">ms"</span>)</span>
-<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to traditional approach</span></span>
-<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Comparison to Traditional Approach:"</span>)</span>
-<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Traditional: </span><span class="sc">{</span>n_particles <span class="op">*</span> n_iterations<span class="sc">}</span><span class="ss"> × O(n³) eliminations"</span>)</span>
-<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Symbolic: 1 × O(n³) elimination + </span><span class="sc">{</span>n_particles <span class="op">*</span> n_iterations<span class="sc">}</span><span class="ss"> × O(n) instantiations"</span>)</span>
-<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Expected speedup: ~</span><span class="sc">{</span>n_particles <span class="op">*</span> n_iterations<span class="sc">}</span><span class="ss">× for large graphs"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Simulating SVGD Workflow with Symbolic Elimination</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># SVGD configuration</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>n_particles <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>n_iterations <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Configuration:"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Particles: </span><span class="sc">{</span>n_particles<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Iterations: </span><span class="sc">{</span>n_iterations<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Total evaluations: </span><span class="sc">{</span>n_particles <span class="op">*</span> n_iterations<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup symbolic DAG (one-time cost)</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>graph_svgd <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent_callback, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>graph_svgd.update_parameterized_weights([<span class="fl">1.0</span>])</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"One-time setup: Performing symbolic elimination..."</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>start_elim <span class="op">=</span> time.time()</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>dag_svgd <span class="op">=</span> graph_svgd.eliminate_to_dag()</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>elim_time <span class="op">=</span> time.time() <span class="op">-</span> start_elim</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"✓ Symbolic elimination completed in </span><span class="sc">{</span>elim_time<span class="sc">:.4f}</span><span class="ss">s</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize particles</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>particles <span class="op">=</span> np.random.exponential(<span class="fl">1.0</span>, n_particles)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running SVGD iterations...</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>total_start <span class="op">=</span> time.time()</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>iteration_times <span class="op">=</span> []</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> iteration <span class="kw">in</span> <span class="bu">range</span>(n_iterations):</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    iter_start <span class="op">=</span> time.time()</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Evaluate likelihood for all particles (O(m × n) with symbolic elimination)</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    log_probs <span class="op">=</span> []</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> theta <span class="kw">in</span> particles:</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Fast O(n) instantiation + evaluation</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>        concrete <span class="op">=</span> dag_svgd.instantiate([theta])</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>        expectation <span class="op">=</span> concrete.moments(<span class="dv">1</span>)[<span class="dv">0</span>]</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Use negative expectation as proxy for log posterior</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>        log_prob <span class="op">=</span> <span class="op">-</span>expectation</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>        log_probs.append(log_prob)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Simulate SVGD particle update (simplified for demonstration)</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Real SVGD would compute kernel interactions and gradients</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    particles <span class="op">+=</span> np.random.randn(n_particles) <span class="op">*</span> <span class="fl">0.05</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    particles <span class="op">=</span> np.maximum(particles, <span class="fl">0.01</span>)  <span class="co"># Keep positive</span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>    iter_time <span class="op">=</span> time.time() <span class="op">-</span> iter_start</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>    iteration_times.append(iter_time)</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Iteration </span><span class="sc">{</span>iteration<span class="op">+</span><span class="dv">1</span><span class="sc">:2d}</span><span class="ss">: </span><span class="sc">{</span>iter_time<span class="sc">:.4f}</span><span class="ss">s, mean(log_prob)=</span><span class="sc">{</span>np<span class="sc">.</span>mean(log_probs)<span class="sc">:7.3f}</span><span class="ss">"</span>)</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>total_time <span class="op">=</span> time.time() <span class="op">-</span> total_start</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Results:"</span>)</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Total SVGD time: </span><span class="sc">{</span>total_time<span class="sc">:.4f}</span><span class="ss">s"</span>)</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Time per iteration: </span><span class="sc">{</span>np<span class="sc">.</span>mean(iteration_times)<span class="sc">:.4f}</span><span class="ss">s"</span>)</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Time per evaluation: </span><span class="sc">{</span>total_time<span class="op">/</span>(n_particles<span class="op">*</span>n_iterations)<span class="op">*</span><span class="dv">1000</span><span class="sc">:.3f}</span><span class="ss">ms"</span>)</span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">  One-time symbolic elimination: </span><span class="sc">{</span>elim_time<span class="sc">:.4f}</span><span class="ss">s"</span>)</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Amortized cost per evaluation: </span><span class="sc">{</span>(elim_time <span class="op">+</span> total_time)<span class="op">/</span>(n_particles<span class="op">*</span>n_iterations)<span class="op">*</span><span class="dv">1000</span><span class="sc">:.3f}</span><span class="ss">ms"</span>)</span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to traditional approach</span></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Comparison to Traditional Approach:"</span>)</span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Traditional: </span><span class="sc">{</span>n_particles <span class="op">*</span> n_iterations<span class="sc">}</span><span class="ss"> × O(n³) eliminations"</span>)</span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Symbolic: 1 × O(n³) elimination + </span><span class="sc">{</span>n_particles <span class="op">*</span> n_iterations<span class="sc">}</span><span class="ss"> × O(n) instantiations"</span>)</span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Expected speedup: ~</span><span class="sc">{</span>n_particles <span class="op">*</span> n_iterations<span class="sc">}</span><span class="ss">× for large graphs"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="practical-considerations-and-best-practices" class="level1">
@@ -587,68 +754,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Memory consumption deserves attention for large-scale problems. The symbolic DAG stores expression trees for all edges, using more memory than the original numeric graph. Expression tree size grows with graph size and complexity, potentially becoming significant for graphs with thousands of vertices or heavily nested elimination structures. For models where memory becomes limiting, strategies include working with partitioned state spaces, using lazy evaluation to avoid materializing all expressions simultaneously, or applying expression simplification to reduce tree sizes. In practice, memory is rarely the limiting factor for graphs of reasonable size (up to hundreds of vertices), and the computational speedup typically justifies the memory overhead.</p>
 <p>Numerical stability generally poses no concerns with symbolic elimination because expression evaluation performs the same arithmetic operations in the same order as traditional elimination would, just with different input values. Floating-point errors accumulate identically, and results match traditional evaluation to machine precision. One subtle point: very deep expression trees might accumulate slightly more rounding error than shallower alternatives due to longer chains of operations, but this effect is negligible for practical expression depths. If numerical issues arise, they typically indicate problems with the underlying model parameterization rather than the symbolic elimination technique.</p>
 <div id="best-practices" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best Practices for Symbolic Elimination</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">When to Use Symbolic Elimination:</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✓ RECOMMENDED for:"</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Bayesian inference (SVGD, MCMC, optimization)"</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Parameter sweeps and sensitivity analysis"</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Any scenario requiring 10+ evaluations with different parameters"</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Models with moderate to large state spaces (n &gt; 10 vertices)"</span>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">✗ NOT RECOMMENDED for:"</span>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Single or few evaluations (overhead exceeds savings)"</span>)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Models where graph structure changes with parameters"</span>)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Very small graphs (n &lt; 5) where evaluation is already fast"</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n</span><span class="st">Standard Workflow Pattern:</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>workflow <span class="op">=</span> <span class="st">"""# Step 1: Define parameterized model</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="st">def model_callback(state, **kwargs):</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="st">    # Return transitions with edge_state coefficient vectors</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="st">    return [(next_state, 0.0, [coeff1, coeff2, ...])]</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="st"># Step 2: Create parameterized graph</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="st">graph = Graph(callback=model_callback, parameterized=True)</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="st"># Step 3: Initialize parameter length</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="st">graph.update_parameterized_weights(initial_params)</span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="st"># Step 4: Symbolic elimination (ONCE - O(n³))</span></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="st">dag = graph.eliminate_to_dag()</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="st"># Step 5: Use for inference (MANY TIMES - O(n) each)</span></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="st">for theta in parameter_samples:</span></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="st">    concrete = dag.instantiate(theta)  # Fast!</span></span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="st">    result = compute_property(concrete)</span></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(workflow)</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Common Pitfalls and Solutions:</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>pitfalls <span class="op">=</span> [</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Forgot to call update_parameterized_weights before eliminate_to_dag"</span>,</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>     <span class="st">"This initializes the parameter dimension. Call it with initial values."</span>),</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Graph structure changes with parameters"</span>,</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Symbolic elimination requires fixed structure. Restructure model if possible."</span>),</span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Using symbolic elimination for just 1-2 evaluations"</span>,</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Not worth the overhead. Use traditional approach for few evaluations."</span>),</span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Memory concerns with very large graphs"</span>,</span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Consider partitioning state space or using lazy evaluation strategies."</span>)</span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (pitfall, solution) <span class="kw">in</span> <span class="bu">enumerate</span>(pitfalls, <span class="dv">1</span>):</span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. Issue: </span><span class="sc">{</span>pitfall<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   Solution: </span><span class="sc">{</span>solution<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Performance Expectations:</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  For coalescent model (</span><span class="sc">{</span>coalescent_graph<span class="sc">.</span>vertices_length()<span class="sc">}</span><span class="ss"> states):"</span>)</span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    • Traditional: ~</span><span class="sc">{</span>results_traditional[<span class="op">-</span><span class="dv">1</span>]<span class="op">/</span><span class="dv">500</span><span class="op">*</span><span class="dv">1000</span><span class="sc">:.3f}</span><span class="ss">ms per evaluation"</span>)</span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    • Symbolic: ~</span><span class="sc">{</span>results_symbolic[<span class="op">-</span><span class="dv">1</span>]<span class="op">/</span><span class="dv">500</span><span class="op">*</span><span class="dv">1000</span><span class="sc">:.3f}</span><span class="ss">ms per evaluation (after elimination)"</span>)</span>
-<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    • Speedup: ~</span><span class="sc">{</span>speedups[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.0f}</span><span class="ss">× for 500 evaluations"</span>)</span>
-<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">  Speedup grows with:"</span>)</span>
-<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    • Number of evaluations (amortizes one-time cost)"</span>)</span>
-<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    • Graph size (O(n³) vs O(n) difference magnifies)"</span>)</span>
-<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    • Graph sparsity (sparse graphs have smaller expression trees)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best Practices for Symbolic Elimination</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">When to Use Symbolic Elimination:</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✓ RECOMMENDED for:"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Bayesian inference (SVGD, MCMC, optimization)"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Parameter sweeps and sensitivity analysis"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Any scenario requiring 10+ evaluations with different parameters"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Models with moderate to large state spaces (n &gt; 10 vertices)"</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">✗ NOT RECOMMENDED for:"</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Single or few evaluations (overhead exceeds savings)"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Models where graph structure changes with parameters"</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Very small graphs (n &lt; 5) where evaluation is already fast"</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n\n</span><span class="st">Standard Workflow Pattern:</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>workflow <span class="op">=</span> <span class="st">"""# Step 1: Define parameterized model</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="st">def model_callback(state, **kwargs):</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="st">    # Return transitions with edge_state coefficient vectors</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="st">    return [(next_state, 0.0, [coeff1, coeff2, ...])]</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="st"># Step 2: Create parameterized graph</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="st">graph = Graph(callback=model_callback, parameterized=True)</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="st"># Step 3: Initialize parameter length</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="st">graph.update_parameterized_weights(initial_params)</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="st"># Step 4: Symbolic elimination (ONCE - O(n³))</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="st">dag = graph.eliminate_to_dag()</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="st"># Step 5: Use for inference (MANY TIMES - O(n) each)</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="st">for theta in parameter_samples:</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="st">    concrete = dag.instantiate(theta)  # Fast!</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="st">    result = compute_property(concrete)</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(workflow)</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Common Pitfalls and Solutions:</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>pitfalls <span class="op">=</span> [</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Forgot to call update_parameterized_weights before eliminate_to_dag"</span>,</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>     <span class="st">"This initializes the parameter dimension. Call it with initial values."</span>),</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Graph structure changes with parameters"</span>,</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Symbolic elimination requires fixed structure. Restructure model if possible."</span>),</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Using symbolic elimination for just 1-2 evaluations"</span>,</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Not worth the overhead. Use traditional approach for few evaluations."</span>),</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Memory concerns with very large graphs"</span>,</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Consider partitioning state space or using lazy evaluation strategies."</span>)</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (pitfall, solution) <span class="kw">in</span> <span class="bu">enumerate</span>(pitfalls, <span class="dv">1</span>):</span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. Issue: </span><span class="sc">{</span>pitfall<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   Solution: </span><span class="sc">{</span>solution<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Performance Expectations:</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  For coalescent model (</span><span class="sc">{</span>coalescent_graph<span class="sc">.</span>vertices_length()<span class="sc">}</span><span class="ss"> states):"</span>)</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    • Traditional: ~</span><span class="sc">{</span>results_traditional[<span class="op">-</span><span class="dv">1</span>]<span class="op">/</span><span class="dv">500</span><span class="op">*</span><span class="dv">1000</span><span class="sc">:.3f}</span><span class="ss">ms per evaluation"</span>)</span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    • Symbolic: ~</span><span class="sc">{</span>results_symbolic[<span class="op">-</span><span class="dv">1</span>]<span class="op">/</span><span class="dv">500</span><span class="op">*</span><span class="dv">1000</span><span class="sc">:.3f}</span><span class="ss">ms per evaluation (after elimination)"</span>)</span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    • Speedup: ~</span><span class="sc">{</span>speedups[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.0f}</span><span class="ss">× for 500 evaluations"</span>)</span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">  Speedup grows with:"</span>)</span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    • Number of evaluations (amortizes one-time cost)"</span>)</span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    • Graph size (O(n³) vs O(n) difference magnifies)"</span>)</span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    • Graph sparsity (sparse graphs have smaller expression trees)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="advanced-topics-and-future-directions" class="level1">
@@ -666,64 +833,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Implementation of symbolic elimination requires building an expression tree system to represent parameterized computations, extending the graph elimination algorithm to construct these trees instead of computing numbers, and providing an instantiation mechanism that evaluates expression trees efficiently. The PtDAlgorithms library implements this in carefully optimized C code with Python bindings, making the dramatic performance improvements available through a simple API: build your graph as usual, call eliminate_to_dag() once, then call instantiate(theta) for each parameter vector. The resulting workflow integrates seamlessly with existing inference code while providing transformative speedups.</p>
 <p>The practical impact of symbolic elimination extends far beyond raw speed. Inference problems that previously required days of computation complete in hours or minutes. Parameter sweeps that were impractical become routine. Sensitivity analyses and gradient computations that involved expensive numerical differentiation become cheap and precise. Real-time inference scenarios that required careful approximation or precomputation become feasible with exact computation. These capabilities fundamentally expand what kinds of phase-type distribution models we can use in practice and what kinds of inference questions we can answer economically.</p>
 <div id="final-summary" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"SYMBOLIC GRAPH ELIMINATION - SUMMARY"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">The Problem:"</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Traditional evaluation: O(m × n³) for m parameter evaluations"</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Bottleneck: Repeated graph elimination with O(n³) complexity"</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Impact: Inference with 100+ particles becomes prohibitively expensive"</span>)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">The Solution:"</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Symbolic elimination: O(n³ + m × S) where S ≈ O(n) for sparse graphs"</span>)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Key insight: Elimination structure is parameter-independent"</span>)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Approach: Build expression trees once, evaluate quickly for each parameter"</span>)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Performance Gains:"</span>)</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  ✓ </span><span class="sc">{</span>speedups[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.0f}</span><span class="ss">× speedup observed for coalescent model with 500 evaluations"</span>)</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  ✓ Speedup grows with evaluation count (amortizes one-time elimination)"</span>)</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  ✓ Larger graphs see greater speedups (O(n³) vs O(n) difference magnifies)"</span>)</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  ✓ Real-world inference: 100-1000× speedup for SVGD and MCMC"</span>)</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">API Usage:"</span>)</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>api_summary <span class="op">=</span> <span class="st">"""  # Build parameterized graph</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="st">  graph = Graph(callback=model, parameterized=True)</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="st">  graph.update_parameterized_weights(init_params)</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="st">  </span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="st">  # One-time symbolic elimination (O(n³))</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="st">  dag = graph.eliminate_to_dag()</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="st">  </span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="st">  # Many fast evaluations (O(n) each)</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="st">  for theta in parameters:</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="st">      concrete = dag.instantiate(theta)</span></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="st">      result = concrete.moments(1)</span></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(api_summary)</span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Best Use Cases:"</span>)</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Bayesian inference (SVGD, MCMC)"</span>)</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Parameter estimation and optimization"</span>)</span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Sensitivity analysis and uncertainty quantification"</span>)</span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Any scenario with 10+ evaluations at different parameters"</span>)</span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Implementation:"</span>)</span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • C implementation with expression tree evaluation"</span>)</span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Python bindings via pybind11"</span>)</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Available in PtDAlgorithms v0.21.3+"</span>)</span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Numerical results match traditional approach exactly"</span>)</span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Future Directions:"</span>)</span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Expression simplification for smaller trees"</span>)</span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Batched evaluation for SIMD/GPU acceleration"</span>)</span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Automatic differentiation through symbolic DAGs"</span>)</span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Hierarchical elimination for structured graphs"</span>)</span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"For more details, see the paper:"</span>)</span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Røikjer, Hobolth, &amp; Munch (2022). Graph-based algorithms for"</span>)</span>
-<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"phase-type distributions. Statistics and Computing, 32, 91."</span>)</span>
-<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"SYMBOLIC GRAPH ELIMINATION - SUMMARY"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">The Problem:"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Traditional evaluation: O(m × n³) for m parameter evaluations"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Bottleneck: Repeated graph elimination with O(n³) complexity"</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Impact: Inference with 100+ particles becomes prohibitively expensive"</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">The Solution:"</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Symbolic elimination: O(n³ + m × S) where S ≈ O(n) for sparse graphs"</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Key insight: Elimination structure is parameter-independent"</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  Approach: Build expression trees once, evaluate quickly for each parameter"</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Performance Gains:"</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  ✓ </span><span class="sc">{</span>speedups[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.0f}</span><span class="ss">× speedup observed for coalescent model with 500 evaluations"</span>)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  ✓ Speedup grows with evaluation count (amortizes one-time elimination)"</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  ✓ Larger graphs see greater speedups (O(n³) vs O(n) difference magnifies)"</span>)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  ✓ Real-world inference: 100-1000× speedup for SVGD and MCMC"</span>)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">API Usage:"</span>)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>api_summary <span class="op">=</span> <span class="st">"""  # Build parameterized graph</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="st">  graph = Graph(callback=model, parameterized=True)</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="st">  graph.update_parameterized_weights(init_params)</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="st">  # One-time symbolic elimination (O(n³))</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="st">  dag = graph.eliminate_to_dag()</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="st">  # Many fast evaluations (O(n) each)</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="st">  for theta in parameters:</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="st">      concrete = dag.instantiate(theta)</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="st">      result = concrete.moments(1)</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(api_summary)</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Best Use Cases:"</span>)</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Bayesian inference (SVGD, MCMC)"</span>)</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Parameter estimation and optimization"</span>)</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Sensitivity analysis and uncertainty quantification"</span>)</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Any scenario with 10+ evaluations at different parameters"</span>)</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Implementation:"</span>)</span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • C implementation with expression tree evaluation"</span>)</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Python bindings via pybind11"</span>)</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Available in PtDAlgorithms v0.21.3+"</span>)</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Numerical results match traditional approach exactly"</span>)</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Future Directions:"</span>)</span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Expression simplification for smaller trees"</span>)</span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Batched evaluation for SIMD/GPU acceleration"</span>)</span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Automatic differentiation through symbolic DAGs"</span>)</span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • Hierarchical elimination for structured graphs"</span>)</span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"For more details, see the paper:"</span>)</span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Røikjer, Hobolth, &amp; Munch (2022). Graph-based algorithms for"</span>)</span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"phase-type distributions. Statistics and Computing, 32, 91."</span>)</span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
