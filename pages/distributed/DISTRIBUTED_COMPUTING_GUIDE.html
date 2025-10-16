@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8c9e22920c0a905a0fba2b096a481a05.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-69e0a66ffe0fe44e3bab073e7fd1e693.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,16 +107,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <link rel="stylesheet" href="../../api/_styles-quartodoc.css">
 <link rel="stylesheet" href="../../numpy.css">
-<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <div id="quarto-announcement" data-announcement-id="9616bfb5c47a60811ea96e08f2ae1bd0" class="alert alert-warning hidden"><i class="bi bi-exclamation-lg quarto-announcement-icon"></i><div class="quarto-announcement-content">
-<p><strong>Alert</strong> - this is some information that you should pay attention to</p>
-</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -131,6 +127,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../pages/index.html"> 
+<span class="menu-text">Documentation</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../api/"> 
 <span class="menu-text">Python API reference</span></a>
@@ -210,12 +210,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#tips-and-best-practices" id="toc-tips-and-best-practices" class="nav-link" data-scroll-target="#tips-and-best-practices">Tips and Best Practices</a>
   <ul class="collapse">
-  <li><a href="#use-coordinator-check-for-logging" id="toc-use-coordinator-check-for-logging" class="nav-link" data-scroll-target="#use-coordinator-check-for-logging">1. Use Coordinator Check for Logging</a></li>
-  <li><a href="#distribute-particles-evenly" id="toc-distribute-particles-evenly" class="nav-link" data-scroll-target="#distribute-particles-evenly">2. Distribute Particles Evenly</a></li>
-  <li><a href="#use-different-seeds-per-process" id="toc-use-different-seeds-per-process" class="nav-link" data-scroll-target="#use-different-seeds-per-process">3. Use Different Seeds per Process</a></li>
-  <li><a href="#test-locally-before-slurm" id="toc-test-locally-before-slurm" class="nav-link" data-scroll-target="#test-locally-before-slurm">4. Test Locally Before SLURM</a></li>
-  <li><a href="#monitor-resource-usage" id="toc-monitor-resource-usage" class="nav-link" data-scroll-target="#monitor-resource-usage">5. Monitor Resource Usage</a></li>
-  <li><a href="#create-custom-configs-for-your-cluster" id="toc-create-custom-configs-for-your-cluster" class="nav-link" data-scroll-target="#create-custom-configs-for-your-cluster">6. Create Custom Configs for Your Cluster</a></li>
+  <li><a href="#use-coordinator-check-for-logging" id="toc-use-coordinator-check-for-logging" class="nav-link" data-scroll-target="#use-coordinator-check-for-logging">Use Coordinator Check for Logging</a></li>
+  <li><a href="#distribute-particles-evenly" id="toc-distribute-particles-evenly" class="nav-link" data-scroll-target="#distribute-particles-evenly">Distribute Particles Evenly</a></li>
+  <li><a href="#use-different-seeds-per-process" id="toc-use-different-seeds-per-process" class="nav-link" data-scroll-target="#use-different-seeds-per-process">Use Different Seeds per Process</a></li>
+  <li><a href="#test-locally-before-slurm" id="toc-test-locally-before-slurm" class="nav-link" data-scroll-target="#test-locally-before-slurm">Test Locally Before SLURM</a></li>
+  <li><a href="#monitor-resource-usage" id="toc-monitor-resource-usage" class="nav-link" data-scroll-target="#monitor-resource-usage">Monitor Resource Usage</a></li>
+  <li><a href="#create-custom-configs-for-your-cluster" id="toc-create-custom-configs-for-your-cluster" class="nav-link" data-scroll-target="#create-custom-configs-for-your-cluster">Create Custom Configs for Your Cluster</a></li>
   </ul></li>
   <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a>
   <ul class="collapse">
@@ -226,11 +226,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#complete-workflow-example" id="toc-complete-workflow-example" class="nav-link" data-scroll-target="#complete-workflow-example">Complete Workflow Example</a>
   <ul class="collapse">
-  <li><a href="#develop-locally" id="toc-develop-locally" class="nav-link" data-scroll-target="#develop-locally">1. Develop Locally</a></li>
-  <li><a href="#create-custom-config" id="toc-create-custom-config" class="nav-link" data-scroll-target="#create-custom-config">2. Create Custom Config</a></li>
-  <li><a href="#test-on-small-scale" id="toc-test-on-small-scale" class="nav-link" data-scroll-target="#test-on-small-scale">3. Test on Small Scale</a></li>
-  <li><a href="#scale-to-production" id="toc-scale-to-production" class="nav-link" data-scroll-target="#scale-to-production">4. Scale to Production</a></li>
-  <li><a href="#monitor-results" id="toc-monitor-results" class="nav-link" data-scroll-target="#monitor-results">5. Monitor Results</a></li>
+  <li><a href="#develop-locally" id="toc-develop-locally" class="nav-link" data-scroll-target="#develop-locally">Develop Locally</a></li>
+  <li><a href="#create-custom-config" id="toc-create-custom-config" class="nav-link" data-scroll-target="#create-custom-config">Create Custom Config</a></li>
+  <li><a href="#test-on-small-scale" id="toc-test-on-small-scale" class="nav-link" data-scroll-target="#test-on-small-scale">Test on Small Scale</a></li>
+  <li><a href="#scale-to-production" id="toc-scale-to-production" class="nav-link" data-scroll-target="#scale-to-production">Scale to Production</a></li>
+  <li><a href="#monitor-results" id="toc-monitor-results" class="nav-link" data-scroll-target="#monitor-results">Monitor Results</a></li>
   </ul></li>
   <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
   <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting Help</a></li>
@@ -670,24 +670,24 @@ node02 52% mem
 <section id="tips-and-best-practices" class="level2">
 <h2 class="anchored" data-anchor-id="tips-and-best-practices">Tips and Best Practices</h2>
 <section id="use-coordinator-check-for-logging" class="level3">
-<h3 class="anchored" data-anchor-id="use-coordinator-check-for-logging">1. Use Coordinator Check for Logging</h3>
+<h3 class="anchored" data-anchor-id="use-coordinator-check-for-logging">Use Coordinator Check for Logging</h3>
 <p>Only the coordinator should print summary information:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> dist_info.is_coordinator:</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Starting computation with </span><span class="sc">{</span>dist_info<span class="sc">.</span>global_device_count<span class="sc">}</span><span class="ss"> devices"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="distribute-particles-evenly" class="level3">
-<h3 class="anchored" data-anchor-id="distribute-particles-evenly">2. Distribute Particles Evenly</h3>
+<h3 class="anchored" data-anchor-id="distribute-particles-evenly">Distribute Particles Evenly</h3>
 <p>Ensure particles are divisible by device count:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>particles_per_device <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>n_particles <span class="op">=</span> dist_info.global_device_count <span class="op">*</span> particles_per_device</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="use-different-seeds-per-process" class="level3">
-<h3 class="anchored" data-anchor-id="use-different-seeds-per-process">3. Use Different Seeds per Process</h3>
+<h3 class="anchored" data-anchor-id="use-different-seeds-per-process">Use Different Seeds per Process</h3>
 <p>Avoid identical random numbers across processes:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span> <span class="op">+</span> dist_info.process_id)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="test-locally-before-slurm" class="level3">
-<h3 class="anchored" data-anchor-id="test-locally-before-slurm">4. Test Locally Before SLURM</h3>
+<h3 class="anchored" data-anchor-id="test-locally-before-slurm">Test Locally Before SLURM</h3>
 <p>Your code should work both locally and on SLURM:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test locally first</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> my_script.py</span>
@@ -696,7 +696,7 @@ node02 52% mem
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> <span class="op">&lt;(</span><span class="ex">python</span> generate_slurm_script.py <span class="at">--profile</span> small <span class="at">--script</span> my_script.py<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="monitor-resource-usage" class="level3">
-<h3 class="anchored" data-anchor-id="monitor-resource-usage">5. Monitor Resource Usage</h3>
+<h3 class="anchored" data-anchor-id="monitor-resource-usage">Monitor Resource Usage</h3>
 <p>Use the built-in CPU monitor to ensure efficient resource utilization:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> CPUMonitor(persist<span class="op">=</span><span class="va">True</span>):</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your computation</span></span>
@@ -704,7 +704,7 @@ node02 52% mem
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Shows mean CPU usage after completion</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="create-custom-configs-for-your-cluster" class="level3">
-<h3 class="anchored" data-anchor-id="create-custom-configs-for-your-cluster">6. Create Custom Configs for Your Cluster</h3>
+<h3 class="anchored" data-anchor-id="create-custom-configs-for-your-cluster">Create Custom Configs for Your Cluster</h3>
 <p>Different clusters have different partitions, QoS, modules, etc:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># my_cluster.yaml</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> my_cluster</span></span>
@@ -761,7 +761,7 @@ node02 52% mem
 <h2 class="anchored" data-anchor-id="complete-workflow-example">Complete Workflow Example</h2>
 <p>Here’s a complete workflow from development to production:</p>
 <section id="develop-locally" class="level3">
-<h3 class="anchored" data-anchor-id="develop-locally">1. Develop Locally</h3>
+<h3 class="anchored" data-anchor-id="develop-locally">Develop Locally</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create your script</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> my_inference.py</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -769,12 +769,12 @@ node02 52% mem
 <span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> my_inference.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="create-custom-config" class="level3">
-<h3 class="anchored" data-anchor-id="create-custom-config">2. Create Custom Config</h3>
+<h3 class="anchored" data-anchor-id="create-custom-config">Create Custom Config</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create config for your cluster</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> slurm_configs/my_cluster.yaml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="test-on-small-scale" class="level3">
-<h3 class="anchored" data-anchor-id="test-on-small-scale">3. Test on Small Scale</h3>
+<h3 class="anchored" data-anchor-id="test-on-small-scale">Test on Small Scale</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test with small profile (2 nodes)</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> <span class="op">&lt;(</span><span class="ex">python</span> generate_slurm_script.py <span class="at">--profile</span> small <span class="at">--script</span> my_inference.py<span class="op">)</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -782,12 +782,12 @@ node02 52% mem
 <span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="va">$USER</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="scale-to-production" class="level3">
-<h3 class="anchored" data-anchor-id="scale-to-production">4. Scale to Production</h3>
+<h3 class="anchored" data-anchor-id="scale-to-production">Scale to Production</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run on full cluster</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> <span class="op">&lt;(</span><span class="ex">python</span> generate_slurm_script.py <span class="at">--profile</span> production <span class="at">--script</span> my_inference.py<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="monitor-results" class="level3">
-<h3 class="anchored" data-anchor-id="monitor-results">5. Monitor Results</h3>
+<h3 class="anchored" data-anchor-id="monitor-results">Monitor Results</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check logs</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-f</span> logs/my_inference_<span class="pp">*</span>.out</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>

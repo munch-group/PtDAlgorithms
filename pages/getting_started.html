@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8c9e22920c0a905a0fba2b096a481a05.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-69e0a66ffe0fe44e3bab073e7fd1e693.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,16 +108,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <link rel="stylesheet" href="../api/_styles-quartodoc.css">
 <link rel="stylesheet" href="../numpy.css">
-<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <div id="quarto-announcement" data-announcement-id="9616bfb5c47a60811ea96e08f2ae1bd0" class="alert alert-warning hidden"><i class="bi bi-exclamation-lg quarto-announcement-icon"></i><div class="quarto-announcement-content">
-<p><strong>Alert</strong> - this is some information that you should pay attention to</p>
-</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -132,6 +128,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/index.html"> 
+<span class="menu-text">Documentation</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../api/"> 
 <span class="menu-text">Python API reference</span></a>
@@ -194,21 +194,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
+ <span class="menu-text">pages/background/tldr.qmd</span>
+  </li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/tutorials/rabbits_full_py_api_example.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Rabbits (full API example)</span></a>
+ <span class="menu-text">Rabbits Islands - Full API</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/modelling/state_space_construction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">State space</span></a>
+  <a href="../pages/tutorials/coalescent_full_py_api_example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coalescent - Full API</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/tutorials/coalescent_showcase.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The coalescent</span></a>
+  <a href="../pages/tutorials/state_space_construction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Building models</span></a>
   </div>
 </li>
       </ul>
@@ -216,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">How it works</span></a>
+ <span class="menu-text">Bayesian inference</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -224,20 +227,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/implementation/math_and_alg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Math and background</span></a>
+  <a href="../pages/svgd/svgd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SVGD Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/implementation/architecture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PtDAlgorithms Project Architecture</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/implementation/symbolic_gauss_elimination.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Symbolic Graph Elimination for Efficient Parameterized Phase-Type Distributions</span></a>
+  <a href="../pages/svgd/svgd_with_symbolic_dag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SVGD Inference with Symbolic DAG Optimization</span></a>
   </div>
 </li>
       </ul>
@@ -245,12 +242,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">State space modelling</span></a>
+ <span class="menu-text">Distributed Computing</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/distributed/distributed_computing_complete_guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distributed Computing with PtDAlgorithms - Complete Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/distributed/slurm_cluster_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SLURM Cluster Setup and Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/distributed/cpu_monitoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CPU monitoring</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">State space patterns</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/modelling/state_lumping.html" class="sidebar-item-text sidebar-link">
@@ -279,62 +305,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Bayesian inference</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/svgd/svgd.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SVGD Inference</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/svgd/svgd_with_symbolic_dag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SVGD Inference with Symbolic DAG Optimization</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Distributed Computing</span></a>
+ <span class="menu-text">Popgen examples</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
- <span class="menu-text">pages/distributed/docs/pages/distributed_computing_complete_guide.ipynb</span>
-  </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/distributed/slurm_cluster_setup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SLURM Cluster Setup and Configuration</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/distributed/cpu_monitoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CPU monitoring</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Popgen examples</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
  <span class="menu-text">pages/modelling/coalescent-jointprob.ipynb</span>
   </li>
@@ -348,6 +325,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../pages/popgen/two-island-two-locus-arg.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Two Island Two Locus Argument</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Phase-type distributions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/background/math_and_alg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Math and Algorithms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/background/symbolic_gauss_elimination.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symbolic Graph Elimination for Efficient Parameterized Phase-Type Distributions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Devel</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/devel/architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Library Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/munch-group/ptdalgorithms/issues" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Issue Tracker</span></a>
   </div>
 </li>
       </ul>
@@ -370,11 +393,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#core-concepts" id="toc-core-concepts" class="nav-link" data-scroll-target="#core-concepts">Core Concepts</a>
   <ul class="collapse">
-  <li><a href="#graph-construction" id="toc-graph-construction" class="nav-link" data-scroll-target="#graph-construction">1. Graph Construction</a></li>
-  <li><a href="#continuous-vs-discrete" id="toc-continuous-vs-discrete" class="nav-link" data-scroll-target="#continuous-vs-discrete">2. Continuous vs Discrete</a></li>
-  <li><a href="#rewards" id="toc-rewards" class="nav-link" data-scroll-target="#rewards">3. Rewards</a></li>
-  <li><a href="#parameterized-models" id="toc-parameterized-models" class="nav-link" data-scroll-target="#parameterized-models">4. Parameterized Models</a></li>
-  <li><a href="#jax-integration" id="toc-jax-integration" class="nav-link" data-scroll-target="#jax-integration">5. JAX Integration</a></li>
+  <li><a href="#graph-construction" id="toc-graph-construction" class="nav-link" data-scroll-target="#graph-construction">Graph Construction</a></li>
+  <li><a href="#continuous-vs-discrete" id="toc-continuous-vs-discrete" class="nav-link" data-scroll-target="#continuous-vs-discrete">Continuous vs Discrete</a></li>
+  <li><a href="#rewards" id="toc-rewards" class="nav-link" data-scroll-target="#rewards">Rewards</a></li>
+  <li><a href="#parameterized-models" id="toc-parameterized-models" class="nav-link" data-scroll-target="#parameterized-models">Parameterized Models</a></li>
+  <li><a href="#jax-integration" id="toc-jax-integration" class="nav-link" data-scroll-target="#jax-integration">JAX Integration</a></li>
   </ul></li>
   <li><a href="#examples-and-tutorials" id="toc-examples-and-tutorials" class="nav-link" data-scroll-target="#examples-and-tutorials">Examples and Tutorials</a>
   <ul class="collapse">
@@ -457,35 +480,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="python" class="level3">
 <h3 class="anchored" data-anchor-id="python">Python</h3>
 <p>Here’s a minimal example to get you started:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a simple Erlang distribution (5 phases with rate 2)</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptd.Graph(state_length<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a chain of 5 states</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> graph.starting_vertex()</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>vertices <span class="op">=</span> [start]</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> graph.find_or_create_vertex([i <span class="op">+</span> <span class="dv">1</span>])</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    vertices.append(v)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect with edges (rate = 2.0)</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    vertices[i].add_edge(vertices[i <span class="op">+</span> <span class="dv">1</span>], weight<span class="op">=</span><span class="fl">2.0</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-erlang-quick</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Erlang distribution with 5 phases"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| column: margin</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a simple Erlang distribution (5 phases with rate 2)</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptd.Graph(state_length<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a chain of 5 states</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> graph.starting_vertex()</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>vertices <span class="op">=</span> [start]</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> graph.find_or_create_vertex([i <span class="op">+</span> <span class="dv">1</span>])</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    vertices.append(v)</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute properties</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Expectation: </span><span class="sc">{</span>graph<span class="sc">.</span>expectation()<span class="sc">:.3f}</span><span class="ss">"</span>)    <span class="co"># E[X] = 5/2 = 2.5</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Variance: </span><span class="sc">{</span>graph<span class="sc">.</span>variance()<span class="sc">:.3f}</span><span class="ss">"</span>)          <span class="co"># Var[X] = 5/4 = 1.25</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect with edges (rate = 2.0)</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    vertices[i].add_edge(vertices[i <span class="op">+</span> <span class="dv">1</span>], weight<span class="op">=</span><span class="fl">2.0</span>)</span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate distribution functions</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>pdf <span class="op">=</span> graph.pdf(times)</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>cdf <span class="op">=</span> graph.cdf(times)</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample from the distribution</span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> graph.sample(<span class="dv">1000</span>)</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sample mean: </span><span class="sc">{</span>np<span class="sc">.</span>mean(samples)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute properties</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Expectation: </span><span class="sc">{</span>graph<span class="sc">.</span>expectation()<span class="sc">:.3f}</span><span class="ss">"</span>)    <span class="co"># E[X] = 5/2 = 2.5</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Variance: </span><span class="sc">{</span>graph<span class="sc">.</span>variance()<span class="sc">:.3f}</span><span class="ss">"</span>)          <span class="co"># Var[X] = 5/4 = 1.25</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate distribution functions</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>pdf <span class="op">=</span> graph.pdf(times)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>cdf <span class="op">=</span> graph.cdf(times)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample from the distribution</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> graph.sample(<span class="dv">1000</span>)</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sample mean: </span><span class="sc">{</span>np<span class="sc">.</span>mean(samples)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>graph.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Output:</strong></p>
 <pre><code>Expectation: 2.500
 Variance: 1.250
@@ -527,7 +556,7 @@ Sample mean: 2.487</code></pre>
 <section id="core-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="core-concepts">Core Concepts</h2>
 <section id="graph-construction" class="level3">
-<h3 class="anchored" data-anchor-id="graph-construction">1. Graph Construction</h3>
+<h3 class="anchored" data-anchor-id="graph-construction">Graph Construction</h3>
 <p>Build phase-type distributions as directed graphs:</p>
 <ul>
 <li><strong>Vertices</strong> represent states (integer vectors)</li>
@@ -536,7 +565,7 @@ Sample mean: 2.487</code></pre>
 </ul>
 </section>
 <section id="continuous-vs-discrete" class="level3">
-<h3 class="anchored" data-anchor-id="continuous-vs-discrete">2. Continuous vs Discrete</h3>
+<h3 class="anchored" data-anchor-id="continuous-vs-discrete">Continuous vs Discrete</h3>
 <p><strong>Continuous</strong> (time-based):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> ptd.Graph(state_length<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ... build graph ...</span></span>
@@ -549,7 +578,7 @@ Sample mean: 2.487</code></pre>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>pmf <span class="op">=</span> graph.dph_pmf(steps)    <span class="co"># Probability mass</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="rewards" class="level3">
-<h3 class="anchored" data-anchor-id="rewards">3. Rewards</h3>
+<h3 class="anchored" data-anchor-id="rewards">Rewards</h3>
 <p>Add rewards to model accumulated values:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define rewards per state</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>rewards <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>])</span>
@@ -562,7 +591,7 @@ Sample mean: 2.487</code></pre>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>pdf_reward <span class="op">=</span> reward_graph.pdf(times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="parameterized-models" class="level3">
-<h3 class="anchored" data-anchor-id="parameterized-models">4. Parameterized Models</h3>
+<h3 class="anchored" data-anchor-id="parameterized-models">Parameterized Models</h3>
 <p>Build models that can be updated with different parameter values:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_model_callback(state, n_samples<span class="op">=</span><span class="dv">10</span>):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return (next_state, weight, edge_coefficients)</span></span>
@@ -588,7 +617,7 @@ Sample mean: 2.487</code></pre>
 <span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> graph.expectation()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="jax-integration" class="level3">
-<h3 class="anchored" data-anchor-id="jax-integration">5. JAX Integration</h3>
+<h3 class="anchored" data-anchor-id="jax-integration">JAX Integration</h3>
 <p>Convert graphs to JAX functions for automatic differentiation:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
@@ -613,8 +642,8 @@ Sample mean: 2.487</code></pre>
 <h3 class="anchored" data-anchor-id="tutorials">Tutorials</h3>
 <ul>
 <li><a href="../pages/tutorials/rabbits_full_py_api_example.html">Rabbits Example</a> - Complete Python API walkthrough</li>
-<li><a href="../pages/modelling/state_space_construction.html">State Space Construction</a> - Building complex models</li>
-<li><a href="../pages/phase-type-distributions.html">Phase-Type Distributions</a> - Theory and examples</li>
+<li><a href="modelling/state_space_construction.ipynb">State Space Construction</a> - Building complex models</li>
+<li><a href="phase-type-distributions.qmd">Phase-Type Distributions</a> - Theory and examples</li>
 </ul>
 </section>
 <section id="advanced-topics" class="level3">
@@ -662,8 +691,8 @@ Sample mean: 2.487</code></pre>
 <h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
 <ol type="1">
 <li><strong>Learn the basics</strong>: Start with the <a href="../pages/tutorials/rabbits_full_py_api_example.html">Rabbits Tutorial</a></li>
-<li><strong>Understand theory</strong>: Read about <a href="../pages/phase-type-distributions.html">Phase-Type Distributions</a></li>
-<li><strong>Build models</strong>: Follow <a href="../pages/modelling/state_space_construction.html">State Space Construction</a></li>
+<li><strong>Understand theory</strong>: Read about <a href="phase-type-distributions.qmd">Phase-Type Distributions</a></li>
+<li><strong>Build models</strong>: Follow <a href="modelling/state_space_construction.ipynb">State Space Construction</a></li>
 <li><strong>Scale up</strong>: Explore <a href="../pages/distributed/distributed_computing.html">Distributed Computing</a></li>
 <li><strong>Do inference</strong>: Try <a href="../pages/svgd/svgd.html">SVGD Tutorial</a></li>
 </ol>
@@ -1083,8 +1112,8 @@ Sample mean: 2.487</code></pre>
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../pages/tutorials/rabbits_full_py_api_example.html" class="pagination-link" aria-label="Rabbits (full API example)">
-        <span class="nav-page-text">Rabbits (full API example)</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../pages/tutorials/rabbits_full_py_api_example.html" class="pagination-link" aria-label="Rabbits Islands - Full API">
+        <span class="nav-page-text">Rabbits Islands - Full API</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../pages/svgd/svgd_with_symbolic_dag.html" rel="next">
-<link href="../../pages/modelling/joint_prob.html" rel="prev">
+<link href="../../pages/tutorials/state_space_construction.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8c9e22920c0a905a0fba2b096a481a05.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-69e0a66ffe0fe44e3bab073e7fd1e693.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -115,16 +115,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <link rel="stylesheet" href="../../api/_styles-quartodoc.css">
 <link rel="stylesheet" href="../../numpy.css">
-<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <div id="quarto-announcement" data-announcement-id="9616bfb5c47a60811ea96e08f2ae1bd0" class="alert alert-warning hidden"><i class="bi bi-exclamation-lg quarto-announcement-icon"></i><div class="quarto-announcement-content">
-<p><strong>Alert</strong> - this is some information that you should pay attention to</p>
-</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -139,6 +135,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../pages/index.html"> 
+<span class="menu-text">Documentation</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../api/"> 
 <span class="menu-text">Python API reference</span></a>
@@ -201,21 +201,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
+ <span class="menu-text">pages/background/tldr.qmd</span>
+  </li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/tutorials/rabbits_full_py_api_example.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Rabbits (full API example)</span></a>
+ <span class="menu-text">Rabbits Islands - Full API</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/modelling/state_space_construction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">State space</span></a>
+  <a href="../../pages/tutorials/coalescent_full_py_api_example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coalescent - Full API</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/tutorials/coalescent_showcase.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The coalescent</span></a>
+  <a href="../../pages/tutorials/state_space_construction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Building models</span></a>
   </div>
 </li>
       </ul>
@@ -223,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">How it works</span></a>
+ <span class="menu-text">Bayesian inference</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -231,20 +234,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/implementation/math_and_alg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Math and background</span></a>
+  <a href="../../pages/svgd/svgd.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">SVGD Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/implementation/architecture.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PtDAlgorithms Project Architecture</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../pages/implementation/symbolic_gauss_elimination.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Symbolic Graph Elimination for Efficient Parameterized Phase-Type Distributions</span></a>
+  <a href="../../pages/svgd/svgd_with_symbolic_dag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SVGD Inference with Symbolic DAG Optimization</span></a>
   </div>
 </li>
       </ul>
@@ -252,12 +249,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">State space modelling</span></a>
+ <span class="menu-text">Distributed Computing</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/distributed/distributed_computing_complete_guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distributed Computing with PtDAlgorithms - Complete Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/distributed/slurm_cluster_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SLURM Cluster Setup and Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/distributed/cpu_monitoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CPU monitoring</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">State space patterns</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/modelling/state_lumping.html" class="sidebar-item-text sidebar-link">
@@ -286,62 +312,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Bayesian inference</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../pages/svgd/svgd.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">SVGD Inference</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../pages/svgd/svgd_with_symbolic_dag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SVGD Inference with Symbolic DAG Optimization</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Distributed Computing</span></a>
+ <span class="menu-text">Popgen examples</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
- <span class="menu-text">pages/distributed/docs/pages/distributed_computing_complete_guide.ipynb</span>
-  </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../pages/distributed/slurm_cluster_setup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SLURM Cluster Setup and Configuration</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../pages/distributed/cpu_monitoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CPU monitoring</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Popgen examples</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
  <span class="menu-text">pages/modelling/coalescent-jointprob.ipynb</span>
   </li>
@@ -359,6 +336,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Phase-type distributions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/background/math_and_alg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Math and Algorithms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/background/symbolic_gauss_elimination.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symbolic Graph Elimination for Efficient Parameterized Phase-Type Distributions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Devel</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/devel/architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Library Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/munch-group/ptdalgorithms/issues" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Issue Tracker</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -371,48 +394,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#part-1-basic-svgd-with-continuous-models" id="toc-part-1-basic-svgd-with-continuous-models" class="nav-link active" data-scroll-target="#part-1-basic-svgd-with-continuous-models">Part 1: Basic SVGD with Continuous Models</a>
   <ul class="collapse">
-  <li><a href="#build-a-parameterized-coalescent-model" id="toc-build-a-parameterized-coalescent-model" class="nav-link" data-scroll-target="#build-a-parameterized-coalescent-model">1.1 Build a Parameterized Coalescent Model</a></li>
-  <li><a href="#convert-to-jax-compatible-model" id="toc-convert-to-jax-compatible-model" class="nav-link" data-scroll-target="#convert-to-jax-compatible-model">1.2 Convert to JAX-Compatible Model</a></li>
-  <li><a href="#generate-synthetic-observed-data" id="toc-generate-synthetic-observed-data" class="nav-link" data-scroll-target="#generate-synthetic-observed-data">1.3 Generate Synthetic Observed Data</a></li>
-  <li><a href="#method-1-using-graph.svgd-class-method-recommended" id="toc-method-1-using-graph.svgd-class-method-recommended" class="nav-link" data-scroll-target="#method-1-using-graph.svgd-class-method-recommended">1.4 Method 1: Using Graph.svgd() Class Method (Recommended)</a></li>
-  <li><a href="#method-2-using-svgd-class-object-oriented" id="toc-method-2-using-svgd-class-object-oriented" class="nav-link" data-scroll-target="#method-2-using-svgd-class-object-oriented">1.5 Method 2: Using SVGD Class (Object-Oriented)</a></li>
-  <li><a href="#visualize-results" id="toc-visualize-results" class="nav-link" data-scroll-target="#visualize-results">1.6 Visualize Results</a></li>
+  <li><a href="#build-a-parameterized-coalescent-model" id="toc-build-a-parameterized-coalescent-model" class="nav-link" data-scroll-target="#build-a-parameterized-coalescent-model">Build a Parameterized Coalescent Model</a></li>
+  <li><a href="#convert-to-jax-compatible-model" id="toc-convert-to-jax-compatible-model" class="nav-link" data-scroll-target="#convert-to-jax-compatible-model">Convert to JAX-Compatible Model</a></li>
+  <li><a href="#generate-synthetic-observed-data" id="toc-generate-synthetic-observed-data" class="nav-link" data-scroll-target="#generate-synthetic-observed-data">Generate Synthetic Observed Data</a></li>
+  <li><a href="#method-1-using-graph.svgd-class-method-recommended" id="toc-method-1-using-graph.svgd-class-method-recommended" class="nav-link" data-scroll-target="#method-1-using-graph.svgd-class-method-recommended">Method 1: Using Graph.svgd() Class Method (Recommended)</a></li>
+  <li><a href="#method-2-using-svgd-class-object-oriented" id="toc-method-2-using-svgd-class-object-oriented" class="nav-link" data-scroll-target="#method-2-using-svgd-class-object-oriented">Method 2: Using SVGD Class (Object-Oriented)</a></li>
+  <li><a href="#visualize-results" id="toc-visualize-results" class="nav-link" data-scroll-target="#visualize-results">Visualize Results</a></li>
   </ul></li>
   <li><a href="#part-2-svgd-with-discrete-models" id="toc-part-2-svgd-with-discrete-models" class="nav-link" data-scroll-target="#part-2-svgd-with-discrete-models">Part 2: SVGD with Discrete Models</a>
   <ul class="collapse">
-  <li><a href="#build-and-discretize-the-model" id="toc-build-and-discretize-the-model" class="nav-link" data-scroll-target="#build-and-discretize-the-model">2.1 Build and Discretize the Model</a></li>
-  <li><a href="#generate-discrete-observed-data" id="toc-generate-discrete-observed-data" class="nav-link" data-scroll-target="#generate-discrete-observed-data">2.2 Generate Discrete Observed Data</a></li>
-  <li><a href="#run-svgd-on-discrete-model" id="toc-run-svgd-on-discrete-model" class="nav-link" data-scroll-target="#run-svgd-on-discrete-model">2.3 Run SVGD on Discrete Model</a></li>
+  <li><a href="#build-and-discretize-the-model" id="toc-build-and-discretize-the-model" class="nav-link" data-scroll-target="#build-and-discretize-the-model">Build and Discretize the Model</a></li>
+  <li><a href="#generate-discrete-observed-data" id="toc-generate-discrete-observed-data" class="nav-link" data-scroll-target="#generate-discrete-observed-data">Generate Discrete Observed Data</a></li>
+  <li><a href="#run-svgd-on-discrete-model" id="toc-run-svgd-on-discrete-model" class="nav-link" data-scroll-target="#run-svgd-on-discrete-model">Run SVGD on Discrete Model</a></li>
   </ul></li>
   <li><a href="#part-3-multi-cpu-parallelization" id="toc-part-3-multi-cpu-parallelization" class="nav-link" data-scroll-target="#part-3-multi-cpu-parallelization">Part 3: Multi-CPU Parallelization</a>
   <ul class="collapse">
-  <li><a href="#automatic-multi-cpu-configuration" id="toc-automatic-multi-cpu-configuration" class="nav-link" data-scroll-target="#automatic-multi-cpu-configuration">3.1 Automatic Multi-CPU Configuration</a></li>
-  <li><a href="#how-parallel-svgd-works" id="toc-how-parallel-svgd-works" class="nav-link" data-scroll-target="#how-parallel-svgd-works">3.2 How Parallel SVGD Works</a></li>
-  <li><a href="#explicit-device-specification" id="toc-explicit-device-specification" class="nav-link" data-scroll-target="#explicit-device-specification">3.3 Explicit Device Specification</a></li>
+  <li><a href="#automatic-multi-cpu-configuration" id="toc-automatic-multi-cpu-configuration" class="nav-link" data-scroll-target="#automatic-multi-cpu-configuration">Automatic Multi-CPU Configuration</a></li>
+  <li><a href="#how-parallel-svgd-works" id="toc-how-parallel-svgd-works" class="nav-link" data-scroll-target="#how-parallel-svgd-works">How Parallel SVGD Works</a></li>
+  <li><a href="#explicit-device-specification" id="toc-explicit-device-specification" class="nav-link" data-scroll-target="#explicit-device-specification">Explicit Device Specification</a></li>
   </ul></li>
   <li><a href="#part-4-distributed-computing-slurm" id="toc-part-4-distributed-computing-slurm" class="nav-link" data-scroll-target="#part-4-distributed-computing-slurm">Part 4: Distributed Computing (SLURM)</a>
   <ul class="collapse">
-  <li><a href="#slurm-setup-code-for-cluster" id="toc-slurm-setup-code-for-cluster" class="nav-link" data-scroll-target="#slurm-setup-code-for-cluster">4.1 SLURM Setup (Code for Cluster)</a></li>
-  <li><a href="#slurm-batch-script-example" id="toc-slurm-batch-script-example" class="nav-link" data-scroll-target="#slurm-batch-script-example">4.2 SLURM Batch Script Example</a></li>
+  <li><a href="#slurm-setup-code-for-cluster" id="toc-slurm-setup-code-for-cluster" class="nav-link" data-scroll-target="#slurm-setup-code-for-cluster">SLURM Setup (Code for Cluster)</a></li>
+  <li><a href="#slurm-batch-script-example" id="toc-slurm-batch-script-example" class="nav-link" data-scroll-target="#slurm-batch-script-example">SLURM Batch Script Example</a></li>
   </ul></li>
   <li><a href="#part-5-advanced-options" id="toc-part-5-advanced-options" class="nav-link" data-scroll-target="#part-5-advanced-options">Part 5: Advanced Options</a>
   <ul class="collapse">
-  <li><a href="#custom-prior-distributions" id="toc-custom-prior-distributions" class="nav-link" data-scroll-target="#custom-prior-distributions">5.1 Custom Prior Distributions</a></li>
-  <li><a href="#different-kernel-options" id="toc-different-kernel-options" class="nav-link" data-scroll-target="#different-kernel-options">5.2 Different Kernel Options</a></li>
-  <li><a href="#hyperparameter-tuning" id="toc-hyperparameter-tuning" class="nav-link" data-scroll-target="#hyperparameter-tuning">5.3 Hyperparameter Tuning</a></li>
-  <li><a href="#moment-based-regularization" id="toc-moment-based-regularization" class="nav-link" data-scroll-target="#moment-based-regularization">5.4 Moment-Based Regularization</a></li>
+  <li><a href="#custom-prior-distributions" id="toc-custom-prior-distributions" class="nav-link" data-scroll-target="#custom-prior-distributions">Custom Prior Distributions</a></li>
+  <li><a href="#different-kernel-options" id="toc-different-kernel-options" class="nav-link" data-scroll-target="#different-kernel-options">Different Kernel Options</a></li>
+  <li><a href="#hyperparameter-tuning" id="toc-hyperparameter-tuning" class="nav-link" data-scroll-target="#hyperparameter-tuning">Hyperparameter Tuning</a></li>
+  <li><a href="#moment-based-regularization" id="toc-moment-based-regularization" class="nav-link" data-scroll-target="#moment-based-regularization">Moment-Based Regularization</a></li>
   </ul></li>
   <li><a href="#part-6-batching-and-sharding" id="toc-part-6-batching-and-sharding" class="nav-link" data-scroll-target="#part-6-batching-and-sharding">Part 6: Batching and Sharding</a>
   <ul class="collapse">
-  <li><a href="#understanding-particle-distribution" id="toc-understanding-particle-distribution" class="nav-link" data-scroll-target="#understanding-particle-distribution">6.1 Understanding Particle Distribution</a></li>
-  <li><a href="#manual-device-placement-advanced" id="toc-manual-device-placement-advanced" class="nav-link" data-scroll-target="#manual-device-placement-advanced">6.2 Manual Device Placement (Advanced)</a></li>
-  <li><a href="#batch-size-considerations" id="toc-batch-size-considerations" class="nav-link" data-scroll-target="#batch-size-considerations">6.3 Batch Size Considerations</a></li>
+  <li><a href="#understanding-particle-distribution" id="toc-understanding-particle-distribution" class="nav-link" data-scroll-target="#understanding-particle-distribution">Understanding Particle Distribution</a></li>
+  <li><a href="#manual-device-placement-advanced" id="toc-manual-device-placement-advanced" class="nav-link" data-scroll-target="#manual-device-placement-advanced">Manual Device Placement (Advanced)</a></li>
+  <li><a href="#batch-size-considerations" id="toc-batch-size-considerations" class="nav-link" data-scroll-target="#batch-size-considerations">Batch Size Considerations</a></li>
   </ul></li>
   <li><a href="#part-7-troubleshooting-and-best-practices" id="toc-part-7-troubleshooting-and-best-practices" class="nav-link" data-scroll-target="#part-7-troubleshooting-and-best-practices">Part 7: Troubleshooting and Best Practices</a>
   <ul class="collapse">
-  <li><a href="#common-issues-and-solutions" id="toc-common-issues-and-solutions" class="nav-link" data-scroll-target="#common-issues-and-solutions">7.1 Common Issues and Solutions</a></li>
-  <li><a href="#best-practices-checklist" id="toc-best-practices-checklist" class="nav-link" data-scroll-target="#best-practices-checklist">7.2 Best Practices Checklist</a></li>
-  <li><a href="#diagnostic-checks" id="toc-diagnostic-checks" class="nav-link" data-scroll-target="#diagnostic-checks">7.3 Diagnostic Checks</a></li>
+  <li><a href="#common-issues-and-solutions" id="toc-common-issues-and-solutions" class="nav-link" data-scroll-target="#common-issues-and-solutions">Common Issues and Solutions</a></li>
+  <li><a href="#best-practices-checklist" id="toc-best-practices-checklist" class="nav-link" data-scroll-target="#best-practices-checklist">Best Practices Checklist</a></li>
+  <li><a href="#diagnostic-checks" id="toc-diagnostic-checks" class="nav-link" data-scroll-target="#diagnostic-checks">Diagnostic Checks</a></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a>
   <ul class="collapse">
@@ -476,7 +499,7 @@ PtDAlgorithms version: 0.20.0</code></pre>
 <h1>Part 1: Basic SVGD with Continuous Models</h1>
 <p>We’ll start with a simple coalescent model and perform SVGD inference on a single CPU.</p>
 <section id="build-a-parameterized-coalescent-model" class="level2">
-<h2 class="anchored" data-anchor-id="build-a-parameterized-coalescent-model">1.1 Build a Parameterized Coalescent Model</h2>
+<h2 class="anchored" data-anchor-id="build-a-parameterized-coalescent-model">Build a Parameterized Coalescent Model</h2>
 <p>The coalescent model describes genealogies. We parameterize the coalescence rate with θ.</p>
 <div id="cell-4" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
@@ -580,7 +603,7 @@ PtDAlgorithms version: 0.20.0</code></pre>
 </div>
 </section>
 <section id="convert-to-jax-compatible-model" class="level2">
-<h2 class="anchored" data-anchor-id="convert-to-jax-compatible-model">1.2 Convert to JAX-Compatible Model</h2>
+<h2 class="anchored" data-anchor-id="convert-to-jax-compatible-model">Convert to JAX-Compatible Model</h2>
 <p>The model must have signature: <code>model(theta, times) -&gt; pdf_values</code></p>
 <div id="cell-8" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert graph to JAX-compatible function</span></span>
@@ -606,7 +629,7 @@ Model supports JAX transformations: jit, grad, vmap</code></pre>
 </div>
 </section>
 <section id="generate-synthetic-observed-data" class="level2">
-<h2 class="anchored" data-anchor-id="generate-synthetic-observed-data">1.3 Generate Synthetic Observed Data</h2>
+<h2 class="anchored" data-anchor-id="generate-synthetic-observed-data">Generate Synthetic Observed Data</h2>
 <p>For demonstration, we’ll create synthetic data from a known parameter.</p>
 <div id="cell-10" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># True parameter (we'll try to recover this)</span></span>
@@ -655,7 +678,7 @@ Noise level = 5.0%</code></pre>
 </div>
 </section>
 <section id="method-1-using-graph.svgd-class-method-recommended" class="level2">
-<h2 class="anchored" data-anchor-id="method-1-using-graph.svgd-class-method-recommended">1.4 Method 1: Using Graph.svgd() Class Method (Recommended)</h2>
+<h2 class="anchored" data-anchor-id="method-1-using-graph.svgd-class-method-recommended">Method 1: Using Graph.svgd() Class Method (Recommended)</h2>
 <p>The simplest way to run SVGD inference.</p>
 <div id="cell-12" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor <span class="op">-</span>p</span>
@@ -1024,7 +1047,7 @@ The above exception was the direct cause of the following exception:
 </div>
 </section>
 <section id="method-2-using-svgd-class-object-oriented" class="level2">
-<h2 class="anchored" data-anchor-id="method-2-using-svgd-class-object-oriented">1.5 Method 2: Using SVGD Class (Object-Oriented)</h2>
+<h2 class="anchored" data-anchor-id="method-2-using-svgd-class-object-oriented">Method 2: Using SVGD Class (Object-Oriented)</h2>
 <p>For more control and access to diagnostic methods.</p>
 <div id="cell-14" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor <span class="op">-</span>p</span>
@@ -1147,7 +1170,7 @@ Posterior estimates:
 </div>
 </section>
 <section id="visualize-results" class="level2">
-<h2 class="anchored" data-anchor-id="visualize-results">1.6 Visualize Results</h2>
+<h2 class="anchored" data-anchor-id="visualize-results">Visualize Results</h2>
 <p>The SVGD class provides built-in plotting methods.</p>
 <div id="cell-16" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor <span class="op">-</span>p</span>
@@ -1264,7 +1287,7 @@ Posterior estimates:
 <h1>Part 2: SVGD with Discrete Models</h1>
 <p>Discrete phase-type distributions (DPH) model the number of jumps/events.</p>
 <section id="build-and-discretize-the-model" class="level2">
-<h2 class="anchored" data-anchor-id="build-and-discretize-the-model">2.1 Build and Discretize the Model</h2>
+<h2 class="anchored" data-anchor-id="build-and-discretize-the-model">Build and Discretize the Model</h2>
 <div id="cell-19" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor <span class="op">-</span>p</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1344,7 +1367,7 @@ Test: jumps=[ 0  1  2  5 10]
 </div>
 </section>
 <section id="generate-discrete-observed-data" class="level2">
-<h2 class="anchored" data-anchor-id="generate-discrete-observed-data">2.2 Generate Discrete Observed Data</h2>
+<h2 class="anchored" data-anchor-id="generate-discrete-observed-data">Generate Discrete Observed Data</h2>
 <div id="cell-21" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor <span class="op">-</span>p</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1434,7 +1457,7 @@ Jump range: [0, 29]</code></pre>
 </div>
 </section>
 <section id="run-svgd-on-discrete-model" class="level2">
-<h2 class="anchored" data-anchor-id="run-svgd-on-discrete-model">2.3 Run SVGD on Discrete Model</h2>
+<h2 class="anchored" data-anchor-id="run-svgd-on-discrete-model">Run SVGD on Discrete Model</h2>
 <div id="cell-23" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor <span class="op">-</span>p</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1562,7 +1585,7 @@ Error:             0.7580</code></pre>
 <h1>Part 3: Multi-CPU Parallelization</h1>
 <p><strong>Multi-CPU support is now AUTOMATIC!</strong> As of the latest version, simply importing <code>ptdalgorithms</code> automatically configures JAX to use all available CPUs. You don’t need to call <code>init_parallel()</code> explicitly unless you want to customize the configuration.</p>
 <section id="automatic-multi-cpu-configuration" class="level2">
-<h2 class="anchored" data-anchor-id="automatic-multi-cpu-configuration">3.1 Automatic Multi-CPU Configuration</h2>
+<h2 class="anchored" data-anchor-id="automatic-multi-cpu-configuration">Automatic Multi-CPU Configuration</h2>
 <p>Multi-CPU parallelization is configured automatically when you import ptdalgorithms.</p>
 <div id="cell-26" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify the automatic parallel configuration</span></span>
@@ -1600,7 +1623,7 @@ Note: This was configured automatically when we imported ptdalgorithms!
 </div>
 </section>
 <section id="how-parallel-svgd-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-parallel-svgd-works">3.2 How Parallel SVGD Works</h2>
+<h2 class="anchored" data-anchor-id="how-parallel-svgd-works">How Parallel SVGD Works</h2>
 <p>SVGD automatically parallelizes gradient computation using JAX’s <code>pmap</code>:</p>
 <p><strong>Sequential (old approach with vmap):</strong> - All particles processed on a single device - <code>vmap(grad(log_prob))(particles)</code> → one device computes all gradients</p>
 <p><strong>Parallel (new approach with pmap):</strong> - Particles sharded across devices - <code>pmap(vmap(grad(log_prob)))(sharded_particles)</code> → each device computes subset of gradients - Results automatically gathered</p>
@@ -1658,7 +1681,7 @@ Note: This was configured automatically when we imported ptdalgorithms!
 </div>
 </section>
 <section id="explicit-device-specification" class="level2">
-<h2 class="anchored" data-anchor-id="explicit-device-specification">3.3 Explicit Device Specification</h2>
+<h2 class="anchored" data-anchor-id="explicit-device-specification">Explicit Device Specification</h2>
 <p>You can also manually specify the number of CPUs to use.</p>
 <div id="cell-30" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor <span class="op">-</span>p</span>
@@ -1742,7 +1765,7 @@ Outside context: strategy = pmap</code></pre>
 <h1>Part 4: Distributed Computing (SLURM)</h1>
 <p>Examples for running on SLURM clusters with multiple nodes.</p>
 <section id="slurm-setup-code-for-cluster" class="level2">
-<h2 class="anchored" data-anchor-id="slurm-setup-code-for-cluster">4.1 SLURM Setup (Code for Cluster)</h2>
+<h2 class="anchored" data-anchor-id="slurm-setup-code-for-cluster">SLURM Setup (Code for Cluster)</h2>
 <p>This code detects SLURM environment and initializes distributed JAX.</p>
 <div id="cell-33" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This cell demonstrates SLURM setup (won't actually run on local machine)</span></span>
@@ -1783,7 +1806,7 @@ Outside context: strategy = pmap</code></pre>
 </div>
 </section>
 <section id="slurm-batch-script-example" class="level2">
-<h2 class="anchored" data-anchor-id="slurm-batch-script-example">4.2 SLURM Batch Script Example</h2>
+<h2 class="anchored" data-anchor-id="slurm-batch-script-example">SLURM Batch Script Example</h2>
 <p>Save this as <code>submit_svgd.sh</code>:</p>
 <div id="cell-35" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>slurm_script <span class="op">=</span> <span class="st">'''</span></span>
@@ -1816,7 +1839,7 @@ Outside context: strategy = pmap</code></pre>
 <h1>Part 5: Advanced Options</h1>
 <p>Explore additional SVGD features and options.</p>
 <section id="custom-prior-distributions" class="level2">
-<h2 class="anchored" data-anchor-id="custom-prior-distributions">5.1 Custom Prior Distributions</h2>
+<h2 class="anchored" data-anchor-id="custom-prior-distributions">Custom Prior Distributions</h2>
 <div id="cell-38" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define custom log prior</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_prior_uniform(theta, lower<span class="op">=</span><span class="fl">0.1</span>, upper<span class="op">=</span><span class="fl">2.0</span>):</span>
@@ -1858,7 +1881,7 @@ Outside context: strategy = pmap</code></pre>
 </div>
 </section>
 <section id="different-kernel-options" class="level2">
-<h2 class="anchored" data-anchor-id="different-kernel-options">5.2 Different Kernel Options</h2>
+<h2 class="anchored" data-anchor-id="different-kernel-options">Different Kernel Options</h2>
 <div id="cell-40" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test different kernel bandwidths</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>kernel_options <span class="op">=</span> [<span class="st">'rbf_median'</span>, <span class="st">'rbf_adaptive'</span>, <span class="fl">1.0</span>]  <span class="co"># 1.0 = fixed bandwidth</span></span>
@@ -1890,7 +1913,7 @@ Outside context: strategy = pmap</code></pre>
 </div>
 </section>
 <section id="hyperparameter-tuning" class="level2">
-<h2 class="anchored" data-anchor-id="hyperparameter-tuning">5.3 Hyperparameter Tuning</h2>
+<h2 class="anchored" data-anchor-id="hyperparameter-tuning">Hyperparameter Tuning</h2>
 <div id="cell-42" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test different learning rates</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>learning_rates <span class="op">=</span> [<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>]</span>
@@ -1929,7 +1952,7 @@ Outside context: strategy = pmap</code></pre>
 </div>
 </section>
 <section id="moment-based-regularization" class="level2">
-<h2 class="anchored" data-anchor-id="moment-based-regularization">5.4 Moment-Based Regularization</h2>
+<h2 class="anchored" data-anchor-id="moment-based-regularization">Moment-Based Regularization</h2>
 <p>Use moment regularization to improve stability.</p>
 <div id="cell-44" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create model that returns both PMF and moments</span></span>
@@ -1982,7 +2005,7 @@ Outside context: strategy = pmap</code></pre>
 <h1>Part 6: Batching and Sharding</h1>
 <p>Understanding how data is distributed across devices.</p>
 <section id="understanding-particle-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="understanding-particle-distribution">6.1 Understanding Particle Distribution</h2>
+<h2 class="anchored" data-anchor-id="understanding-particle-distribution">Understanding Particle Distribution</h2>
 <p>SVGD particles are automatically distributed across devices.</p>
 <div id="cell-47" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get current configuration</span></span>
@@ -2006,7 +2029,7 @@ Outside context: strategy = pmap</code></pre>
 </div>
 </section>
 <section id="manual-device-placement-advanced" class="level2">
-<h2 class="anchored" data-anchor-id="manual-device-placement-advanced">6.2 Manual Device Placement (Advanced)</h2>
+<h2 class="anchored" data-anchor-id="manual-device-placement-advanced">Manual Device Placement (Advanced)</h2>
 <p>For fine-grained control over device placement.</p>
 <div id="cell-49" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get available devices</span></span>
@@ -2028,7 +2051,7 @@ Outside context: strategy = pmap</code></pre>
 </div>
 </section>
 <section id="batch-size-considerations" class="level2">
-<h2 class="anchored" data-anchor-id="batch-size-considerations">6.3 Batch Size Considerations</h2>
+<h2 class="anchored" data-anchor-id="batch-size-considerations">Batch Size Considerations</h2>
 <div id="cell-51" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Choosing Number of Particles:"</span>)</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Guidelines:"</span>)</span>
@@ -2050,7 +2073,7 @@ Outside context: strategy = pmap</code></pre>
 <section id="part-7-troubleshooting-and-best-practices" class="level1">
 <h1>Part 7: Troubleshooting and Best Practices</h1>
 <section id="common-issues-and-solutions" class="level2">
-<h2 class="anchored" data-anchor-id="common-issues-and-solutions">7.1 Common Issues and Solutions</h2>
+<h2 class="anchored" data-anchor-id="common-issues-and-solutions">Common Issues and Solutions</h2>
 <div id="cell-54" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>troubleshooting_guide <span class="op">=</span> <span class="st">"""</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="st">COMMON ISSUES AND SOLUTIONS:</span></span>
@@ -2122,7 +2145,7 @@ Outside context: strategy = pmap</code></pre>
 </div>
 </section>
 <section id="best-practices-checklist" class="level2">
-<h2 class="anchored" data-anchor-id="best-practices-checklist">7.2 Best Practices Checklist</h2>
+<h2 class="anchored" data-anchor-id="best-practices-checklist">Best Practices Checklist</h2>
 <div id="cell-56" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>best_practices <span class="op">=</span> <span class="st">"""</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="st">SVGD BEST PRACTICES:</span></span>
@@ -2179,7 +2202,7 @@ Outside context: strategy = pmap</code></pre>
 </div>
 </section>
 <section id="diagnostic-checks" class="level2">
-<h2 class="anchored" data-anchor-id="diagnostic-checks">7.3 Diagnostic Checks</h2>
+<h2 class="anchored" data-anchor-id="diagnostic-checks">Diagnostic Checks</h2>
 <div id="cell-58" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_svgd_convergence(svgd_obj, true_param<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -2270,14 +2293,14 @@ Outside context: strategy = pmap</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic workflow</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> pta</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize parallelization</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize parallelization</span></span>
 <span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>pta.init_parallel()</span>
 <span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Build parameterized model</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Build parameterized model</span></span>
 <span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> pta.Graph(callback<span class="op">=</span>my_callback, parameterized<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> pta.Graph.pmf_from_graph(graph, discrete<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Run SVGD</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Run SVGD</span></span>
 <span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pta.Graph.svgd(</span>
 <span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>model,</span>
 <span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>    observed_data<span class="op">=</span>data,</span>
@@ -2287,7 +2310,7 @@ Outside context: strategy = pmap</code></pre>
 <span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>    learning_rate<span class="op">=</span><span class="fl">0.01</span></span>
 <span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Analyze</span></span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Analyze</span></span>
 <span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results[<span class="st">'theta_mean'</span>])</span>
 <span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results[<span class="st">'theta_std'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
@@ -2707,8 +2730,8 @@ Outside context: strategy = pmap</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../pages/modelling/joint_prob.html" class="pagination-link" aria-label="Joint probabilities">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Joint probabilities</span>
+      <a href="../../pages/tutorials/state_space_construction.html" class="pagination-link" aria-label="Building models">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Building models</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
