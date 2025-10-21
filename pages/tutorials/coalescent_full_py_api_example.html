@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/munch-group/ptdalgorithms/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/munch-group/phasic/"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -273,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/distributed/distributed_computing_complete_guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed Computing with PtDAlgorithms - Complete Guide</span></a>
+ <span class="menu-text">Distributed Computing with phasic - Complete Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -391,7 +391,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="https://github.com/munch-group/ptdalgorithms/issues" class="sidebar-item-text sidebar-link">
+  <a href="https://github.com/munch-group/phasic/issues" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Issue Tracker</span></a>
   </div>
 </li>
@@ -427,13 +427,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This comprehensive tutorial explores the complete Python API of the ptdalgorithms library, a high-performance computational framework for working with phase-type distributions. At its core, the library implements sophisticated graph-based algorithms published in peer-reviewed literature, offering performance improvements of several orders of magnitude compared to traditional matrix-based approaches that have dominated the field for decades. The implementation leverages C for computational efficiency, with carefully designed bindings to Python through C++ and pybind11, ensuring that Python users can access near-native performance without sacrificing the convenience and flexibility of high-level scripting.</p>
+<p>This comprehensive tutorial explores the complete Python API of the phasic library, a high-performance computational framework for working with phase-type distributions. At its core, the library implements sophisticated graph-based algorithms published in peer-reviewed literature, offering performance improvements of several orders of magnitude compared to traditional matrix-based approaches that have dominated the field for decades. The implementation leverages C for computational efficiency, with carefully designed bindings to Python through C++ and pybind11, ensuring that Python users can access near-native performance without sacrificing the convenience and flexibility of high-level scripting.</p>
 <p>Throughout this tutorial, we will construct increasingly sophisticated models using a simple but illustrative example: rabbits living on two islands that can jump between islands and face periodic flooding events. This seemingly simple scenario will allow us to explore the full richness of the library’s capabilities, from basic state space construction and moment calculations to advanced features like reward transformations, multivariate distributions, parameterized models, symbolic elimination for ultra-fast parameter sweeps, distributed computing across SLURM clusters, and Bayesian inference using Stein Variational Gradient Descent (SVGD).</p>
 <p>The tutorial begins with fundamental operations—constructing state spaces, computing expectations and variances, evaluating distribution functions—and progressively builds toward advanced topics. We will see how to work with both continuous phase-type distributions (modeling time until absorption) and discrete phase-type distributions (modeling the number of transitions before absorption). We will explore rewards, which allow us to compute accumulated quantities along paths through the state space, and multivariate extensions that capture joint distributions of multiple quantities. We will learn how to parameterize edge weights, enabling efficient exploration of parameter space, and how symbolic elimination can accelerate this exploration by orders of magnitude.</p>
 <p>In the advanced sections, we will discover how to leverage distributed computing infrastructure, scaling our computations from a single machine to hundreds of nodes on a SLURM cluster. We will see how the library integrates seamlessly with JAX, enabling automatic differentiation and GPU acceleration. Finally, we will apply these tools to Bayesian inference problems, using SVGD to estimate model parameters from observed data—a workflow that combines graph construction, symbolic elimination, distributed computing, and gradient-based optimization into a unified, high-performance pipeline.</p>
-<p>By the end of this tutorial, you will have mastered not just the mechanics of the API, but the underlying concepts and workflows that make ptdalgorithms a powerful tool for probabilistic modeling, statistical inference, and computational biology.</p>
+<p>By the end of this tutorial, you will have mastered not just the mechanics of the API, but the underlying concepts and workflows that make phasic a powerful tool for probabilistic modeling, statistical inference, and computational biology.</p>
 <div id="dab491fb-6117-4d1e-91f8-ca7cb9d54f54" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-03-05T20:33:49.698019Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-03-05T20:33:49.697851Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-03-05T20:33:49.713289Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-03-05T20:33:49.712964Z&quot;}}" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> phasic <span class="im">as</span> ptd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Another example is the Coalescent, fully specified with only the code below:</p>
 <div id="19aee46c" class="cell" data-execution_count="2">
@@ -599,7 +599,7 @@ KeyboardInterrupt
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/phasic\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/munch-group/ptdalgorithms/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/munch-group/phasic/"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -273,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/distributed/distributed_computing_complete_guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed Computing with PtDAlgorithms - Complete Guide</span></a>
+ <span class="menu-text">Distributed Computing with phasic - Complete Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -391,7 +391,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="https://github.com/munch-group/ptdalgorithms/issues" class="sidebar-item-text sidebar-link">
+  <a href="https://github.com/munch-group/phasic/issues" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Issue Tracker</span></a>
   </div>
 </li>
@@ -423,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#matrix-operations" id="toc-matrix-operations" class="nav-link" data-scroll-target="#matrix-operations">Matrix Operations</a></li>
   <li><a href="#fft-and-signal-processing" id="toc-fft-and-signal-processing" class="nav-link" data-scroll-target="#fft-and-signal-processing">FFT and Signal Processing</a></li>
-  <li><a href="#ptdalgorithms-graph-operations" id="toc-ptdalgorithms-graph-operations" class="nav-link" data-scroll-target="#ptdalgorithms-graph-operations">PtDAlgorithms Graph Operations</a></li>
+  <li><a href="#phasic-graph-operations" id="toc-phasic-graph-operations" class="nav-link" data-scroll-target="#phasic-graph-operations">phasic Graph Operations</a></li>
   <li><a href="#batch-moments-calculation" id="toc-batch-moments-calculation" class="nav-link" data-scroll-target="#batch-moments-calculation">Batch Moments Calculation</a></li>
   </ul></li>
   <li><a href="#advanced-configuration" id="toc-advanced-configuration" class="nav-link" data-scroll-target="#advanced-configuration">Advanced Configuration </a><a id="advanced" class="nav-link" data-scroll-target="undefined"></a>
@@ -468,7 +468,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div id="setup" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> phasic <span class="im">as</span> ptd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -718,8 +718,8 @@ Processed 6 batches</code></pre>
 <span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Peaks found: </span><span class="sc">{</span><span class="bu">len</span>(peaks)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="ptdalgorithms-graph-operations" class="level3">
-<h3 class="anchored" data-anchor-id="ptdalgorithms-graph-operations">PtDAlgorithms Graph Operations</h3>
+<section id="phasic-graph-operations" class="level3">
+<h3 class="anchored" data-anchor-id="phasic-graph-operations">phasic Graph Operations</h3>
 <div id="real-graph-build" class="cell" data-execution_count="66">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Monitor phase-type distribution computations:</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1072,7 +1072,7 @@ Pipeline complete!</code></pre>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/phasic\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

@@ -191,7 +191,7 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/munch-group/ptdalgorithms/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/munch-group/phasic/"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -313,7 +313,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/distributed/distributed_computing_complete_guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed Computing with PtDAlgorithms - Complete Guide</span></a>
+ <span class="menu-text">Distributed Computing with phasic - Complete Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -431,7 +431,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="https://github.com/munch-group/ptdalgorithms/issues" class="sidebar-item-text sidebar-link">
+  <a href="https://github.com/munch-group/phasic/issues" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Issue Tracker</span></a>
   </div>
 </li>
@@ -874,7 +874,7 @@ Total: O(m(pn² + n³ + n)) = O(mn³)</code></pre>
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>We presented a symbolic elimination algorithm for parameterized phase-type distributions that reduces repeated evaluation cost from O(mn³) to O(n³ + mn). The algorithm constructs a symbolic DAG with expression trees, enabling O(n) instantiation for each parameter vector. Theoretical analysis proves correctness and establishes Θ(m) speedup. Experimental validation demonstrates 10-100× speedup on inference workloads, with speedup increasing for larger graphs and more particles.</p>
 <p><strong>Future work:</strong> 1. <strong>Expression optimization:</strong> Apply advanced algebraic simplification to reduce expression size 2. <strong>Parallel instantiation:</strong> Evaluate expressions for multiple θ values in parallel using SIMD 3. <strong>Automatic differentiation:</strong> Extend to symbolic gradient computation for θ 4. <strong>Adaptive approximation:</strong> Use symbolic DAG to guide sparse approximations</p>
-<p><strong>Code availability:</strong> Implementation available in PtDAlgorithms v0.21.3+ at https://github.com/…</p>
+<p><strong>Code availability:</strong> Implementation available in phasic v0.21.3+ at https://github.com/…</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
@@ -1083,7 +1083,7 @@ Total: O(m(pn² + n³ + n)) = O(mn³)</code></pre>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/phasic\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

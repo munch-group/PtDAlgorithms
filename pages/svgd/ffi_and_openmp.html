@@ -148,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/munch-group/ptdalgorithms/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/munch-group/phasic/"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -270,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/distributed/distributed_computing_complete_guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed Computing with PtDAlgorithms - Complete Guide</span></a>
+ <span class="menu-text">Distributed Computing with phasic - Complete Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -388,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="https://github.com/munch-group/ptdalgorithms/issues" class="sidebar-item-text sidebar-link">
+  <a href="https://github.com/munch-group/phasic/issues" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Issue Tracker</span></a>
   </div>
 </li>
@@ -410,8 +410,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#design-decision" id="toc-design-decision" class="nav-link" data-scroll-target="#design-decision">Design Decision</a></li>
   <li><a href="#changes-made" id="toc-changes-made" class="nav-link" data-scroll-target="#changes-made">Changes Made</a>
   <ul class="collapse">
-  <li><a href="#configuration-system-srcptdalgorithmsconfig.py" id="toc-configuration-system-srcptdalgorithmsconfig.py" class="nav-link" data-scroll-target="#configuration-system-srcptdalgorithmsconfig.py">1. Configuration System (<code>src/ptdalgorithms/config.py</code>)</a></li>
-  <li><a href="#ffi-wrappers-srcptdalgorithmsffi_wrappers.py" id="toc-ffi-wrappers-srcptdalgorithmsffi_wrappers.py" class="nav-link" data-scroll-target="#ffi-wrappers-srcptdalgorithmsffi_wrappers.py">2. FFI Wrappers (<code>src/ptdalgorithms/ffi_wrappers.py</code>)</a></li>
+  <li><a href="#configuration-system-srcphasicconfig.py" id="toc-configuration-system-srcphasicconfig.py" class="nav-link" data-scroll-target="#configuration-system-srcphasicconfig.py">1. Configuration System (<code>src/phasic/config.py</code>)</a></li>
+  <li><a href="#ffi-wrappers-srcphasicffi_wrappers.py" id="toc-ffi-wrappers-srcphasicffi_wrappers.py" class="nav-link" data-scroll-target="#ffi-wrappers-srcphasicffi_wrappers.py">2. FFI Wrappers (<code>src/phasic/ffi_wrappers.py</code>)</a></li>
   <li><a href="#fallback-functions-kept-for-future-use" id="toc-fallback-functions-kept-for-future-use" class="nav-link" data-scroll-target="#fallback-functions-kept-for-future-use">3. Fallback Functions Kept For Future Use</a></li>
   </ul></li>
   <li><a href="#behavior-changes" id="toc-behavior-changes" class="nav-link" data-scroll-target="#behavior-changes">Behavior Changes</a>
@@ -469,7 +469,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>Implemented FFI+OpenMP as the default backend for PtDAlgorithms, removing all silent fallbacks and requiring explicit configuration for disabled features.</p>
+<p>Implemented FFI+OpenMP as the default backend for phasic, removing all silent fallbacks and requiring explicit configuration for disabled features.</p>
 <p><strong>Key Changes:</strong> - FFI and OpenMP are now enabled by default (<code>ffi=True</code>, <code>openmp=True</code>) - Removed hard-coded <code>_HAS_FFI = False</code> that prevented FFI usage - Replaced silent fallbacks with clear error messages - Updated configuration system to accept <code>openmp</code> parameter - All functions now fail loudly if FFI unavailable (no silent degradation)</p>
 <hr>
 </section>
@@ -481,12 +481,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="changes-made" class="level2">
 <h2 class="anchored" data-anchor-id="changes-made">Changes Made</h2>
-<section id="configuration-system-srcptdalgorithmsconfig.py" class="level3">
-<h3 class="anchored" data-anchor-id="configuration-system-srcptdalgorithmsconfig.py">1. Configuration System (<code>src/ptdalgorithms/config.py</code>)</h3>
+<section id="configuration-system-srcphasicconfig.py" class="level3">
+<h3 class="anchored" data-anchor-id="configuration-system-srcphasicconfig.py">1. Configuration System (<code>src/phasic/config.py</code>)</h3>
 <section id="added-openmp-parameter" class="level4">
 <h4 class="anchored" data-anchor-id="added-openmp-parameter">Added <code>openmp</code> parameter:</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PTDAlgorithmsConfig:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> phasicConfig:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    jax: <span class="bu">bool</span> <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    jit: <span class="bu">bool</span> <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    ffi: <span class="bu">bool</span> <span class="op">=</span> <span class="va">True</span>       <span class="co"># Changed from False</span></span>
@@ -514,8 +514,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="ffi-wrappers-srcptdalgorithmsffi_wrappers.py" class="level3">
-<h3 class="anchored" data-anchor-id="ffi-wrappers-srcptdalgorithmsffi_wrappers.py">2. FFI Wrappers (<code>src/ptdalgorithms/ffi_wrappers.py</code>)</h3>
+<section id="ffi-wrappers-srcphasicffi_wrappers.py" class="level3">
+<h3 class="anchored" data-anchor-id="ffi-wrappers-srcphasicffi_wrappers.py">2. FFI Wrappers (<code>src/phasic/ffi_wrappers.py</code>)</h3>
 <section id="removed-hard-coded-disable-line-60-68" class="level4">
 <h4 class="anchored" data-anchor-id="removed-hard-coded-disable-line-60-68">Removed hard-coded disable (line 60-68):</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># BEFORE:</span></span>
@@ -549,8 +549,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  pip install --no-build-isolation --force-reinstall --no-deps .</span><span class="ch">\n</span><span class="st">"</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="ch">\n</span><span class="st">"</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Or disable FFI (slower, single-core only):</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  import ptdalgorithms</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  ptdalgorithms.configure(ffi=False, openmp=False)"</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  import phasic</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  phasic.configure(ffi=False, openmp=False)"</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="updated-compute_pmf_ffi-lines-442-519" class="level4">
@@ -602,7 +602,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="before-this-change" class="level3">
 <h3 class="anchored" data-anchor-id="before-this-change">Before This Change</h3>
 <p><strong>Silent Degradation:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> phasic <span class="im">as</span> ptd</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Even if FFI was built, this would silently use pure_callback:</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> compute_pmf_ffi(...)</span>
@@ -621,7 +621,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="after-this-change" class="level3">
 <h3 class="anchored" data-anchor-id="after-this-change">After This Change</h3>
 <p><strong>Explicit Errors:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> phasic <span class="im">as</span> ptd</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># If FFI not built:</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> compute_pmf_ffi(...)</span>
@@ -651,7 +651,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="for-users-with-ffi-already-built" class="level3">
 <h3 class="anchored" data-anchor-id="for-users-with-ffi-already-built">For Users With FFI Already Built</h3>
 <p><strong>No changes needed!</strong> FFI+OpenMP will now be used automatically:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> SVGD</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> SVGD</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This now uses FFI+OpenMP by default</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model, data, theta_dim<span class="op">=</span><span class="dv">2</span>, n_particles<span class="op">=</span><span class="dv">100</span>, parallel<span class="op">=</span><span class="st">'vmap'</span>)</span>
@@ -666,7 +666,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">XLA_FFI_INCLUDE_DIR</span><span class="op">=</span><span class="va">$(</span><span class="ex">python</span> <span class="at">-c</span> <span class="st">"from jax import ffi; print(ffi.include_dir())"</span><span class="va">)</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">--no-build-isolation</span> <span class="at">--force-reinstall</span> <span class="at">--no-deps</span> .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Option 2: Disable FFI explicitly:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> phasic <span class="im">as</span> ptd</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Disable FFI+OpenMP (slower, single-core only)</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>ptd.configure(ffi<span class="op">=</span><span class="va">False</span>, openmp<span class="op">=</span><span class="va">False</span>)</span>
@@ -683,7 +683,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># parallel_mode='auto' was broken - don't use!</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(..., parallel_mode<span class="op">=</span><span class="st">'auto'</span>)  <span class="co"># ❌ Deprecated</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>After:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms.distributed <span class="im">import</span> initialize_distributed</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic.distributed <span class="im">import</span> initialize_distributed</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Multi-node SLURM:</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>initialize_distributed()  <span class="co"># Sets up device mesh</span></span>
@@ -699,7 +699,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="verified-functionality" class="level3">
 <h3 class="anchored" data-anchor-id="verified-functionality">Verified Functionality</h3>
 <p><strong>1. Default Configuration:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python <span class="at">-c</span> <span class="st">"from ptdalgorithms import get_config; c=get_config(); print(f'ffi={c.ffi}, openmp={c.openmp}')"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python <span class="at">-c</span> <span class="st">"from phasic import get_config; c=get_config(); print(f'ffi={c.ffi}, openmp={c.openmp}')"</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="va">ffi</span><span class="op">=</span>True, <span class="va">openmp</span><span class="op">=</span>True</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>✅ Pass</p>
 <p><strong>2. SVGD Test Suite:</strong></p>
@@ -741,7 +741,7 @@ User feedback: "SVGD is fast!"</code></pre>
      pip install --no-build-isolation --force-reinstall --no-deps .
 
    Or disable FFI (slower, single-core only):
-     ptdalgorithms.configure(ffi=False, openmp=False)"</code></pre>
+     phasic.configure(ffi=False, openmp=False)"</code></pre>
 <hr>
 </section>
 </section>
@@ -799,7 +799,7 @@ User feedback: "SVGD is fast!"</code></pre>
 <pre><code>1. User calls: ptd.configure(ffi=True, openmp=True)
 2. config.validate() runs:
    a. Check if ffi=True and openmp=True
-   b. Try: import ptdalgorithmscpp_pybind
+   b. Try: import phasic_pybind
    c. Check: hasattr(cpp_module.parameterized, 'get_compute_pmf_ffi_capsule')
    d. If missing: raise PTDBackendError with rebuild instructions
    e. Check: openmp=True requires ffi=True
@@ -824,14 +824,14 @@ User feedback: "SVGD is fast!"</code></pre>
 <section id="files-modified" class="level2">
 <h2 class="anchored" data-anchor-id="files-modified">Files Modified</h2>
 <ol type="1">
-<li><strong>src/ptdalgorithms/config.py</strong>
+<li><strong>src/phasic/config.py</strong>
 <ul>
 <li>Lines 134-135: Changed <code>ffi=True</code>, added <code>openmp=True</code></li>
 <li>Lines 109-116: Updated docstrings</li>
 <li>Lines 186-217: Replaced FFI error with proper validation</li>
 <li>Lines 363-415: Updated <code>configure()</code> function</li>
 </ul></li>
-<li><strong>src/ptdalgorithms/ffi_wrappers.py</strong>
+<li><strong>src/phasic/ffi_wrappers.py</strong>
 <ul>
 <li>Lines 60-62: Removed <code>_HAS_FFI = False</code></li>
 <li>Lines 156-244: Replaced silent fallbacks with errors in <code>_register_ffi_targets()</code></li>
@@ -924,7 +924,7 @@ User feedback: "SVGD is fast!"</code></pre>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/phasic\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1258,8 +1258,8 @@ User feedback: "SVGD is fast!"</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../pages/distributed/distributed_computing_complete_guide.html" class="pagination-link" aria-label="Distributed Computing with PtDAlgorithms - Complete Guide">
-        <span class="nav-page-text">Distributed Computing with PtDAlgorithms - Complete Guide</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../pages/distributed/distributed_computing_complete_guide.html" class="pagination-link" aria-label="Distributed Computing with phasic - Complete Guide">
+        <span class="nav-page-text">Distributed Computing with phasic - Complete Guide</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -154,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/munch-group/ptdalgorithms/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/munch-group/phasic/"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -276,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/distributed/distributed_computing_complete_guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed Computing with PtDAlgorithms - Complete Guide</span></a>
+ <span class="menu-text">Distributed Computing with phasic - Complete Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -394,7 +394,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="https://github.com/munch-group/ptdalgorithms/issues" class="sidebar-item-text sidebar-link">
+  <a href="https://github.com/munch-group/phasic/issues" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Issue Tracker</span></a>
   </div>
 </li>
@@ -464,11 +464,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This comprehensive tutorial explores the complete Python API of the ptdalgorithms library, a high-performance computational framework for working with phase-type distributions. At its core, the library implements sophisticated graph-based algorithms published in peer-reviewed literature, offering performance improvements of several orders of magnitude compared to traditional matrix-based approaches that have dominated the field for decades. The implementation leverages C for computational efficiency, with carefully designed bindings to Python through C++ and pybind11, ensuring that Python users can access near-native performance without sacrificing the convenience and flexibility of high-level scripting.</p>
+<p>This comprehensive tutorial explores the complete Python API of the phasic library, a high-performance computational framework for working with phase-type distributions. At its core, the library implements sophisticated graph-based algorithms published in peer-reviewed literature, offering performance improvements of several orders of magnitude compared to traditional matrix-based approaches that have dominated the field for decades. The implementation leverages C for computational efficiency, with carefully designed bindings to Python through C++ and pybind11, ensuring that Python users can access near-native performance without sacrificing the convenience and flexibility of high-level scripting.</p>
 <p>Throughout this tutorial, we will construct increasingly sophisticated models using a simple but illustrative example: rabbits living on two islands that can jump between islands and face periodic flooding events. This seemingly simple scenario will allow us to explore the full richness of the library’s capabilities, from basic state space construction and moment calculations to advanced features like reward transformations, multivariate distributions, parameterized models, symbolic elimination for ultra-fast parameter sweeps, distributed computing across SLURM clusters, and Bayesian inference using Stein Variational Gradient Descent (SVGD).</p>
 <p>The tutorial begins with fundamental operations—constructing state spaces, computing expectations and variances, evaluating distribution functions—and progressively builds toward advanced topics. We will see how to work with both continuous phase-type distributions (modeling time until absorption) and discrete phase-type distributions (modeling the number of transitions before absorption). We will explore rewards, which allow us to compute accumulated quantities along paths through the state space, and multivariate extensions that capture joint distributions of multiple quantities. We will learn how to parameterize edge weights, enabling efficient exploration of parameter space, and how symbolic elimination can accelerate this exploration by orders of magnitude.</p>
 <p>In the advanced sections, we will discover how to leverage distributed computing infrastructure, scaling our computations from a single machine to hundreds of nodes on a SLURM cluster. We will see how the library integrates seamlessly with JAX, enabling automatic differentiation and GPU acceleration. Finally, we will apply these tools to Bayesian inference problems, using SVGD to estimate model parameters from observed data—a workflow that combines graph construction, symbolic elimination, distributed computing, and gradient-based optimization into a unified, high-performance pipeline.</p>
-<p>By the end of this tutorial, you will have mastered not just the mechanics of the API, but the underlying concepts and workflows that make ptdalgorithms a powerful tool for probabilistic modeling, statistical inference, and computational biology.</p>
+<p>By the end of this tutorial, you will have mastered not just the mechanics of the API, but the underlying concepts and workflows that make phasic a powerful tool for probabilistic modeling, statistical inference, and computational biology.</p>
 <div id="cell-2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %load_ext autoreload</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># %autoreload 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -479,7 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> Graph, set_theme</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> Graph, set_theme</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.style.use('dark_background')</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># import matplotlib</span></span>
@@ -1330,12 +1330,12 @@ Expectation (1,2,4): 0.2123466140255808
 Expectation (1,2,4): 0.1274895365841465</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>INFO: trace cache file exists but deserialization not yet implemented: /Users/kmt/.ptdalgorithms_cache/traces/4d2926c87dfd55392e0dd4bcde8576c0d537eae292bb0af1668e2c7b418823c7.json
+<pre><code>INFO: trace cache file exists but deserialization not yet implemented: /Users/kmt/.phasic_cache/traces/4d2926c87dfd55392e0dd4bcde8576c0d537eae292bb0af1668e2c7b418823c7.json
 INFO: recording elimination trace for parameterized graph...
-INFO: trace cache file exists but deserialization not yet implemented: /Users/kmt/.ptdalgorithms_cache/traces/4d2926c87dfd55392e0dd4bcde8576c0d537eae292bb0af1668e2c7b418823c7.json
+INFO: trace cache file exists but deserialization not yet implemented: /Users/kmt/.phasic_cache/traces/4d2926c87dfd55392e0dd4bcde8576c0d537eae292bb0af1668e2c7b418823c7.json
 INFO: cache miss, recording elimination trace...
-INFO: saved trace to cache (6184 bytes): /Users/kmt/.ptdalgorithms_cache/traces/4d2926c87dfd55392e0dd4bcde8576c0d537eae292bb0af1668e2c7b418823c7.json
-INFO: saved trace to cache (6184 bytes): /Users/kmt/.ptdalgorithms_cache/traces/4d2926c87dfd55392e0dd4bcde8576c0d537eae292bb0af1668e2c7b418823c7.json</code></pre>
+INFO: saved trace to cache (6184 bytes): /Users/kmt/.phasic_cache/traces/4d2926c87dfd55392e0dd4bcde8576c0d537eae292bb0af1668e2c7b418823c7.json
+INFO: saved trace to cache (6184 bytes): /Users/kmt/.phasic_cache/traces/4d2926c87dfd55392e0dd4bcde8576c0d537eae292bb0af1668e2c7b418823c7.json</code></pre>
 </div>
 </div>
 <div id="cell-122" class="cell" data-execution_count="66">
@@ -1392,7 +1392,7 @@ INFO: saved trace to cache (6184 bytes): /Users/kmt/.ptdalgorithms_cache/traces/
 </div>
 <p>We can build a context to step over the distribution. Weights can be freely changed and edges added in such a context</p>
 <div id="cell-136" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import ptdalgorithms as ptd</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import phasic as ptd</span></span>
 <span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="co"># import numpy as np</span></span>
 <span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="co"># def c(*args):</span></span>
@@ -1704,7 +1704,7 @@ the right island also tends to take longer (rabbits jumping back and forth prolo
 <h1>Building the state space in C</h1>
 <p>Very very large models can be take a long time to construct. So if you have deloped a model that you need to construct repeatedly, the library allow you to implement the state construction as a stand-alone C/C++ extension available as python module.</p>
 <p>The C code building the state space for the rabit model looks like this:</p>
-<pre class="{c}"><code>ptdalgorithms::Graph build(int starting_rabbits, float flooding_left, float flooding_right) {
+<pre class="{c}"><code>phasic::Graph build(int starting_rabbits, float flooding_left, float flooding_right) {
 
     size_t state_size = 2;
     struct ptd_graph *graph = ptd_graph_create(state_size);
@@ -1757,7 +1757,7 @@ the right island also tends to take longer (rabbits jumping back and forth prolo
         }
     }
     free(child_state);
-    ptdalgorithms::Graph *result = new ptdalgorithms::Graph(graph, avl_tree);
+    phasic::Graph *result = new phasic::Graph(graph, avl_tree);
     return *result;
 }
 
@@ -1765,7 +1765,7 @@ To access the function from python, you need to put it a separate file (`rabbit_
 
 ```{c}
 #include &lt;pybind11/pybind11.h&gt;
-#include &lt;ptdalgorithms.h&gt;
+#include &lt;phasic.h&gt;
 #include "stdint.h"
 #include "stdlib.h"
 
@@ -1793,7 +1793,7 @@ setup_pybind11(cfg)
 <p>or</p>
 <pre><code>pip install cppimport</code></pre>
 <p>and then run this code to import your build function.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb128"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import ptdalgorithms</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb128"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import phasic</span></span>
 <span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cppimport.import_hook</span>
 <span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rabbit_state_space <span class="co"># this will pause for a moment to compile the module</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then you can use it to construct your graph like this:</p>
@@ -1814,7 +1814,7 @@ setup_pybind11(cfg)
 <span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb130-3"><a href="#cb130-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax</span>
 <span id="cb130-4"><a href="#cb130-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
-<span id="cb130-5"><a href="#cb130-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> Graph</span>
+<span id="cb130-5"><a href="#cb130-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> Graph</span>
 <span id="cb130-6"><a href="#cb130-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb130-7"><a href="#cb130-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create parameterized rabbit model</span></span>
 <span id="cb130-8"><a href="#cb130-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters: [jump_rate, left_flood_rate, right_flood_rate]</span></span>
@@ -1939,13 +1939,13 @@ True parameters: jump=1.0, left_flood=0.5, right_flood=0.3</code></pre>
 <div class="cell-output cell-output-stderr">
 <pre><code>ERROR:2025-10-15 20:34:10,924:jax._src.callback:94: jax.pure_callback failed
 Traceback (most recent call last):
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 92, in pure_callback_impl
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 92, in pure_callback_impl
     return tree_util.tree_map(np.asarray, callback(*args))
                                           ~~~~~~~~^^^^^^^
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 70, in __call__
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 70, in __call__
     return tree_util.tree_leaves(self.callback_func(*args, **kwargs))
                                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-  File "/Users/kmt/PtDAlgorithms/src/ptdalgorithms/ffi_wrappers.py", line 175, in &lt;lambda&gt;
+  File "/Users/kmt/phasic/src/phasic/ffi_wrappers.py", line 175, in &lt;lambda&gt;
     lambda theta_jax, times_jax: _compute_pmf_impl(
                                  ~~~~~~~~~~~~~~~~~^
         structure_json,
@@ -1955,10 +1955,10 @@ Traceback (most recent call last):
         ^^^^^^^^^^^
     ),
     ^
-  File "/Users/kmt/PtDAlgorithms/src/ptdalgorithms/ffi_wrappers.py", line 136, in _compute_pmf_impl
+  File "/Users/kmt/phasic/src/phasic/ffi_wrappers.py", line 136, in _compute_pmf_impl
     builder = cpp_module.parameterized.GraphBuilder(structure_json)
 TypeError: __init__(): incompatible constructor arguments. The following argument types are supported:
-    1. ptdalgorithms.ptdalgorithmscpp_pybind.parameterized.GraphBuilder(structure_json: str)
+    1. phasic.phasic_pybind.parameterized.GraphBuilder(structure_json: str)
 
 Invoked with: {'states': array([[0, 0, 0],
        [0, 1, 0],
@@ -2242,13 +2242,13 @@ Invoked with: {'states': array([[0, 0, 0],
        [48., 46.,  0.,  0.,  4.,  0.]]), 'start_param_edges': array([], shape=(0, 5), dtype=float64), 'param_length': 4, 'state_length': 3, 'n_vertices': 50}
 [ERROR] jax.pure_callback failed
 Traceback (most recent call last):
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 92, in pure_callback_impl
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 92, in pure_callback_impl
     return tree_util.tree_map(np.asarray, callback(*args))
                                           ~~~~~~~~^^^^^^^
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 70, in __call__
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 70, in __call__
     return tree_util.tree_leaves(self.callback_func(*args, **kwargs))
                                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-  File "/Users/kmt/PtDAlgorithms/src/ptdalgorithms/ffi_wrappers.py", line 175, in &lt;lambda&gt;
+  File "/Users/kmt/phasic/src/phasic/ffi_wrappers.py", line 175, in &lt;lambda&gt;
     lambda theta_jax, times_jax: _compute_pmf_impl(
                                  ~~~~~~~~~~~~~~~~~^
         structure_json,
@@ -2258,10 +2258,10 @@ Traceback (most recent call last):
         ^^^^^^^^^^^
     ),
     ^
-  File "/Users/kmt/PtDAlgorithms/src/ptdalgorithms/ffi_wrappers.py", line 136, in _compute_pmf_impl
+  File "/Users/kmt/phasic/src/phasic/ffi_wrappers.py", line 136, in _compute_pmf_impl
     builder = cpp_module.parameterized.GraphBuilder(structure_json)
 TypeError: __init__(): incompatible constructor arguments. The following argument types are supported:
-    1. ptdalgorithms.ptdalgorithmscpp_pybind.parameterized.GraphBuilder(structure_json: str)
+    1. phasic.phasic_pybind.parameterized.GraphBuilder(structure_json: str)
 
 Invoked with: {'states': array([[0, 0, 0],
        [0, 1, 0],
@@ -2572,7 +2572,7 @@ Testing log-posterior at true parameters:</code></pre>
 <span class="ansi-green-fg">     35</span> <span style="font-style:italic;color:rgb(95,135,135)"># Sum log probabilities</span>
 <span class="ansi-green-fg">     36</span> log_lik = jnp.sum(jnp.log(pdf_values + <span class="ansi-green-fg">1e-10</span>))  <span style="font-style:italic;color:rgb(95,135,135)"># Add small constant for numerical stability</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/src/ptdalgorithms/ffi_wrappers.py:361</span>, in <span class="ansi-cyan-fg">compute_pmf_ffi</span><span class="ansi-blue-fg">(structure_json, theta, times, discrete, granularity)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/ffi_wrappers.py:361</span>, in <span class="ansi-cyan-fg">compute_pmf_ffi</span><span class="ansi-blue-fg">(structure_json, theta, times, discrete, granularity)</span>
 <span class="ansi-green-fg">    317</span> <span style="font-style:italic" class="ansi-yellow-fg">"""</span>
 <span class="ansi-green-fg">    318</span> <span style="font-style:italic" class="ansi-yellow-fg">Compute PMF (discrete) or PDF (continuous) using JAX FFI.</span>
 <span class="ansi-green-fg">    319</span> 
@@ -2582,7 +2582,7 @@ Testing log-posterior at true parameters:</code></pre>
 <span class="ansi-green-fg">    360</span> <span style="font-style:italic;color:rgb(95,135,135)"># TODO: Replace with true FFI call once handlers are properly exposed</span>
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">361</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">compute_pmf_fallback</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">structure_json</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">theta</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">times</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">discrete</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">granularity</span><span class="ansi-yellow-bg">)</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/src/ptdalgorithms/ffi_wrappers.py:174</span>, in <span class="ansi-cyan-fg">compute_pmf_fallback</span><span class="ansi-blue-fg">(structure_json, theta, times, discrete, granularity)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/ffi_wrappers.py:174</span>, in <span class="ansi-cyan-fg">compute_pmf_fallback</span><span class="ansi-blue-fg">(structure_json, theta, times, discrete, granularity)</span>
 <span class="ansi-green-fg">    170</span> <span style="font-style:italic;color:rgb(95,135,135)"># Use pure_callback to wrap the C++ call</span>
 <span class="ansi-green-fg">    171</span> <span style="font-style:italic;color:rgb(95,135,135)"># This allows JIT compilation while calling out to Python/C++</span>
 <span class="ansi-green-fg">    172</span> result_shape = jax.ShapeDtypeStruct(times.shape, jnp.float64)
@@ -2601,7 +2601,7 @@ Testing log-posterior at true parameters:</code></pre>
 <span class="ansi-green-fg">    186</span> <span class="ansi-yellow-bg">)</span>
 <span class="ansi-green-fg">    188</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> result
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py:388</span>, in <span class="ansi-cyan-fg">pure_callback</span><span class="ansi-blue-fg">(callback, result_shape_dtypes, sharding, vectorized, vmap_method, *args, **kwargs)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py:388</span>, in <span class="ansi-cyan-fg">pure_callback</span><span class="ansi-blue-fg">(callback, result_shape_dtypes, sharding, vectorized, vmap_method, *args, **kwargs)</span>
 <span class="ansi-green-fg">    385</span> result_avals = tree_util.tree_map(
 <span class="ansi-green-fg">    386</span>     <span style="font-weight:bold;color:rgb(0,135,0)">lambda</span> x: core.ShapedArray(x.shape, x.dtype), result_shape_dtypes)
 <span class="ansi-green-fg">    387</span> flat_result_avals, out_tree = tree_util.tree_flatten(result_avals)
@@ -2614,31 +2614,31 @@ Testing log-posterior at true parameters:</code></pre>
 <span class="ansi-green-fg">    394</span> <span class="ansi-yellow-bg">)</span>
 <span class="ansi-green-fg">    395</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> tree_util.tree_unflatten(out_tree, out_flat)
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:634</span>, in <span class="ansi-cyan-fg">Primitive.bind</span><span class="ansi-blue-fg">(self, *args, **params)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:634</span>, in <span class="ansi-cyan-fg">Primitive.bind</span><span class="ansi-blue-fg">(self, *args, **params)</span>
 <span class="ansi-green-fg">    632</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">bind</span>(<span style="color:rgb(0,135,0)">self</span>, *args, **params):
 <span class="ansi-green-fg">    633</span>   args = args <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">self</span>.skip_canonicalization <span style="font-weight:bold;color:rgb(0,135,0)">else</span> <span style="color:rgb(0,135,0)">map</span>(canonicalize_value, args)
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">634</span>   <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_true_bind</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">params</span><span class="ansi-yellow-bg">)</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:650</span>, in <span class="ansi-cyan-fg">Primitive._true_bind</span><span class="ansi-blue-fg">(self, *args, **params)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:650</span>, in <span class="ansi-cyan-fg">Primitive._true_bind</span><span class="ansi-blue-fg">(self, *args, **params)</span>
 <span class="ansi-green-fg">    648</span> trace_ctx.set_trace(eval_trace)
 <span class="ansi-green-fg">    649</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">650</span>   <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">bind_with_trace</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">prev_trace</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">params</span><span class="ansi-yellow-bg">)</span>
 <span class="ansi-green-fg">    651</span> <span style="font-weight:bold;color:rgb(0,135,0)">finally</span>:
 <span class="ansi-green-fg">    652</span>   trace_ctx.set_trace(prev_trace)
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:662</span>, in <span class="ansi-cyan-fg">Primitive.bind_with_trace</span><span class="ansi-blue-fg">(self, trace, args, params)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:662</span>, in <span class="ansi-cyan-fg">Primitive.bind_with_trace</span><span class="ansi-blue-fg">(self, trace, args, params)</span>
 <span class="ansi-green-fg">    660</span>     <span style="font-weight:bold;color:rgb(0,135,0)">with</span> set_current_trace(trace):
 <span class="ansi-green-fg">    661</span>       <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)">self</span>.to_lojax(*args, **params)  <span style="font-style:italic;color:rgb(95,135,135)"># type: ignore</span>
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">662</span>   <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">trace</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">process_primitive</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">params</span><span class="ansi-yellow-bg">)</span>
 <span class="ansi-green-fg">    663</span> trace.process_primitive(<span style="color:rgb(0,135,0)">self</span>, args, params)  <span style="font-style:italic;color:rgb(95,135,135)"># may raise lojax error</span>
 <span class="ansi-green-fg">    664</span> <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">Exception</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">couldn</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">t apply typeof to args: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>args<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:1189</span>, in <span class="ansi-cyan-fg">EvalTrace.process_primitive</span><span class="ansi-blue-fg">(self, primitive, args, params)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:1189</span>, in <span class="ansi-cyan-fg">EvalTrace.process_primitive</span><span class="ansi-blue-fg">(self, primitive, args, params)</span>
 <span class="ansi-green-fg">   1187</span> args = <span style="color:rgb(0,135,0)">map</span>(full_lower, args)
 <span class="ansi-green-fg">   1188</span> check_eval_args(args)
 <span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1189</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">primitive</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">impl</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">params</span><span class="ansi-yellow-bg">)</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/dispatch.py:90</span>, in <span class="ansi-cyan-fg">apply_primitive</span><span class="ansi-blue-fg">(prim, *args, **params)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/dispatch.py:90</span>, in <span class="ansi-cyan-fg">apply_primitive</span><span class="ansi-blue-fg">(prim, *args, **params)</span>
 <span class="ansi-green-fg">     88</span> prev = lib.jax_jit.swap_thread_local_state_disable_jit(<span style="font-weight:bold;color:rgb(0,135,0)">False</span>)
 <span class="ansi-green-fg">     89</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
 <span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">90</span>   outs = <span class="ansi-yellow-bg">fun</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">)</span>
@@ -2647,7 +2647,7 @@ Testing log-posterior at true parameters:</code></pre>
 
     <span class="ansi-red-fg">[... skipping hidden 5 frame]</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/interpreters/pxla.py:1372</span>, in <span class="ansi-cyan-fg">ExecuteReplicated.__call__</span><span class="ansi-blue-fg">(self, *args)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/interpreters/pxla.py:1372</span>, in <span class="ansi-cyan-fg">ExecuteReplicated.__call__</span><span class="ansi-blue-fg">(self, *args)</span>
 <span class="ansi-green-fg">   1369</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> (<span style="color:rgb(0,135,0)">self</span>.ordered_effects <span style="font-weight:bold;color:rgb(175,0,255)">or</span> <span style="color:rgb(0,135,0)">self</span>.has_unordered_effects
 <span class="ansi-green-fg">   1370</span>     <span style="font-weight:bold;color:rgb(175,0,255)">or</span> <span style="color:rgb(0,135,0)">self</span>.has_host_callbacks):
 <span class="ansi-green-fg">   1371</span>   input_bufs = <span style="color:rgb(0,135,0)">self</span>._add_tokens_to_inputs(input_bufs)
@@ -2659,50 +2659,50 @@ Testing log-posterior at true parameters:</code></pre>
 <span class="ansi-red-fg">XlaRuntimeError</span>: INTERNAL: CpuCallback error calling callback: Traceback (most recent call last):
   File "&lt;frozen runpy&gt;", line 198, in _run_module_as_main
   File "&lt;frozen runpy&gt;", line 88, in _run_code
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/ipykernel_launcher.py", line 18, in &lt;module&gt;
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/traitlets/config/application.py", line 1075, in launch_instance
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/kernelapp.py", line 739, in start
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/tornado/platform/asyncio.py", line 211, in start
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/asyncio/base_events.py", line 683, in run_forever
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/asyncio/base_events.py", line 2050, in _run_once
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/asyncio/events.py", line 89, in _run
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/kernelbase.py", line 519, in dispatch_queue
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/kernelbase.py", line 508, in process_one
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/kernelbase.py", line 400, in dispatch_shell
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/ipkernel.py", line 368, in execute_request
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/kernelbase.py", line 767, in execute_request
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/ipkernel.py", line 455, in do_execute
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/zmqshell.py", line 577, in run_cell
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/IPython/core/interactiveshell.py", line 3116, in run_cell
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/IPython/core/interactiveshell.py", line 3171, in _run_cell
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/IPython/core/async_helpers.py", line 128, in _pseudo_sync_runner
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/IPython/core/interactiveshell.py", line 3394, in run_cell_async
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/IPython/core/interactiveshell.py", line 3639, in run_ast_nodes
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/IPython/core/interactiveshell.py", line 3699, in run_code
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/ipykernel_launcher.py", line 18, in &lt;module&gt;
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/traitlets/config/application.py", line 1075, in launch_instance
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/kernelapp.py", line 739, in start
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/tornado/platform/asyncio.py", line 211, in start
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/asyncio/base_events.py", line 683, in run_forever
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/asyncio/base_events.py", line 2050, in _run_once
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/asyncio/events.py", line 89, in _run
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/kernelbase.py", line 519, in dispatch_queue
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/kernelbase.py", line 508, in process_one
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/kernelbase.py", line 400, in dispatch_shell
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/ipkernel.py", line 368, in execute_request
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/kernelbase.py", line 767, in execute_request
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/ipkernel.py", line 455, in do_execute
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/ipykernel/zmqshell.py", line 577, in run_cell
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/IPython/core/interactiveshell.py", line 3116, in run_cell
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/IPython/core/interactiveshell.py", line 3171, in _run_cell
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/IPython/core/async_helpers.py", line 128, in _pseudo_sync_runner
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/IPython/core/interactiveshell.py", line 3394, in run_cell_async
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/IPython/core/interactiveshell.py", line 3639, in run_ast_nodes
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/IPython/core/interactiveshell.py", line 3699, in run_code
   File "/var/folders/s6/srs8qkh52w1_h32d65z95tth0000gn/T/ipykernel_93797/2405647470.py", line 66, in &lt;module&gt;
   File "/var/folders/s6/srs8qkh52w1_h32d65z95tth0000gn/T/ipykernel_93797/2405647470.py", line 27, in log_likelihood_fn
-  File "/Users/kmt/PtDAlgorithms/src/ptdalgorithms/ffi_wrappers.py", line 361, in compute_pmf_ffi
-  File "/Users/kmt/PtDAlgorithms/src/ptdalgorithms/ffi_wrappers.py", line 174, in compute_pmf_fallback
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 388, in pure_callback
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py", line 634, in bind
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py", line 650, in _true_bind
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py", line 662, in bind_with_trace
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py", line 1189, in process_primitive
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/dispatch.py", line 90, in apply_primitive
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/traceback_util.py", line 180, in reraise_with_filtered_traceback
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/pjit.py", line 268, in cache_miss
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/pjit.py", line 147, in _python_pjit_helper
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/pjit.py", line 1780, in _pjit_call_impl_python
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/profiler.py", line 364, in wrapper
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/interpreters/pxla.py", line 1372, in __call__
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 784, in _wrapped_callback
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 223, in _callback
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 95, in pure_callback_impl
-  File "/Users/kmt/PtDAlgorithms/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 70, in __call__
-  File "/Users/kmt/PtDAlgorithms/src/ptdalgorithms/ffi_wrappers.py", line 175, in &lt;lambda&gt;
-  File "/Users/kmt/PtDAlgorithms/src/ptdalgorithms/ffi_wrappers.py", line 136, in _compute_pmf_impl
+  File "/Users/kmt/phasic/src/phasic/ffi_wrappers.py", line 361, in compute_pmf_ffi
+  File "/Users/kmt/phasic/src/phasic/ffi_wrappers.py", line 174, in compute_pmf_fallback
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 388, in pure_callback
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py", line 634, in bind
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py", line 650, in _true_bind
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py", line 662, in bind_with_trace
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py", line 1189, in process_primitive
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/dispatch.py", line 90, in apply_primitive
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/traceback_util.py", line 180, in reraise_with_filtered_traceback
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/pjit.py", line 268, in cache_miss
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/pjit.py", line 147, in _python_pjit_helper
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/pjit.py", line 1780, in _pjit_call_impl_python
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/profiler.py", line 364, in wrapper
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/interpreters/pxla.py", line 1372, in __call__
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 784, in _wrapped_callback
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 223, in _callback
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 95, in pure_callback_impl
+  File "/Users/kmt/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/callback.py", line 70, in __call__
+  File "/Users/kmt/phasic/src/phasic/ffi_wrappers.py", line 175, in &lt;lambda&gt;
+  File "/Users/kmt/phasic/src/phasic/ffi_wrappers.py", line 136, in _compute_pmf_impl
 TypeError: __init__(): incompatible constructor arguments. The following argument types are supported:
-    1. ptdalgorithms.ptdalgorithmscpp_pybind.parameterized.GraphBuilder(structure_json: str)
+    1. phasic.phasic_pybind.parameterized.GraphBuilder(structure_json: str)
 
 Invoked with: {'states': array([[0, 0, 0],
        [0, 1, 0],
@@ -2989,7 +2989,7 @@ Invoked with: {'states': array([[0, 0, 0],
 </div>
 <div id="cell-179" class="cell" data-execution_count="72">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb138"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run SVGD inference</span></span>
-<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms.svgd <span class="im">import</span> SVGD</span>
+<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic.svgd <span class="im">import</span> SVGD</span>
 <span id="cb138-3"><a href="#cb138-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb138-4"><a href="#cb138-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize SVGD</span></span>
 <span id="cb138-5"><a href="#cb138-5" aria-hidden="true" tabindex="-1"></a>n_particles <span class="op">=</span> <span class="dv">50</span></span>
@@ -3076,10 +3076,10 @@ Invoked with: {'states': array([[0, 0, 0],
 </section>
 <section id="model-caching-and-distribution" class="level2">
 <h2 class="anchored" data-anchor-id="model-caching-and-distribution">Model Caching and Distribution</h2>
-<p>When working with complex models, especially in research and production environments, two challenges frequently arise: . <strong>Computational efficiency</strong>: Recording elimination traces is O(n³) - expensive for large models. <strong>Reproducibility and sharing</strong>: How do we share pre-computed models with collaborators? PtDAlgorithms provides two caching mechanisms to address these challenges: ### Trace Caching Elimination traces are automatically cached based on graph structure (not parameter values). When you call <code>record_elimination_trace()</code> on a graph, the library: . Computes a content hash of the graph structure. Checks <code>~/.ptdalgorithms_cache/traces/</code> for a cached trace. If found, loads the trace instantly (avoiding O(n³) re-computation). If not found, records the trace and saves it for future use This means the expensive O(n³) recording happens only once per unique graph structure, regardless of how many times you evaluate the model with different parameters. ### Symbolic DAG Caching For models using symbolic elimination (the <code>eliminate_to_dag()</code> approach), similar caching is available. Symbolic DAGs are cached in <code>~/.ptdalgorithms_cache/symbolic/</code>. Let’s see both caching mechanisms in action:</p>
+<p>When working with complex models, especially in research and production environments, two challenges frequently arise: . <strong>Computational efficiency</strong>: Recording elimination traces is O(n³) - expensive for large models. <strong>Reproducibility and sharing</strong>: How do we share pre-computed models with collaborators? phasic provides two caching mechanisms to address these challenges: ### Trace Caching Elimination traces are automatically cached based on graph structure (not parameter values). When you call <code>record_elimination_trace()</code> on a graph, the library: . Computes a content hash of the graph structure. Checks <code>~/.phasic_cache/traces/</code> for a cached trace. If found, loads the trace instantly (avoiding O(n³) re-computation). If not found, records the trace and saves it for future use This means the expensive O(n³) recording happens only once per unique graph structure, regardless of how many times you evaluate the model with different parameters. ### Symbolic DAG Caching For models using symbolic elimination (the <code>eliminate_to_dag()</code> approach), similar caching is available. Symbolic DAGs are cached in <code>~/.phasic_cache/symbolic/</code>. Let’s see both caching mechanisms in action:</p>
 <div id="cell-182" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb141"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate automatic trace caching</span></span>
-<span id="cb141-2"><a href="#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms.trace_cache <span class="im">import</span> (</span>
+<span id="cb141-2"><a href="#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic.trace_cache <span class="im">import</span> (</span>
 <span id="cb141-3"><a href="#cb141-3" aria-hidden="true" tabindex="-1"></a>    get_trace_cache_stats,</span>
 <span id="cb141-4"><a href="#cb141-4" aria-hidden="true" tabindex="-1"></a>    list_cached_traces,</span>
 <span id="cb141-5"><a href="#cb141-5" aria-hidden="true" tabindex="-1"></a>    clear_trace_cache</span>
@@ -3129,7 +3129,7 @@ Invoked with: {'states': array([[0, 0, 0],
 </div>
 <div id="cell-183" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb142"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cache management utilities</span></span>
-<span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms.trace_cache <span class="im">import</span> cleanup_old_traces</span>
+<span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic.trace_cache <span class="im">import</span> cleanup_old_traces</span>
 <span id="cb142-3"><a href="#cb142-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb142-4"><a href="#cb142-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean up old caches (optional)</span></span>
 <span id="cb142-5"><a href="#cb142-5" aria-hidden="true" tabindex="-1"></a><span class="co"># This removes caches older than 30 days or enforces a size limit</span></span>
@@ -3153,15 +3153,15 @@ Invoked with: {'states': array([[0, 0, 0],
 model = build_complex_model()  # Your custom model\n
 trace = record_elimination_trace(model)\n
 \n
-# Trace is automatically saved to ~/.ptdalgorithms_cache/traces/\n
+# Trace is automatically saved to ~/.phasic_cache/traces/\n
 # Find the cache file:\n
-from ptdalgorithms.trace_cache import list_cached_traces\n
+from phasic.trace_cache import list_cached_traces\n
 entries = list_cached_traces()\n
 latest = entries[0]  # Most recent\n
 print(f\"Cache file: {latest['hash']}.json\")\n
 \n
 # Share this file with collaborators\n
-# They place it in their ~/.ptdalgorithms_cache/traces/ directory\n
+# They place it in their ~/.phasic_cache/traces/ directory\n
 ```\n
 \n
 **On collaborator's machine:**\n
@@ -3197,7 +3197,7 @@ print(f"File size: {output_path.stat().st_size / 1024:.1f} KB")
 with open(output_path, 'r') as f:
     loaded_json = json.load(f)
 
-from ptdalgorithms import Graph
+from phasic import Graph
 reconstructed_model = Graph()
 # reconstructed_model.deserialize(loaded_json)  # If implemented
 
@@ -3208,11 +3208,11 @@ print(f"  - Package distribution (bundled cache)")
 </code></pre>
 <p>:::</p>
 <p>The SVGD particles now represent our posterior distribution. Each particle is a plausible set of parameter values given the observed data, and the collection of particles approximates the full posterior. We can use these particles to compute posterior summaries (means, quantiles, credible intervals), make predictions, or perform model checking. The spread of the particles reflects our uncertainty—parameters with wide spread are less constrained by the data, while parameters with narrow spread are well-determined.</p>
-<p>This inference workflow showcases the full power of the ptdalgorithms ecosystem. We constructed a complex stochastic model using graph-based state space representation. We parameterized it for efficient exploration of parameter space. We performed symbolic Gaussian elimination to enable ultra-fast repeated evaluation. We integrated with JAX for automatic differentiation and JIT compilation. We implemented a gradient-based inference algorithm (SVGD) that can be parallelized across devices and nodes. And we can scale this entire workflow to much larger problems—more complex models, more observations, more particles—by leveraging distributed computing.</p>
+<p>This inference workflow showcases the full power of the phasic ecosystem. We constructed a complex stochastic model using graph-based state space representation. We parameterized it for efficient exploration of parameter space. We performed symbolic Gaussian elimination to enable ultra-fast repeated evaluation. We integrated with JAX for automatic differentiation and JIT compilation. We implemented a gradient-based inference algorithm (SVGD) that can be parallelized across devices and nodes. And we can scale this entire workflow to much larger problems—more complex models, more observations, more particles—by leveraging distributed computing.</p>
 <p>For production inference runs, you would typically use more particles (100-1000), run for more iterations (1000-10000), use adaptive step sizes, monitor convergence diagnostics, and leverage the distributed computing infrastructure we described earlier to parallelize across many nodes. The combination of symbolic elimination (100× faster evaluation), distributed computing (100× more parallel evaluations), and gradient-based inference (100× fewer iterations than MCMC) can easily provide five or six orders of magnitude of speedup compared to naive approaches, transforming intractable problems into routine computations.</p>
 <p>Modern computational infrastructure offers substantial computing power not just through faster processors, but through massive parallelism across multiple machines. A typical high-performance computing (HPC) cluster might have dozens to hundreds of compute nodes, each with dozens of CPU cores, representing thousands of processor cores working in parallel. For computationally intensive tasks like Bayesian inference, where we need to evaluate a complex model millions of times, this parallel computing power is transformative. What might take days on a single machine can complete in hours or minutes when distributed across a cluster.</p>
-<p>The ptdalgorithms library is designed from the ground up to leverage this distributed computing infrastructure. Through tight integration with JAX’s distributed computing capabilities and support for SLURM (Simple Linux Utility for Resource Management), the standard job scheduler on HPC clusters, the library makes it straightforward to scale from running on your laptop to running on hundreds of nodes. The key insight is that many inference algorithms—particularly particle-based methods like Stein Variational Gradient Descent (SVGD)—are naturally parallel. Each particle can be evaluated independently, and gradients can be computed in parallel across all particles. With the right infrastructure, we can distribute these particles across many machines and aggregate results efficiently.</p>
-<p>This section demonstrates how to set up and run distributed computations with ptdalgorithms. We will see how the library automatically detects whether it is running on a SLURM cluster, how it coordinates multiple processes across different nodes, and how JAX distributes computations across available resources. We will work with our rabbit model, showing how the combination of symbolic elimination (for fast per-particle evaluation) and distributed computing (for parallel particle evaluation) enables inference at scales that would be impossible on a single machine.</p>
+<p>The phasic library is designed from the ground up to leverage this distributed computing infrastructure. Through tight integration with JAX’s distributed computing capabilities and support for SLURM (Simple Linux Utility for Resource Management), the standard job scheduler on HPC clusters, the library makes it straightforward to scale from running on your laptop to running on hundreds of nodes. The key insight is that many inference algorithms—particularly particle-based methods like Stein Variational Gradient Descent (SVGD)—are naturally parallel. Each particle can be evaluated independently, and gradients can be computed in parallel across all particles. With the right infrastructure, we can distribute these particles across many machines and aggregate results efficiently.</p>
+<p>This section demonstrates how to set up and run distributed computations with phasic. We will see how the library automatically detects whether it is running on a SLURM cluster, how it coordinates multiple processes across different nodes, and how JAX distributes computations across available resources. We will work with our rabbit model, showing how the combination of symbolic elimination (for fast per-particle evaluation) and distributed computing (for parallel particle evaluation) enables inference at scales that would be impossible on a single machine.</p>
 <p>The workflow has three main components: (1) initialization, where we detect the distributed environment and set up JAX for multi-node computation; (2) model setup, where we construct our parameterized model and perform symbolic elimination; and (3) distributed evaluation, where we leverage JAX’s <code>pmap</code> (parallel map) to evaluate the model across all available devices in parallel. Let’s see each component in detail.</p>
 </section>
 </section>
@@ -3336,7 +3336,7 @@ Distributed Configuration:
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/phasic\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

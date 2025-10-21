@@ -112,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/munch-group/ptdalgorithms/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/munch-group/phasic/"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -234,7 +234,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/distributed/distributed_computing_complete_guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed Computing with PtDAlgorithms - Complete Guide</span></a>
+ <span class="menu-text">Distributed Computing with phasic - Complete Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -352,7 +352,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="https://github.com/munch-group/ptdalgorithms/issues" class="sidebar-item-text sidebar-link">
+  <a href="https://github.com/munch-group/phasic/issues" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Issue Tracker</span></a>
   </div>
 </li>
@@ -406,7 +406,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>PtDAlgorithms is a multi-language scientific computing library designed to provide efficient algorithms for phase-type distributions through graph-based computational approaches. The library’s foundation rests on a core C implementation that provides the fundamental graph algorithms and data structures exposed through C++, R and Python APIs constructed to offer idiomatic interfaces for each target language.</p>
+<p>phasic is a multi-language scientific computing library designed to provide efficient algorithms for phase-type distributions through graph-based computational approaches. The library’s foundation rests on a core C implementation that provides the fundamental graph algorithms and data structures exposed through C++, R and Python APIs constructed to offer idiomatic interfaces for each target language.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -417,7 +417,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Phasic builds on the <a href="https://github.com/TobiasRoikjer/PtDAlgorithms">PtDAlgorithms</a> project implementing the core algorithms. The C++ and R APIs of PtDAlgorithms are maintained and distributed as part of phasic, but only the Python API supports JAX integration, symbolic parametrization, multiprocessing, SVGD inference, and precomputed templates. For reference to core algotihms and R API please cite:</p>
+<p>Phasic builds on the <a href="https://github.com/TobiasRoikjer/phasic">phasic</a> project implementing the core algorithms. The C++ and R APIs of phasic are maintained and distributed as part of phasic, but only the Python API supports JAX integration, symbolic parametrization, multiprocessing, SVGD inference, and precomputed templates. For reference to core algotihms and R API please cite:</p>
 <ul>
 <li><a href="https://doi.org/10.1007/s11222-022-10174-3">Røikjer et al.&nbsp;(2022)</a>. Graph-based algorithms for phase-type distributions. <em>Statistics and Computing</em>, 32, 91.</li>
 </ul>
@@ -429,16 +429,16 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="project-structure-and-organization" class="level2">
 <h2 class="anchored" data-anchor-id="project-structure-and-organization">Project Structure and Organization</h2>
-<p>The PtDAlgorithms project follows a hierarchical organization that reflects its multi-layered architecture. At the root level, the <code>api/</code> directory houses the public interface definitions, with separate subdirectories for C and C++ APIs that establish the contract between the core implementation and its various language bindings. The <code>src/</code> directory contains the actual implementation files, organized to mirror the architectural layers, with core C code residing in <code>src/c/</code>, C++ wrappers and Python bindings in <code>src/cpp/</code>, and the Python package structure maintained within <code>src/ptdalgorithms/</code>.</p>
+<p>The phasic project follows a hierarchical organization that reflects its multi-layered architecture. At the root level, the <code>api/</code> directory houses the public interface definitions, with separate subdirectories for C and C++ APIs that establish the contract between the core implementation and its various language bindings. The <code>src/</code> directory contains the actual implementation files, organized to mirror the architectural layers, with core C code residing in <code>src/c/</code>, C++ wrappers and Python bindings in <code>src/cpp/</code>, and the Python package structure maintained within <code>src/phasic/</code>.</p>
 <p>The R integration follows standard R package conventions, with R-specific files located in the <code>R/</code> directory and compilation configuration managed through <code>src/Makevars</code> files. JAX integration is provided through parameterized graph functionality in <code>src/cpp/parameterized/</code>, offering GPU-accelerated computation capabilities with automatic differentiation through XLA FFI (Foreign Function Interface). The <code>include/</code> directory provides header files for user-defined models, enabling developers to implement custom phase-type models in C++ that integrate seamlessly with the JAX computational framework. Documentation, examples, and test suites are organized in their respective directories, supporting the development workflow across all target languages.</p>
 </section>
 <section id="component-architecture" class="level2">
 <h2 class="anchored" data-anchor-id="component-architecture">Component Architecture</h2>
 <section id="the-core-c-foundation" class="level3">
 <h3 class="anchored" data-anchor-id="the-core-c-foundation">The Core C Foundation</h3>
-<p>The architectural foundation of PtDAlgorithms lies in its C implementation, which provides the essential graph algorithms and data structures that power phase-type distribution computations. This layer establishes the fundamental abstractions through structures like <code>ptd_graph</code>, <code>ptd_vertex</code>, and <code>ptd_edge</code>, which collectively represent the mathematical objects and their relationships within the computational framework.</p>
+<p>The architectural foundation of phasic lies in its C implementation, which provides the essential graph algorithms and data structures that power phase-type distribution computations. This layer establishes the fundamental abstractions through structures like <code>ptd_graph</code>, <code>ptd_vertex</code>, and <code>ptd_edge</code>, which collectively represent the mathematical objects and their relationships within the computational framework.</p>
 <p>The core C layer implements sophisticated algorithms for graph manipulation, including normalization procedures, reward transformation operations, and probability computations. A particularly important component is the AVL tree implementation (<code>ptd_avl_tree</code>) that enables efficient vertex lookup operations based on state vectors, ensuring that the library can handle large-scale problems with appropriate computational complexity guarantees.</p>
-<p>The C implementation maintains state through distribution contexts that support iterative probability calculations, allowing for efficient computation of probability density functions, cumulative distribution functions, and related statistical measures. The complete C API, documented in <code>api/c/ptdalgorithms.h</code>, spans over 400 lines of carefully designed interface definitions that establish the contract for all higher-level language bindings.</p>
+<p>The C implementation maintains state through distribution contexts that support iterative probability calculations, allowing for efficient computation of probability density functions, cumulative distribution functions, and related statistical measures. The complete C API, documented in <code>api/c/phasic.h</code>, spans over 400 lines of carefully designed interface definitions that establish the contract for all higher-level language bindings.</p>
 <p>Memory management within the C layer follows manual allocation and deallocation patterns typical of C programming, with careful attention to resource cleanup and error handling through a global error buffer mechanism. This approach ensures predictable performance characteristics while requiring careful coordination with higher-level language bindings to prevent memory leaks and ensure proper resource management.</p>
 </section>
 <section id="c-wrapper-layer-enhancement" class="level3">
@@ -461,11 +461,11 @@ ul.task-list li input[type="checkbox"] {
 <p>The R integration follows standard R package development practices, utilizing Rcpp to provide seamless interoperability between R and the underlying C++ implementation. The binding generation process relies on Rcpp’s automatic code generation capabilities, where C++ functions annotated with special comments are automatically wrapped to provide R-native interfaces.</p>
 <p>The R bindings handle conversion between R’s data structures and the library’s internal representations, supporting R vectors, lists, and data frames as natural input and output formats. The package structure includes comprehensive documentation following R’s documentation standards, with man pages generated for each exported function and proper integration with R’s help system.</p>
 <p>Compilation configuration for the R package occurs through <code>src/Makevars</code> files that specify the necessary compiler flags and include paths to link against the C++ implementation. The build process integrates smoothly with R’s package management system, allowing users to install the package through standard R mechanisms while ensuring that all necessary dependencies are properly resolved.</p>
-<p>The R interface maintains consistency with the broader PtDAlgorithms API while respecting R’s programming conventions and idioms. Functions accept and return R objects naturally, and error handling integrates with R’s exception mechanism to provide meaningful feedback when operations fail or encounter invalid input.</p>
+<p>The R interface maintains consistency with the broader phasic API while respecting R’s programming conventions and idioms. Functions accept and return R objects naturally, and error handling integrates with R’s exception mechanism to provide meaningful feedback when operations fail or encounter invalid input.</p>
 </section>
 <section id="jax-integration-through-xla-ffi" class="level3">
 <h3 class="anchored" data-anchor-id="jax-integration-through-xla-ffi">JAX Integration Through XLA FFI</h3>
-<p>The JAX integration represents a sophisticated enhancement of PtDAlgorithms that leverages JAX’s XLA Foreign Function Interface (FFI) to provide automatic differentiation and GPU acceleration capabilities. This implementation resides in <code>src/cpp/parameterized/</code>, fully integrated into the main build system and Python bindings through pybind11.</p>
+<p>The JAX integration represents a sophisticated enhancement of phasic that leverages JAX’s XLA Foreign Function Interface (FFI) to provide automatic differentiation and GPU acceleration capabilities. This implementation resides in <code>src/cpp/parameterized/</code>, fully integrated into the main build system and Python bindings through pybind11.</p>
 <p>The architecture introduces parameterized graph functionality that enables edges to carry parameter state vectors alongside their weights. During graph construction, edges can be defined with expressions like <code>weight = θ₀ * coefficient₀ + θ₁ * coefficient₁</code>, where the coefficients are stored in the edge’s state vector. This parameterization occurs at the graph structure level, allowing the same graph topology to represent different models based on parameter values.</p>
 <p>The core components include <code>graph_builder.cpp</code> and <code>graph_builder.hpp</code>, which implement the parameterized graph construction logic, and <code>ffi_handlers.cpp</code>, which provides FFI-registered functions that JAX can call directly through XLA. This FFI approach offers superior performance compared to callback-based integration, as operations execute within XLA’s optimized runtime without crossing language boundaries during computation.</p>
 <p>The implementation supports multiple integration pathways: users can build parameterized graphs directly in Python using callback functions, load C++ models through the <code>include/user_model.h</code> interface, or work with pre-constructed graphs that accept parameter vectors. The FFI handlers expose functions for computing PMFs, PDFs, and moments, all of which support JAX’s transformation system including JIT compilation, automatic differentiation, vmap for batching, and pmap for multi-device parallelization.</p>
@@ -580,7 +580,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/phasic\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

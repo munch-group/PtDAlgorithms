@@ -149,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/munch-group/ptdalgorithms/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/munch-group/phasic/"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -254,7 +254,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> Graph, initialize_distributed, SVGD</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> Graph, initialize_distributed, SVGD</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
@@ -540,7 +540,7 @@ Running SVGD: 300 steps, 8 particles</code></pre>
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/src/ptdalgorithms/svgd.py:828</span>, in <span class="ansi-cyan-fg">SVGD._log_prob</span><span class="ansi-blue-fg">(self, theta)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:828</span>, in <span class="ansi-cyan-fg">SVGD._log_prob</span><span class="ansi-blue-fg">(self, theta)</span>
 <span class="ansi-green-fg">    827</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">828</span>     result = <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">model</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">theta</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">observed_data</span><span class="ansi-yellow-bg">)</span>
 <span class="ansi-green-fg">    829</span>     <span style="font-style:italic;color:rgb(95,135,135)"># Handle both (pmf, moments) and pmf-only models</span>
@@ -557,7 +557,7 @@ During handling of the above exception, another exception occurred:
 <span class="ansi-green-fg">     23</span> <span style="font-style:italic;color:rgb(95,135,135)"># Get results</span>
 <span class="ansi-green-fg">     24</span> results = svgd.get_results()
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/src/ptdalgorithms/svgd.py:876</span>, in <span class="ansi-cyan-fg">SVGD.fit</span><span class="ansi-blue-fg">(self, return_history)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:876</span>, in <span class="ansi-cyan-fg">SVGD.fit</span><span class="ansi-blue-fg">(self, return_history)</span>
 <span class="ansi-green-fg">    873</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">  Data points: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">len</span>(<span style="color:rgb(0,135,0)">self</span>.observed_data)<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
 <span class="ansi-green-fg">    874</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">  Prior: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">custom</span><span class="ansi-yellow-fg">'</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">if</span><span style="color:rgb(188,188,188)"> </span><span style="color:rgb(0,135,0)">self</span>.prior<span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(175,0,255)">is</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(175,0,255)">not</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">None</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">else</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">standard normal</span><span class="ansi-yellow-fg">'</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">876</span> results = <span class="ansi-yellow-bg">run_svgd</span><span class="ansi-yellow-bg">(</span>
@@ -572,7 +572,7 @@ During handling of the above exception, another exception occurred:
 <span class="ansi-green-fg">    886</span> <span style="font-style:italic;color:rgb(95,135,135)"># Store results as attributes</span>
 <span class="ansi-green-fg">    887</span> <span style="color:rgb(0,135,0)">self</span>.particles = results[<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">particles</span><span class="ansi-yellow-fg">'</span>]
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/src/ptdalgorithms/svgd.py:610</span>, in <span class="ansi-cyan-fg">run_svgd</span><span class="ansi-blue-fg">(log_prob_fn, theta_init, n_steps, learning_rate, kernel, return_history, verbose)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:610</span>, in <span class="ansi-cyan-fg">run_svgd</span><span class="ansi-blue-fg">(log_prob_fn, theta_init, n_steps, learning_rate, kernel, return_history, verbose)</span>
 <span class="ansi-green-fg">    606</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Running SVGD: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>n_steps<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> steps, </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">len</span>(particles)<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> particles</span><span class="ansi-yellow-fg">"</span>)
 <span class="ansi-green-fg">    608</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> step <span style="font-weight:bold;color:rgb(175,0,255)">in</span> trange(n_steps) <span style="font-weight:bold;color:rgb(0,135,0)">if</span> verbose <span style="font-weight:bold;color:rgb(0,135,0)">else</span> <span style="color:rgb(0,135,0)">range</span>(n_steps):
 <span class="ansi-green-fg">    609</span>     <span style="font-style:italic;color:rgb(95,135,135)"># Perform SVGD update</span>
@@ -580,7 +580,7 @@ During handling of the above exception, another exception occurred:
 <span class="ansi-green-fg">    612</span>     <span style="font-style:italic;color:rgb(95,135,135)"># Store history</span>
 <span class="ansi-green-fg">    613</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> return_history <span style="font-weight:bold;color:rgb(175,0,255)">and</span> (step % <span style="color:rgb(0,135,0)">max</span>(<span class="ansi-green-fg">1</span>, n_steps // <span class="ansi-green-fg">20</span>) == <span class="ansi-green-fg">0</span>):
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/src/ptdalgorithms/svgd.py:543</span>, in <span class="ansi-cyan-fg">svgd_step</span><span class="ansi-blue-fg">(particles, log_prob_fn, kernel, step_size)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:543</span>, in <span class="ansi-cyan-fg">svgd_step</span><span class="ansi-blue-fg">(particles, log_prob_fn, kernel, step_size)</span>
 <span class="ansi-green-fg">    540</span> n_particles = particles.shape[<span class="ansi-green-fg">0</span>]
 <span class="ansi-green-fg">    542</span> <span style="font-style:italic;color:rgb(95,135,135)"># Compute log probability gradients for each particle</span>
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">543</span> grad_log_p = <span class="ansi-yellow-bg">vmap</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">grad</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">log_prob_fn</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">particles</span><span class="ansi-yellow-bg">)</span>
@@ -589,7 +589,7 @@ During handling of the above exception, another exception occurred:
 
     <span class="ansi-red-fg">[... skipping hidden 19 frame]</span>
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/PtDAlgorithms/src/ptdalgorithms/svgd.py:835</span>, in <span class="ansi-cyan-fg">SVGD._log_prob</span><span class="ansi-blue-fg">(self, theta)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:835</span>, in <span class="ansi-cyan-fg">SVGD._log_prob</span><span class="ansi-blue-fg">(self, theta)</span>
 <span class="ansi-green-fg">    833</span>         model_values = result
 <span class="ansi-green-fg">    834</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> <span style="font-weight:bold;color:rgb(215,95,95)">Exception</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> e:
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">835</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>(
@@ -879,7 +879,7 @@ During handling of the above exception, another exception occurred:
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/phasic\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

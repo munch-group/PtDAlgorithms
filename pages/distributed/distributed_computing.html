@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Distributed Computing with PtDAlgorithms</title>
+<title>Distributed Computing with phasic</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -146,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/munch-group/ptdalgorithms/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/munch-group/phasic/"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -217,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a>
   <ul class="collapse">
-  <li><a href="#issue-module-ptdalgorithms-not-found" id="toc-issue-module-ptdalgorithms-not-found" class="nav-link" data-scroll-target="#issue-module-ptdalgorithms-not-found">Issue: “Module ‘ptdalgorithms’ not found”</a></li>
+  <li><a href="#issue-module-phasic-not-found" id="toc-issue-module-phasic-not-found" class="nav-link" data-scroll-target="#issue-module-phasic-not-found">Issue: “Module ‘phasic’ not found”</a></li>
   <li><a href="#issue-jax-distributed-initialization-failed" id="toc-issue-jax-distributed-initialization-failed" class="nav-link" data-scroll-target="#issue-jax-distributed-initialization-failed">Issue: “JAX distributed initialization failed”</a></li>
   <li><a href="#issue-slurm-environment-not-detected" id="toc-issue-slurm-environment-not-detected" class="nav-link" data-scroll-target="#issue-slurm-environment-not-detected">Issue: “SLURM environment not detected”</a></li>
   <li><a href="#issue-particles-not-evenly-distributed" id="toc-issue-particles-not-evenly-distributed" class="nav-link" data-scroll-target="#issue-particles-not-evenly-distributed">Issue: “Particles not evenly distributed”</a></li>
@@ -240,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Distributed Computing with PtDAlgorithms</h1>
+<h1 class="title">Distributed Computing with phasic</h1>
 </div>
 
 
@@ -298,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="the-new-way-1-line" class="level3">
 <h3 class="anchored" data-anchor-id="the-new-way-1-line">The New Way (1 line!) ✓</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> initialize_distributed</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> initialize_distributed</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dist_info <span class="op">=</span> initialize_distributed()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>That’s it!</strong> All SLURM detection, coordinator setup, and JAX initialization happens automatically.</p>
@@ -309,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="example-1-simple-distributed-computation" class="level3">
 <h3 class="anchored" data-anchor-id="example-1-simple-distributed-computation">Example 1: Simple Distributed Computation</h3>
 <p><strong>File:</strong> <code>distributed_inference_simple.py</code></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> Graph, initialize_distributed</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> Graph, initialize_distributed</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ONE LINE - replaces 200+ lines of boilerplate</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dist_info <span class="op">=</span> initialize_distributed()</span>
@@ -333,8 +333,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="example-2-distributed-svgd-inference-with-monitoring">Example 2: Distributed SVGD Inference with Monitoring</h3>
 <p><strong>File:</strong> <code>simple_multinode_example.py</code></p>
 <p>This example shows SVGD (Stein Variational Gradient Descent) inference distributed across multiple nodes with CPU monitoring:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> initialize_distributed, CPUMonitor</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms.ffi_wrappers <span class="im">import</span> compute_pmf_and_moments_ffi</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> initialize_distributed, CPUMonitor</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic.ffi_wrappers <span class="im">import</span> compute_pmf_and_moments_ffi</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize distributed computing</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>dist_info <span class="op">=</span> initialize_distributed()</span>
@@ -356,7 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The new system uses <strong>YAML files</strong> to separate configuration from code.</p>
 <section id="using-predefined-profiles" class="level3">
 <h3 class="anchored" data-anchor-id="using-predefined-profiles">Using Predefined Profiles</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms.cluster_configs <span class="im">import</span> get_default_config</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic.cluster_configs <span class="im">import</span> get_default_config</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Available profiles: debug, small, medium, large, production</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>config <span class="op">=</span> get_default_config(<span class="st">"medium"</span>)</span>
@@ -434,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="st">"python/3.11"</span></span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="st">"gcc/11.2.0"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Load in Python:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms.cluster_configs <span class="im">import</span> load_config</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic.cluster_configs <span class="im">import</span> load_config</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>config <span class="op">=</span> load_config(<span class="st">"docs/examples/slurm_configs/my_config.yaml"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
@@ -525,7 +525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="initialize_distributed" class="level4">
 <h4 class="anchored" data-anchor-id="initialize_distributed"><code>initialize_distributed()</code></h4>
 <p>The main entry point for distributed computing with <strong>automatic SLURM detection</strong>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> initialize_distributed</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> initialize_distributed</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>dist_info <span class="op">=</span> initialize_distributed(</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    cpus_per_task<span class="op">=</span><span class="va">None</span>,      <span class="co"># Auto-detected from SLURM_CPUS_PER_TASK</span></span>
@@ -546,7 +546,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="get_default_configprofile" class="level4">
 <h4 class="anchored" data-anchor-id="get_default_configprofile"><code>get_default_config(profile)</code></h4>
 <p>Get predefined cluster configuration.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms.cluster_configs <span class="im">import</span> get_default_config</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic.cluster_configs <span class="im">import</span> get_default_config</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>config <span class="op">=</span> get_default_config(<span class="st">"medium"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Available profiles:</strong> <code>"debug"</code>, <code>"small"</code>, <code>"medium"</code>, <code>"large"</code>, <code>"production"</code></p>
@@ -554,14 +554,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="load_configfilepath" class="level4">
 <h4 class="anchored" data-anchor-id="load_configfilepath"><code>load_config(filepath)</code></h4>
 <p>Load custom configuration from YAML file.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms.cluster_configs <span class="im">import</span> load_config</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic.cluster_configs <span class="im">import</span> load_config</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>config <span class="op">=</span> load_config(<span class="st">"docs/examples/slurm_configs/my_config.yaml"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="cpumonitor" class="level4">
 <h4 class="anchored" data-anchor-id="cpumonitor"><code>CPUMonitor</code></h4>
 <p>Context manager for monitoring CPU usage with <strong>automatic SLURM node detection</strong>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> CPUMonitor</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> CPUMonitor</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> CPUMonitor(</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    update_interval<span class="op">=</span><span class="fl">0.5</span>,    <span class="co"># Update every 0.5 seconds</span></span>
@@ -582,7 +582,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="detect_slurm_environment" class="level4">
 <h4 class="anchored" data-anchor-id="detect_slurm_environment"><code>detect_slurm_environment()</code></h4>
 <p>Manually detect SLURM environment variables.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms.distributed_utils <span class="im">import</span> detect_slurm_environment</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic.distributed_utils <span class="im">import</span> detect_slurm_environment</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>env <span class="op">=</span> detect_slurm_environment()</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> env:</span>
@@ -592,14 +592,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="configure_jax_devices" class="level4">
 <h4 class="anchored" data-anchor-id="configure_jax_devices"><code>configure_jax_devices()</code></h4>
 <p>Configure JAX device count (called automatically by <code>initialize_distributed</code>).</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms.distributed_utils <span class="im">import</span> configure_jax_devices</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic.distributed_utils <span class="im">import</span> configure_jax_devices</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>configure_jax_devices(num_devices<span class="op">=</span><span class="dv">8</span>, platform<span class="op">=</span><span class="st">"cpu"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="initialize_jax_distributed" class="level4">
 <h4 class="anchored" data-anchor-id="initialize_jax_distributed"><code>initialize_jax_distributed()</code></h4>
 <p>Initialize JAX distributed (called automatically by <code>initialize_distributed</code>).</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms.distributed_utils <span class="im">import</span> initialize_jax_distributed</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic.distributed_utils <span class="im">import</span> initialize_jax_distributed</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>initialize_jax_distributed(</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    coordinator_address<span class="op">=</span><span class="st">"node01:12345"</span>,</span>
@@ -632,14 +632,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="monitoring-distributed-jobs" class="level2">
 <h2 class="anchored" data-anchor-id="monitoring-distributed-jobs">Monitoring Distributed Jobs</h2>
-<p>PtDAlgorithms includes a built-in CPU monitoring system that <strong>automatically detects SLURM nodes</strong> and displays per-node, per-core CPU usage in real-time.</p>
+<p>phasic includes a built-in CPU monitoring system that <strong>automatically detects SLURM nodes</strong> and displays per-node, per-core CPU usage in real-time.</p>
 <section id="automatic-node-detection" class="level3">
 <h3 class="anchored" data-anchor-id="automatic-node-detection">Automatic Node Detection</h3>
 <p>The monitoring system automatically detects: - <strong>Local execution</strong>: Shows your laptop/workstation - <strong>SLURM jobs</strong>: Detects all allocated nodes from <code>SLURM_JOB_NODELIST</code> - <strong>Allocated CPUs</strong>: Filters to show only your job’s CPUs from <code>SLURM_CPUS_PER_TASK</code></p>
 </section>
 <section id="example-monitoring-distributed-svgd" class="level3">
 <h3 class="anchored" data-anchor-id="example-monitoring-distributed-svgd">Example: Monitoring Distributed SVGD</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> initialize_distributed, CPUMonitor</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> initialize_distributed, CPUMonitor</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize distributed computing (auto-detects SLURM)</span></span>
@@ -728,8 +728,8 @@ node02 52% mem
 </section>
 <section id="troubleshooting" class="level2">
 <h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
-<section id="issue-module-ptdalgorithms-not-found" class="level3">
-<h3 class="anchored" data-anchor-id="issue-module-ptdalgorithms-not-found">Issue: “Module ‘ptdalgorithms’ not found”</h3>
+<section id="issue-module-phasic-not-found" class="level3">
+<h3 class="anchored" data-anchor-id="issue-module-phasic-not-found">Issue: “Module ‘phasic’ not found”</h3>
 <p><strong>Solution:</strong> Ensure the package is installed in your environment:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># With Pixi (recommended)</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> install</span>
@@ -914,7 +914,7 @@ node02 52% mem
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/phasic\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

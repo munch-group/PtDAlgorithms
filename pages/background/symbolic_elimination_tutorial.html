@@ -149,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/munch-group/ptdalgorithms/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/munch-group/phasic/"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -212,14 +212,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This notebook demonstrates the new <strong>symbolic graph elimination</strong> feature in PtDAlgorithms, which provides <strong>100-1000× speedup</strong> for inference algorithms like SVGD by eliminating redundant O(n³) graph recomputation.</p>
+<p>This notebook demonstrates the new <strong>symbolic graph elimination</strong> feature in phasic, which provides <strong>100-1000× speedup</strong> for inference algorithms like SVGD by eliminating redundant O(n³) graph recomputation.</p>
 <section id="table-of-contents" class="level2">
 <h2 class="anchored" data-anchor-id="table-of-contents">Table of Contents</h2>
 <p><a href="#problem">The Problem: O(n³) Bottleneck</a> <a href="#solution">The Solution: Symbolic Elimination</a> <a href="#technical">Under the Hood: Technical Details</a> <a href="#performance">Performance Comparison</a> <a href="#svgd">Integration with SVGD</a> <a href="#best-practices">Best Practices</a></p>
 <div id="cell-2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> Graph, SymbolicDAG</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> Graph, SymbolicDAG</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><a id="problem"></a>## The Problem: O(n³) BottleneckWhen using parameterized phase-type distributions for inference (e.g., SVGD, MCMC), we need to:1. Build a graph structure based on the model2. Evaluate the distribution (PDF/PMF/moments) for many different parameter values### Traditional Approach (Slow)The traditional approach rebuilds the <strong>entire reward compute graph</strong> for each parameter vector:<code>For each particle θ in swarm:    1. Update edge weights: O(n)    2. Build reward compute graph: O(n³)  ← BOTTLENECK!    3. Compute moments/PDF: O(n)    Total: O(particles × n³)</code>### Example: Coalescent Model</p>
@@ -2408,7 +2408,7 @@ INFO: building reward compute graph...</code></pre>
 <li>Report performance improvements and any issues</li>
 </ul>
 <hr>
-<p><em>Generated with Claude Code - PtDAlgorithms v0.21.3</em></p>
+<p><em>Generated with Claude Code - phasic v0.21.3</em></p>
 
 
 </section>
@@ -2488,7 +2488,7 @@ INFO: building reward compute graph...</code></pre>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/phasic\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

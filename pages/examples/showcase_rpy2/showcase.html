@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Showcase for ptdalgorithms</title>
+<title>Showcase for phasic</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -149,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/munch-group/ptdalgorithms/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/munch-group/phasic/"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -196,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Showcase for ptdalgorithms</h1>
+<h1 class="title">Showcase for phasic</h1>
 </div>
 
 
@@ -256,11 +256,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>library(tidyverse)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>library(devtools)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>remove.packages(<span class="st">"ptdalgorithms"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>remove.packages(<span class="st">"phasic"</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>devtools::install_github(<span class="st">"TobiasRoikjer/PtDAlgorithms"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>devtools::install_github(<span class="st">"TobiasRoikjer/phasic"</span>)</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>library(ptdalgorithms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>library(phasic)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>R[write to console]: Removing package from ‘/Users/kmt/miniconda3/envs/phasetypes/lib/R/library’
 (as ‘lib’ is unspecified)
@@ -270,33 +270,33 @@ R[write to console]: Updating HTML index of packages in '.Library'
 R[write to console]: Making 'packages.html' ...
 R[write to console]:  done
 
-R[write to console]: Downloading GitHub repo TobiasRoikjer/PtDAlgorithms@HEAD
+R[write to console]: Downloading GitHub repo TobiasRoikjer/phasic@HEAD
 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>* checking for file ‘/private/var/folders/33/sv_s_4ps2gjgpwdxjvz9jly00000gn/T/RtmpmKKfNf/remotes123b76f7b0b3/TobiasRoikjer-PtDAlgorithms-d022b12/DESCRIPTION’ ... OK
-* preparing ‘ptdalgorithms’:
+<pre><code>* checking for file ‘/private/var/folders/33/sv_s_4ps2gjgpwdxjvz9jly00000gn/T/RtmpmKKfNf/remotes123b76f7b0b3/TobiasRoikjer-phasic-d022b12/DESCRIPTION’ ... OK
+* preparing ‘phasic’:
 * checking DESCRIPTION meta-information ... OK
 * cleaning src
 * checking for LF line-endings in source and make files and shell scripts
 * checking for empty or unneeded directories
 Omitted ‘LazyData’ from DESCRIPTION
-* building ‘ptdalgorithms_1.0.0.tar.gz’
+* building ‘phasic_1.0.0.tar.gz’
 </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>* installing *source* package ‘ptdalgorithms’ ...
+<pre><code>* installing *source* package ‘phasic’ ...
 ** using staged installation
 ** libs</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x86_64-apple-darwin13.4.0-clang++ -std=gnu++14 -I"/Users/kmt/miniconda3/envs/phasetypes/lib/R/include" -DNDEBUG  -I'/Users/kmt/miniconda3/envs/phasetypes/lib/R/library/Rcpp/include' -D_FORTIFY_SOURCE=2 -isystem /Users/kmt/miniconda3/envs/phasetypes/include -mmacosx-version-min=10.9 -I/Users/kmt/miniconda3/envs/phasetypes/include  -I../api/cpp -I../api/c -Ic/ -Icpp/ -fPIC  -march=core2 -mtune=haswell -mssse3 -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O2 -pipe -stdlib=libc++ -fvisibility-inlines-hidden  -fmessage-length=0 -isystem /Users/kmt/miniconda3/envs/phasetypes/include -fdebug-prefix-map=/Users/runner/miniforge3/conda-bld/r-base-split_1639563465184/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/Users/kmt/miniconda3/envs/phasetypes=/usr/local/src/conda-prefix  -c RcppExports.cpp -o RcppExports.o
-x86_64-apple-darwin13.4.0-clang++ -std=gnu++14 -I"/Users/kmt/miniconda3/envs/phasetypes/lib/R/include" -DNDEBUG  -I'/Users/kmt/miniconda3/envs/phasetypes/lib/R/library/Rcpp/include' -D_FORTIFY_SOURCE=2 -isystem /Users/kmt/miniconda3/envs/phasetypes/include -mmacosx-version-min=10.9 -I/Users/kmt/miniconda3/envs/phasetypes/include  -I../api/cpp -I../api/c -Ic/ -Icpp/ -fPIC  -march=core2 -mtune=haswell -mssse3 -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O2 -pipe -stdlib=libc++ -fvisibility-inlines-hidden  -fmessage-length=0 -isystem /Users/kmt/miniconda3/envs/phasetypes/include -fdebug-prefix-map=/Users/runner/miniforge3/conda-bld/r-base-split_1639563465184/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/Users/kmt/miniconda3/envs/phasetypes=/usr/local/src/conda-prefix  -c ptdalgorithms.cpp -o ptdalgorithms.o
-x86_64-apple-darwin13.4.0-clang++ -std=gnu++14 -dynamiclib -Wl,-headerpad_max_install_names -undefined dynamic_lookup -single_module -multiply_defined suppress -L/Users/kmt/miniconda3/envs/phasetypes/lib/R/lib -Wl,-dead_strip_dylibs -Wl,-pie -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -Wl,-rpath,/Users/kmt/miniconda3/envs/phasetypes/lib -L/Users/kmt/miniconda3/envs/phasetypes/lib -o ptdalgorithms.dylib RcppExports.o ptdalgorithms.o -L/Users/kmt/miniconda3/envs/phasetypes/lib/R/lib -lR -Wl,-framework -Wl,CoreFoundation</code></pre>
+x86_64-apple-darwin13.4.0-clang++ -std=gnu++14 -I"/Users/kmt/miniconda3/envs/phasetypes/lib/R/include" -DNDEBUG  -I'/Users/kmt/miniconda3/envs/phasetypes/lib/R/library/Rcpp/include' -D_FORTIFY_SOURCE=2 -isystem /Users/kmt/miniconda3/envs/phasetypes/include -mmacosx-version-min=10.9 -I/Users/kmt/miniconda3/envs/phasetypes/include  -I../api/cpp -I../api/c -Ic/ -Icpp/ -fPIC  -march=core2 -mtune=haswell -mssse3 -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O2 -pipe -stdlib=libc++ -fvisibility-inlines-hidden  -fmessage-length=0 -isystem /Users/kmt/miniconda3/envs/phasetypes/include -fdebug-prefix-map=/Users/runner/miniforge3/conda-bld/r-base-split_1639563465184/work=/usr/local/src/conda/r-base-4.1.2 -fdebug-prefix-map=/Users/kmt/miniconda3/envs/phasetypes=/usr/local/src/conda-prefix  -c phasic.cpp -o phasic.o
+x86_64-apple-darwin13.4.0-clang++ -std=gnu++14 -dynamiclib -Wl,-headerpad_max_install_names -undefined dynamic_lookup -single_module -multiply_defined suppress -L/Users/kmt/miniconda3/envs/phasetypes/lib/R/lib -Wl,-dead_strip_dylibs -Wl,-pie -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -Wl,-rpath,/Users/kmt/miniconda3/envs/phasetypes/lib -L/Users/kmt/miniconda3/envs/phasetypes/lib -o phasic.dylib RcppExports.o phasic.o -L/Users/kmt/miniconda3/envs/phasetypes/lib/R/lib -lR -Wl,-framework -Wl,CoreFoundation</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>ld: warning: -pie being ignored. It is only used when linking a main executable
-installing to /Users/kmt/miniconda3/envs/phasetypes/lib/R/library/00LOCK-ptdalgorithms/00new/ptdalgorithms/libs
+installing to /Users/kmt/miniconda3/envs/phasetypes/lib/R/library/00LOCK-phasic/00new/phasic/libs
 ** R
 ** byte-compile and prepare package for lazy loading
 ** help
@@ -306,7 +306,7 @@ installing to /Users/kmt/miniconda3/envs/phasetypes/lib/R/library/00LOCK-ptdalgo
 ** checking absolute paths in shared objects and dynamic libraries
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
-* DONE (ptdalgorithms)</code></pre>
+* DONE (phasic)</code></pre>
 </div>
 </div>
 <section id="standard-coalescent" class="level2">
@@ -2268,7 +2268,7 @@ rabbits,vertices,time_convert_matrix,time_inverse_matrix
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/phasic\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

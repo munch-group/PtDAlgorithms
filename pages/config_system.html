@@ -146,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/munch-group/ptdalgorithms/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/munch-group/phasic/"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -171,14 +171,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#what-was-done" id="toc-what-was-done" class="nav-link" data-scroll-target="#what-was-done">What Was Done</a></li>
   <li><a href="#files-created" id="toc-files-created" class="nav-link" data-scroll-target="#files-created">Files Created</a>
   <ul class="collapse">
-  <li><a href="#srcptdalgorithmsexceptions.py-new" id="toc-srcptdalgorithmsexceptions.py-new" class="nav-link" data-scroll-target="#srcptdalgorithmsexceptions.py-new">1. <code>src/ptdalgorithms/exceptions.py</code> (NEW)</a></li>
-  <li><a href="#srcptdalgorithmsconfig.py-new" id="toc-srcptdalgorithmsconfig.py-new" class="nav-link" data-scroll-target="#srcptdalgorithmsconfig.py-new">2. <code>src/ptdalgorithms/config.py</code> (NEW)</a></li>
+  <li><a href="#srcphasicexceptions.py-new" id="toc-srcphasicexceptions.py-new" class="nav-link" data-scroll-target="#srcphasicexceptions.py-new">1. <code>src/phasic/exceptions.py</code> (NEW)</a></li>
+  <li><a href="#srcphasicconfig.py-new" id="toc-srcphasicconfig.py-new" class="nav-link" data-scroll-target="#srcphasicconfig.py-new">2. <code>src/phasic/config.py</code> (NEW)</a></li>
   </ul></li>
   <li><a href="#files-modified" id="toc-files-modified" class="nav-link" data-scroll-target="#files-modified">Files Modified</a>
   <ul class="collapse">
-  <li><a href="#srcptdalgorithms__init__.py" id="toc-srcptdalgorithms__init__.py" class="nav-link" data-scroll-target="#srcptdalgorithms__init__.py">3. <code>src/ptdalgorithms/__init__.py</code></a></li>
-  <li><a href="#srcptdalgorithmsffi_wrappers.py" id="toc-srcptdalgorithmsffi_wrappers.py" class="nav-link" data-scroll-target="#srcptdalgorithmsffi_wrappers.py">4. <code>src/ptdalgorithms/ffi_wrappers.py</code></a></li>
-  <li><a href="#srcptdalgorithmstrace_elimination.py" id="toc-srcptdalgorithmstrace_elimination.py" class="nav-link" data-scroll-target="#srcptdalgorithmstrace_elimination.py">5. <code>src/ptdalgorithms/trace_elimination.py</code></a></li>
+  <li><a href="#srcphasic__init__.py" id="toc-srcphasic__init__.py" class="nav-link" data-scroll-target="#srcphasic__init__.py">3. <code>src/phasic/__init__.py</code></a></li>
+  <li><a href="#srcphasicffi_wrappers.py" id="toc-srcphasicffi_wrappers.py" class="nav-link" data-scroll-target="#srcphasicffi_wrappers.py">4. <code>src/phasic/ffi_wrappers.py</code></a></li>
+  <li><a href="#srcphasictrace_elimination.py" id="toc-srcphasictrace_elimination.py" class="nav-link" data-scroll-target="#srcphasictrace_elimination.py">5. <code>src/phasic/trace_elimination.py</code></a></li>
   </ul></li>
   <li><a href="#usage-examples" id="toc-usage-examples" class="nav-link" data-scroll-target="#usage-examples">Usage Examples</a>
   <ul class="collapse">
@@ -217,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 <section id="what-was-done" class="level2">
 <h2 class="anchored" data-anchor-id="what-was-done">What Was Done</h2>
-<p>Implemented an explicit configuration system to replace all silent fallback behavior in PtDAlgorithms, per user request:</p>
+<p>Implemented an explicit configuration system to replace all silent fallback behavior in phasic, per user request:</p>
 <blockquote class="blockquote">
 <p>“Please get rid of all fallback behaviour. All behaviour should be specified by the user, and if it fails, a error message should inform which options are functional on the system/platform. E.g. options jax=True, jit=True, ffi=True, which can then each be set to false if they fail as True”</p>
 </blockquote>
@@ -225,11 +225,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="files-created" class="level2">
 <h2 class="anchored" data-anchor-id="files-created">Files Created</h2>
-<section id="srcptdalgorithmsexceptions.py-new" class="level3">
-<h3 class="anchored" data-anchor-id="srcptdalgorithmsexceptions.py-new">1. <code>src/ptdalgorithms/exceptions.py</code> (NEW)</h3>
+<section id="srcphasicexceptions.py-new" class="level3">
+<h3 class="anchored" data-anchor-id="srcphasicexceptions.py-new">1. <code>src/phasic/exceptions.py</code> (NEW)</h3>
 <p><strong>Purpose</strong>: Clear, actionable error messages</p>
 <p><strong>Error Hierarchy</strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>PTDAlgorithmsError (base)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>phasicError (base)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>├── PTDConfigError <span class="op">-</span> Configuration issues <span class="cf">with</span> fix suggestions</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>├── PTDBackendError <span class="op">-</span> Backend unavailable errors</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>├── PTDFeatureError <span class="op">-</span> Platform feature errors</span>
@@ -237,14 +237,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Example Error</strong>:</p>
 <pre><code>PTDConfigError: jax=True but JAX not installed.
   Install: pip install jax jaxlib
-  Or configure: ptdalgorithms.configure(jax=False)</code></pre>
+  Or configure: phasic.configure(jax=False)</code></pre>
 </section>
-<section id="srcptdalgorithmsconfig.py-new" class="level3">
-<h3 class="anchored" data-anchor-id="srcptdalgorithmsconfig.py-new">2. <code>src/ptdalgorithms/config.py</code> (NEW)</h3>
+<section id="srcphasicconfig.py-new" class="level3">
+<h3 class="anchored" data-anchor-id="srcphasicconfig.py-new">2. <code>src/phasic/config.py</code> (NEW)</h3>
 <p><strong>Purpose</strong>: Central configuration system with validation</p>
-<p><strong>Key Features</strong>: - <code>PTDAlgorithmsConfig</code> dataclass with parameters: - <code>jax: bool</code> - Require JAX (error if unavailable) - <code>jit: bool</code> - Enable JIT compilation - <code>ffi: bool</code> - Enable FFI (currently always errors - disabled) - <code>strict: bool</code> - Error vs warn on problems - <code>platform: str</code> - ‘cpu’, ‘gpu’, ‘tpu’ - <code>backend: str</code> - ‘jax’, ‘cpp’, ‘ffi’ - <code>verbose: bool</code> - Print config details</p>
+<p><strong>Key Features</strong>: - <code>phasicConfig</code> dataclass with parameters: - <code>jax: bool</code> - Require JAX (error if unavailable) - <code>jit: bool</code> - Enable JIT compilation - <code>ffi: bool</code> - Enable FFI (currently always errors - disabled) - <code>strict: bool</code> - Error vs warn on problems - <code>platform: str</code> - ‘cpu’, ‘gpu’, ‘tpu’ - <code>backend: str</code> - ‘jax’, ‘cpp’, ‘ffi’ - <code>verbose: bool</code> - Print config details</p>
 <p><strong>Global API</strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> phasic <span class="im">as</span> ptd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Check what's available</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>opts <span class="op">=</span> ptd.get_available_options()</span>
@@ -258,14 +258,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset to defaults</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>ptd.reset_config()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Factory Methods</strong>: - <code>PTDAlgorithmsConfig.jax_only()</code> - JAX with JIT - <code>PTDAlgorithmsConfig.cpp_only()</code> - Pure C++, no JAX - <code>PTDAlgorithmsConfig.permissive()</code> - Warnings not errors</p>
+<p><strong>Factory Methods</strong>: - <code>phasicConfig.jax_only()</code> - JAX with JIT - <code>phasicConfig.cpp_only()</code> - Pure C++, no JAX - <code>phasicConfig.permissive()</code> - Warnings not errors</p>
 <hr>
 </section>
 </section>
 <section id="files-modified" class="level2">
 <h2 class="anchored" data-anchor-id="files-modified">Files Modified</h2>
-<section id="srcptdalgorithms__init__.py" class="level3">
-<h3 class="anchored" data-anchor-id="srcptdalgorithms__init__.py">3. <code>src/ptdalgorithms/__init__.py</code></h3>
+<section id="srcphasic__init__.py" class="level3">
+<h3 class="anchored" data-anchor-id="srcphasic__init__.py">3. <code>src/phasic/__init__.py</code></h3>
 <p><strong>Changes</strong>: 1. Import config system at top (lines 67-80) 2. Replaced try-except JAX import with config-based import 3. Preserved XLA_FLAGS and environment setup 4. Raise <code>PTDConfigError</code> if JAX unavailable when <code>jax=True</code> 5. Added config exports at end of file</p>
 <p><strong>Before</strong> (lines 67-168):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional JAX support</span></span>
@@ -296,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> PTDJAXError(</span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">"jax=True but JAX not installed.</span><span class="ch">\n</span><span class="st">"</span></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"  Install: pip install jax jaxlib</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">"  Or configure: ptdalgorithms.configure(jax=False)</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">"  Or configure: phasic.configure(jax=False)</span><span class="ch">\n</span><span class="st">"</span></span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"  Original error: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span></span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
@@ -304,12 +304,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    jnp <span class="op">=</span> <span class="va">None</span></span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    HAS_JAX <span class="op">=</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="srcptdalgorithmsffi_wrappers.py" class="level3">
-<h3 class="anchored" data-anchor-id="srcptdalgorithmsffi_wrappers.py">4. <code>src/ptdalgorithms/ffi_wrappers.py</code></h3>
+<section id="srcphasicffi_wrappers.py" class="level3">
+<h3 class="anchored" data-anchor-id="srcphasicffi_wrappers.py">4. <code>src/phasic/ffi_wrappers.py</code></h3>
 <p><strong>Changes</strong>: 1. Added config and exceptions imports 2. Changed C++ module import from try-except to explicit requirement 3. Documented FFI disabled (memory corruption bug) 4. Updated <code>_register_ffi_targets()</code> to raise clear error if FFI requested 5. Removed silent try-except at module initialization</p>
 <p><strong>Before</strong> (lines 46-51):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> . <span class="im">import</span> ptdalgorithmscpp_pybind <span class="im">as</span> cpp_module</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> . <span class="im">import</span> phasic_pybind <span class="im">as</span> cpp_module</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    _HAS_CPP_MODULE <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ImportError</span>:</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    _HAS_CPP_MODULE <span class="op">=</span> <span class="va">False</span>  <span class="co"># SILENT FALLBACK!</span></span>
@@ -321,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the C++ module (required - not optional)</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> . <span class="im">import</span> ptdalgorithmscpp_pybind <span class="im">as</span> cpp_module</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> . <span class="im">import</span> phasic_pybind <span class="im">as</span> cpp_module</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    _HAS_CPP_MODULE <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ImportError</span> <span class="im">as</span> e:</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> PTDBackendError(</span>
@@ -349,8 +349,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT attempt automatic registration on module import!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="srcptdalgorithmstrace_elimination.py" class="level3">
-<h3 class="anchored" data-anchor-id="srcptdalgorithmstrace_elimination.py">5. <code>src/ptdalgorithms/trace_elimination.py</code></h3>
+<section id="srcphasictrace_elimination.py" class="level3">
+<h3 class="anchored" data-anchor-id="srcphasictrace_elimination.py">5. <code>src/phasic/trace_elimination.py</code></h3>
 <p><strong>Changes</strong>: None needed (no silent fallbacks found)</p>
 <hr>
 </section>
@@ -359,7 +359,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="usage-examples">Usage Examples</h2>
 <section id="before-silent-fallbacks" class="level3">
 <h3 class="anchored" data-anchor-id="before-silent-fallbacks">Before (Silent Fallbacks)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> phasic <span class="im">as</span> ptd</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># JAX imported silently if available</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># No way to know if JIT is enabled</span></span>
@@ -370,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="after-explicit-configuration" class="level3">
 <h3 class="anchored" data-anchor-id="after-explicit-configuration">After (Explicit Configuration)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ptdalgorithms <span class="im">as</span> ptd</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> phasic <span class="im">as</span> ptd</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Check what's available FIRST</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>opts <span class="op">=</span> ptd.get_available_options()</span>
@@ -391,10 +391,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="error-messages-are-clear" class="level3">
 <h3 class="anchored" data-anchor-id="error-messages-are-clear">Error Messages Are Clear</h3>
 <p><strong>Example 1</strong>: JAX not installed</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> ptdalgorithms</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> phasic</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>PTDConfigError: jax<span class="op">=</span><span class="va">True</span> but JAX <span class="kw">not</span> installed.</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  Install: pip install jax jaxlib</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  Or configure: ptdalgorithms.configure(jax<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  Or configure: phasic.configure(jax<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Example 2</strong>: FFI requested (currently disabled)</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> ptd.configure(ffi<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>PTDConfigError: ffi<span class="op">=</span><span class="va">True</span> but FFI <span class="kw">is</span> currently disabled.</span>
@@ -410,10 +410,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="tests-performed">Tests Performed ✅</h3>
 <ol type="1">
 <li><p><strong>Basic import with JAX available</strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import ptdalgorithms; print(ptdalgorithms.get_config())"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import phasic; print(phasic.get_config())"</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ✓ Works - config created with defaults</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>Get available options</strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import ptdalgorithms; print(ptdalgorithms.get_available_options())"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import phasic; print(phasic.get_available_options())"</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ✓ Returns: {'jax': True, 'backends': ['cpp', 'jax'], 'platforms': ['cpu']}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>JAX unavailable error</strong> (with mocked import):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> test_config_no_jax.py</span>
@@ -421,7 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ✓ Message includes pip install suggestion</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ✓ Message includes configure(jax=False) alternative</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>FFI wrappers import</strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"from ptdalgorithms.ffi_wrappers import compute_pmf_ffi"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"from phasic.ffi_wrappers import compute_pmf_ffi"</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ✓ Imports successfully</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ✓ _HAS_FFI = False (correctly disabled)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
@@ -429,7 +429,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="tests-remaining" class="level3">
 <h3 class="anchored" data-anchor-id="tests-remaining">Tests Remaining 📋</h3>
 <ul>
-<li>Unit tests for <code>PTDAlgorithmsConfig.validate()</code></li>
+<li>Unit tests for <code>phasicConfig.validate()</code></li>
 <li>Test invalid combinations (jit=True, jax=False)</li>
 <li>Test backend=‘jax’ without JAX</li>
 <li>Test platform=‘gpu’ on CPU-only system</li>
@@ -515,9 +515,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="files-summary" class="level2">
 <h2 class="anchored" data-anchor-id="files-summary">Files Summary</h2>
-<p><strong>Created</strong>: - <code>src/ptdalgorithms/exceptions.py</code> (90 lines) - <code>src/ptdalgorithms/config.py</code> (458 lines) - <code>EXPLICIT_CONFIG_SYSTEM.md</code> (implementation guide) - <code>CONFIG_SYSTEM_IMPLEMENTATION_SUMMARY.md</code> (this file)</p>
-<p><strong>Modified</strong>: - <code>src/ptdalgorithms/__init__.py</code> (replaced lines 66-168) - <code>src/ptdalgorithms/ffi_wrappers.py</code> (lines 45-69, 162-220, 589-600) - <code>src/ptdalgorithms/svgd.py</code> (lines 9-31, 878-944, 1023-1031, 1119, 593-663, 672-732, 1321-1332, 1492-1502)</p>
-<p><strong>Checked</strong>: - <code>src/ptdalgorithms/trace_elimination.py</code> (no changes needed)</p>
+<p><strong>Created</strong>: - <code>src/phasic/exceptions.py</code> (90 lines) - <code>src/phasic/config.py</code> (458 lines) - <code>EXPLICIT_CONFIG_SYSTEM.md</code> (implementation guide) - <code>CONFIG_SYSTEM_IMPLEMENTATION_SUMMARY.md</code> (this file)</p>
+<p><strong>Modified</strong>: - <code>src/phasic/__init__.py</code> (replaced lines 66-168) - <code>src/phasic/ffi_wrappers.py</code> (lines 45-69, 162-220, 589-600) - <code>src/phasic/svgd.py</code> (lines 9-31, 878-944, 1023-1031, 1119, 593-663, 672-732, 1321-1332, 1492-1502)</p>
+<p><strong>Checked</strong>: - <code>src/phasic/trace_elimination.py</code> (no changes needed)</p>
 <p><strong>Total</strong>: ~600 lines of new code, ~300 lines modified</p>
 <hr>
 </section>
@@ -610,7 +610,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/phasic\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

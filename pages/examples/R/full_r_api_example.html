@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Full R API example of ptdalgorithms</title>
+<title>Full R API example of phasic</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -152,7 +152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/munch-group/ptdalgorithms/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/munch-group/phasic/"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -172,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#installing-the-ptdalgorithms-library" id="toc-installing-the-ptdalgorithms-library" class="nav-link active" data-scroll-target="#installing-the-ptdalgorithms-library">Installing the ptdalgorithms library</a></li>
+  <li><a href="#installing-the-phasic-library" id="toc-installing-the-phasic-library" class="nav-link active" data-scroll-target="#installing-the-phasic-library">Installing the phasic library</a></li>
   <li><a href="#state-space-construction" id="toc-state-space-construction" class="nav-link" data-scroll-target="#state-space-construction">State-space construction</a>
   <ul class="collapse">
   <li><a href="#example-of-rabbit-graph" id="toc-example-of-rabbit-graph" class="nav-link" data-scroll-target="#example-of-rabbit-graph">Example of rabbit graph</a></li>
@@ -198,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Full R API example of ptdalgorithms</h1>
+<h1 class="title">Full R API example of phasic</h1>
 </div>
 
 
@@ -215,17 +215,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This notebook will describe almost all functions of the ptdalgorithms R package. The core functionality is implemented in C, with a binding layer to R through C++ and Rcpp. Except for the specified construction code of the state space, most code will be almost equally fast to invoking the C api directly (maybe twice as slow). The package is based on graph algorithms published in (…), and is many orders of magnitude faster than matrix-based equations which are usually applied. We do not recommend using the C++ api directly.</p>
-<p>We will show how to install the package and construct a state space through the R api. We will then show how to compute the moments (expectation, variance) through the ptdalgorithms package, and how to compute the distribution functions. This means that you can make discrete and continuous phase-type distributions, compute their moments, distribution functions, sample from them, compute rewards and multivariate distributions, and time inhomogenous distributions.</p>
+<p>This notebook will describe almost all functions of the phasic R package. The core functionality is implemented in C, with a binding layer to R through C++ and Rcpp. Except for the specified construction code of the state space, most code will be almost equally fast to invoking the C api directly (maybe twice as slow). The package is based on graph algorithms published in (…), and is many orders of magnitude faster than matrix-based equations which are usually applied. We do not recommend using the C++ api directly.</p>
+<p>We will show how to install the package and construct a state space through the R api. We will then show how to compute the moments (expectation, variance) through the phasic package, and how to compute the distribution functions. This means that you can make discrete and continuous phase-type distributions, compute their moments, distribution functions, sample from them, compute rewards and multivariate distributions, and time inhomogenous distributions.</p>
 <p>We will also show how easy it is to create the state-space in C and return it to R, to make large graphs!</p>
-<section id="installing-the-ptdalgorithms-library" class="level2">
-<h2 class="anchored" data-anchor-id="installing-the-ptdalgorithms-library">Installing the ptdalgorithms library</h2>
+<section id="installing-the-phasic-library" class="level2">
+<h2 class="anchored" data-anchor-id="installing-the-phasic-library">Installing the phasic library</h2>
 <div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We install the package through devtools::install_github</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This requires the "devtools" package to be installed</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>,  <span class="at">INSTALL_opts =</span> <span class="fu">c</span>(<span class="st">'--no-lock'</span>))</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"TobiasRoikjer/PtDAlgorithms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"TobiasRoikjer/phasic"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning message:
 “unable to access index for repository https://cran.r-project.org/src/contrib:
@@ -247,7 +247,7 @@ Error: Failed to install 'unknown package' from GitHub:
   Couldn't connect to server
 Traceback:
 
-1. devtools::install_github("TobiasRoikjer/PtDAlgorithms")
+1. devtools::install_github("TobiasRoikjer/phasic")
 2. pkgbuild::with_build_tools({
  .     ellipsis::check_dots_used(action = getOption("devtools.ellipsis_action", 
  .         rlang::warn))
@@ -276,7 +276,7 @@ Traceback:
 </div>
 <div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the functions in the library</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ptdalgorithms)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phasic)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The library supports setting seeds for some of its</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># sampling capability, as any other R package</span></span>
@@ -356,7 +356,7 @@ Traceback:
 <h2 class="anchored" data-anchor-id="example-of-rabbit-graph">Example of rabbit graph</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://github.com/TobiasRoikjer/PtDAlgorithms/blob/master/examples/graphic_rabbits.png?raw=true" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Example of rabbit graph"><img src="https://github.com/TobiasRoikjer/PtDAlgorithms/blob/master/examples/graphic_rabbits.png?raw=true" class="img-fluid figure-img" alt="Example of rabbit graph"></a></p>
+<p><a href="https://github.com/TobiasRoikjer/phasic/blob/master/examples/graphic_rabbits.png?raw=true" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Example of rabbit graph"><img src="https://github.com/TobiasRoikjer/phasic/blob/master/examples/graphic_rabbits.png?raw=true" class="img-fluid figure-img" alt="Example of rabbit graph"></a></p>
 <figcaption>Example of rabbit graph</figcaption>
 </figure>
 </div>
@@ -1272,8 +1272,8 @@ Expectation: 0.536563856879033</code></pre>
 <span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a>     <span class="co">#   dph(seq(0,100,by=0.01), g)*(seq(0,100,by=0.01)^k)</span></span>
 <span id="cb39-39"><a href="#cb39-39" aria-hidden="true" tabindex="-1"></a>     <span class="co">#   /10000)</span></span>
 <span id="cb39-40"><a href="#cb39-40" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df, <span class="fu">list</span>(<span class="at">moment=</span>k, <span class="at">matrix_based=</span><span class="fu">round</span>(v,<span class="dv">10</span>),</span>
-<span id="cb39-41"><a href="#cb39-41" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ptdalgorithms_moment=</span><span class="fu">round</span>(<span class="fu">moments</span>(g, k)[k],<span class="dv">10</span>)</span>
-<span id="cb39-42"><a href="#cb39-42" aria-hidden="true" tabindex="-1"></a>                <span class="co">#ptdalgorithms_integrating_under_curve=integrating_under_curve</span></span>
+<span id="cb39-41"><a href="#cb39-41" aria-hidden="true" tabindex="-1"></a>                         <span class="at">phasic_moment=</span><span class="fu">round</span>(<span class="fu">moments</span>(g, k)[k],<span class="dv">10</span>)</span>
+<span id="cb39-42"><a href="#cb39-42" aria-hidden="true" tabindex="-1"></a>                <span class="co">#phasic_integrating_under_curve=integrating_under_curve</span></span>
 <span id="cb39-43"><a href="#cb39-43" aria-hidden="true" tabindex="-1"></a>               ))</span>
 <span id="cb39-44"><a href="#cb39-44" aria-hidden="true" tabindex="-1"></a>    MAT <span class="ot">&lt;-</span> U <span class="sc">%*%</span> MAT</span>
 <span id="cb39-45"><a href="#cb39-45" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -1285,7 +1285,7 @@ Expectation: 0.536563856879033</code></pre>
 <tr class="header">
 <th data-quarto-table-cell-role="th" scope="col">moment</th>
 <th data-quarto-table-cell-role="th" scope="col">matrix_based</th>
-<th data-quarto-table-cell-role="th" scope="col">ptdalgorithms_moment</th>
+<th data-quarto-table-cell-role="th" scope="col">phasic_moment</th>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
@@ -1487,7 +1487,7 @@ Warning message in install.packages("expm"):
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/phasic\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

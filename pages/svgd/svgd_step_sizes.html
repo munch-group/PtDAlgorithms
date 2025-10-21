@@ -148,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/munch-group/ptdalgorithms/"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/munch-group/phasic/"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -270,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/distributed/distributed_computing_complete_guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributed Computing with PtDAlgorithms - Complete Guide</span></a>
+ <span class="menu-text">Distributed Computing with phasic - Complete Guide</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -388,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="https://github.com/munch-group/ptdalgorithms/issues" class="sidebar-item-text sidebar-link">
+  <a href="https://github.com/munch-group/phasic/issues" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Issue Tracker</span></a>
   </div>
 </li>
@@ -410,9 +410,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#problem-solved" id="toc-problem-solved" class="nav-link" data-scroll-target="#problem-solved">Problem Solved</a></li>
   <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation">Implementation</a>
   <ul class="collapse">
-  <li><a href="#schedule-base-classes-srcptdalgorithmssvgd.py-lines-49-298" id="toc-schedule-base-classes-srcptdalgorithmssvgd.py-lines-49-298" class="nav-link" data-scroll-target="#schedule-base-classes-srcptdalgorithmssvgd.py-lines-49-298">1. Schedule Base Classes (src/ptdalgorithms/svgd.py, lines 49-298)</a></li>
+  <li><a href="#schedule-base-classes-srcphasicsvgd.py-lines-49-298" id="toc-schedule-base-classes-srcphasicsvgd.py-lines-49-298" class="nav-link" data-scroll-target="#schedule-base-classes-srcphasicsvgd.py-lines-49-298">1. Schedule Base Classes (src/phasic/svgd.py, lines 49-298)</a></li>
   <li><a href="#svgd-integration" id="toc-svgd-integration" class="nav-link" data-scroll-target="#svgd-integration">2. SVGD Integration</a></li>
-  <li><a href="#api-exports-srcptdalgorithmsinit.py-lines-229-251" id="toc-api-exports-srcptdalgorithmsinit.py-lines-229-251" class="nav-link" data-scroll-target="#api-exports-srcptdalgorithmsinit.py-lines-229-251">3. API Exports (src/ptdalgorithms/<strong>init</strong>.py, lines 229-251)</a></li>
+  <li><a href="#api-exports-srcphasicinit.py-lines-229-251" id="toc-api-exports-srcphasicinit.py-lines-229-251" class="nav-link" data-scroll-target="#api-exports-srcphasicinit.py-lines-229-251">3. API Exports (src/phasic/<strong>init</strong>.py, lines 229-251)</a></li>
   </ul></li>
   <li><a href="#usage-examples" id="toc-usage-examples" class="nav-link" data-scroll-target="#usage-examples">Usage Examples</a>
   <ul class="collapse">
@@ -462,8 +462,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="implementation" class="level2">
 <h2 class="anchored" data-anchor-id="implementation">Implementation</h2>
-<section id="schedule-base-classes-srcptdalgorithmssvgd.py-lines-49-298" class="level3">
-<h3 class="anchored" data-anchor-id="schedule-base-classes-srcptdalgorithmssvgd.py-lines-49-298">1. Schedule Base Classes (src/ptdalgorithms/svgd.py, lines 49-298)</h3>
+<section id="schedule-base-classes-srcphasicsvgd.py-lines-49-298" class="level3">
+<h3 class="anchored" data-anchor-id="schedule-base-classes-srcphasicsvgd.py-lines-49-298">1. Schedule Base Classes (src/phasic/svgd.py, lines 49-298)</h3>
 <p><strong>Step Size Schedules:</strong> - <code>StepSizeSchedule</code> - Base class - <code>ConstantStepSize</code> - Fixed step size (backward compatible) - <code>ExponentialDecayStepSize</code> - Exponential decay schedule - <code>AdaptiveStepSize</code> - KL-based adaptive schedule</p>
 <p><strong>Bandwidth Schedules:</strong> - <code>BandwidthSchedule</code> - Base class - <code>MedianBandwidth</code> - Median heuristic (default) - <code>FixedBandwidth</code> - Fixed bandwidth - <code>LocalAdaptiveBandwidth</code> - k-NN adaptive bandwidth</p>
 </section>
@@ -472,10 +472,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Modified Functions:</strong> - <code>SVGD.__init__()</code> (lines 1250-1387) - Accepts schedule objects - <code>run_svgd()</code> (lines 949-1050) - Calls schedules each iteration - Documentation updated with usage examples</p>
 <p><strong>Backward Compatibility:</strong> - Float values automatically wrapped in <code>ConstantStepSize</code> - String kernel values automatically wrapped in <code>MedianBandwidth</code> - All existing code continues to work unchanged</p>
 </section>
-<section id="api-exports-srcptdalgorithmsinit.py-lines-229-251" class="level3">
-<h3 class="anchored" data-anchor-id="api-exports-srcptdalgorithmsinit.py-lines-229-251">3. API Exports (src/ptdalgorithms/<strong>init</strong>.py, lines 229-251)</h3>
+<section id="api-exports-srcphasicinit.py-lines-229-251" class="level3">
+<h3 class="anchored" data-anchor-id="api-exports-srcphasicinit.py-lines-229-251">3. API Exports (src/phasic/<strong>init</strong>.py, lines 229-251)</h3>
 <p>All schedule classes exported from main package:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> (</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> (</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    ExponentialDecayStepSize,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    AdaptiveStepSize,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    MedianBandwidth,</span>
@@ -487,7 +487,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="usage-examples">Usage Examples</h2>
 <section id="basic-exponential-decay-fixes-divergence" class="level3">
 <h3 class="anchored" data-anchor-id="basic-exponential-decay-fixes-divergence">Basic: Exponential Decay (Fixes Divergence)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> SVGD, ExponentialDecayStepSize</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> SVGD, ExponentialDecayStepSize</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create schedule: starts at 0.1, decays to 0.01 over 500 iterations</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>schedule <span class="op">=</span> ExponentialDecayStepSize(max_step<span class="op">=</span><span class="fl">0.1</span>, min_step<span class="op">=</span><span class="fl">0.01</span>, tau<span class="op">=</span><span class="fl">500.0</span>)</span>
@@ -502,7 +502,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="adaptive-step-size" class="level3">
 <h3 class="anchored" data-anchor-id="adaptive-step-size">Adaptive Step Size</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> AdaptiveStepSize</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> AdaptiveStepSize</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjusts step size based on particle spread</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>schedule <span class="op">=</span> AdaptiveStepSize(base_step<span class="op">=</span><span class="fl">0.01</span>, kl_target<span class="op">=</span><span class="fl">0.1</span>, adjust_rate<span class="op">=</span><span class="fl">0.1</span>)</span>
@@ -512,7 +512,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="custom-bandwidth" class="level3">
 <h3 class="anchored" data-anchor-id="custom-bandwidth">Custom Bandwidth</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> LocalAdaptiveBandwidth</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> LocalAdaptiveBandwidth</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Per-particle bandwidth using k-nearest neighbors</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>bandwidth <span class="op">=</span> LocalAdaptiveBandwidth(alpha<span class="op">=</span><span class="fl">0.9</span>, k_frac<span class="op">=</span><span class="fl">0.1</span>)</span>
@@ -587,7 +587,7 @@ BandwidthSchedule
 </section>
 <section id="new-code-recommended-for-large-datasets" class="level3">
 <h3 class="anchored" data-anchor-id="new-code-recommended-for-large-datasets">New Code (Recommended for Large Datasets)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ptdalgorithms <span class="im">import</span> ExponentialDecayStepSize</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> ExponentialDecayStepSize</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>schedule <span class="op">=</span> ExponentialDecayStepSize(max_step<span class="op">=</span><span class="fl">0.1</span>, min_step<span class="op">=</span><span class="fl">0.01</span>, tau<span class="op">=</span><span class="fl">500.0</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model, data, theta_dim<span class="op">=</span><span class="dv">1</span>, learning_rate<span class="op">=</span>schedule)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
@@ -595,8 +595,8 @@ BandwidthSchedule
 <section id="files-modified" class="level2">
 <h2 class="anchored" data-anchor-id="files-modified">Files Modified</h2>
 <ol type="1">
-<li><code>src/ptdalgorithms/svgd.py</code> - Added schedule classes and integration</li>
-<li><code>src/ptdalgorithms/__init__.py</code> - Exported schedule classes</li>
+<li><code>src/phasic/svgd.py</code> - Added schedule classes and integration</li>
+<li><code>src/phasic/__init__.py</code> - Exported schedule classes</li>
 <li><code>test_schedule_fix.py</code> - Test demonstrating fix for divergence</li>
 </ol>
 </section>
@@ -688,7 +688,7 @@ BandwidthSchedule
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/PtDAlgorithms\/");
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/phasic\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
