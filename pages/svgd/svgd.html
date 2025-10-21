@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../pages/svgd/svgd_with_symbolic_dag.html" rel="next">
-<link href="../../pages/svgd/caching.html" rel="prev">
+<link href="../../pages/svgd/caching.html" rel="next">
+<link href="../../pages/tutorials/state_space_construction.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -169,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../pages/svgd/caching.html">Bayesian inference</a></li><li class="breadcrumb-item"><a href="../../pages/svgd/svgd.html">SVGD Inference</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../pages/svgd/svgd.html">Bayesian inference</a></li><li class="breadcrumb-item"><a href="../../pages/svgd/svgd.html">SVGD Inference</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -201,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">pages/background/tldr.qmd</span>
+ <span class="menu-text">pages/background/quickstart.qmd</span>
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -234,20 +234,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/svgd/caching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Caching System Guide</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../pages/svgd/svgd.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">SVGD Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/svgd/svgd_with_symbolic_dag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SVGD Inference with Symbolic DAG Optimization</span></a>
+  <a href="../../pages/svgd/caching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Caching System Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/svgd/svgd_trace_eval.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SVGD analyze_trace() Method Documentation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/svgd/svgd_step_sizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SVGD Schedule System Implementation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/svgd/ffi_and_openmp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FFI+OpenMP Default Implementation</span></a>
   </div>
 </li>
       </ul>
@@ -375,8 +387,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">pages/devel/architecture.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/devel/architecture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Library Architecture</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="https://github.com/munch-group/ptdalgorithms/issues" class="sidebar-item-text sidebar-link">
@@ -452,7 +467,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../pages/svgd/caching.html">Bayesian inference</a></li><li class="breadcrumb-item"><a href="../../pages/svgd/svgd.html">SVGD Inference</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../pages/svgd/svgd.html">Bayesian inference</a></li><li class="breadcrumb-item"><a href="../../pages/svgd/svgd.html">SVGD Inference</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">SVGD Inference</h1>
 </div>
@@ -2733,13 +2748,13 @@ Outside context: strategy = pmap</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../pages/svgd/caching.html" class="pagination-link" aria-label="Caching System Guide">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Caching System Guide</span>
+      <a href="../../pages/tutorials/state_space_construction.html" class="pagination-link" aria-label="Building models">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Building models</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../pages/svgd/svgd_with_symbolic_dag.html" class="pagination-link" aria-label="SVGD Inference with Symbolic DAG Optimization">
-        <span class="nav-page-text">SVGD Inference with Symbolic DAG Optimization</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../pages/svgd/caching.html" class="pagination-link" aria-label="Caching System Guide">
+        <span class="nav-page-text">Caching System Guide</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
