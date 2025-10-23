@@ -502,7 +502,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> SVGD, ExponentialDecayStepSize</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create schedule: starts at 0.1, decays to 0.01 over 500 iterations</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>schedule <span class="op">=</span> ExponentialDecayStepSize(max_step<span class="op">=</span><span class="fl">0.1</span>, min_step<span class="op">=</span><span class="fl">0.01</span>, tau<span class="op">=</span><span class="fl">500.0</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>schedule <span class="op">=</span> ExponentialDecayStepSize(first_step<span class="op">=</span><span class="fl">0.1</span>, last_step<span class="op">=</span><span class="fl">0.01</span>, tau<span class="op">=</span><span class="fl">500.0</span>)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>model,</span>
@@ -566,7 +566,7 @@ Status: ✅ CONVERGED</code></pre>
 <h2 class="anchored" data-anchor-id="architecture">Architecture</h2>
 <pre><code>StepSizeSchedule
 ├── ConstantStepSize(step_size)
-├── ExponentialDecayStepSize(max_step, min_step, tau)
+├── ExponentialDecayStepSize(first_step, last_step, tau)
 └── AdaptiveStepSize(base_step, kl_target, adjust_rate)
 
 BandwidthSchedule
@@ -600,7 +600,7 @@ BandwidthSchedule
 <section id="new-code-recommended-for-large-datasets" class="level3">
 <h3 class="anchored" data-anchor-id="new-code-recommended-for-large-datasets">New Code (Recommended for Large Datasets)</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> ExponentialDecayStepSize</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>schedule <span class="op">=</span> ExponentialDecayStepSize(max_step<span class="op">=</span><span class="fl">0.1</span>, min_step<span class="op">=</span><span class="fl">0.01</span>, tau<span class="op">=</span><span class="fl">500.0</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>schedule <span class="op">=</span> ExponentialDecayStepSize(first_step<span class="op">=</span><span class="fl">0.1</span>, last_step<span class="op">=</span><span class="fl">0.01</span>, tau<span class="op">=</span><span class="fl">500.0</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model, data, theta_dim<span class="op">=</span><span class="dv">1</span>, learning_rate<span class="op">=</span>schedule)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
