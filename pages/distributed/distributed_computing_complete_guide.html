@@ -365,10 +365,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/background/symbolic_gauss_elimination.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Symbolic Graph Elimination for Efficient Parameterized Phase-Type Distributions</span></a>
+  <a href="../../pages/tutorials/caching_guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Caching Strategies for phasic</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+ <span class="menu-text">pages/tutorials/config_system.md</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">pages/tutorials/explicit_config_system.md</span>
+  </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -783,7 +789,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    n_particles<span class="op">=</span>n_particles,</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    n_iterations<span class="op">=</span>n_iterations,</span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    learning_rate<span class="op">=</span>learning_rate,</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    kernel<span class="op">=</span><span class="st">'rbf_median'</span>,  <span class="co"># Use RBF kernel with adaptive bandwidth</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    kernel<span class="op">=</span><span class="st">'median'</span>,  <span class="co"># Use RBF kernel with adaptive bandwidth</span></span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    theta_init<span class="op">=</span>theta_init,</span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    seed<span class="op">=</span><span class="dv">42</span>,</span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span>(dist_info.is_coordinator)  <span class="co"># Only coordinator prints progress</span></span>
@@ -1093,7 +1099,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   The median heuristic is automatic but may not be optimal:"</span>)</span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   "</span>)</span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   # Try different kernel strategies:"</span>)</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   kernel='rbf_median'      # Automatic (default)"</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   kernel='median'      # Automatic (default)"</span>)</span>
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   kernel='rbf_adaptive'    # Adapts differently"</span>)</span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   kernel=1.5               # Fixed bandwidth"</span>)</span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   "</span>)</span>

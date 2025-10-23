@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Simple example</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a4e33bbe4f8c8978a0e41d3bc496056e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../api/_styles-quartodoc.css">
+<link rel="stylesheet" href="../../numpy.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../logo.png" alt="Phasic" class="navbar-logo light-content">
+    <img src="../../logo.png" alt="Phasic" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../pages/getting_started.html"> 
+<span class="menu-text">Documentation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../api/"> 
+<span class="menu-text">Python API reference</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../r_api/"> 
+<span class="menu-text">R API reference</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../c_api/"> 
+<span class="menu-text">C API reference</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/munch-group/phasic/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#some-artifical-data-simulated-from-the-model" id="toc-some-artifical-data-simulated-from-the-model" class="nav-link active" data-scroll-target="#some-artifical-data-simulated-from-the-model">Some artifical data simulated from the model</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Simple example</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="3e6584c0" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> Graph, set_theme</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>set_theme(<span class="st">'dark'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coalescent(state, nr_samples<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> state.size:</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        ipv <span class="op">=</span> [[[nr_samples]<span class="op">+</span>[<span class="dv">0</span>]<span class="op">*</span>nr_samples, <span class="dv">1</span>, []]]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ipv</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        transitions <span class="op">=</span> []</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nr_samples):</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, nr_samples):            </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                same <span class="op">=</span> <span class="bu">int</span>(i <span class="op">==</span> j)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> same <span class="kw">and</span> state[i] <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> same <span class="kw">and</span> (state[i] <span class="op">&lt;</span> <span class="dv">1</span> <span class="kw">or</span> state[j] <span class="op">&lt;</span> <span class="dv">1</span>):</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span> </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                new <span class="op">=</span> state.copy()</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                new[i] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                new[j] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                new[i<span class="op">+</span>j<span class="op">+</span><span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                transitions.append([new, <span class="fl">0.0</span>, [state[i]<span class="op">*</span>(state[j]<span class="op">-</span>same)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>same)]])</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> transitions</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>true_theta <span class="op">=</span> np.array([<span class="dv">7</span>])  </span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>nr_samples <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>nr_observations <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>_graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>_graph.update_parameterized_weights(true_theta)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>observed_data <span class="op">=</span> _graph.sample(nr_observations)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> uninformative_prior(phi):</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Uninformative prior: φ ~ N(0, 10^2) - very wide"""</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> <span class="fl">10.0</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> jnp.<span class="bu">sum</span>(((phi <span class="op">-</span> mu) <span class="op">/</span> sigma)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> SVGD, ExponentialDecayStepSize</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>step_schedule <span class="op">=</span> ExponentialDecayStepSize(max_step<span class="op">=</span><span class="fl">0.005</span>, min_step<span class="op">=</span><span class="fl">0.0005</span>, tau<span class="op">=</span><span class="fl">500.0</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> <span class="bu">dict</span>(</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>            bandwidth<span class="op">=</span><span class="st">'median'</span>,</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>            <span class="co"># bandwidth='local_adaptive',</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>            observed_data<span class="op">=</span>observed_data,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>            prior<span class="op">=</span>uninformative_prior, </span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>            theta_dim<span class="op">=</span><span class="bu">len</span>(true_theta),</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>            n_particles<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>            n_iterations<span class="op">=</span><span class="dv">500</span>,</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>            learning_rate<span class="op">=</span>step_schedule, </span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>            seed<span class="op">=</span><span class="dv">42</span>,</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>            verbose<span class="op">=</span><span class="va">False</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_from_graph(graph)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>svgd.fit()</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> svgd.get_results()</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results[<span class="st">'theta_mean'</span>], results[<span class="st">'theta_std'</span>])</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>INFO: loaded elimination trace from cache (aa79bdbdb986a207dccce0fcb7d6ba52383ec6b42df5a00feb709e72e31b2baf): 29 operations, 6 vertices
+INFO: loaded elimination trace from cache (aa79bdbdb986a207dccce0fcb7d6ba52383ec6b42df5a00feb709e72e31b2baf)</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[14]</span><span class="ansi-green-fg">, line 66</span>
+<span class="ansi-green-fg">     64</span> model_pdf = Graph.pmf_from_graph(graph)
+<span class="ansi-green-fg">     65</span> svgd = SVGD(model_pdf, **params)
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">66</span> <span class="ansi-yellow-bg">svgd</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">fit</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">     67</span> results = svgd.get_results()
+<span class="ansi-green-fg">     68</span> <span style="color:rgb(0,135,0)">print</span>(results[<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">theta_mean</span><span class="ansi-yellow-fg">'</span>], results[<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">theta_std</span><span class="ansi-yellow-fg">'</span>])
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:1755</span>, in <span class="ansi-cyan-fg">SVGD.fit</span><span class="ansi-blue-fg">(self, return_history)</span>
+<span class="ansi-green-fg">   1752</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">  Data points: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">len</span>(<span style="color:rgb(0,135,0)">self</span>.observed_data)<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">   1753</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">  Prior: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">custom</span><span class="ansi-yellow-fg">'</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">if</span><span style="color:rgb(188,188,188)"> </span><span style="color:rgb(0,135,0)">self</span>.prior<span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(175,0,255)">is</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(175,0,255)">not</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">None</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">else</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">standard normal</span><span class="ansi-yellow-fg">'</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1755</span> results = <span class="ansi-yellow-bg">run_svgd</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">   1756</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">log_prob_fn</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_log_prob</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1757</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">theta_init</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">theta_init</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1758</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">n_steps</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">n_iterations</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1759</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">learning_rate</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">step_schedule</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">  </span><span style="font-style:italic;color:rgb(95,135,135)" class="ansi-yellow-bg"># Pass schedule object</span>
+<span class="ansi-green-fg">   1760</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">kernel</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">kernel</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1761</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">return_history</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">return_history</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1762</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">verbose</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">verbose</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1763</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">compiled_grad</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">compiled_grad</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1764</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">parallel_mode</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">parallel_mode</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1765</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">n_devices</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">n_devices</span>
+<span class="ansi-green-fg">   1766</span> <span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1768</span> <span style="font-style:italic;color:rgb(95,135,135)"># Store results as attributes</span>
+<span class="ansi-green-fg">   1769</span> <span style="color:rgb(0,135,0)">self</span>.particles = results[<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">particles</span><span class="ansi-yellow-fg">'</span>]
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:1030</span>, in <span class="ansi-cyan-fg">run_svgd</span><span class="ansi-blue-fg">(log_prob_fn, theta_init, n_steps, learning_rate, kernel, return_history, verbose, compiled_grad, parallel_mode, n_devices)</span>
+<span class="ansi-green-fg">   1027</span>     current_step_size = learning_rate
+<span class="ansi-green-fg">   1029</span> <span style="font-style:italic;color:rgb(95,135,135)"># Perform SVGD update</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1030</span> particles = <span class="ansi-yellow-bg">svgd_step</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">particles</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">log_prob_fn</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">kernel</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">current_step_size</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1031</span> <span class="ansi-yellow-bg">                     </span><span class="ansi-yellow-bg">compiled_grad</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">compiled_grad</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1032</span> <span class="ansi-yellow-bg">                     </span><span class="ansi-yellow-bg">parallel_mode</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">parallel_mode</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1033</span> <span class="ansi-yellow-bg">                     </span><span class="ansi-yellow-bg">n_devices</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">n_devices</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1035</span> <span style="font-style:italic;color:rgb(95,135,135)"># Store history</span>
+<span class="ansi-green-fg">   1036</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> return_history: <span style="font-style:italic;color:rgb(95,135,135)"># and (step % max(1, n_steps // 20) == 0):</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:929</span>, in <span class="ansi-cyan-fg">svgd_step</span><span class="ansi-blue-fg">(particles, log_prob_fn, kernel, step_size, compiled_grad, parallel_mode, n_devices)</span>
+<span class="ansi-green-fg">    926</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Invalid parallel_mode: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>actual_parallel_mode<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">    928</span> <span style="font-style:italic;color:rgb(95,135,135)"># Compute kernel and kernel gradient</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">929</span> K, grad_K = <span class="ansi-yellow-bg">kernel</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">compute_kernel_grad</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">particles</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    931</span> <span style="font-style:italic;color:rgb(95,135,135)"># ##############    </span>
+<span class="ansi-green-fg">    932</span> 
+<span class="ansi-green-fg">    933</span> <span style="font-style:italic;color:rgb(95,135,135)"># # phi = jnp.zeros_like(particles)</span>
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">    953</span> 
+<span class="ansi-green-fg">    954</span> <span style="font-style:italic;color:rgb(95,135,135)"># Call JIT-compiled update</span>
+<span class="ansi-green-fg">    955</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> _svgd_update_jitted(particles, K, grad_K, grad_log_p, step_size)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:812</span>, in <span class="ansi-cyan-fg">SVGDKernel.compute_kernel_grad</span><span class="ansi-blue-fg">(self, particles)</span>
+<span class="ansi-green-fg">    809</span>     bandwidth = <span style="color:rgb(0,135,0)">self</span>.bandwidth_method
+<span class="ansi-green-fg">    811</span> <span style="font-style:italic;color:rgb(95,135,135)"># Call JIT-compiled implementation</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">812</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">_compute_kernel_grad_impl</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">particles</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">bandwidth</span><span class="ansi-yellow-bg">)</span>
+
+    <span class="ansi-red-fg">[... skipping hidden 5 frame]</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/pjit.py:680</span>, in <span class="ansi-cyan-fg">_infer_input_type</span><span class="ansi-blue-fg">(fun, dbg, explicit_args)</span>
+<span class="ansi-green-fg">    678</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> <span style="font-weight:bold;color:rgb(215,95,95)">TypeError</span>:
+<span class="ansi-green-fg">    679</span>   arg_description = <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">path </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>dbg.arg_names[i]<span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">if</span><span style="color:rgb(188,188,188)"> </span>dbg.arg_names<span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(175,0,255)">is</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(175,0,255)">not</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">None</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">else</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">unknown</span><span class="ansi-yellow-fg">'</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>  <span style="font-style:italic;color:rgb(95,135,135)"># pytype: disable=name-error</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">680</span>   <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">TypeError</span>(
+<span class="ansi-green-fg">    681</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Error interpreting argument to </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>fun<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> as an abstract array.</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">    682</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg"> The problematic value is of type </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">type</span>(x)<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> and was passed to</span><span class="ansi-yellow-fg">"</span>  <span style="font-style:italic;color:rgb(95,135,135)"># pytype: disable=name-error</span>
+<span class="ansi-green-fg">    683</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg"> the function at </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>arg_description<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">.</span><span style="font-weight:bold;color:rgb(175,95,0)">\n</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">    684</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">This typically means that a jit-wrapped function was called with a non-array</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">    685</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg"> argument, and this argument was not marked as static using the</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">    686</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg"> static_argnums or static_argnames parameters of jax.jit.</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">    687</span>   ) <span style="font-weight:bold;color:rgb(0,135,0)">from</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">None</span>
+<span class="ansi-green-fg">    688</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> config.mutable_array_checks.value:
+<span class="ansi-green-fg">    689</span>   _check_no_aliased_ref_args(dbg, avals, explicit_args)
+
+<span class="ansi-red-fg">TypeError</span>: Error interpreting argument to &lt;function _compute_kernel_grad_impl at 0x175b172e0&gt; as an abstract array. The problematic value is of type &lt;class 'str'&gt; and was passed to the function at path bandwidth.
+This typically means that a jit-wrapped function was called with a non-array argument, and this argument was not marked as static using the static_argnums or static_argnames parameters of jax.jit.</pre>
+</div>
+</div>
+</div>
+<div id="d5b6275e" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># # without recreating the graph, pmf_and_moments_from_graph do not produce any trace</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># graph = Graph(callback=coalescent, parameterized=True, nr_samples=nr_samples)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_and_moments_from_graph(graph)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>svgd.fit_regularized(nr_moments<span class="op">=</span><span class="dv">2</span>, regularization<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> svgd.get_results()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results[<span class="st">'theta_mean'</span>], results[<span class="st">'theta_std'</span>])</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[6.90484269] [0.15989179]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="simple_example_files/figure-html/cell-3-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="simple_example_files/figure-html/cell-3-output-2.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="a1b7c8d3" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>svgd.fit_regularized(nr_moments<span class="op">=</span><span class="dv">2</span>, regularization<span class="op">=</span><span class="fl">1.0</span>, return_history<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>&lt;phasic.svgd.SVGD at 0x16d437c50&gt;</code></pre>
+</div>
+</div>
+<p>%load_ext autoreload %autoreload 2</p>
+<div id="aad83f94" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> Graph, set_theme</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>set_theme(<span class="st">'dark'</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coalescent(state, nr_samples<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> state.size:</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        ipv <span class="op">=</span> [[[nr_samples]<span class="op">+</span>[<span class="dv">0</span>]<span class="op">*</span>nr_samples, <span class="dv">1</span>, []]]</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ipv</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        transitions <span class="op">=</span> []</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nr_samples):</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, nr_samples):            </span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>                same <span class="op">=</span> <span class="bu">int</span>(i <span class="op">==</span> j)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> same <span class="kw">and</span> state[i] <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> same <span class="kw">and</span> (state[i] <span class="op">&lt;</span> <span class="dv">1</span> <span class="kw">or</span> state[j] <span class="op">&lt;</span> <span class="dv">1</span>):</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span> </span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                new <span class="op">=</span> state.copy()</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>                new[i] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>                new[j] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>                new[i<span class="op">+</span>j<span class="op">+</span><span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>                transitions.append([new, <span class="fl">0.0</span>, [state[i]<span class="op">*</span>(state[j]<span class="op">-</span>same)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>same)]])</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> transitions</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>true_theta <span class="op">=</span> np.array([<span class="dv">7</span>])  </span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>nr_samples <span class="op">=</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="some-artifical-data-simulated-from-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="some-artifical-data-simulated-from-the-model">Some artifical data simulated from the model</h2>
+<div id="04c77267" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nr_observations <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>_graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples) <span class="co"># should check using the graph hash if a trace of the graph is cached or available online</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>_graph.update_parameterized_weights(true_theta)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>observed_data <span class="op">=</span> _graph.sample(nr_observations)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>INFO: loaded elimination trace from cache (aa79bdbdb986a207dccce0fcb7d6ba52383ec6b42df5a00feb709e72e31b2baf): 29 operations, 6 vertices
+INFO: loaded elimination trace from cache (aa79bdbdb986a207dccce0fcb7d6ba52383ec6b42df5a00feb709e72e31b2baf)</code></pre>
+</div>
+</div>
+<div id="18855723" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples) <span class="co"># should check using the graph hash if a trace of the graph is cached or available online</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> uninformative_prior(phi):</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Uninformative prior: φ ~ N(0, 10^2) - very wide"""</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> <span class="fl">10.0</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> jnp.<span class="bu">sum</span>(((phi <span class="op">-</span> mu) <span class="op">/</span> sigma)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> SVGD, ExponentialDecayStepSize</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>step_schedule <span class="op">=</span> ExponentialDecayStepSize(max_step<span class="op">=</span><span class="fl">0.001</span>, min_step<span class="op">=</span><span class="fl">0.00001</span>, tau<span class="op">=</span><span class="fl">500.0</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> <span class="bu">dict</span>(</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>            bandwidth<span class="op">=</span><span class="st">'median'</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>            <span class="co"># bandwidth='local_adaptive',</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>            observed_data<span class="op">=</span>observed_data,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>            prior<span class="op">=</span>uninformative_prior, </span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>            theta_dim<span class="op">=</span><span class="bu">len</span>(true_theta),</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>            n_particles<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>            n_iterations<span class="op">=</span><span class="dv">50</span>,</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>            learning_rate<span class="op">=</span>step_schedule, </span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>            seed<span class="op">=</span><span class="dv">42</span>,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>            verbose<span class="op">=</span><span class="va">False</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="909667cb" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> graph.svgd(discrete<span class="op">=</span><span class="va">False</span>, param_length<span class="op">=</span><span class="dv">1</span>, <span class="op">**</span>params)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="4bda11d6" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="simple_example_files/figure-html/cell-9-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="simple_example_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="3ff76bb5" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_from_graph(graph)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>svgd.fit(return_history<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> svgd.get_results()</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results[<span class="st">'theta_mean'</span>], results[<span class="st">'theta_std'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[6.85982646] [0.27471283]</code></pre>
+</div>
+</div>
+<div id="2e70385e" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># # without recreating the graph, pmf_and_moments_from_graph do not produce any trace</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_and_moments_from_graph(graph)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>svgd.fit_regularized(nr_moments<span class="op">=</span><span class="dv">2</span>, regularization<span class="op">=</span><span class="fl">1.0</span>, return_history<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> svgd.get_results()</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results[<span class="st">'theta_mean'</span>], results[<span class="st">'theta_std'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">KeyboardInterrupt</span>                         Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 6</span>
+<span class="ansi-green-fg">      4</span> model_pdf = Graph.pmf_and_moments_from_graph(graph)
+<span class="ansi-green-fg">      5</span> svgd = SVGD(model_pdf, **params)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">6</span> <span class="ansi-yellow-bg">svgd</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">fit_regularized</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">nr_moments</span><span class="ansi-yellow-bg">=</span><span class="ansi-green-fg ansi-yellow-bg">2</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">regularization</span><span class="ansi-yellow-bg">=</span><span class="ansi-green-fg ansi-yellow-bg">1.0</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">return_history</span><span class="ansi-yellow-bg">=</span><span style="font-weight:bold;color:rgb(0,135,0)" class="ansi-yellow-bg">True</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">      7</span> results = svgd.get_results()
+<span class="ansi-green-fg">      8</span> <span style="color:rgb(0,135,0)">print</span>(results[<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">theta_mean</span><span class="ansi-yellow-fg">'</span>], results[<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">theta_std</span><span class="ansi-yellow-fg">'</span>])
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:1877</span>, in <span class="ansi-cyan-fg">SVGD.fit_regularized</span><span class="ansi-blue-fg">(self, observed_times, nr_moments, regularization, return_history)</span>
+<span class="ansi-green-fg">   1874</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">  Moment regularization: λ = </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>regularization<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">   1875</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">  Nr moments: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>nr_moments<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1877</span> results = <span class="ansi-yellow-bg">run_svgd</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">   1878</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">log_prob_fn</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">log_prob_regularized</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1879</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">theta_init</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">theta_init</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1880</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">n_steps</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">n_iterations</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1881</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">learning_rate</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">step_schedule</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">  </span><span style="font-style:italic;color:rgb(95,135,135)" class="ansi-yellow-bg"># Pass schedule object</span>
+<span class="ansi-green-fg">   1882</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">kernel</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">kernel</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1883</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">return_history</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">return_history</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1884</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">verbose</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">verbose</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1885</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">compiled_grad</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">compiled_grad_regularized</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1886</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">parallel_mode</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">parallel_mode</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1887</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">n_devices</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">n_devices</span>
+<span class="ansi-green-fg">   1888</span> <span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1890</span> <span style="font-style:italic;color:rgb(95,135,135)"># Store results as attributes</span>
+<span class="ansi-green-fg">   1891</span> <span style="color:rgb(0,135,0)">self</span>.particles = results[<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">particles</span><span class="ansi-yellow-fg">'</span>]
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:1030</span>, in <span class="ansi-cyan-fg">run_svgd</span><span class="ansi-blue-fg">(log_prob_fn, theta_init, n_steps, learning_rate, kernel, return_history, verbose, compiled_grad, parallel_mode, n_devices)</span>
+<span class="ansi-green-fg">   1027</span>     current_step_size = learning_rate
+<span class="ansi-green-fg">   1029</span> <span style="font-style:italic;color:rgb(95,135,135)"># Perform SVGD update</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1030</span> particles = <span class="ansi-yellow-bg">svgd_step</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">particles</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">log_prob_fn</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">kernel</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">current_step_size</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1031</span> <span class="ansi-yellow-bg">                     </span><span class="ansi-yellow-bg">compiled_grad</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">compiled_grad</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1032</span> <span class="ansi-yellow-bg">                     </span><span class="ansi-yellow-bg">parallel_mode</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">parallel_mode</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1033</span> <span class="ansi-yellow-bg">                     </span><span class="ansi-yellow-bg">n_devices</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">n_devices</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1035</span> <span style="font-style:italic;color:rgb(95,135,135)"># Store history</span>
+<span class="ansi-green-fg">   1036</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> return_history: <span style="font-style:italic;color:rgb(95,135,135)"># and (step % max(1, n_steps // 20) == 0):</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:911</span>, in <span class="ansi-cyan-fg">svgd_step</span><span class="ansi-blue-fg">(particles, log_prob_fn, kernel, step_size, compiled_grad, parallel_mode, n_devices)</span>
+<span class="ansi-green-fg">    908</span>         <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">    909</span>             grad_log_p_sharded = pmap(vmap(grad(log_prob_fn)), axis_name=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">batch</span><span class="ansi-yellow-fg">"</span>)(particles_sharded)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">911</span>     grad_log_p = <span class="ansi-yellow-bg">grad_log_p_sharded</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">reshape</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">n_particles</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">-</span><span class="ansi-green-fg ansi-yellow-bg">1</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    912</span> <span style="font-weight:bold;color:rgb(0,135,0)">elif</span> actual_parallel_mode == <span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">vmap</span><span class="ansi-yellow-fg">'</span>:
+<span class="ansi-green-fg">    913</span>     <span style="font-style:italic;color:rgb(95,135,135)"># Single device vectorization - use vmap only</span>
+<span class="ansi-green-fg">    914</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> compiled_grad <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>:
+
+    <span class="ansi-red-fg">[... skipping hidden 1 frame]</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/lax/lax.py:2841</span>, in <span class="ansi-cyan-fg">reshape</span><span class="ansi-blue-fg">(operand, new_sizes, dimensions, out_sharding)</span>
+<span class="ansi-green-fg">   2839</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">   2840</span>   dyn_shape, static_new_sizes = _extract_tracers_dyn_shape(new_sizes)
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">2841</span>   <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">reshape_p</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">bind</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">   2842</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">operand</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">dyn_shape</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">new_sizes</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">tuple</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">static_new_sizes</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   2843</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">dimensions</span><span class="ansi-yellow-bg">=</span><span style="font-weight:bold;color:rgb(0,135,0)" class="ansi-yellow-bg">None</span><span class="ansi-yellow-bg"> </span><span style="font-weight:bold;color:rgb(0,135,0)" class="ansi-yellow-bg">if</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dims</span><span class="ansi-yellow-bg"> </span><span style="font-weight:bold;color:rgb(175,0,255)" class="ansi-yellow-bg">is</span><span class="ansi-yellow-bg"> </span><span style="font-weight:bold;color:rgb(0,135,0)" class="ansi-yellow-bg">None</span><span class="ansi-yellow-bg"> </span><span style="font-weight:bold;color:rgb(175,0,255)" class="ansi-yellow-bg">or</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">same_dims</span><span class="ansi-yellow-bg"> </span><span style="font-weight:bold;color:rgb(0,135,0)" class="ansi-yellow-bg">else</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dims</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   2844</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">sharding</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">out_sharding</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:634</span>, in <span class="ansi-cyan-fg">Primitive.bind</span><span class="ansi-blue-fg">(self, *args, **params)</span>
+<span class="ansi-green-fg">    632</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">bind</span>(<span style="color:rgb(0,135,0)">self</span>, *args, **params):
+<span class="ansi-green-fg">    633</span>   args = args <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">self</span>.skip_canonicalization <span style="font-weight:bold;color:rgb(0,135,0)">else</span> <span style="color:rgb(0,135,0)">map</span>(canonicalize_value, args)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">634</span>   <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_true_bind</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">params</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:650</span>, in <span class="ansi-cyan-fg">Primitive._true_bind</span><span class="ansi-blue-fg">(self, *args, **params)</span>
+<span class="ansi-green-fg">    648</span> trace_ctx.set_trace(eval_trace)
+<span class="ansi-green-fg">    649</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">650</span>   <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">bind_with_trace</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">prev_trace</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">params</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    651</span> <span style="font-weight:bold;color:rgb(0,135,0)">finally</span>:
+<span class="ansi-green-fg">    652</span>   trace_ctx.set_trace(prev_trace)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:662</span>, in <span class="ansi-cyan-fg">Primitive.bind_with_trace</span><span class="ansi-blue-fg">(self, trace, args, params)</span>
+<span class="ansi-green-fg">    660</span>     <span style="font-weight:bold;color:rgb(0,135,0)">with</span> set_current_trace(trace):
+<span class="ansi-green-fg">    661</span>       <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)">self</span>.to_lojax(*args, **params)  <span style="font-style:italic;color:rgb(95,135,135)"># type: ignore</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">662</span>   <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">trace</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">process_primitive</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">params</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    663</span> trace.process_primitive(<span style="color:rgb(0,135,0)">self</span>, args, params)  <span style="font-style:italic;color:rgb(95,135,135)"># may raise lojax error</span>
+<span class="ansi-green-fg">    664</span> <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">Exception</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">couldn</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">t apply typeof to args: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>args<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:1189</span>, in <span class="ansi-cyan-fg">EvalTrace.process_primitive</span><span class="ansi-blue-fg">(self, primitive, args, params)</span>
+<span class="ansi-green-fg">   1187</span> args = <span style="color:rgb(0,135,0)">map</span>(full_lower, args)
+<span class="ansi-green-fg">   1188</span> check_eval_args(args)
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1189</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">primitive</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">impl</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">params</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/dispatch.py:90</span>, in <span class="ansi-cyan-fg">apply_primitive</span><span class="ansi-blue-fg">(prim, *args, **params)</span>
+<span class="ansi-green-fg">     88</span> prev = lib.jax_jit.swap_thread_local_state_disable_jit(<span style="font-weight:bold;color:rgb(0,135,0)">False</span>)
+<span class="ansi-green-fg">     89</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">90</span>   outs = <span class="ansi-yellow-bg">fun</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">     91</span> <span style="font-weight:bold;color:rgb(0,135,0)">finally</span>:
+<span class="ansi-green-fg">     92</span>   lib.jax_jit.swap_thread_local_state_disable_jit(prev)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/interpreters/pxla.py:3319</span>, in <span class="ansi-cyan-fg">cc_shard_arg</span><span class="ansi-blue-fg">(x, sharding, layout)</span>
+<span class="ansi-green-fg">   3318</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">cc_shard_arg</span>(x, sharding, layout):
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">3319</span>   <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">shard_args</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg">sharding</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg">layout</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg">xc</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">ArrayCopySemantics</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">REUSE_INPUT</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   3320</span> <span class="ansi-yellow-bg">                    </span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg">x</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">)</span>[<span class="ansi-green-fg">0</span>]
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/profiler.py:364</span>, in <span class="ansi-cyan-fg">annotate_function.&lt;locals&gt;.wrapper</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">    361</span> <span style="color:rgb(175,0,255)">@wraps</span>(func)
+<span class="ansi-green-fg">    362</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">wrapper</span>(*args, **kwargs):
+<span class="ansi-green-fg">    363</span>   <span style="font-weight:bold;color:rgb(0,135,0)">with</span> TraceAnnotation(name, **decorator_kwargs):
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">364</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">func</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/interpreters/pxla.py:127</span>, in <span class="ansi-cyan-fg">shard_args</span><span class="ansi-blue-fg">(shardings, layouts, copy_semantics, args, canonicalize)</span>
+<span class="ansi-green-fg">    125</span>   <span style="font-weight:bold;color:rgb(0,135,0)">if</span> canonicalize:
+<span class="ansi-green-fg">    126</span>     arg = dtypes.canonicalize_value(arg)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">127</span>   <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">shard_arg_handlers</span><span class="ansi-yellow-bg">[</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">type</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">arg</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg">arg</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">shardings</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">layouts</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    128</span> <span class="ansi-yellow-bg">                                       </span><span class="ansi-yellow-bg">copy_semantics</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    130</span> <span style="font-style:italic;color:rgb(95,135,135)"># type(arg) -&gt; (list[indices], list[args], list[shardings], list[layouts],</span>
+<span class="ansi-green-fg">    131</span> <span style="font-style:italic;color:rgb(95,135,135)">#               list[copy_semantics])</span>
+<span class="ansi-green-fg">    132</span> batches = collections.defaultdict(<span style="font-weight:bold;color:rgb(0,135,0)">lambda</span>: ([], [], [], [], []))  <span style="font-style:italic;color:rgb(95,135,135)"># type: ignore</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/array.py:1281</span>, in <span class="ansi-cyan-fg">_array_shard_arg</span><span class="ansi-blue-fg">(xs, shardings, layouts, copy_semantics)</span>
+<span class="ansi-green-fg">   1278</span>         results.append(shard_device_array(x, devices, indices, sharding))
+<span class="ansi-green-fg">   1279</span>       <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">   1280</span>         results.append(
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1281</span>             <span class="ansi-yellow-bg">shard_sharded_device_array_slow_path</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">x</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">devices</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">indices</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">sharding</span><span class="ansi-yellow-bg">)</span>)
+<span class="ansi-green-fg">   1283</span> util.test_event(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">batched_copy_array</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">   1284</span> copy_outs = xc.batched_copy_array_to_devices_with_sharding(
+<span class="ansi-green-fg">   1285</span>     batch_xs, batch_devs, batch_shardings, batch_cs)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/array.py:1212</span>, in <span class="ansi-cyan-fg">shard_sharded_device_array_slow_path</span><span class="ansi-blue-fg">(x, devices, indices, sharding)</span>
+<span class="ansi-green-fg">   1209</span> candidates_list = candidates[hashed_index(idx)]
+<span class="ansi-green-fg">   1210</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> candidates_list:
+<span class="ansi-green-fg">   1211</span>   <span style="font-weight:bold;color:rgb(0,135,0)">return</span> pxla.shard_args([sharding], [<span style="font-weight:bold;color:rgb(0,135,0)">None</span>],
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1212</span>                          [xc.ArrayCopySemantics.REUSE_INPUT], [<span class="ansi-yellow-bg">x</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_value</span>],
+<span class="ansi-green-fg">   1213</span>                          canonicalize=<span style="font-weight:bold;color:rgb(0,135,0)">False</span>)[<span class="ansi-green-fg">0</span>]
+<span class="ansi-green-fg">   1214</span> <span style="font-style:italic;color:rgb(95,135,135)"># Try to find a candidate buffer already on the correct device,</span>
+<span class="ansi-green-fg">   1215</span> <span style="font-style:italic;color:rgb(95,135,135)"># otherwise copy one of them.</span>
+<span class="ansi-green-fg">   1216</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> buf <span style="font-weight:bold;color:rgb(175,0,255)">in</span> candidates_list:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/profiler.py:364</span>, in <span class="ansi-cyan-fg">annotate_function.&lt;locals&gt;.wrapper</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">    361</span> <span style="color:rgb(175,0,255)">@wraps</span>(func)
+<span class="ansi-green-fg">    362</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">wrapper</span>(*args, **kwargs):
+<span class="ansi-green-fg">    363</span>   <span style="font-weight:bold;color:rgb(0,135,0)">with</span> TraceAnnotation(name, **decorator_kwargs):
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">364</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">func</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/array.py:671</span>, in <span class="ansi-cyan-fg">ArrayImpl._value</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg">    669</span> npy_value = np.empty(<span style="color:rgb(0,135,0)">self</span>.shape, <span style="color:rgb(0,135,0)">self</span>.dtype)
+<span class="ansi-green-fg">    670</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> i, ind <span style="font-weight:bold;color:rgb(175,0,255)">in</span> _cached_index_calc(<span style="color:rgb(0,135,0)">self</span>.sharding, <span style="color:rgb(0,135,0)">self</span>.shape):
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">671</span>   npy_value[ind], _ = <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_arrays</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg">i</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_single_device_array_to_np_array_did_copy</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    672</span> <span style="color:rgb(0,135,0)">self</span>._npy_value = npy_value
+<span class="ansi-green-fg">    673</span> <span style="color:rgb(0,135,0)">self</span>._npy_value.flags.writeable = <span style="font-weight:bold;color:rgb(0,135,0)">False</span>
+
+<span class="ansi-red-fg">KeyboardInterrupt</span>: </pre>
+</div>
+</div>
+</div>
+<div id="7eab9e4c" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_from_graph(graph)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>svgd.fit(return_history<span class="op">=</span><span class="va">True</span>) <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="531dcd2c" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="simple_example_files/figure-html/cell-13-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="simple_example_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="36de87ff" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>graph.update_parameterized_weights(svgd.particles.mean(axis<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>sns.histplot(observed_data, kde<span class="op">=</span><span class="va">False</span>, stat<span class="op">=</span><span class="st">'density'</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(graph.sample(<span class="dv">5000</span>), color<span class="op">=</span><span class="st">'orange'</span>, label<span class="op">=</span><span class="st">'Inferred posterior predictive'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>plt.legend() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>INFO: loaded elimination trace from cache (aa79bdbdb986a207dccce0fcb7d6ba52383ec6b42df5a00feb709e72e31b2baf): 29 operations, 6 vertices
+INFO: loaded elimination trace from cache (aa79bdbdb986a207dccce0fcb7d6ba52383ec6b42df5a00feb709e72e31b2baf)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="simple_example_files/figure-html/cell-14-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="simple_example_files/figure-html/cell-14-output-2.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="d3e3102a" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> svgd.plot_trace()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="simple_example_files/figure-html/cell-15-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="simple_example_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="ea1be39a" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_and_moments_from_graph(graph)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>svgd.fit_regularized(nr_moments<span class="op">=</span><span class="dv">2</span>, regularization<span class="op">=</span><span class="fl">1.0</span>, return_history<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="simple_example_files/figure-html/cell-16-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="simple_example_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="81c5a1e6" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># SOMEHOW WE NEED TO RESET THE GRAPH TO INITIAL STATE HERE TO MAKE fit_regularized WORK. NOT SURE WHY. THIS IS NOT A PROBLEM WITH fit().</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples) <span class="co"># should check using the graph hash if a trace of the graph is cached or available online</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_and_moments_from_graph(graph)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>svgd.fit_regularized(nr_moments<span class="op">=</span><span class="dv">2</span>, regularization<span class="op">=</span><span class="fl">0.2</span>, return_history<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">#svgd.analyze_trace()</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> svgd.plot_trace()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="simple_example_files/figure-html/cell-17-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="simple_example_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="855b0aca" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="simple_example_files/figure-html/cell-18-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="simple_example_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/munch-group\.github\.io\/phasic\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
