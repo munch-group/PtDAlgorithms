@@ -195,295 +195,279 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="3e6584c0" class="cell">
+<p>%load_ext autoreload %autoreload 2</p>
+<div id="aad83f94" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> Graph, set_theme</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>set_theme(<span class="st">'dark'</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coalescent(state, nr_samples<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> state.size:</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        ipv <span class="op">=</span> [[[nr_samples]<span class="op">+</span>[<span class="dv">0</span>]<span class="op">*</span>nr_samples, <span class="dv">1</span>, []]]</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ipv</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        transitions <span class="op">=</span> []</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nr_samples):</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, nr_samples):            </span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                same <span class="op">=</span> <span class="bu">int</span>(i <span class="op">==</span> j)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> same <span class="kw">and</span> state[i] <span class="op">&lt;</span> <span class="dv">2</span>:</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> same <span class="kw">and</span> (state[i] <span class="op">&lt;</span> <span class="dv">1</span> <span class="kw">or</span> state[j] <span class="op">&lt;</span> <span class="dv">1</span>):</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span> </span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                new <span class="op">=</span> state.copy()</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                new[i] <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                new[j] <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                new[i<span class="op">+</span>j<span class="op">+</span><span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                transitions.append([new, <span class="fl">0.0</span>, [state[i]<span class="op">*</span>(state[j]<span class="op">-</span>same)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>same)]])</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> transitions</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> Graph, set_theme</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>set_theme(<span class="st">'dark'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coalescent(state, nr_samples<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> state.size:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        ipv <span class="op">=</span> [[[nr_samples]<span class="op">+</span>[<span class="dv">0</span>]<span class="op">*</span>nr_samples, <span class="dv">1</span>, []]]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ipv</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        transitions <span class="op">=</span> []</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nr_samples):</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, nr_samples):            </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                same <span class="op">=</span> <span class="bu">int</span>(i <span class="op">==</span> j)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> same <span class="kw">and</span> state[i] <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> same <span class="kw">and</span> (state[i] <span class="op">&lt;</span> <span class="dv">1</span> <span class="kw">or</span> state[j] <span class="op">&lt;</span> <span class="dv">1</span>):</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span> </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                new <span class="op">=</span> state.copy()</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                new[i] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                new[j] <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                new[i<span class="op">+</span>j<span class="op">+</span><span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                transitions.append([new, <span class="fl">0.0</span>, [state[i]<span class="op">*</span>(state[j]<span class="op">-</span>same)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>same)]])</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> transitions</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>true_theta <span class="op">=</span> np.array([<span class="dv">7</span>])  </span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>nr_samples <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>nr_observations <span class="op">=</span> <span class="dv">500</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>_graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>_graph.update_parameterized_weights(true_theta)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>observed_data <span class="op">=</span> _graph.sample(nr_observations)</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples)</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> uninformative_prior(phi):</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Uninformative prior: φ ~ N(0, 10^2) - very wide"""</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> <span class="fl">10.0</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> jnp.<span class="bu">sum</span>(((phi <span class="op">-</span> mu) <span class="op">/</span> sigma)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> SVGD, ExponentialDecayStepSize</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>step_schedule <span class="op">=</span> ExponentialDecayStepSize(max_step<span class="op">=</span><span class="fl">0.005</span>, min_step<span class="op">=</span><span class="fl">0.0005</span>, tau<span class="op">=</span><span class="fl">500.0</span>)</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> <span class="bu">dict</span>(</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>            bandwidth<span class="op">=</span><span class="st">'median'</span>,</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>            <span class="co"># bandwidth='local_adaptive',</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>            observed_data<span class="op">=</span>observed_data,</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>            prior<span class="op">=</span>uninformative_prior, </span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>            theta_dim<span class="op">=</span><span class="bu">len</span>(true_theta),</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>            n_particles<span class="op">=</span><span class="dv">20</span>,</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>            n_iterations<span class="op">=</span><span class="dv">500</span>,</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>            learning_rate<span class="op">=</span>step_schedule, </span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>            seed<span class="op">=</span><span class="dv">42</span>,</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>            verbose<span class="op">=</span><span class="va">False</span></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_from_graph(graph)</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>svgd.fit()</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> svgd.get_results()</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results[<span class="st">'theta_mean'</span>], results[<span class="st">'theta_std'</span>])</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>INFO: loaded elimination trace from cache (aa79bdbdb986a207dccce0fcb7d6ba52383ec6b42df5a00feb709e72e31b2baf): 29 operations, 6 vertices
-INFO: loaded elimination trace from cache (aa79bdbdb986a207dccce0fcb7d6ba52383ec6b42df5a00feb709e72e31b2baf)</code></pre>
-</div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[14]</span><span class="ansi-green-fg">, line 66</span>
-<span class="ansi-green-fg">     64</span> model_pdf = Graph.pmf_from_graph(graph)
-<span class="ansi-green-fg">     65</span> svgd = SVGD(model_pdf, **params)
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">66</span> <span class="ansi-yellow-bg">svgd</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">fit</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg">     67</span> results = svgd.get_results()
-<span class="ansi-green-fg">     68</span> <span style="color:rgb(0,135,0)">print</span>(results[<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">theta_mean</span><span class="ansi-yellow-fg">'</span>], results[<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">theta_std</span><span class="ansi-yellow-fg">'</span>])
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:1755</span>, in <span class="ansi-cyan-fg">SVGD.fit</span><span class="ansi-blue-fg">(self, return_history)</span>
-<span class="ansi-green-fg">   1752</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">  Data points: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">len</span>(<span style="color:rgb(0,135,0)">self</span>.observed_data)<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">   1753</span>     <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">  Prior: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">custom</span><span class="ansi-yellow-fg">'</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">if</span><span style="color:rgb(188,188,188)"> </span><span style="color:rgb(0,135,0)">self</span>.prior<span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(175,0,255)">is</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(175,0,255)">not</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">None</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">else</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">standard normal</span><span class="ansi-yellow-fg">'</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1755</span> results = <span class="ansi-yellow-bg">run_svgd</span><span class="ansi-yellow-bg">(</span>
-<span class="ansi-green-fg">   1756</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">log_prob_fn</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_log_prob</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-fg">   1757</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">theta_init</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">theta_init</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-fg">   1758</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">n_steps</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">n_iterations</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-fg">   1759</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">learning_rate</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">step_schedule</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">  </span><span style="font-style:italic;color:rgb(95,135,135)" class="ansi-yellow-bg"># Pass schedule object</span>
-<span class="ansi-green-fg">   1760</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">kernel</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">kernel</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-fg">   1761</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">return_history</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">return_history</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-fg">   1762</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">verbose</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">verbose</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-fg">   1763</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">compiled_grad</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">compiled_grad</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-fg">   1764</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">parallel_mode</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">parallel_mode</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-fg">   1765</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">n_devices</span><span class="ansi-yellow-bg">=</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">n_devices</span>
-<span class="ansi-green-fg">   1766</span> <span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg">   1768</span> <span style="font-style:italic;color:rgb(95,135,135)"># Store results as attributes</span>
-<span class="ansi-green-fg">   1769</span> <span style="color:rgb(0,135,0)">self</span>.particles = results[<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">particles</span><span class="ansi-yellow-fg">'</span>]
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:1030</span>, in <span class="ansi-cyan-fg">run_svgd</span><span class="ansi-blue-fg">(log_prob_fn, theta_init, n_steps, learning_rate, kernel, return_history, verbose, compiled_grad, parallel_mode, n_devices)</span>
-<span class="ansi-green-fg">   1027</span>     current_step_size = learning_rate
-<span class="ansi-green-fg">   1029</span> <span style="font-style:italic;color:rgb(95,135,135)"># Perform SVGD update</span>
-<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1030</span> particles = <span class="ansi-yellow-bg">svgd_step</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">particles</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">log_prob_fn</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">kernel</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">current_step_size</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-fg">   1031</span> <span class="ansi-yellow-bg">                     </span><span class="ansi-yellow-bg">compiled_grad</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">compiled_grad</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-fg">   1032</span> <span class="ansi-yellow-bg">                     </span><span class="ansi-yellow-bg">parallel_mode</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">parallel_mode</span><span class="ansi-yellow-bg">,</span>
-<span class="ansi-green-fg">   1033</span> <span class="ansi-yellow-bg">                     </span><span class="ansi-yellow-bg">n_devices</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">n_devices</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg">   1035</span> <span style="font-style:italic;color:rgb(95,135,135)"># Store history</span>
-<span class="ansi-green-fg">   1036</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> return_history: <span style="font-style:italic;color:rgb(95,135,135)"># and (step % max(1, n_steps // 20) == 0):</span>
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:929</span>, in <span class="ansi-cyan-fg">svgd_step</span><span class="ansi-blue-fg">(particles, log_prob_fn, kernel, step_size, compiled_grad, parallel_mode, n_devices)</span>
-<span class="ansi-green-fg">    926</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Invalid parallel_mode: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>actual_parallel_mode<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">    928</span> <span style="font-style:italic;color:rgb(95,135,135)"># Compute kernel and kernel gradient</span>
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">929</span> K, grad_K = <span class="ansi-yellow-bg">kernel</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">compute_kernel_grad</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">particles</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg">    931</span> <span style="font-style:italic;color:rgb(95,135,135)"># ##############    </span>
-<span class="ansi-green-fg">    932</span> 
-<span class="ansi-green-fg">    933</span> <span style="font-style:italic;color:rgb(95,135,135)"># # phi = jnp.zeros_like(particles)</span>
-<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">    953</span> 
-<span class="ansi-green-fg">    954</span> <span style="font-style:italic;color:rgb(95,135,135)"># Call JIT-compiled update</span>
-<span class="ansi-green-fg">    955</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> _svgd_update_jitted(particles, K, grad_K, grad_log_p, step_size)
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:812</span>, in <span class="ansi-cyan-fg">SVGDKernel.compute_kernel_grad</span><span class="ansi-blue-fg">(self, particles)</span>
-<span class="ansi-green-fg">    809</span>     bandwidth = <span style="color:rgb(0,135,0)">self</span>.bandwidth_method
-<span class="ansi-green-fg">    811</span> <span style="font-style:italic;color:rgb(95,135,135)"># Call JIT-compiled implementation</span>
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">812</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">_compute_kernel_grad_impl</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">particles</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">bandwidth</span><span class="ansi-yellow-bg">)</span>
-
-    <span class="ansi-red-fg">[... skipping hidden 5 frame]</span>
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/pjit.py:680</span>, in <span class="ansi-cyan-fg">_infer_input_type</span><span class="ansi-blue-fg">(fun, dbg, explicit_args)</span>
-<span class="ansi-green-fg">    678</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> <span style="font-weight:bold;color:rgb(215,95,95)">TypeError</span>:
-<span class="ansi-green-fg">    679</span>   arg_description = <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">path </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>dbg.arg_names[i]<span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">if</span><span style="color:rgb(188,188,188)"> </span>dbg.arg_names<span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(175,0,255)">is</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(175,0,255)">not</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">None</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">else</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">unknown</span><span class="ansi-yellow-fg">'</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>  <span style="font-style:italic;color:rgb(95,135,135)"># pytype: disable=name-error</span>
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">680</span>   <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">TypeError</span>(
-<span class="ansi-green-fg">    681</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Error interpreting argument to </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>fun<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> as an abstract array.</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    682</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg"> The problematic value is of type </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">type</span>(x)<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> and was passed to</span><span class="ansi-yellow-fg">"</span>  <span style="font-style:italic;color:rgb(95,135,135)"># pytype: disable=name-error</span>
-<span class="ansi-green-fg">    683</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg"> the function at </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>arg_description<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">.</span><span style="font-weight:bold;color:rgb(175,95,0)">\n</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    684</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">This typically means that a jit-wrapped function was called with a non-array</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    685</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg"> argument, and this argument was not marked as static using the</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    686</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg"> static_argnums or static_argnames parameters of jax.jit.</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">    687</span>   ) <span style="font-weight:bold;color:rgb(0,135,0)">from</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">None</span>
-<span class="ansi-green-fg">    688</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> config.mutable_array_checks.value:
-<span class="ansi-green-fg">    689</span>   _check_no_aliased_ref_args(dbg, avals, explicit_args)
-
-<span class="ansi-red-fg">TypeError</span>: Error interpreting argument to &lt;function _compute_kernel_grad_impl at 0x175b172e0&gt; as an abstract array. The problematic value is of type &lt;class 'str'&gt; and was passed to the function at path bandwidth.
-This typically means that a jit-wrapped function was called with a non-array argument, and this argument was not marked as static using the static_argnums or static_argnames parameters of jax.jit.</pre>
-</div>
-</div>
-</div>
-<div id="d5b6275e" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># # without recreating the graph, pmf_and_moments_from_graph do not produce any trace</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># graph = Graph(callback=coalescent, parameterized=True, nr_samples=nr_samples)</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_and_moments_from_graph(graph)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>svgd.fit_regularized(nr_moments<span class="op">=</span><span class="dv">2</span>, regularization<span class="op">=</span><span class="fl">1.0</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> svgd.get_results()</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results[<span class="st">'theta_mean'</span>], results[<span class="st">'theta_std'</span>])</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[6.90484269] [0.15989179]</code></pre>
-</div>
-<div class="cell-output cell-output-display">
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>true_theta <span class="op">=</span> np.array([<span class="dv">7</span>])  </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>nr_samples <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples) <span class="co"># should check using the graph hash if a trace of the graph is cached or available online</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>graph.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 <figure class="figure">
-<p><a href="simple_example_files/figure-html/cell-3-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="simple_example_files/figure-html/cell-3-output-2.png" class="img-fluid figure-img"></a></p>
+<p><a href="simple_example_files/figure-html/cell-2-output-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="simple_example_files/figure-html/cell-2-output-1.svg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="a1b7c8d3" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>svgd.fit_regularized(nr_moments<span class="op">=</span><span class="dv">2</span>, regularization<span class="op">=</span><span class="fl">1.0</span>, return_history<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>&lt;phasic.svgd.SVGD at 0x16d437c50&gt;</code></pre>
-</div>
-</div>
-<p>%load_ext autoreload %autoreload 2</p>
-<div id="aad83f94" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> Graph, set_theme</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>set_theme(<span class="st">'dark'</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> coalescent(state, nr_samples<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> state.size:</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        ipv <span class="op">=</span> [[[nr_samples]<span class="op">+</span>[<span class="dv">0</span>]<span class="op">*</span>nr_samples, <span class="dv">1</span>, []]]</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ipv</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        transitions <span class="op">=</span> []</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nr_samples):</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, nr_samples):            </span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>                same <span class="op">=</span> <span class="bu">int</span>(i <span class="op">==</span> j)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> same <span class="kw">and</span> state[i] <span class="op">&lt;</span> <span class="dv">2</span>:</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> same <span class="kw">and</span> (state[i] <span class="op">&lt;</span> <span class="dv">1</span> <span class="kw">or</span> state[j] <span class="op">&lt;</span> <span class="dv">1</span>):</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span> </span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                new <span class="op">=</span> state.copy()</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>                new[i] <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>                new[j] <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>                new[i<span class="op">+</span>j<span class="op">+</span><span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>                transitions.append([new, <span class="fl">0.0</span>, [state[i]<span class="op">*</span>(state[j]<span class="op">-</span>same)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>same)]])</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> transitions</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>true_theta <span class="op">=</span> np.array([<span class="dv">7</span>])  </span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>nr_samples <span class="op">=</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 <section id="some-artifical-data-simulated-from-the-model" class="level2">
 <h2 class="anchored" data-anchor-id="some-artifical-data-simulated-from-the-model">Some artifical data simulated from the model</h2>
 <div id="04c77267" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nr_observations <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>_graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples) <span class="co"># should check using the graph hash if a trace of the graph is cached or available online</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>_graph.update_parameterized_weights(true_theta)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>observed_data <span class="op">=</span> _graph.sample(nr_observations)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nr_observations <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>_graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples) <span class="co"># should check using the graph hash if a trace of the graph is cached or available online</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>_graph.update_parameterized_weights(true_theta)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>observed_data <span class="op">=</span> _graph.sample(nr_observations)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO: loaded elimination trace from cache (aa79bdbdb986a207dccce0fcb7d6ba52383ec6b42df5a00feb709e72e31b2baf): 29 operations, 6 vertices
 INFO: loaded elimination trace from cache (aa79bdbdb986a207dccce0fcb7d6ba52383ec6b42df5a00feb709e72e31b2baf)</code></pre>
 </div>
 </div>
-<div id="18855723" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples) <span class="co"># should check using the graph hash if a trace of the graph is cached or available online</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> uninformative_prior(phi):</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Uninformative prior: φ ~ N(0, 10^2) - very wide"""</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> <span class="fl">10.0</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> jnp.<span class="bu">sum</span>(((phi <span class="op">-</span> mu) <span class="op">/</span> sigma)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> SVGD, ExponentialDecayStepSize</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>step_schedule <span class="op">=</span> ExponentialDecayStepSize(max_step<span class="op">=</span><span class="fl">0.001</span>, min_step<span class="op">=</span><span class="fl">0.00001</span>, tau<span class="op">=</span><span class="fl">500.0</span>)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> <span class="bu">dict</span>(</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>            bandwidth<span class="op">=</span><span class="st">'median'</span>,</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>            <span class="co"># bandwidth='local_adaptive',</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>            observed_data<span class="op">=</span>observed_data,</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>            prior<span class="op">=</span>uninformative_prior, </span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>            theta_dim<span class="op">=</span><span class="bu">len</span>(true_theta),</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>            n_particles<span class="op">=</span><span class="dv">20</span>,</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>            n_iterations<span class="op">=</span><span class="dv">50</span>,</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>            learning_rate<span class="op">=</span>step_schedule, </span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>            seed<span class="op">=</span><span class="dv">42</span>,</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>            verbose<span class="op">=</span><span class="va">False</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="18855723" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> uninformative_prior(phi):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Uninformative prior: φ ~ N(0, 10^2) - very wide"""</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> <span class="fl">10.0</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> jnp.<span class="bu">sum</span>(((phi <span class="op">-</span> mu) <span class="op">/</span> sigma)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> phasic <span class="im">import</span> SVGD, ExponentialDecayStepSize, ExponentialDecayRegularization, ExponentialCDFRegularization</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>step_schedule <span class="op">=</span> ExponentialDecayStepSize(first_step<span class="op">=</span><span class="fl">0.01</span>, last_step<span class="op">=</span><span class="fl">0.0001</span>, tau<span class="op">=</span><span class="fl">50.0</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>step_schedule.plot(<span class="dv">200</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>(&lt;Figure size 400x300 with 1 Axes&gt;,
+ &lt;Axes: title={'center': 'ExponentialDecayStepSize'}, xlabel='Iteration', ylabel='Step Size'&gt;)</code></pre>
 </div>
-<div id="909667cb" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> graph.svgd(discrete<span class="op">=</span><span class="va">False</span>, param_length<span class="op">=</span><span class="dv">1</span>, <span class="op">**</span>params)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="4bda11d6" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="simple_example_files/figure-html/cell-9-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="simple_example_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></a></p>
+<p><a href="simple_example_files/figure-html/cell-4-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="simple_example_files/figure-html/cell-4-output-2.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="bb150152" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>reg_schedule <span class="op">=</span> ExponentialDecayRegularization(first_reg<span class="op">=</span><span class="fl">10.0</span>, last_reg<span class="op">=</span><span class="fl">1.0</span>, tau<span class="op">=</span><span class="fl">50.0</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>step_schedule.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>(&lt;Figure size 400x300 with 1 Axes&gt;,
+ &lt;Axes: title={'center': 'ExponentialDecayStepSize'}, xlabel='Iteration', ylabel='Step Size'&gt;)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="simple_example_files/figure-html/cell-5-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="simple_example_files/figure-html/cell-5-output-2.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="82b53c60" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> <span class="bu">dict</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>            observed_data<span class="op">=</span>observed_data,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>            bandwidth<span class="op">=</span><span class="st">'median'</span>, <span class="co"># bandwidth='local_adaptive',</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            theta_dim<span class="op">=</span><span class="bu">len</span>(true_theta),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>            prior<span class="op">=</span>uninformative_prior, </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            n_particles<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>            n_iterations<span class="op">=</span><span class="dv">200</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>            learning_rate<span class="op">=</span>step_schedule, </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            seed<span class="op">=</span><span class="dv">42</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            verbose<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>            discrete<span class="op">=</span><span class="va">False</span>, </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>            regularization<span class="op">=</span>reg_schedule, </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>            nr_moments<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="909667cb" class="cell" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> graph.svgd(<span class="op">**</span>params)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[27]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> svgd = <span class="ansi-yellow-bg">graph</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">svgd</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">params</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/__init__.py:2653</span>, in <span class="ansi-cyan-fg">Graph.svgd</span><span class="ansi-blue-fg">(self, observed_data, discrete, prior, n_particles, n_iterations, learning_rate, bandwidth, theta_init, theta_dim, return_history, seed, verbose, jit, parallel, n_devices, precompile, compilation_config, regularization, nr_moments, positive_params, param_transform)</span>
+<span class="ansi-green-fg">   2629</span> svgd = SVGD(
+<span class="ansi-green-fg">   2630</span>     observed_data=observed_data,
+<span class="ansi-green-fg">   2631</span>     model=model,
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">   2649</span>     param_transform=param_transform
+<span class="ansi-green-fg">   2650</span> )
+<span class="ansi-green-fg">   2652</span> <span style="font-style:italic;color:rgb(95,135,135)"># Run inference</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">2653</span> <span class="ansi-yellow-bg">svgd</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">fit</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">return_history</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">return_history</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   2655</span> <span style="font-style:italic;color:rgb(95,135,135)"># Return results as dictionary for backward compatibility</span>
+<span class="ansi-green-fg">   2656</span> <span style="font-style:italic;color:rgb(95,135,135)"># return svgd.get_results()</span>
+<span class="ansi-green-fg">   2658</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> svgd
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:2475</span>, in <span class="ansi-cyan-fg">fit</span><span class="ansi-blue-fg">(self, return_history)</span>
+<span class="ansi-green-fg">   2462</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">fit</span>(<span style="color:rgb(0,135,0)">self</span>, return_history=<span style="font-weight:bold;color:rgb(0,135,0)">True</span>):
+<span class="ansi-green-fg">   2463</span> <span style="color:rgb(188,188,188)">    </span><span style="font-style:italic" class="ansi-yellow-fg">"""</span>
+<span class="ansi-green-fg">   2464</span> <span style="font-style:italic" class="ansi-yellow-fg">    Run SVGD inference.</span>
+<span class="ansi-green-fg">   2465</span> 
+<span class="ansi-green-fg">   2466</span> <span style="font-style:italic" class="ansi-yellow-fg">    Convenience wrapper for optimize(). Regularization settings are</span>
+<span class="ansi-green-fg">   2467</span> <span style="font-style:italic" class="ansi-yellow-fg">    configured at SVGD initialization via regularization and nr_moments parameters.</span>
+<span class="ansi-green-fg">   2468</span> 
+<span class="ansi-green-fg">   2469</span> <span style="font-style:italic" class="ansi-yellow-fg">    Parameters</span>
+<span class="ansi-green-fg">   2470</span> <span style="font-style:italic" class="ansi-yellow-fg">    ----------</span>
+<span class="ansi-green-fg">   2471</span> <span style="font-style:italic" class="ansi-yellow-fg">    return_history : bool, default=True</span>
+<span class="ansi-green-fg">   2472</span> <span style="font-style:italic" class="ansi-yellow-fg">        If True, store particle positions throughout optimization</span>
+<span class="ansi-green-fg">   2473</span> 
+<span class="ansi-green-fg">   2474</span> <span style="font-style:italic" class="ansi-yellow-fg">    Returns</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">2475</span> <span style="font-style:italic" class="ansi-yellow-fg">    -------</span>
+<span class="ansi-green-fg">   2476</span> <span style="font-style:italic" class="ansi-yellow-fg">    self</span>
+<span class="ansi-green-fg">   2477</span> <span style="font-style:italic" class="ansi-yellow-fg">        Returns self for method chaining</span>
+<span class="ansi-green-fg">   2478</span> <span style="font-style:italic" class="ansi-yellow-fg">    """</span>
+<span class="ansi-green-fg">   2479</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)">self</span>.optimize(return_history=return_history)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:2372</span>, in <span class="ansi-cyan-fg">optimize</span><span class="ansi-blue-fg">(self, rewards, return_history)</span>
+<span class="ansi-green-fg">   2367</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">log_prob_factory</span>(reg_value):
+<span class="ansi-green-fg">   2368</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> partial(
+<span class="ansi-green-fg">   2369</span>         <span style="color:rgb(0,135,0)">self</span>._log_prob_unified,
+<span class="ansi-green-fg">   2370</span>         nr_moments=<span style="color:rgb(0,135,0)">self</span>.nr_moments,
+<span class="ansi-green-fg">   2371</span>         sample_moments=<span style="color:rgb(0,135,0)">self</span>.sample_moments,
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">2372</span>         regularization=reg_value,
+<span class="ansi-green-fg">   2373</span>         rewards=rewards
+<span class="ansi-green-fg">   2374</span>     )
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:1304</span>, in <span class="ansi-cyan-fg">run_svgd</span><span class="ansi-blue-fg">(log_prob_fn, theta_init, n_steps, learning_rate, kernel, return_history, verbose, compiled_grad, parallel_mode, n_devices, log_prob_fn_factory, regularization_schedule)</span>
+<span class="ansi-green-fg">   1301</span>     compiled_grad_to_use = compiled_grad
+<span class="ansi-green-fg">   1303</span> <span style="font-style:italic;color:rgb(95,135,135)"># Perform SVGD update</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1304</span> particles = <span class="ansi-yellow-bg">svgd_step</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">particles</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">log_prob_fn</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">kernel</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">current_step_size</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1305</span> <span class="ansi-yellow-bg">                     </span><span class="ansi-yellow-bg">compiled_grad</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">compiled_grad_to_use</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1306</span> <span class="ansi-yellow-bg">                     </span><span class="ansi-yellow-bg">parallel_mode</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">parallel_mode</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">   1307</span> <span class="ansi-yellow-bg">                     </span><span class="ansi-yellow-bg">n_devices</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">n_devices</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1309</span> <span style="font-style:italic;color:rgb(95,135,135)"># Store history</span>
+<span class="ansi-green-fg">   1310</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> return_history: <span style="font-style:italic;color:rgb(95,135,135)"># and (step % max(1, n_steps // 20) == 0):</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:1172</span>, in <span class="ansi-cyan-fg">svgd_step</span><span class="ansi-blue-fg">(particles, log_prob_fn, kernel, step_size, compiled_grad, parallel_mode, n_devices)</span>
+<span class="ansi-green-fg">   1170</span>             grad_log_p_sharded = pmap(vmap(compiled_grad), axis_name=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">batch</span><span class="ansi-yellow-fg">"</span>)(particles_sharded)
+<span class="ansi-green-fg">   1171</span>         <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1172</span>             grad_log_p_sharded = <span class="ansi-yellow-bg">pmap</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">vmap</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">grad</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">log_prob_fn</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">axis_name</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">batch</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">particles_sharded</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1174</span>     grad_log_p = grad_log_p_sharded.reshape(n_particles, -<span class="ansi-green-fg">1</span>)
+<span class="ansi-green-fg">   1175</span> <span style="font-weight:bold;color:rgb(0,135,0)">elif</span> actual_parallel_mode == <span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">vmap</span><span class="ansi-yellow-fg">'</span>:
+<span class="ansi-green-fg">   1176</span>     <span style="font-style:italic;color:rgb(95,135,135)"># Single device vectorization - use vmap only</span>
+
+    <span class="ansi-red-fg">[... skipping hidden 33 frame]</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/src/phasic/svgd.py:2044</span>, in <span class="ansi-cyan-fg">_log_prob_unified</span><span class="ansi-blue-fg">(self, theta, nr_moments, sample_moments, regularization, rewards)</span>
+<span class="ansi-green-fg">   2041</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> log_lik + log_pri - moment_penalty
+<span class="ansi-green-fg">   2042</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">   2043</span>     <span style="font-style:italic;color:rgb(95,135,135)"># No regularization: moments computed but not used</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">2044</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> log_lik + log_pri
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/numpy/array_methods.py:1141</span>, in <span class="ansi-cyan-fg">_forward_operator_to_aval.&lt;locals&gt;.op</span><span class="ansi-blue-fg">(self, *args)</span>
+<span class="ansi-green-fg">   1140</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">op</span>(<span style="color:rgb(0,135,0)">self</span>, *args):
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1141</span>   <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">getattr</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">aval</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-fg ansi-yellow-bg">f</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">_</span><span style="font-weight:bold;color:rgb(175,95,135)" class="ansi-yellow-bg">{</span><span class="ansi-yellow-bg">name</span><span style="font-weight:bold;color:rgb(175,95,135)" class="ansi-yellow-bg">}</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/numpy/array_methods.py:604</span>, in <span class="ansi-cyan-fg">_defer_to_unrecognized_arg.&lt;locals&gt;.deferring_binary_op</span><span class="ansi-blue-fg">(self, other)</span>
+<span class="ansi-green-fg">    602</span> args = (other, <span style="color:rgb(0,135,0)">self</span>) <span style="font-weight:bold;color:rgb(0,135,0)">if</span> swap <span style="font-weight:bold;color:rgb(0,135,0)">else</span> (<span style="color:rgb(0,135,0)">self</span>, other)
+<span class="ansi-green-fg">    603</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">isinstance</span>(other, _accepted_binop_types):
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">604</span>   <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">binary_op</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    605</span> <span style="font-style:italic;color:rgb(95,135,135)"># Note: don't use isinstance here, because we don't want to raise for</span>
+<span class="ansi-green-fg">    606</span> <span style="font-style:italic;color:rgb(95,135,135)"># subclasses, e.g. NamedTuple objects that may override operators.</span>
+<span class="ansi-green-fg">    607</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">type</span>(other) <span style="font-weight:bold;color:rgb(175,0,255)">in</span> _rejected_binop_types:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/numpy/ufunc_api.py:183</span>, in <span class="ansi-cyan-fg">ufunc.__call__</span><span class="ansi-blue-fg">(self, out, where, *args)</span>
+<span class="ansi-green-fg">    181</span>   <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">NotImplementedError</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">where argument of </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">self</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+<span class="ansi-green-fg">    182</span> call = <span style="color:rgb(0,135,0)">self</span>.__static_props[<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">call</span><span class="ansi-yellow-fg">'</span>] <span style="font-weight:bold;color:rgb(175,0,255)">or</span> <span style="color:rgb(0,135,0)">self</span>._call_vectorized
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">183</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">call</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">)</span>
+
+    <span class="ansi-red-fg">[... skipping hidden 13 frame]</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/numpy/ufuncs.py:1568</span>, in <span class="ansi-cyan-fg">subtract</span><span class="ansi-blue-fg">(x, y)</span>
+<span class="ansi-green-fg">   1541</span> <span style="color:rgb(175,0,255)">@binary_ufunc</span>(identity=<span style="font-weight:bold;color:rgb(0,135,0)">None</span>, at=_subtract_at)
+<span class="ansi-green-fg">   1542</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg">subtract</span>(x: ArrayLike, y: ArrayLike, /) -&gt; Array:
+<span class="ansi-green-fg">   1543</span> <span style="color:rgb(188,188,188)">  </span><span style="font-style:italic" class="ansi-yellow-fg">"""Subtract two arrays element-wise.</span>
+<span class="ansi-green-fg">   1544</span> 
+<span class="ansi-green-fg">   1545</span> <span style="font-style:italic" class="ansi-yellow-fg">  JAX implementation of :obj:`numpy.subtract`. This is a universal function,</span>
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">   1566</span> <span style="font-style:italic" class="ansi-yellow-fg">    Array([-10,  -9,  -8,  -7], dtype=int32)</span>
+<span class="ansi-green-fg">   1567</span> <span style="font-style:italic" class="ansi-yellow-fg">  """</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1568</span>   out = <span class="ansi-yellow-bg">lax</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">sub</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">promote_args</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">subtract</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">x</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">y</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1569</span>   jnp_error._set_error_if_nan(out)
+<span class="ansi-green-fg">   1570</span>   <span style="font-weight:bold;color:rgb(0,135,0)">return</span> out
+
+    <span class="ansi-red-fg">[... skipping hidden 13 frame]</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/phasic/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/lax/lax.py:136</span>, in <span class="ansi-cyan-fg">_try_broadcast_shapes</span><span class="ansi-blue-fg">(name, *shapes)</span>
+<span class="ansi-green-fg">    134</span>       result_shape.append(non_1s[<span class="ansi-green-fg">0</span>])
+<span class="ansi-green-fg">    135</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">136</span>       <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">TypeError</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">'</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>name<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> got incompatible shapes for broadcasting: </span><span class="ansi-yellow-fg">'</span>
+<span class="ansi-green-fg">    137</span>                       <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">'</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">, </span><span class="ansi-yellow-fg">"</span>.join(<span style="color:rgb(0,135,0)">map</span>(<span style="color:rgb(0,135,0)">str</span>,<span style="color:rgb(188,188,188)"> </span><span style="color:rgb(0,135,0)">map</span>(<span style="color:rgb(0,135,0)">tuple</span>,<span style="color:rgb(188,188,188)"> </span>shapes)))<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">.</span><span class="ansi-yellow-fg">'</span>)
+<span class="ansi-green-fg">    138</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)">tuple</span>(result_shape)
+
+<span class="ansi-red-fg">TypeError</span>: sub got incompatible shapes for broadcasting: (2,), (3,).</pre>
+</div>
+</div>
+</div>
+<div id="4bda11d6" class="cell" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="simple_example_files/figure-html/cell-8-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="simple_example_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="f68a537f" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>svgd.plot_trace(skip<span class="op">=</span><span class="dv">100</span>) <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="simple_example_files/figure-html/cell-9-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="simple_example_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <div id="3ff76bb5" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_from_graph(graph)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>svgd.fit(return_history<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> svgd.get_results()</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results[<span class="st">'theta_mean'</span>], results[<span class="st">'theta_std'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_from_graph(graph)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>svgd.fit(return_history<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> svgd.get_results()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results[<span class="st">'theta_mean'</span>], results[<span class="st">'theta_std'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[6.85982646] [0.27471283]</code></pre>
 </div>
 </div>
 <div id="2e70385e" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># # without recreating the graph, pmf_and_moments_from_graph do not produce any trace</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_and_moments_from_graph(graph)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>svgd.fit_regularized(nr_moments<span class="op">=</span><span class="dv">2</span>, regularization<span class="op">=</span><span class="fl">1.0</span>, return_history<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> svgd.get_results()</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results[<span class="st">'theta_mean'</span>], results[<span class="st">'theta_std'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># # without recreating the graph, pmf_and_moments_from_graph do not produce any trace</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_and_moments_from_graph(graph)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>svgd.fit_regularized(nr_moments<span class="op">=</span><span class="dv">2</span>, regularization<span class="op">=</span><span class="fl">1.0</span>, return_history<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> svgd.get_results()</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results[<span class="st">'theta_mean'</span>], results[<span class="st">'theta_std'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -629,30 +613,30 @@ INFO: loaded elimination trace from cache (aa79bdbdb986a207dccce0fcb7d6ba52383ec
 </div>
 </div>
 <div id="7eab9e4c" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_from_graph(graph)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>svgd.fit(return_history<span class="op">=</span><span class="va">True</span>) <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>monitor</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_from_graph(graph)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>svgd.fit(return_history<span class="op">=</span><span class="va">True</span>) <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="531dcd2c" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="simple_example_files/figure-html/cell-13-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="simple_example_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></a></p>
+<p><a href="simple_example_files/figure-html/cell-13-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="simple_example_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <div id="36de87ff" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>graph.update_parameterized_weights(svgd.particles.mean(axis<span class="op">=</span><span class="dv">0</span>))</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>sns.histplot(observed_data, kde<span class="op">=</span><span class="va">False</span>, stat<span class="op">=</span><span class="st">'density'</span>)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(graph.sample(<span class="dv">5000</span>), color<span class="op">=</span><span class="st">'orange'</span>, label<span class="op">=</span><span class="st">'Inferred posterior predictive'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>plt.legend() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>graph.update_parameterized_weights(svgd.particles.mean(axis<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>sns.histplot(observed_data, kde<span class="op">=</span><span class="va">False</span>, stat<span class="op">=</span><span class="st">'density'</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(graph.sample(<span class="dv">5000</span>), color<span class="op">=</span><span class="st">'orange'</span>, label<span class="op">=</span><span class="st">'Inferred posterior predictive'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>plt.legend() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>INFO: loaded elimination trace from cache (aa79bdbdb986a207dccce0fcb7d6ba52383ec6b42df5a00feb709e72e31b2baf): 29 operations, 6 vertices
 INFO: loaded elimination trace from cache (aa79bdbdb986a207dccce0fcb7d6ba52383ec6b42df5a00feb709e72e31b2baf)</code></pre>
@@ -660,60 +644,60 @@ INFO: loaded elimination trace from cache (aa79bdbdb986a207dccce0fcb7d6ba52383ec
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="simple_example_files/figure-html/cell-14-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="simple_example_files/figure-html/cell-14-output-2.png" class="img-fluid figure-img"></a></p>
+<p><a href="simple_example_files/figure-html/cell-14-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="simple_example_files/figure-html/cell-14-output-2.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <div id="d3e3102a" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> svgd.plot_trace()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> svgd.plot_trace()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="simple_example_files/figure-html/cell-15-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="simple_example_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></a></p>
+<p><a href="simple_example_files/figure-html/cell-15-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="simple_example_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <div id="ea1be39a" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_and_moments_from_graph(graph)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>svgd.fit_regularized(nr_moments<span class="op">=</span><span class="dv">2</span>, regularization<span class="op">=</span><span class="fl">1.0</span>, return_history<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_and_moments_from_graph(graph)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>svgd.fit_regularized(nr_moments<span class="op">=</span><span class="dv">2</span>, regularization<span class="op">=</span><span class="fl">1.0</span>, return_history<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="simple_example_files/figure-html/cell-16-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="simple_example_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></a></p>
+<p><a href="simple_example_files/figure-html/cell-16-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="simple_example_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <div id="81c5a1e6" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># SOMEHOW WE NEED TO RESET THE GRAPH TO INITIAL STATE HERE TO MAKE fit_regularized WORK. NOT SURE WHY. THIS IS NOT A PROBLEM WITH fit().</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples) <span class="co"># should check using the graph hash if a trace of the graph is cached or available online</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_and_moments_from_graph(graph)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>svgd.fit_regularized(nr_moments<span class="op">=</span><span class="dv">2</span>, regularization<span class="op">=</span><span class="fl">0.2</span>, return_history<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">#svgd.analyze_trace()</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> svgd.plot_trace()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># SOMEHOW WE NEED TO RESET THE GRAPH TO INITIAL STATE HERE TO MAKE fit_regularized WORK. NOT SURE WHY. THIS IS NOT A PROBLEM WITH fit().</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> Graph(callback<span class="op">=</span>coalescent, parameterized<span class="op">=</span><span class="va">True</span>, nr_samples<span class="op">=</span>nr_samples) <span class="co"># should check using the graph hash if a trace of the graph is cached or available online</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>model_pdf <span class="op">=</span> Graph.pmf_and_moments_from_graph(graph)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>svgd <span class="op">=</span> SVGD(model_pdf, <span class="op">**</span>params)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>svgd.fit_regularized(nr_moments<span class="op">=</span><span class="dv">2</span>, regularization<span class="op">=</span><span class="fl">0.2</span>, return_history<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#svgd.analyze_trace()</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> svgd.plot_trace()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="simple_example_files/figure-html/cell-17-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="simple_example_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></a></p>
+<p><a href="simple_example_files/figure-html/cell-17-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="simple_example_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <div id="855b0aca" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>svgd.plot_convergence() <span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="simple_example_files/figure-html/cell-18-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="simple_example_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></a></p>
+<p><a href="simple_example_files/figure-html/cell-18-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="simple_example_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
